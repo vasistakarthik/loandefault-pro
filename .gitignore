@@ -1,0 +1,43 @@
+# 🌌 LoanRisk Pro: Sovereign Security Perimeter (.gitignore)
+
+# --- IDENTITY & SECRETS ---
+.env
+.flaskenv
+instance/
+.web_assets_cache
+
+# --- INSTITUTIONAL LEDGERS (DATA) ---
+*.db
+*.sqlite
+*.sqlite3
+database/loan_default.db
+loan_default.db
+
+# --- NEURAL DEBRIS (PYTHON) ---
+__pycache__/
+*.py[cod]
+*$py.class
+dist/
+build/
+*.egg-info/
+.pytest_cache/
+
+# --- TELEMETRY & LOGGING ---
+logs/
+reports/*.pdf
+reports/*.json
+results/
+
+# --- OS-LEVEL ARTIFACTS ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.bak
+
+# --- MODEL ARTIFACTS (EXCLUDED AS OVERSIZED) ---
+backend/model/*.pkl
+backend/model/models/*.pkl
+ml_model/*.pkl
+ml_model/*.joblib

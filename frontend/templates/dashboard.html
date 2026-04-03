@@ -1,0 +1,400 @@
+{% extends "base_dashboard.html" %}
+
+{% block title %}Neural Command Center | LoanRisk Pro{% endblock %}
+{% block header_title %}Neural Intelligence Command Center{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --active-emerald: #10b981;
+        --intel-indigo: #6366f1;
+        --sovereign-gold: #fbbf24;
+        --hazard-red: #ef4444;
+        --deep-slate: #020617;
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --glass-bg: rgba(2, 6, 23, 0.4);
+    }
+
+    .dashboard-container { display: flex; flex-direction: column; gap: 32px; animation: dashboardEntrance 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    @keyframes dashboardEntrance { from { opacity: 0; transform: translateY(40px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+    .scanner-hud {
+        background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border);
+        border-radius: 20px; padding: 16px 30px; display: flex; justify-content: space-between; align-items: center;
+        position: relative; overflow: hidden;
+    }
+
+    .status-orb { width: 10px; height: 10px; background: var(--active-emerald); border-radius: 50%; box-shadow: 0 0 15px var(--active-emerald); position: relative; }
+    .status-orb::after { content: ''; position: absolute; inset: -4px; border: 1px solid var(--active-emerald); border-radius: 50%; animation: orb-pulse 2s infinite; }
+    @keyframes orb-pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(2.5); opacity: 0; } }
+
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .kpi-card { background: var(--glass-bg); backdrop-filter: blur(25px); padding: 20px 18px; border-radius: 20px; border: 1px solid var(--glass-border); transition: 0.5s; overflow: hidden; }
+    .kpi-card:hover { transform: translateY(-5px); border-color: var(--intel-indigo); background: rgba(99, 102, 241, 0.03); }
+    .kpi-card label { font-size: 0.55rem; font-weight: 950; color: #64748b; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 12px; }
+    .kpi-card .val { font-size: 1.8rem; font-weight: 950; color: white; letter-spacing: -1.2px; line-height: 1; }
+
+    .core-grid { display: grid; grid-template-columns: 1.2fr 2fr; gap: 25px; }
+    .bento-box { background: var(--glass-bg); backdrop-filter: blur(30px); border-radius: 24px; border: 1px solid var(--glass-border); padding: 24px; position: relative; overflow: hidden; }
+
+    .box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; border-left: 3px solid var(--intel-indigo); padding-left: 14px; }
+    .box-header h3 { font-size: 0.75rem; font-weight: 950; color: white; text-transform: uppercase; letter-spacing: 1.5px; }
+
+    #risk-globe-container { height: 420px; width: 100%; position: relative; border-radius: 20px; overflow: hidden; background: #000; cursor: grab; }
+    #risk-globe-container:active { cursor: grabbing; }
+    #risk-globe-canvas { width: 100% !important; height: 100% !important; }
+
+    .activity-row { display: flex; justify-content: space-between; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.75rem; color: #cbd5e1; }
+    .status-pill { padding: 4px 10px; border-radius: 20px; font-size: 0.6rem; font-weight: 950; text-transform: uppercase; }
+
+    .pill-secure { background: rgba(16, 185, 129, 0.1); color: var(--active-emerald); border: 1px solid var(--active-emerald); }
+    .pill-critical { background: rgba(239, 68, 68, 0.1); color: var(--hazard-red); border: 1px solid var(--hazard-red); }
+
+    .action-card { background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: 18px; padding: 18px; text-align: center; text-decoration: none; transition: 0.3s; }
+    .action-card:hover { border-color: var(--sovereign-gold); background: rgba(251, 191, 36, 0.05); }
+    .action-card i { font-size: 1.4rem; color: var(--sovereign-gold); margin-bottom: 8px; display: block; }
+    .action-card span { font-size: 0.65rem; font-weight: 950; color: white; text-transform: uppercase; }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: var(--intel-indigo); border-radius: 10px; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+
+    <!-- HUD -->
+    <div class="scanner-hud">
+        <div class="sys-badge"><div class="status-orb"></div><span style="font-size: 0.8rem; font-weight: 950; color: white; margin-left: 10px;">Neural Core: Online</span></div>
+        <div style="font-family: monospace; font-size: 0.7rem; color: #64748b;">SECURITY: <b style="color: var(--active-emerald);">ENCRYPTED_AES256</b> | UPTIME: <b id="session-timer" style="color: white;">00:00:00</b></div>
+    </div>
+
+    <!-- STATS -->
+    <div class="kpi-grid">
+        <div class="kpi-card" style="border-top: 4px solid var(--intel-indigo);"><label>Total Exposure</label><div class="val" id="total-exposure">₹0</div></div>
+        <div class="kpi-card" style="border-top: 4px solid var(--sovereign-gold);"><label>System Health</label><div class="val" id="integrity-index">0%</div></div>
+        <div class="kpi-card" style="border-top: 4px solid #a855f7;"><label>Avg Risk score</label><div class="val" id="avg-score">0</div></div>
+        <div class="kpi-card" style="border-top: 4px solid var(--hazard-red);"><label>Total EAR</label><div class="val" id="total-ear">₹0</div></div>
+    </div>
+
+    <!-- CORE GRID -->
+    <div class="core-grid">
+        <div class="bento-box" style="padding: 0; display: flex; flex-direction: column;">
+            <div id="risk-globe-container">
+                <div style="position: absolute; top: 15px; left: 15px; z-index: 10; font-size: 0.5rem; color: var(--sovereign-gold); font-weight: 950;">GEOSPATIAL_SATELLITE_FEED</div>
+                <div style="position: absolute; bottom: 20px; right: 20px; z-index: 10; background: rgba(2,6,23,0.8); border: 1px solid var(--intel-indigo); padding: 10px 15px; border-radius: 12px; backdrop-filter: blur(10px);">
+                    <div style="font-size: 0.4rem; color: #94a3b8; font-weight: 900; text-transform: uppercase;">Real-Time Topology</div>
+                    <div style="font-size: 0.7rem; color: white; font-weight: 950;">Institutional Coverage</div>
+                </div>
+                <canvas id="risk-globe-canvas"></canvas>
+            </div>
+            <div style="padding: 20px;">
+                <div class="box-header" style="border-color: var(--sovereign-gold);"><h3 id="node-arch-title">Sovereign Node Architecture</h3></div>
+                <p style="font-size: 0.75rem; color: #94a3b8; font-weight: 600; line-height: 1.5; margin: 10px 0;">Mapping regional institutional liability across multi-sector boundaries using high-fidelity geospatial telemetry.</p>
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 10px;">
+                  <div>
+                    <span style="font-size: 0.55rem; color: var(--intel-indigo); font-weight: 950; text-transform: uppercase;">Primary Mission</span>
+                    <ul style="list-style: none; padding: 0; margin-top: 5px; font-size: 0.65rem; color: #64748b; font-weight: 800;">
+                        <li><i class="fas fa-location-dot" style="color: var(--hazard-red);"></i> Detect Hotspots</li>
+                        <li><i class="fas fa-tower-broadcast" style="color: var(--active-emerald);"></i> Trace Contagion</li>
+                    </ul>
+                  </div>
+                  <div style="text-align: right;">
+                    <span style="font-size: 0.55rem; color: var(--sovereign-gold); font-weight: 950;">Confidence Nominal</span>
+                    <div style="font-size: 1.2rem; font-weight: 1000; color: white;">98.4%</div>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bento-box">
+            <div class="box-header"><h3>Cognitive Trend Dynamics</h3><div class="tag-premium" style="font-size: 0.6rem; color: var(--sovereign-gold); font-weight: 950;">H4 Interval Sync</div></div>
+            
+            <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+                <div style="flex: 1; border-left: 1px solid var(--glass-border); padding-left: 10px;">
+                    <label style="font-size: 0.45rem; color: #64748b; font-weight: 950; text-transform: uppercase;">Neural Flux</label>
+                    <div style="font-size: 0.9rem; font-weight: 950; color: white;">84.2<span style="font-size: 0.5rem; color: var(--active-emerald); margin-left: 2px;">+1.4%</span></div>
+                </div>
+                <div style="flex: 1; border-left: 1px solid var(--glass-border); padding-left: 10px;">
+                    <label style="font-size: 0.45rem; color: #64748b; font-weight: 950; text-transform: uppercase;">Delta Index</label>
+                    <div style="font-size: 0.9rem; font-weight: 950; color: white;">0.12ms</div>
+                </div>
+                <div style="flex: 1; border-left: 1px solid var(--glass-border); padding-left: 10px;">
+                    <label style="font-size: 0.45rem; color: #64748b; font-weight: 950; text-transform: uppercase;">System Load</label>
+                    <div style="font-size: 0.9rem; font-weight: 950; color: white;">N-Low</div>
+                </div>
+            </div>
+
+            <div style="height: 180px;"><canvas id="mainChart"></canvas></div>
+            
+            <div style="margin-top: 25px; border-top: 1px solid var(--glass-border); padding-top: 15px; background: rgba(0,0,0,0.2); border-radius: 12px; height: 120px; overflow: hidden;">
+                <div id="neural-stream" style="padding: 10px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ASSET HUB -->
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 25px;">
+        <div class="bento-box" style="height: 480px; display: flex; flex-direction: column;">
+            <div class="box-header" style="border-color: var(--active-emerald);"><h3>Institutional Asset Stream</h3><div class="tag-premium" style="font-size: 0.6rem; color: var(--active-emerald); font-weight: 950;">Live Feed [SECURE]</div></div>
+            <div id="activity-body" style="flex: 1; overflow-y: auto; padding-right: 8px;">
+                <!-- Populate via JS -->
+            </div>
+            <div style="margin-top: 15px; text-align: center; border-top: 1px solid var(--glass-border); padding-top: 15px;">
+                <span style="font-size: 0.6rem; font-weight: 950; color: #64748b; text-transform: uppercase;">Tracking 1,280+ Macro-Assets</span>
+            </div>
+        </div>
+
+        <div class="bento-box" style="height: 480px; display: flex; flex-direction: column; gap: 15px;">
+            <div class="box-header" style="border-color: var(--sovereign-gold); margin-bottom: 5px;"><h3>Command Control</h3></div>
+            
+            <a href="{{ url_for('customer.add_customer') }}" class="action-card" style="flex: 1; border-color: rgba(99, 102, 241, 0.2); background: rgba(99, 102, 241, 0.05); display: flex; flex-direction: column; justify-content: center;">
+                <i class="fas fa-bolt" style="color: var(--intel-indigo); filter: drop-shadow(0 0 8px var(--intel-indigo));"></i>
+                <span>Execute Inference</span>
+                <p style="font-size: 0.5rem; color: #64748b; margin-top: 6px; font-weight: 800;">Trigger Regional Risk Analysis</p>
+            </a>
+
+            <a href="{{ url_for('customer.ingest') }}" class="action-card" style="flex: 1; border-color: rgba(16, 185, 129, 0.2); background: rgba(16, 185, 129, 0.05); display: flex; flex-direction: column; justify-content: center;">
+                <i class="fas fa-cloud-arrow-up" style="color: var(--active-emerald); filter: drop-shadow(0 0 8px var(--active-emerald));"></i>
+                <span>Bulk Ingestion</span>
+                <p style="font-size: 0.5rem; color: #64748b; margin-top: 6px; font-weight: 800;">Import Macro-Sector Datasets</p>
+            </a>
+
+            <button onclick="refreshDashboard()" class="action-card" style="flex: 1; border-color: rgba(251, 191, 36, 0.2); background: rgba(251, 191, 36, 0.05); display: flex; flex-direction: column; justify-content: center; width: 100%; cursor: pointer;">
+                <i class="fas fa-rotate" style="color: var(--sovereign-gold); filter: drop-shadow(0 0 8px var(--sovereign-gold));"></i>
+                <span>Synchronize Data</span>
+                <p style="font-size: 0.5rem; color: #64748b; margin-top: 6px; font-weight: 800;">Align Global Nodal Telemetry</p>
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const startTime = Date.now();
+    setInterval(() => { const elapsed = Math.floor((Date.now() - startTime) / 1000); document.getElementById('session-timer').textContent = new Date(elapsed * 1000).toISOString().substr(11, 8); }, 1000);
+
+    const ctx = document.getElementById('mainChart').getContext('2d');
+    const chartGradient = ctx.createLinearGradient(0, 0, 0, 180);
+    chartGradient.addColorStop(0, 'rgba(99, 102, 241, 0.4)');
+    chartGradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
+
+    const mainChart = new Chart(ctx, {
+        type: 'line',
+        data: { labels: [], datasets: [{ 
+            data: [], 
+            borderColor: '#6366f1', 
+            borderWidth: 2, 
+            fill: true, 
+            backgroundColor: chartGradient, 
+            tension: 0.4,
+            pointRadius: 0
+        }] },
+        options: { 
+            responsive: true, 
+            maintainAspectRatio: false, 
+            plugins: { legend: { display: false } }, 
+            scales: { 
+                x: { display: false }, 
+                y: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: '#64748b', font: { size: 9, weight: '800' } } } 
+            } 
+        }
+    });
+
+    const LOG_POOL = [
+        "Analyzing regional risk variance...",
+        "Executing predictive inference chain...",
+        "Syncing geospatial institutional nodes...",
+        "Handshake: [GLOBAL_GATEWAY_SECURE]",
+        "Anomaly cluster detected: Sector-7",
+        "Calibrating Neural Core thresholds...",
+        "Ingress established: Regional Macro-Hub",
+        "Executing liability-factor projection..."
+    ];
+
+    function addNeuralThought(m) {
+        const s = document.getElementById('neural-stream');
+        if(!s) return;
+        const msg = m || LOG_POOL[Math.floor(Math.random() * LOG_POOL.length)];
+        const e = document.createElement('div');
+        e.style.cssText = "font-size: 0.65rem; color: #94a3b8; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.03); animation: logIn 0.5s ease-out;";
+        e.innerHTML = `<span style="color: var(--intel-indigo); font-weight: 950;">[SYN]</span> ${msg}`;
+        s.prepend(e); if(s.children.length > 5) s.removeChild(s.lastChild);
+    }
+    async function refreshDashboard() {
+        try {
+            const resp = await fetch('/api/dashboard_data');
+            const data = await resp.json();
+            document.getElementById('total-exposure').innerText = `₹${data.total_exposure.toLocaleString()}`;
+            document.getElementById('total-ear').innerText = `₹${data.total_ear.toLocaleString()}`;
+            document.getElementById('avg-score').innerText = data.avg_score.toFixed(0);
+            document.getElementById('integrity-index').innerText = data.integrity_index.toFixed(1) + '%';
+            mainChart.data.labels = data.chart.labels;
+            mainChart.data.datasets[0].data = data.chart.values;
+            mainChart.update();
+            document.getElementById('activity-body').innerHTML = data.recent_activity.map(a => `
+                <div class="activity-row"><span>${a.customer}</span><b>₹${a.amount.toLocaleString()}</b><span class="status-pill pill-${a.status === 'Approved' ? 'secure' : 'critical'}">${a.status}</span></div>
+            `).join('');
+        } catch (e) { console.error(e); }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        for(let i=0; i<4; i++) setTimeout(() => addNeuralThought(), i * 500);
+        setInterval(() => addNeuralThought(), 4000);
+        refreshDashboard();
+        setInterval(refreshDashboard, 30000); // 30s auto-sync
+    });
+
+    // --- HIGH-FIDELITY PLANETARY HUB (SOVEREIGN v1.0) ---
+    const globeScene = new THREE.Scene();
+    const globeContainer = document.getElementById('risk-globe-container');
+    const globeCanvas = document.getElementById('risk-globe-canvas');
+    const globeCamera = new THREE.PerspectiveCamera(45, globeContainer.offsetWidth / globeContainer.offsetHeight, 0.1, 1000);
+    const globeRenderer = new THREE.WebGLRenderer({ canvas: globeCanvas, alpha: true, antialias: true });
+    globeRenderer.setSize(globeContainer.offsetWidth, globeContainer.offsetHeight);
+    globeRenderer.setPixelRatio(window.devicePixelRatio);
+    
+    const globeGroup = new THREE.Group();
+    globeGroup.scale.setScalar(0.85); // Professional Padding
+    globeScene.add(globeGroup);
+
+    const loader = new THREE.TextureLoader();
+    const earth = new THREE.Mesh(
+        new THREE.SphereGeometry(10, 64, 64),
+        new THREE.MeshPhongMaterial({
+            color: 0xffffff,
+            map: loader.load('https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg'),
+            bumpMap: loader.load('https://threejs.org/examples/textures/planets/earth_normal_2048.jpg'),
+            bumpScale: 0.1,
+            specularMap: loader.load('https://threejs.org/examples/textures/planets/earth_specular_2048.jpg'),
+            specular: 0x3b82f6, shininess: 25
+        })
+    );
+    globeGroup.add(earth);
+
+    const clouds = new THREE.Mesh(
+        new THREE.SphereGeometry(10.15, 64, 64),
+        new THREE.MeshPhongMaterial({ map: loader.load('https://threejs.org/examples/textures/planets/earth_clouds_1024.png'), transparent: true, opacity: 0.3 })
+    );
+    globeGroup.add(clouds);
+
+    globeScene.add(new THREE.AmbientLight(0xffffff, 1.3));
+    const sun = new THREE.PointLight(0xffffff, 1.8);
+    sun.position.set(20, 15, 20);
+    globeScene.add(sun);
+    globeCamera.position.z = 24;
+
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+    const clickableNodes = [];
+    const activeNodes = [];
+    const signalArcs = [];
+    const markerGroup = new THREE.Group();
+    globeGroup.add(markerGroup);
+
+    function addNode(lat, lon, color, name) {
+        const phi = (90 - lat) * (Math.PI / 180);
+        const theta = (lon + 180) * (Math.PI / 180);
+        const radius = 10.15; // Locked to surface
+        const x = -radius * Math.sin(phi) * Math.cos(theta);
+        const z = radius * Math.sin(phi) * Math.sin(theta);
+        const y = radius * Math.cos(phi);
+        const node = new THREE.Group();
+        node.position.set(x, y, z);
+        node.lookAt(0,0,0);
+        markerGroup.add(node);
+        const core = new THREE.Mesh(new THREE.IcosahedronGeometry(0.18, 0), new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 5 }));
+        core.userData = { name, color };
+        node.add(core); clickableNodes.push(core);
+        const r1 = new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.02, 16, 64), new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.4 }));
+        node.add(r1); activeNodes.push({ core, r1 });
+        return new THREE.Vector3(x,y,z);
+    }
+
+    // FULL-GLOBE DEPLOYMENT
+    const pInd = addNode(22, 78, '#ef4444', 'SOVEREIGN_NODE: INDIA_IND');
+    const pTok = addNode(36, 139, '#ef4444', 'ASIA_CORE: TOKYO_JPN');
+    const pSha = addNode(31, 121, '#ef4444', 'PACIFIC_RISING: SHANGHAI_CHN');
+    const pSgp = addNode(1, 104, '#10b981', 'MALACCA_SYNC: SINGAPORE_SGP');
+    const pSyd = addNode(-34, 151, '#10b981', 'PACIFIC_TERM: SYDNEY_AUS');
+    const pCpt = addNode(-33, 18, '#00f2fe', 'AFRICA_HUB: CAPETOWN_ZA');
+    const pLag = addNode(9, 7, '#00f2fe', 'AFR_TRANSIT: LAGOS_NGR');
+    const pBra = addNode(-15, -48, '#10b981', 'LATAM_STATION: BRASILIA_BR');
+    const pMex = addNode(19, -99, '#10b981', 'AZTEC_SYNC: MEXICO_MEX');
+    const pNyc = addNode(40, -74, '#00f2fe', 'MACRO_HUB: USA_NYC');
+    const pLon = addNode(52, 0, '#fbbf24', 'INTEL_CENTRIFUGE: LONDON_UK');
+    const pBer = addNode(52, 13, '#fbbf24', 'EU_TECH_NODE: BERLIN_GER');
+    const pMos = addNode(55, 37, '#ef4444', 'NOR_INTELL: MOSCOW_RUS');
+    const pDxb = addNode(25, 55, '#fbbf24', 'MENA_GATEWAY: DUBAI_UAE');
+
+    function createArc(v1, v2, color) {
+        const mid = v1.clone().add(v2).normalize().multiplyScalar(13);
+        const curve = new THREE.QuadraticBezierCurve3(v1, mid, v2);
+        const tubeGeom = new THREE.TubeGeometry(curve, 32, 0.02, 8, false);
+        const tubeMat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0 });
+        const stream = new THREE.Mesh(tubeGeom, tubeMat);
+        markerGroup.add(stream);
+        const packet = new THREE.Mesh(new THREE.IcosahedronGeometry(0.1, 0), new THREE.MeshBasicMaterial({ color }));
+        packet.visible = false;
+        markerGroup.add(packet);
+        signalArcs.push({ curve, stream, packet, t: 0, status: 'IDLE', color });
+    }
+
+    createArc(pInd, pTok, '#ef4444'); createArc(pTok, pSha, '#ef4444');
+    createArc(pSha, pSgp, '#10b981'); createArc(pSgp, pSyd, '#10b981');
+    createArc(pSyd, pCpt, '#00f2fe'); createArc(pCpt, pLag, '#00f2fe');
+    createArc(pLag, pBra, '#10b981'); createArc(pBra, pMex, '#10b981');
+    createArc(pMex, pNyc, '#00f2fe'); createArc(pNyc, pLon, '#fbbf24');
+    createArc(pLon, pBer, '#fbbf24'); createArc(pBer, pMos, '#ef4444');
+    createArc(pMos, pDxb, '#fbbf24'); createArc(pDxb, pInd, '#ef4444');
+
+    let activeStreamIdx = 0;
+    function processSequence() {
+        const a = signalArcs[activeStreamIdx];
+        if(!a) { activeStreamIdx = 0; signalArcs.forEach(s => { s.status = 'IDLE'; s.stream.material.opacity = 0; s.packet.visible = false; s.t = 0; }); return; }
+        if(a.status === 'IDLE') { a.status = 'FLOWING'; a.packet.visible = true; a.stream.material.opacity = 0.15; }
+        if(a.status === 'FLOWING') {
+            a.t += 0.015;
+            if(a.t >= 1) { a.status = 'COMPLETE'; a.stream.material.opacity = 0.5; a.packet.visible = false; activeStreamIdx++; }
+            else { a.packet.position.copy(a.curve.getPoint(a.t)); }
+        }
+    }
+
+    let drag = false, px = 0, py = 0, trX = 0, trY = 0;
+    globeContainer.addEventListener('mousedown', (e) => { drag = true; px = e.clientX; py = e.clientY; });
+    window.addEventListener('mouseup', () => drag = false);
+    globeContainer.addEventListener('mousemove', (e) => {
+        const r = globeContainer.getBoundingClientRect();
+        mouse.x = ((e.clientX - r.left) / r.width) * 2 - 1;
+        mouse.y = -((e.clientY - r.top) / r.height) * 2 + 1;
+        if (drag) { trY += (e.clientX - px) * 0.005; trX += (e.clientY - py) * 0.005; px = e.clientX; py = e.clientY; }
+        raycaster.setFromCamera(mouse, globeCamera);
+        const h = raycaster.intersectObjects(clickableNodes);
+        globeContainer.style.cursor = h.length > 0 ? 'pointer' : (drag ? 'grabbing' : 'grab');
+    });
+
+    globeContainer.addEventListener('click', () => {
+        raycaster.setFromCamera(mouse, globeCamera);
+        const h = raycaster.intersectObjects(clickableNodes);
+        if(h.length > 0) {
+            const i = h[0].object.userData;
+            document.getElementById('node-arch-title').innerText = i.name;
+            document.getElementById('node-arch-title').parentElement.style.borderColor = i.color;
+            addNeuralThought(`INGRESS_SYNC: ${i.name}`);
+        }
+    });
+
+    function animate() {
+        requestAnimationFrame(animate);
+        if(!drag) globeGroup.rotation.y += 0.002;
+        else { globeGroup.rotation.y += (trY - globeGroup.rotation.y) * 0.1; globeGroup.rotation.x += (trX - globeGroup.rotation.x) * 0.1; }
+        earth.rotation.y += 0.0005; clouds.rotation.y += 0.0007;
+        activeNodes.forEach(n => { n.r1.rotation.z += 0.015; });
+        processSequence();
+        globeRenderer.render(globeScene, globeCamera);
+    }
+    animate(); refreshDashboard();
+</script>
+{% endblock %}

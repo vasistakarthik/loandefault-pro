@@ -1,0 +1,382 @@
+{% extends "base_dashboard.html" %}
+
+{% block title %}Historical Intelligence | LoanRisk Pro{% endblock %}
+{% block header_title %}
+    Institutional Archival Network
+    <div id="live-sync-header" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(16, 185, 129, 0.05); padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.1); margin-left: 15px; vertical-align: middle;">
+        <div style="width: 7px; height: 7px; background: #10b981; border-radius: 50%; box-shadow: 0 0 10px #10b981; animation: pulse-live 2s infinite;"></div>
+        <span style="font-size: 0.55rem; color: #10b981; font-weight: 900; letter-spacing: 1px; text-transform: uppercase;">Live Sync Active</span>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --hud-accent: #0ea5e9; 
+    }
+
+    .ecosystem-container {
+        animation: fadeIn 0.8s ease-out;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* GLASS HUD CONTROLS */
+    .hud-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.01);
+        backdrop-filter: blur(20px);
+        padding: 25px 40px;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        gap: 40px;
+    }
+
+    .search-orb {
+        position: relative;
+        width: 400px;
+    }
+    .search-orb i {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #fbbf24; /* Amber accent for historical context */
+        font-size: 0.9rem;
+    }
+    .search-orb input {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 14px 18px 14px 50px;
+        border-radius: 16px;
+        color: white;
+        font-size: 0.85rem;
+        font-weight: 600;
+        outline: none;
+        transition: 0.3s;
+    }
+    .search-orb input:focus {
+        border-color: #fbbf24;
+        box-shadow: 0 0 20px rgba(251, 191, 36, 0.1);
+        background: rgba(255,255,255,0.05);
+    }
+
+    .status-tag {
+        background: rgba(251, 191, 36, 0.1);
+        color: #fbbf24;
+        padding: 6px 14px;
+        border-radius: 12px;
+        font-size: 0.65rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border: 1px solid rgba(251, 191, 36, 0.2);
+    }
+
+    /* DATA VIEWPORT */
+    .viewport-nexus {
+        background: rgba(255, 255, 255, 0.01);
+        border-radius: 32px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        overflow: hidden;
+        backdrop-filter: blur(40px);
+    }
+
+    table { width: 100%; border-collapse: collapse; }
+    
+    thead th {
+        padding: 25px 30px;
+        text-align: left;
+        font-size: 0.55rem;
+        font-weight: 950;
+        text-transform: uppercase;
+        color: #475569;
+        letter-spacing: 2.5px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    tbody tr {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        transition: 0.3s;
+    }
+    tbody tr:hover {
+        background: rgba(255, 255, 255, 0.02);
+    }
+
+    tbody td { padding: 22px 30px; vertical-align: middle; }
+
+    /* IDENTITY CELLS */
+    .avatar-node {
+        width: 44px;
+        height: 44px;
+        background: rgba(251, 191, 36, 0.05);
+        border: 1px solid rgba(251, 191, 36, 0.1);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 950;
+        color: #fbbf24;
+        font-size: 1.1rem;
+        text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+    }
+
+    .id-tag { font-family: monospace; font-weight: 950; font-size: 0.75rem; color: #475569; letter-spacing: 1px; }
+
+    /* STATUS BADGES */
+    .nexus-badge {
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.6rem;
+        font-weight: 950;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+    }
+
+    .badge-approved { background: rgba(0, 242, 254, 0.1); color: var(--hud-accent); border: 1px solid rgba(0, 242, 254, 0.2); }
+    .badge-rejected { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); }
+
+    /* ACTION PIPELINE */
+    .pipeline-hub { display: flex; gap: 10px; }
+    .pipeline-node {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        text-decoration: none;
+    }
+
+    .node-intel { background: rgba(99, 102, 241, 0.05); color: #818cf8; }
+    .node-intel:hover { background: #6366f1; color: white; transform: rotate(15deg) scale(1.1); box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3); }
+
+    /* PAGINATION */
+    .pagination-nexus {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 30px;
+    }
+    .page-orb {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.01);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        color: #475569;
+        text-decoration: none;
+        font-size: 0.75rem;
+        font-weight: 950;
+        transition: 0.3s;
+    }
+    .page-orb.active {
+        background: #fbbf24;
+        color: #0f172a;
+        border-color: #fbbf24;
+        box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+    }
+    .page-orb:hover:not(.active) { color: white; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+
+    /* OPERATIONAL TOGGLE */
+    .toggle-group { display: flex; background: rgba(2, 6, 23, 0.4); padding: 6px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); gap: 8px; }
+    .toggle-btn { padding: 12px 24px; border-radius: 12px; font-size: 0.75rem; font-weight: 950; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); color: #475569; border: 1px solid transparent; }
+    .toggle-btn:hover { color: white; background: rgba(255,255,255,0.05); }
+    .toggle-btn.active-latest { background: var(--hud-accent); color: #020617; box-shadow: 0 0 20px rgba(14, 165, 233, 0.4); border-color: var(--hud-accent); }
+    .toggle-btn.active-history { background: #fbbf24; color: #020617; box-shadow: 0 0 20px rgba(251, 191, 36, 0.4); border-color: #fbbf24; }
+
+    /* LIVE SYNC PULSE */
+    @keyframes pulse-live {
+        0% { opacity: 0.4; transform: scale(0.9); }
+        50% { opacity: 1; transform: scale(1.1); }
+        100% { opacity: 0.4; transform: scale(0.9); }
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="ecosystem-container">
+
+    <!-- SEARCH & STATUS HUD -->
+    <div class="hud-controls">
+        <form method="GET" class="search-orb">
+            <i class="fas fa-history"></i>
+            <input type="text" name="search" placeholder="Search archival intelligence..." value="{{ search }}">
+        </form>
+
+        <!-- OPERATIONAL MODE TOGGLE (Internal Archival Filter) -->
+        <div class="toggle-group">
+            <a href="{{ url_for('customer.historical_network', view='latest') }}" 
+               class="toggle-btn {{ 'active-latest' if view == 'latest' else '' }}">
+                Latest
+            </a>
+            <a href="{{ url_for('customer.historical_network', view='history') }}" 
+               class="toggle-btn {{ 'active-history' if view == 'history' or not view else '' }}">
+                History
+            </a>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 30px;">
+            <div class="status-tag">
+                <i class="fas fa-database"></i> Archival Segment: {{ total_count }} Nodes
+            </div>
+
+            <form action="{{ url_for('customer.purge_all_archive') }}" method="POST" onsubmit="return confirm('CRITICAL SECURITY OVERRIDE: Decommission all institutional archival nodes? This action is IRREVERSIBLE.')">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); padding: 8px 16px; border-radius: 12px; font-size: 0.65rem; font-weight: 950; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-skull-crossbones"></i> Purge Global Archive
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Auto-refresh the dashboard every 30 seconds to keep telemetry live
+        // Only refreshes if user is NOT actively searching
+        setInterval(() => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (!urlParams.get('search')) {
+                console.log('Synchronizing archival network telemetry...');
+                window.location.reload();
+            }
+        }, 30000);
+    </script>
+
+    <!-- MAIN VIEWPORT -->
+    <div class="viewport-nexus">
+        <table>
+            <thead>
+                <tr>
+                    <th>Archival ID</th>
+                    <th>Node Identity</th>
+                    <th>Legacy Velocity</th>
+                    <th>Latest Assessment</th>
+                    <th>Decision Vector</th>
+                    <th>Intel Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for b in borrowers %}
+                <tr>
+                    <td><span class="id-tag">#{{ "%04d"|format(b.id) }}</span></td>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 18px;">
+                            <div class="avatar-node">{{ b.full_name[0] | upper }}</div>
+                            <div style="display: flex; flex-direction: column;">
+                                <span style="font-size: 0.9rem; font-weight: 950; color: white;">{{ b.full_name }}</span>
+                                <span style="font-size: 0.65rem; color: #475569; font-weight: 900; letter-spacing: 0.5px;">{{ b.email }}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <span style="font-size: 0.9rem; font-weight: 950; color: #94a3b8;">
+                            ₹{{ "{:,.0f}".format(b.annual_income or 0) }}
+                        </span>
+                    </td>
+                    <td>
+                        <span style="font-size: 0.9rem; font-weight: 950; color: #fbbf24;">
+                            ₹{{ "{:,.0f}".format(b.loan_amount or 0) }}
+                        </span>
+                    </td>
+                    <td>
+                        {% if b.last_status == 'Approved' %}
+                            <span class="nexus-badge badge-approved">
+                                <i class="fas fa-shield-check"></i> Re-Authorized
+                            </span>
+                        {% elif b.last_status == 'Rejected' %}
+                            <span class="nexus-badge badge-rejected">
+                                <i class="fas fa-shield-slash"></i> Terminated
+                            </span>
+                        {% else %}
+                            <span class="nexus-badge" style="background: rgba(255, 255, 255, 0.02); color: #64748b; border: 1px solid rgba(255, 255, 255, 0.05);">
+                                <i class="fas fa-microscope"></i> Pending Intel
+                            </span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div class="pipeline-hub">
+                            <a href="{{ url_for('customer.borrower_profile', borrower_id=b.id) }}" class="pipeline-node node-intel" title="Historical Intelligence">
+                                <i class="fas fa-brain"></i>
+                            </a>
+                            {% if b.prediction_id %}
+                            <a href="{{ url_for('customer.result', customer_id=b.prediction_id) }}" class="pipeline-node" style="background: rgba(251, 191, 36, 0.05); color: #fbbf24;" title="Archival Assessment Summary">
+                                <i class="fas fa-file-invoice"></i>
+                            </a>
+                            {% endif %}
+                            <form action="{{ url_for('customer.delete_borrower', borrower_id=b.id) }}" method="POST" onsubmit="return confirm('URGENT: Entirely purge archival node #{{ b.id }}?')" style="display:inline;">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                <button type="submit" class="pipeline-node node-kill" style="border:none; cursor:pointer;" title="Purge Node">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% if not borrowers %}
+                <tr>
+                    <td colspan="6" style="padding: 100px 30px; text-align: center;">
+                        <i class="fas fa-satellite-dish" style="font-size: 3rem; color: #475569; margin-bottom: 20px; display: block;"></i>
+                        <div style="font-size: 1.1rem; font-weight: 950; color: white; margin-bottom: 8px;">No Handled Nodes Detected</div>
+                        <p style="font-size: 0.75rem; color: #64748b; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">Search archival intelligence above to begin node assignments.</p>
+                    </td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- COMPRESSED PAGINATION -->
+    {% if total_pages > 1 %}
+    <div class="pagination-nexus">
+        {# Calculate tactical window #}
+        {% set start = page - 2 if page > 3 else 1 %}
+        {% set end = page + 2 if page < total_pages - 2 else total_pages %}
+
+        {# First Page Signal #}
+        {% if start > 1 %}
+            <a href="{{ url_for('customer.historical_network', page=1, search=search) }}" class="page-orb">1</a>
+            {% if start > 2 %}
+                <span style="color: #475569; padding: 0 5px; font-weight: 950;">...</span>
+            {% endif %}
+        {% endif %}
+
+        {# Dynamic Window #}
+        {% for p in range(start, end + 1) %}
+            <a href="{{ url_for('customer.historical_network', page=p, search=search) }}" class="page-orb {{ 'active' if p == page }}">
+                {{ p }}
+            </a>
+        {% endfor %}
+
+        {# Last Page Signal #}
+        {% if end < total_pages %}
+            {% if end < total_pages - 1 %}
+                <span style="color: #475569; padding: 0 5px; font-weight: 950;">...</span>
+            {% endif %}
+            <a href="{{ url_for('customer.historical_network', page=total_pages, search=search) }}" class="page-orb">{{ total_pages }}</a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

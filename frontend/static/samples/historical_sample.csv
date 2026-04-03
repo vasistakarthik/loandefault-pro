@@ -1,0 +1,11 @@
+name,loan_amount,status,email,tenure
+John Doe,50000,Paid,john@example.com,12
+John Doe,20000,Defaulted,john@example.com,6
+Jane Smith,75000,Paid,jane@example.com,24
+Alice Brown,120000,Paid,alice@example.com,36
+Bob Johnson,45000,Defaulted,bob@example.com,12
+Charlie Davis,90000,Paid,charlie@example.com,18
+Eve Wilson,30000,Defaulted,eve@example.com,6
+Frank Miller,150000,Paid,frank@example.com,48
+Grace Lee,55000,Paid,grace@example.com,12
+Henry Taylor,25000,Defaulted,henry@example.com,12

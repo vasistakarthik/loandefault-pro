@@ -1,0 +1,447 @@
+{% extends "base_dashboard.html" %}
+
+{% block title %}Neural Diagnostic | LoanRisk Pro{% endblock %}
+{% block header_title %}Institutional Borrower Profile{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --hud-accent: #00f2fe;
+        --hud-bg: rgba(15, 23, 42, 0.4);
+        --hud-border: rgba(255, 255, 255, 0.08);
+    }
+
+    .neural-profile-nexus {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        animation: nexusFadeIn 1s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    @keyframes nexusFadeIn { from { opacity: 0; transform: translateY(30px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+    /* STRATEGIC HEADER */
+    .profile-header-hub {
+        background: var(--hud-bg);
+        backdrop-filter: blur(50px);
+        border: 1px solid var(--hud-border);
+        border-radius: 40px;
+        padding: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 40px 100px -30px rgba(0,0,0,0.5);
+    }
+    .profile-meta { display: flex; align-items: center; gap: 35px; }
+    .avatar-orb {
+        width: 110px;
+        height: 110px;
+        border-radius: 35px;
+        background: linear-gradient(135deg, var(--hud-accent), #4facfe);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.5rem;
+        font-weight: 950;
+        color: #0f172a;
+        box-shadow: 0 15px 45px rgba(0, 242, 254, 0.3);
+        border: 4px solid rgba(255,255,255,0.1);
+    }
+    .profile-info h1 { font-size: 2.8rem; font-weight: 950; color: white; letter-spacing: -1.5px; margin-bottom: 5px; }
+    .profile-info p { font-size: 1rem; color: #64748b; font-weight: 700; opacity: 0.8; }
+
+    /* TABBED NAV HUD */
+    .tab-console {
+        display: flex;
+        gap: 12px;
+        background: rgba(255,255,255,0.02);
+        padding: 10px;
+        border-radius: 24px;
+        border: 1px solid var(--hud-border);
+    }
+    .tab-trigger {
+        padding: 16px 30px;
+        border-radius: 18px;
+        border: none;
+        background: transparent;
+        color: #475569;
+        font-size: 0.75rem;
+        font-weight: 950;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: 0.4s;
+    }
+    .tab-trigger:hover { color: white; background: rgba(255,255,255,0.05); }
+    .tab-trigger.active { background: var(--hud-accent); color: #0f172a; box-shadow: 0 12px 30px rgba(0, 242, 254, 0.3); }
+
+    /* CONTENT SECTORS */
+    .content-hub { display: none; margin-top: 10px; animation: contentSlide 0.6s ease-out; }
+    .content-hub.active { display: block; }
+    @keyframes contentSlide { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .sector-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+    .data-panel {
+        background: var(--hud-bg);
+        border: 1px solid var(--hud-border);
+        border-radius: 35px;
+        padding: 35px;
+        position: relative;
+        overflow: hidden;
+        transition: 0.4s;
+    }
+    .data-panel:hover { border-color: var(--hud-accent); transform: translateY(-8px); background: rgba(255,255,255,0.02); }
+    .panel-head { display: flex; align-items: center; gap: 12px; margin-bottom: 30px; }
+    .panel-head i { color: var(--hud-accent); font-size: 1.2rem; }
+    .panel-head span { font-size: 0.75rem; font-weight: 950; text-transform: uppercase; letter-spacing: 2.5px; color: #475569; }
+
+    /* RADIAL GAUGE HUD */
+    .gauge-nexus {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 0;
+    }
+    .radial-shell { width: 180px; height: 180px; position: relative; }
+    .svg-ring { fill: none; stroke-width: 12; stroke-linecap: round; }
+    .ring-bg { stroke: rgba(255,255,255,0.03); }
+    .ring-val {
+        stroke: var(--hud-accent);
+        stroke-dasharray: 440;
+        stroke-dashoffset: 440;
+        transform: rotate(-90deg);
+        transform-origin: 90px 90px;
+        transition: 2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .gauge-label { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+    .gauge-val { font-size: 2.8rem; font-weight: 950; color: white; letter-spacing: -2px; }
+    .gauge-txt { font-size: 0.55rem; color: #475569; font-weight: 950; text-transform: uppercase; letter-spacing: 1.5px; }
+
+    /* TELEMETRY LIST */
+    .tele-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.02);
+    }
+    .tele-label { font-size: 0.7rem; font-weight: 900; text-transform: uppercase; color: #475569; letter-spacing: 1.5px; }
+    .tele-val { font-size: 1rem; font-weight: 950; color: white; }
+
+    /* HISTORY CARDS */
+    .history-card {
+        background: rgba(255,255,255,0.015);
+        border: 1px solid rgba(255,255,255,0.03);
+        border-radius: 20px;
+        padding: 20px 25px;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: 0.3s;
+    }
+    .history-card:hover { border-color: var(--hud-accent); background: rgba(255,255,255,0.03); }
+
+    /* ACTION BUTTON */
+    .provision-btn {
+        background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+        padding: 20px 40px;
+        border-radius: 24px;
+        color: #0f172a;
+        font-weight: 1000;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 15px 45px rgba(0, 242, 254, 0.3);
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .provision-btn:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 25px 60px rgba(0, 242, 254, 0.5); }
+    
+    /* UTILITY STATUS COLORS */
+    .text-success { color: #10b981 !important; }
+    .text-danger { color: #ef4444 !important; }
+    .text-warning { color: #f59e0b !important; }
+    .text-accent { color: var(--hud-accent) !important; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="neural-profile-nexus">
+    
+    <!-- HEADER HUB -->
+    <div class="profile-header-hub">
+        <div class="profile-meta">
+            <div class="avatar-orb">{{ borrower.name[0] | upper }}</div>
+            <div class="profile-info">
+                <h1>{{ borrower.name }}</h1>
+                <p>{{ borrower.email }} | <span class="text-accent">NODE_ID_{{ "%04d"|format(borrower.id) }}</span></p>
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 15px;">
+            <div class="tab-console">
+                <button id="tab-profile" class="tab-trigger active" onclick="navTab('profile')">Neural Profile</button>
+                <button id="tab-history" class="tab-trigger" onclick="navTab('history')">Execution History</button>
+                <button id="tab-anomalies" class="tab-trigger" onclick="navTab('anomalies')" style="color: #fca5a5;">
+                    <i class="fas fa-tower-broadcast" style="margin-right: 4px;"></i> Fault Matrix
+                </button>
+            </div>
+            
+            {% if predictions %}
+            <a href="{{ url_for('customer.download_report', customer_id=predictions[0].id) }}" 
+               class="provision-btn" style="padding: 10px 20px; font-size: 0.7rem; box-shadow: 0 5px 20px rgba(0, 242, 254, 0.2); border-radius: 14px;">
+                <i class="fas fa-file-pdf"></i> Download Risk Report
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- TAB 1: PROFILE HUB -->
+    <div id="profile" class="content-hub active">
+        <div class="sector-grid">
+            <!-- IDENTITY SECTOR -->
+            <div class="data-panel" style="grid-column: span 1;">
+                <div class="panel-head"><i class="fas fa-fingerprint"></i> <span>Identity Metrics</span></div>
+                <div class="tele-list">
+                    <div class="tele-row"><span class="tele-label">Assessed Age</span><span class="tele-val">{{ borrower.age }} YRS</span></div>
+                    <div class="tele-row"><span class="tele-label">Credit Integrity</span><span class="tele-val text-success">{{ borrower.credit_score }}</span></div>
+                    <div class="tele-row"><span class="tele-label">Network Revenue</span><span class="tele-val">₹{{ "{:,.0f}".format(borrower.annual_income or 0) }}</span></div>
+                    <div class="tele-row" style="border: none;"><span class="tele-label">Economic Class</span><span class="tele-val">{{ borrower.employment_type }}</span></div>
+                </div>
+            </div>
+
+            <!-- RISK DIAGNOSTICS -->
+            <div class="data-panel" style="grid-column: span 1;">
+                <div class="panel-head"><i class="fas fa-brain"></i> <span>Risk Diagnostics</span></div>
+                <div class="gauge-nexus">
+                    <div class="radial-shell">
+                        <svg viewBox="0 0 180 180" width="180" height="180">
+                            <circle class="svg-ring ring-bg" cx="90" cy="90" r="70"></circle>
+                            <circle id="risk-ring" class="svg-ring ring-val" cx="90" cy="90" r="70"></circle>
+                        </svg>
+                        <div class="gauge-label">
+                            {% set risk_pct = (100 - (borrower.credit_score / 900 * 100)) | round(1) %}
+                            <div class="gauge-val" id="risk-txt">{{ risk_pct }}%</div>
+                            <div class="gauge-txt">Probability</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.65rem; color: #475569; font-weight: 800; text-align: center; margin-top: 25px; line-height: 1.6; letter-spacing: 0.5px;">
+                        Neural patterns detected across <strong>{{ history_list | length }}</strong> archived events. Node status is calibrated to current institutional standards.
+                    </p>
+                </div>
+            </div>
+
+            <!-- EXPOSURE SECTOR -->
+            <div class="data-panel" style="grid-column: span 1;">
+                <div class="panel-head"><i class="fas fa-microchip"></i> <span>Exposure Analytics</span></div>
+                <div class="tele-list">
+                    <div class="tele-row"><span class="tele-label">Total Allocated</span><span class="tele-val text-accent">₹{{ "{:,.0f}".format(borrower.loan_amount or 0) }}</span></div>
+                    <div class="tele-row"><span class="tele-label">Recovered Principal</span><span class="tele-val text-success">₹{{ "{:,.0f}".format(borrower.paid_amount or 0) }}</span></div>
+                    <div class="tele-row"><span class="tele-label">Net Delta Balance</span><span class="tele-val">₹{{ "{:,.0f}".format(borrower.balance_amount or 0) }}</span></div>
+                    <div class="tele-row" style="border: none;"><span class="tele-label">Node Reliability</span><span class="tele-val text-accent">HIGH</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 2: EXECUTION HISTORY -->
+    <div id="history" class="content-hub">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+            <div class="data-panel">
+                <div class="panel-head"><i class="fas fa-archive"></i> <span>Institutional Archive</span></div>
+                {% for h in history_list %}
+                <div class="history-card">
+                    <div>
+                        <div style="font-size: 1rem; font-weight: 950; color: white;">₹{{ "{:,.0f}".format(h.loan_amount) }}</div>
+                        <div style="font-size: 0.6rem; color: #475569; font-weight: 950; text-transform: uppercase; margin-top: 4px;">Created: {{ h.created_at.split(' ')[0] if h.created_at else 'LEGACY' }}</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 0.75rem; font-weight: 950;" class="text-accent">{{ h.status | upper }}</div>
+                        <div style="font-size: 0.6rem; color: #475569; font-weight: 950;">{{ h.tenure }} CYCLES</div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% if not history_list %}<p style="color: #475569; font-weight: 900; text-align: center; font-size: 0.8rem;">NO ARCHIVED RECORDINGS FOUND.</p>{% endif %}
+            </div>
+            <div class="data-panel">
+                <div class="panel-head"><i class="fas fa-network-wired"></i> <span>Active Pipeline</span></div>
+                {% for a in apps_list %}
+                <div class="history-card">
+                    <div>
+                        <div style="font-size: 1rem; font-weight: 950; color: white;">₹{{ "{:,.0f}".format(a.loan_amount) }}</div>
+                        <div style="font-size: 0.6rem; color: #475569; font-weight: 950; text-transform: uppercase; margin-top: 4px;">Application Node_{{ a.id }}</div>
+                    </div>
+                    <div>
+                        <span class="nexus-badge {{ 'badge-approved' if a.status == 'Approved' else 'badge-rejected' if a.status == 'Rejected' else 'badge-neutral' }}" style="font-size: 0.55rem; padding: 6px 14px;">{{ a.status }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+                {% if not apps_list %}<p style="color: #475569; font-weight: 900; text-align: center; font-size: 0.8rem;">NO ACTIVE PIPELINE DETECTED.</p>{% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 3: NETWORK FAULT MATRIX (GNN) -->
+    <div id="anomalies" class="content-hub">
+        <div style="display: grid; grid-template-columns: 1fr 380px; gap: 30px;">
+            <div class="data-panel" style="background: rgba(15, 23, 42, 0.6); padding: 50px;">
+                <div class="panel-head"><i class="fas fa-project-diagram"></i> <span>Nodal Proximity Map (GNN Matrix)</span></div>
+                
+                <div style="height: 400px; width: 100%; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+                    <!-- SVG GNN Visualization -->
+                    <svg width="100%" height="100%" viewBox="0 0 600 400" id="gnn-svg">
+                        <!-- Connecting Lines Logic via JS -->
+                        <g id="gnn-links"></g>
+                        <!-- Borrower Center -->
+                        <circle cx="300" cy="200" r="35" fill="var(--hud-accent)" filter="drop-shadow(0 0 20px var(--hud-accent))" />
+                        <text x="300" y="200" text-anchor="middle" dy="0.3em" fill="#0f172a" style="font-size: 0.7rem; font-weight: 1000;">ROOT</text>
+                        
+                        <!-- Dynamic Linked Nodes Placeholder -->
+                        <g id="gnn-nodes"></g>
+                    </svg>
+
+                    {% if not linked_nodes %}
+                    <div style="position: absolute; text-align: center; color: #475569;">
+                        <i class="fas fa-shield-check" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.4;"></i>
+                        <div style="font-weight: 900; letter-spacing: 2px;">NETWORK INTEGRITY: 100%</div>
+                        <div style="font-size: 0.6rem; opacity: 0.6;">No shared physical or signal vectors detected.</div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div class="data-panel" style="padding: 25px;">
+                    <div class="panel-head"><i class="fas fa-tower-broadcast"></i> <span>Cluster Statistics</span></div>
+                    <div class="tele-list">
+                        <div class="tele-row"><span class="tele-label">Linked Entities</span><span class="tele-val">{{ linked_nodes | length }} Nodes</span></div>
+                        <div class="tele-row">
+                            <span class="tele-label">Cluster Health</span>
+                            {% set defaults = linked_nodes | selectattr('status', 'equalto', 'Defaulted') | list | length %}
+                            <span class="tele-val {% if defaults > 0 %}text-danger{% else %}text-success{% endif %}">{{ 100 - (defaults / (linked_nodes|length if linked_nodes|length > 0 else 1) * 100) }}%</span>
+                        </div>
+                        <div class="tele-row" style="border: none;">
+                            <span class="tele-label">Risk Pressure</span>
+                            <span class="tele-val {% if defaults > 0 %}text-danger{% else %}text-accent{% endif %}">{{ 'HIGH' if defaults > 0 else 'STABLE' }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                {% if linked_nodes %}
+                <div class="data-panel" style="padding: 25px; background: rgba(239, 68, 68, 0.05); border-color: rgba(239, 68, 68, 0.1);">
+                    <div style="font-size: 0.65rem; font-weight: 950; color: #ef4444; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;">Contamination Alert</div>
+                    <div style="font-size: 0.6rem; color: #64748b; font-weight: 700; line-height: 1.6;">
+                        This borrower shares institutional identifiers with <strong>{{ linked_nodes | selectattr('status', 'equalto', 'Defaulted') | list | length }}</strong> nodes currently in Default status. 
+                        Nodal intelligence has performed a recursive risk adjustment on the primary profile.
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 4: FACILITY PROVISION -->
+    <div id="facility" class="content-hub">
+        <div class="data-panel" style="text-align: center; padding: 80px 40px; border-style: dashed; border-width: 2px;">
+            <i class="fas fa-atom" style="font-size: 3.5rem; color: var(--hud-accent); margin-bottom: 25px;"></i>
+            <h2 style="font-size: 2rem; font-weight: 1000; color: white; margin-bottom: 15px; letter-spacing: -1px;">Execute New Facility</h2>
+            <p style="color: #64748b; font-weight: 600; max-width: 550px; margin: 0 auto 35px; line-height: 1.8;">
+                Initiate a fresh neural evaluation sequence for <strong>{{ borrower.name }}</strong>. All historical telemetry will be injected into the Risk Evaluation Engine.
+            </p>
+            <div style="display: flex; justify-content: center;">
+                <a href="{{ url_for('customer.add_customer', borrower_id=borrower.id) }}" class="provision-btn">
+                    <i class="fas fa-play"></i> Begin Risk Ingress
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function navTab(id) {
+        document.querySelectorAll('.content-hub').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab-trigger').forEach(t => t.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        document.getElementById('tab-' + id).classList.add('active');
+        if (id === 'anomalies') renderGNN();
+    }
+
+    function renderGNN() {
+        const nodes = JSON.parse('{{ linked_nodes | tojson | safe }}');
+        const svgNodes = document.getElementById('gnn-nodes');
+        const svgLinks = document.getElementById('gnn-links');
+        
+        svgNodes.innerHTML = '';
+        svgLinks.innerHTML = '';
+        
+        const centerX = 300, centerY = 200;
+        const radius = 140;
+
+        nodes.forEach((node, i) => {
+            const angle = (i / nodes.length) * 2 * Math.PI;
+            const x = centerX + radius * Math.cos(angle);
+            const y = centerY + radius * Math.sin(angle);
+            
+            const isRed = node.status === 'Defaulted';
+            const color = isRed ? '#ef4444' : '#10b981';
+            
+            // Draw Link
+            const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            line.setAttribute("x1", centerX); line.setAttribute("y1", centerY);
+            line.setAttribute("x2", x); line.setAttribute("y2", y);
+            line.setAttribute("stroke", color);
+            line.setAttribute("stroke-width", "1");
+            line.setAttribute("stroke-dasharray", "5,5");
+            line.setAttribute("opacity", "0.3");
+            
+            const anim = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+            anim.setAttribute("attributeName", "stroke-dashoffset");
+            anim.setAttribute("from", "20"); anim.setAttribute("to", "0");
+            anim.setAttribute("dur", "1s"); anim.setAttribute("repeatCount", "indefinite");
+            line.appendChild(anim);
+            svgLinks.appendChild(line);
+
+            // Draw Node
+            const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            circle.setAttribute("cx", x); circle.setAttribute("cy", y);
+            circle.setAttribute("r", "12");
+            circle.setAttribute("fill", color);
+            circle.setAttribute("filter", `blur(${isRed ? '3px' : '0px'})`);
+            g.appendChild(circle);
+
+            const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            text.setAttribute("x", x); text.setAttribute("y", y + 25);
+            text.setAttribute("text-anchor", "middle");
+            text.setAttribute("fill", "#64748b");
+            text.setAttribute("font-size", "0.5rem");
+            text.setAttribute("font-weight", "900");
+            text.textContent = node.full_name.toUpperCase();
+            g.appendChild(text);
+            
+            svgNodes.appendChild(g);
+        });
+    }
+
+    window.addEventListener('load', () => {
+        const ring = document.getElementById('risk-ring');
+        const txt = document.getElementById('risk-txt');
+        const circ = 70 * 2 * Math.PI;
+        const pct = parseFloat("{{ (100 - (borrower.credit_score / 900 * 100)) | round(1) }}");
+
+        ring.style.strokeDasharray = `${circ} ${circ}`;
+        
+        setTimeout(() => {
+            ring.style.strokeDashoffset = circ - (pct / 100 * circ);
+            const color = pct < 30 ? '#10b981' : (pct < 60 ? '#f59e0b' : '#ef4444');
+            ring.style.stroke = color;
+            txt.style.color = color;
+        }, 400);
+    });
+</script>
+{% endblock %}

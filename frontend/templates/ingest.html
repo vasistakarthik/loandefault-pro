@@ -1,0 +1,450 @@
+{% extends "base_dashboard.html" %}
+
+{% block title %}Neural Ingestion Hub | LoanRisk Pro{% endblock %}
+{% block header_title %}Sovereign Architecture Ingestion{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --hud-accent: #6366f1;
+        --deep-slate: #020617;
+        --glass-bg: rgba(255, 255, 255, 0.015);
+        --glass-border: rgba(255, 255, 255, 0.08);
+    }
+
+    .ingest-layout {
+        display: grid;
+        grid-template-columns: 1.8fr 1fr;
+        gap: 30px;
+        animation: sovereignEntrance 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes sovereignEntrance {
+        from { opacity: 0; transform: translateY(30px) scale(0.99); filter: blur(15px); }
+        to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    }
+
+    /* DEEP-SLATE COMMAND DECK */
+    .ingest-terminal {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .terminal-card {
+        background: rgba(255, 255, 255, 0.015);
+        backdrop-filter: blur(100px) saturate(200%);
+        border: 1px solid rgba(56, 189, 248, 0.15);
+        border-radius: 30px;
+        padding: 30px;
+        box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.5);
+        transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* SECTOR TABS */
+    .sector-deck {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-top: 15px;
+        margin-bottom: 5px;
+    }
+
+    .sector-orb {
+        background: rgba(255, 255, 255, 0.01);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 24px;
+        padding: 35px 25px;
+        text-align: center;
+        transition: 0.5s;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .sector-orb:hover {
+        background: rgba(56, 189, 248, 0.03);
+        border-color: rgba(56, 189, 248, 0.2);
+        transform: translateY(-4px);
+    }
+
+    .sector-orb.active {
+        border-color: #38bdf8;
+        background: rgba(56, 189, 248, 0.05);
+        box-shadow: inset 0 0 30px rgba(56, 189, 248, 0.05);
+    }
+
+    .sector-orb.active::after {
+        content: ''; position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+        width: 15px; height: 3px; border-radius: 2px; background: #38bdf8;
+        box-shadow: 0 0 15px rgba(56, 189, 248, 0.8);
+    }
+
+    .orb-icon { font-size: 2.2rem; color: #475569; margin-bottom: 18px; transition: 0.4s; }
+    .active .orb-icon { color: #38bdf8; filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.6)); }
+    .orb-title { font-size: 1rem; font-weight: 1000; color: white; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px; }
+    .orb-meta { font-size: 0.6rem; color: #94a3b8; font-weight: 900; text-transform: uppercase; letter-spacing: 1.5px; }
+
+    /* NEURAL UPLOAD PORTAL */
+    .upload-portal {
+        background: rgba(255, 255, 255, 0.005);
+        border: 2px dashed rgba(56, 189, 248, 0.1);
+        border-radius: 32px;
+        padding: 85px 30px;
+        text-align: center;
+        cursor: pointer;
+        transition: 0.5s;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .upload-portal:hover {
+        background: rgba(56, 189, 248, 0.02);
+        border-color: #38bdf8;
+        box-shadow: inset 0 0 50px rgba(56, 189, 248, 0.02);
+    }
+
+    .portal-orb {
+        width: 80px; height: 80px; border-radius: 50%;
+        background: rgba(255,255,255,0.01);
+        border: 1px solid rgba(56, 189, 248, 0.1);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 2rem; color: #475569; transition: 0.5s;
+    }
+    .upload-portal:hover .portal-orb { color: #38bdf8; border-color: #38bdf8; transform: scale(1.08) rotate(180deg); }
+
+    .portal-title { font-size: 1.2rem; font-weight: 1000; color: white; text-transform: uppercase; letter-spacing: 4px; }
+
+    /* ACTION INGRESS */
+    .ingress-btn {
+        background: linear-gradient(135deg, #38bdf8 0%, #2dd4bf 100%);
+        color: white;
+        padding: 22px 40px;
+        border-radius: 20px;
+        font-weight: 1000;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 20px;
+        box-shadow: 0 20px 40px rgba(56, 189, 248, 0.2);
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: none;
+    }
+    .ingress-btn:hover { transform: translateY(-5px) scale(1.01); box-shadow: 0 45px 90px rgba(99, 102, 241, 0.4); }
+
+    /* BATCH HISTORY DECK */
+    .history-deck {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .batch-strip {
+        background: rgba(255, 255, 255, 0.015);
+        border: 1px solid var(--glass-border);
+        border-radius: 22px;
+        padding: 22px 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: 0.4s;
+    }
+    .batch-strip:hover { transform: translateX(8px); background: rgba(255,255,255,0.03); border-color: var(--hud-accent); }
+
+    .strip-info h5 { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; font-weight: 900; color: white; margin-bottom: 5px; }
+    .strip-info p { font-size: 0.65rem; color: #475569; font-weight: 950; text-transform: uppercase; letter-spacing: 1.5px; }
+
+    .purge-btn {
+        width: 44px; height: 44px; border-radius: 14px;
+        background: rgba(239, 68, 68, 0.1);
+        border: 1px solid rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+        cursor: pointer;
+        transition: 0.3s;
+        display: flex; align-items: center; justify-content: center;
+    }
+    .purge-btn:hover { background: #ef4444; color: white; transform: rotate(15deg) scale(1.1); }
+
+    /* QUANTUM EXTRACTION INTERFACE */
+    .neural-scan-interface {
+        position: fixed; inset: 0;
+        background: radial-gradient(circle at center, #080d21 0%, #01030a 100%);
+        z-index: 10000; display: none; flex-direction: column; align-items: center; justify-content: center;
+        backdrop-filter: blur(50px); overflow: hidden;
+    }
+
+    /* HEX FLUX GRID */
+    .hex-vault {
+        position: absolute; inset: 0;
+        background: 
+            radial-gradient(circle at center, transparent 30%, #080d21 100%),
+            url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDMwIDMwIj48cGF0aCBkPSJNMTUgMEwxOC43NSA3LjVIMjYuMjVMMjAuNjI1IDExLjI1TDI0LjM3NSAxOC43NUwxNSAxNS43NUw1LjYyNSAxOC43NUw5LjM3NSAxMS4yNUwzLjc1IDcuNUgxMS4yNUwxNSAwWiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDk5LCAxMDIsIDI0MSwgMC4wNCkiIHN0cm9rZS13aWR0aD0iMC41Ii8+PC9zdmc+');
+        opacity: 0.4; animation: hexPulse 10s infinite;
+    }
+    @keyframes hexPulse { 0%, 100% { opacity: 0.2 } 50% { opacity: 0.6 } }
+
+    /* HUD CORNERS */
+    .hud-corner { position: absolute; width: 100px; height: 100px; border: 1px solid rgba(99, 102, 241, 0.2); }
+    .corner-tl { top: 40px; left: 40px; border-right: none; border-bottom: none; }
+    .corner-br { bottom: 40px; right: 40px; border-left: none; border-top: none; }
+
+    .scan-orb-nexus {
+        width: 380px; height: 380px; position: relative;
+        display: flex; align-items: center; justify-content: center; z-index: 10;
+    }
+    
+    .nexus-core-glow {
+        position: absolute; width: 100%; height: 100%;
+        background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 65%);
+        filter: blur(20px); animation: corePulse 2s ease-in-out infinite;
+    }
+    @keyframes corePulse { 0%, 100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.1); opacity: 0.8; } }
+
+    .orbit-ring { position: absolute; inset: 0; border: 2px solid rgba(99, 102, 241, 0.05); border-radius: 50%; }
+    .orbit-outer { border-style: dashed; border-width: 1px; animation: rotateCW 15s linear infinite; }
+    .orbit-inner { inset: 40px; border-color: rgba(99, 102, 241, 0.15); border-width: 3px; border-right-color: transparent; animation: rotateCCW 4s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+
+    @keyframes rotateCW { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes rotateCCW { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+
+    .scan-glint-wave {
+        position: absolute; width: 100%; height: 60px;
+        background: linear-gradient(to bottom, transparent, rgba(99, 102, 241, 0.2), transparent);
+        box-shadow: 0 0 30px rgba(99, 102, 241, 0.1); filter: blur(10px);
+        animation: vScanPulse 3s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite; z-index: 5;
+    }
+    @keyframes vScanPulse { 0%, 100% { top: 0% } 50% { top: 100% } }
+
+    .scan-val-hub { text-align: center; z-index: 10; }
+    .scan-val-hub h1 {
+        font-family: 'JetBrains Mono', monospace; font-size: 4rem; font-weight: 1000;
+        color: white; letter-spacing: -2px; 
+        text-shadow: 0 0 30px rgba(255,255,255,0.4), 0 0 60px rgba(99, 102, 241, 0.5);
+        animation: pulseText 2s ease-in-out infinite;
+    }
+    @keyframes pulseText { 0%, 100% { opacity: 0.8; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
+
+    .extraction-meta { margin-top: 60px; text-align: center; }
+    .extraction-meta h2 { font-size: 1rem; font-weight: 1000; color: white; text-transform: uppercase; letter-spacing: 12px; margin-bottom: 12px; }
+    .extraction-meta p { font-size: 0.65rem; color: #475569; font-weight: 900; text-transform: uppercase; letter-spacing: 4px; display: flex; align-items: center; gap: 10px; justify-content: center; }
+    .extraction-meta p i { color: var(--hud-accent); animation: flash 1s infinite alternate; }
+    @keyframes flash { from { opacity: 0.2; } to { opacity: 1; } }
+
+    /* PARTICLE STREAM */
+    .particle-field { position: absolute; inset: 0; pointer-events: none; }
+    .particle { position: absolute; width: 2px; height: 2px; background: var(--hud-accent); border-radius: 50%; opacity: 0; filter: blur(1px); animation: atomFloat 4s linear infinite; }
+    @keyframes atomFloat { 0% { transform: translateY(0) scale(0); opacity: 0; } 20% { opacity: 0.8; } 80% { opacity: 0.8; } 100% { transform: translateY(-500px) scale(2); opacity: 0; } }
+
+    /* ACTION INGRESS */
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="ingest-layout">
+    
+    <div class="ingest-terminal">
+        <form action="{{ url_for('customer.ingest') }}" method="POST" enctype="multipart/form-data" id="ingest-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="ingest_mode" id="ingest-mode" value="archival">
+            <input type="file" name="file" id="file-ingress" style="display: none;">
+
+            <!-- PRIMARY INGESTION NEXUS -->
+            <div class="terminal-card" style="margin-bottom: 25px; padding: 45px;">
+                <div class="upload-portal" id="drop-zone" onclick="document.getElementById('file-ingress').click()">
+                    <div class="portal-orb"><i class="fas fa-microchip" id="ingress-icon"></i></div>
+                    <div class="portal-title">Initiate Architecture Ingestion</div>
+                    <div class="orb-meta">Neural Extraction Protocol • Deploy Financial Data Nodes</div>
+                    <div id="file-status" style="display: none; font-family: 'JetBrains Mono'; color: #38bdf8; font-weight: 1000; font-size: 0.85rem; margin-top: 15px; letter-spacing: 1px;">[ READY ] - SYNCHRONIZING SEGMENT</div>
+                </div>
+
+                <div style="display: flex; gap: 20px; align-items: center;">
+                    <button type="submit" class="ingress-btn" id="execute-btn" style="flex: 1.5;">
+                        <i class="fas fa-bolt" style="margin-right: 15px;"></i> Execute Nodal Integration
+                    </button>
+                    <div class="terminal-card" style="flex: 1; padding: 18px 25px; background: rgba(56, 189, 248, 0.02); margin-top: 20px; border-radius: 20px; box-shadow: none;">
+                        <div style="font-size: 0.55rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 3px; font-weight: 900; margin-bottom: 8px;">Encryption Status</div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 10px #10b981;"></div>
+                            <span style="font-family: 'JetBrains Mono'; font-size: 0.7rem; color: white;">AES-256 ACTIVE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INTELLIGENCE SECTORS -->
+            <div class="sector-deck">
+                <div class="sector-orb active" id="orb-archival" onclick="setMode('archival')">
+                    <div class="orbit-inner-glow"></div>
+                    <i class="fas fa-database orb-icon"></i>
+                    <div class="orb-title">Archival Sync</div>
+                    <div class="orb-meta">Institutional Bulk Telemetry Ingress</div>
+                </div>
+                <div class="sector-orb" id="orb-zcdi" onclick="setMode('zcdi')">
+                    <div class="orbit-inner-glow"></div>
+                    <i class="fas fa-satellite orb-icon"></i>
+                    <div class="orb-title">Zero-Capture</div>
+                    <div class="orb-meta">Quantum Document Resolution</div>
+                </div>
+            </div>
+        </form>
+
+        <!-- PROTOCOL SPECS -->
+        <div class="terminal-card" style="padding: 25px; margin-top: 25px; background: rgba(56, 189, 248, 0.015);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.04); padding-bottom: 12px;">
+                <div style="font-size: 0.7rem; font-weight: 950; color: #38bdf8; text-transform: uppercase; letter-spacing: 4px;">
+                    <i class="fas fa-microchip" style="margin-right: 10px;"></i> Core Protocol 14.2
+                </div>
+                <div style="font-family: 'JetBrains Mono'; font-size: 0.6rem; color: #475569;">LATENCY: 14ms</div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; font-size: 0.7rem; color: #94a3b8; line-height: 1.6;">
+                <div><strong style="color: white; letter-spacing: 1px;">ARCHIVAL:</strong> Accelerated nodal extraction supporting RFC-4180 telemetry. Optimizes for high-density historical financial segments.</div>
+                <div><strong style="color: white; letter-spacing: 1px;">ZERO-CAPTURE:</strong> Neural-OCR Engine (Sovereign Grade) with 99.8% resolution accuracy for document provenance.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SIDECAR: DEPLOYED BASE-NET -->
+    <div class="terminal-card history-deck" style="height: fit-content;">
+        <div style="font-size: 0.85rem; font-weight: 1000; color: white; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 30px; display: flex; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 20px;">
+            <i class="fas fa-tower-broadcast" style="color: #38bdf8; margin-right: 15px; font-size: 1rem;"></i> Deployed Base-Net
+        </div>
+
+        {% if batches %}
+            {% for batch in batches %}
+            <div class="batch-strip" style="background: rgba(255,255,255,0.015); margin-bottom: 15px; padding: 22px 25px;">
+                <div class="strip-info">
+                    <h5 style="color: white; font-size: 0.85rem; letter-spacing: 1px;">{{ batch.import_batch }}</h5>
+                    <p style="font-weight: 800; color: #64748b; font-size: 0.6rem;">{{ batch.node_count }} UNITS SYNCHRONIZED • {{ batch.deployed_at }}</p>
+                </div>
+                <form action="{{ url_for('customer.delete_batch', batch_id=batch.import_batch) }}" method="POST" onsubmit="return confirm('MANDATORY PROTOCOL: Confirm segment decommissioning?')">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="purge-btn" style="width: 40px; height: 40px; border-radius: 12px;">
+                        <i class="fas fa-trash-can" style="font-size: 0.85rem;"></i>
+                    </button>
+                </form>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div style="text-align: center; padding: 80px 30px; color: #1e293b;">
+                <i class="fas fa-cube" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.1;"></i>
+                <div style="font-size: 0.7rem; font-weight: 950; text-transform: uppercase; letter-spacing: 4px;">No Telemetry Segments Detected</div>
+            </div>
+        {% endif %}
+    </div>
+
+</div>
+
+<!-- NEURAL SCAN OVERLAY: ULTRA-PREMIUM VERSION -->
+<div class="neural-scan-interface" id="scan-overlay">
+    <div class="hex-vault"></div>
+    
+    <!-- HUD DECK -->
+    <div class="hud-corner corner-tl"></div>
+    <div class="hud-corner corner-br"></div>
+    
+    <div class="particle-field">
+        <div class="particle" style="left: 20%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 40%; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 60%; animation-delay: 0.5s;"></div>
+        <div class="particle" style="left: 80%; animation-delay: 1.5s;"></div>
+        <div class="particle" style="left: 90%; animation-delay: 0.2s;"></div>
+    </div>
+
+    <div class="scan-orb-nexus">
+        <div class="nexus-core-glow"></div>
+        <div class="orbit-ring orbit-outer"></div>
+        <div class="orbit-ring orbit-inner"></div>
+        <div class="scan-glint-wave"></div>
+        
+        <div class="scan-val-hub">
+            <h1 id="scan-pct">00%</h1>
+            <span style="font-family: 'JetBrains Mono'; font-size: 0.6rem; color: #475569; letter-spacing: 4px; text-transform: uppercase;">Node Extraction Active</span>
+        </div>
+    </div>
+
+    <div class="extraction-meta">
+        <h2>Quantum Extraction</h2>
+        <p id="scan-meta"><i class="fas fa-circle-nodes"></i> Establishing Nodal Synchronization...</p>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    const fileIngress = document.getElementById('file-ingress');
+    const executeBtn = document.getElementById('execute-btn');
+    const fileStatus = document.getElementById('file-status');
+    const modeInput = document.getElementById('ingest-mode');
+    const dropZone = document.getElementById('drop-zone');
+
+    function setMode(mode) {
+        document.querySelectorAll('.sector-orb').forEach(o => o.classList.remove('active'));
+        document.getElementById(`orb-${mode}`).classList.add('active');
+        modeInput.value = mode;
+
+        if(mode === 'zcdi') {
+            document.getElementById('ingress-title').innerText = "Initiate Zero-Capture Scan";
+            document.getElementById('ingress-meta').innerText = "Neural Extraction Protocol • PDF/IMG";
+            fileIngress.setAttribute('accept', '.pdf, .jpg, .png, .jpeg');
+        } else {
+            document.getElementById('ingress-title').innerText = "Initiate Architecture Ingestion";
+            document.getElementById('ingress-meta').innerText = "Mass Core Telemetry Ingestion • CSV";
+            fileIngress.setAttribute('accept', '.csv');
+        }
+    }
+
+    fileIngress.addEventListener('change', () => {
+        if (fileIngress.files.length > 0) {
+            fileStatus.innerText = `[ SEGMENT_READY ] - ${fileIngress.files[0].name.toUpperCase()}`;
+            fileStatus.style.display = 'block';
+            executeBtn.style.display = 'block';
+            document.getElementById('ingress-icon').className = "fas fa-shield-check";
+        }
+    });
+
+    // Drag & Drop
+    ['dragover', 'dragleave', 'drop'].forEach(e => {
+        dropZone.addEventListener(e, (evt) => {
+            evt.preventDefault();
+            if (e === 'dragover') dropZone.style.borderColor = 'var(--hud-accent)';
+            else dropZone.style.borderColor = 'rgba(255,255,255,0.06)';
+            
+            if (e === 'drop') {
+                fileIngress.files = evt.dataTransfer.files;
+                if (fileIngress.files.length > 0) {
+                   const changeEvent = new Event('change');
+                   fileIngress.dispatchEvent(changeEvent);
+                }
+            }
+        });
+    });
+
+    document.getElementById('ingest-form').addEventListener('submit', function(e) {
+        if(modeInput.value === 'zcdi') {
+            e.preventDefault();
+            document.getElementById('scan-overlay').style.display = 'flex';
+            let pct = 0;
+            const sub = ["Synthesizing Buffers", "Mapping Tensors", "Isolating Nodes", "Encrypting Segments", "Finalizing Ingress"];
+            const iv = setInterval(() => {
+                pct += Math.floor(Math.random() * 15) + 3;
+                if(pct > 100) pct = 100;
+                document.getElementById('scan-pct').innerText = pct.toString().padStart(2, '0') + "%";
+                document.getElementById('scan-meta').innerText = sub[Math.floor(pct / 21)] + "...";
+                if(pct === 100) {
+                    clearInterval(iv);
+                    setTimeout(() => this.submit(), 500);
+                }
+            }, 250);
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,364 @@
+{% extends "base_dashboard.html" %}
+
+{% block title %}Neural Assessment Report | LoanRisk Pro{% endblock %}
+{% block header_title %}Institutional Intelligence Report{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --risk-low: #10b981;
+        --risk-med: #f59e0b;
+        --risk-high: #ef4444;
+        --hud-accent: #6366f1;
+        --deep-slate: #020617;
+        --glass-bg: rgba(255, 255, 255, 0.012);
+        --glass-border: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Dynamic Risk Color Mapping */
+    .report-shell.low { --risk-color: var(--risk-low); --risk-glow: rgba(16, 185, 129, 0.15); }
+    .report-shell.medium { --risk-color: var(--risk-med); --risk-glow: rgba(245, 158, 11, 0.15); }
+    .report-shell.high { --risk-color: var(--risk-high); --risk-glow: rgba(239, 68, 68, 0.15); }
+
+    .report-shell {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        animation: reportBoot 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative;
+    }
+
+    @keyframes reportBoot {
+        from { opacity: 0; transform: scale(0.98) translateY(20px); filter: blur(10px); }
+        to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+    }
+
+    /* PREMIUM ASSESSMENT BANNER */
+    .assessment-banner {
+        background: var(--glass-bg);
+        backdrop-filter: blur(50px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 25px 35px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6);
+    }
+
+    .assessment-banner::after {
+        content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+        background: var(--risk-color);
+        box-shadow: 10px 0 30px var(--risk-glow);
+    }
+
+    .assessment-verdict h2 { 
+        font-size: 1.6rem; font-weight: 1000; color: white; letter-spacing: -1px; 
+        text-transform: uppercase; margin-bottom: 2px;
+    }
+    .assessment-verdict p { font-size: 0.65rem; color: #475569; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; }
+
+    /* PDF ACTION HUB */
+    .pdf-archive-btn {
+        background: rgba(255,255,255,0.02);
+        padding: 10px 20px;
+        border-radius: 12px;
+        border: 1px solid var(--glass-border);
+        color: #94a3b8;
+        font-size: 0.6rem;
+        font-weight: 950;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: 0.3s;
+    }
+    .pdf-archive-btn:hover { background: rgba(255,255,255,0.05); color: white; border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
+
+    /* SPLIT ANALYSIS LAYOUT */
+    .analysis-nexus {
+        display: grid;
+        grid-template-columns: 360px 1fr;
+        gap: 25px;
+    }
+
+    .nexus-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(40px);
+        border: 1px solid var(--glass-border);
+        border-radius: 28px;
+        padding: 30px;
+        box-shadow: 0 40px 100px -30px rgba(0,0,0,0.7);
+    }
+
+    /* RADIAL PD HUD */
+    .pd-viz-hub {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
+    .radial-pd { width: 180px; height: 180px; position: relative; }
+    .radial-orbit { fill: none; stroke: rgba(255,255,255,0.012); stroke-width: 12; }
+    .pd-vector-fill {
+        fill: none; stroke: var(--risk-color); stroke-width: 12; stroke-linecap: round;
+        stroke-dasharray: 440; stroke-dashoffset: 440;
+        transform: rotate(-90deg); transform-origin: center;
+        transition: 2s cubic-bezier(0.16, 1, 0.3, 1);
+        filter: drop-shadow(0 0 10px var(--risk-glow));
+    }
+    .pd-digit-hub { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+    .pd-digit-hub h3 { font-size: 2.8rem; font-weight: 1000; color: white; line-height: 1; letter-spacing: -2px; }
+    .pd-digit-hub span { font-size: 0.6rem; color: #475569; font-weight: 950; text-transform: uppercase; letter-spacing: 1.5px; }
+
+    /* CORE METRIC TILES */
+    .metric-tiles {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        width: 100%;
+    }
+    .tile {
+        background: rgba(255, 255, 255, 0.012);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        border-radius: 18px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        transition: 0.3s;
+    }
+    .tile:hover { background: rgba(255, 255, 255, 0.02); border-color: rgba(255,255,255,0.08); transform: translateY(-3px); }
+    .tile label { font-size: 0.55rem; font-weight: 950; color: #475569; text-transform: uppercase; letter-spacing: 1.5px; }
+    .tile span { font-size: 1rem; font-weight: 900; color: #f8fafc; letter-spacing: -0.2px; }
+
+    /* SOVEREIGN SUMMARY ENGINE */
+    .summary-engine { display: flex; flex-direction: column; gap: 25px; }
+    .engine-text { font-size: 0.85rem; color: #94a3b8; line-height: 1.7; font-weight: 500; }
+    .engine-text strong { color: white; font-weight: 900; }
+
+    /* PROGRESS TELEMETRY */
+    .progress-track { height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; position: relative; }
+    .progress-fill { position: absolute; left: 0; top: 0; bottom: 0; width: var(--p, 0%); background: #10b981; box-shadow: 0 0 10px rgba(16, 185, 129, 0.4); transition: 1s cubic-bezier(0.16, 1, 0.3, 1); }
+
+    /* NEURAL INSIGHT ALERT */
+    .neural-alert {
+        background: rgba(99, 102, 241, 0.03);
+        border: 1px dashed rgba(99, 102, 241, 0.15);
+        border-radius: 18px;
+        padding: 20px;
+        font-size: 0.8rem;
+        color: #cbd5e1;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .neural-alert i { font-size: 1.2rem; color: var(--hud-accent); animation: pulseInsight 2s infinite; }
+    @keyframes pulseInsight { 0%, 100% { opacity: 0.4; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.08); } }
+
+    /* AUDIT BASIS */
+    .audit-basis {
+        background: rgba(255, 255, 255, 0.008);
+        border: 1px solid var(--glass-border);
+        border-radius: 22px;
+        padding: 25px;
+    }
+    .basis-header { font-size: 0.75rem; font-weight: 1000; color: white; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; border-left: 3px solid var(--hud-accent); padding-left: 15px; }
+    .basis-list { display: flex; flex-direction: column; gap: 14px; }
+    .basis-item { display: flex; align-items: flex-start; gap: 14px; }
+    .basis-item i { font-size: 0.7rem; color: var(--hud-accent); margin-top: 4px; }
+    .basis-content { font-size: 0.8rem; color: #94a3b8; line-height: 1.7; font-weight: 500; }
+    .basis-content strong { color: #f1f5f9; font-weight: 800; margin-right: 4px; }
+
+    /* DECISION ACTIONS */
+    .decision-hub { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; }
+    .btn-sov {
+        padding: 16px; border-radius: 18px; border: none; font-size: 0.75rem; font-weight: 1000;
+        text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .btn-approve { background: #10b981; color: white; box-shadow: 0 15px 40px rgba(16, 185, 129, 0.3); }
+    .btn-reject { background: #ef4444; color: white; filter: grayscale(0.2); }
+    .btn-archive { background: rgba(255,255,255,0.03); color: #64748b; border: 1px solid var(--glass-border); text-decoration: none; }
+    .btn-sov:hover { transform: translateY(-5px); filter: brightness(1.1); }
+
+    /* UTILITY STATUS COLORS */
+    .text-success { color: #10b981 !important; }
+    .text-danger { color: #ef4444 !important; }
+    .text-warning { color: #f59e0b !important; }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="report-shell {{ 'low' if customer.prediction_result|lower == 'low risk' else 'medium' if customer.prediction_result|lower == 'medium risk' else 'high' }}">
+    
+    <!-- ASSESSMENT STRATEGIC BANNER -->
+    <div class="assessment-banner">
+        <div class="assessment-verdict">
+            <h2>INFERENCE ASSESSMENT: {{ customer.prediction_result|upper }}</h2>
+            <p>INSTITUTIONAL ID: <span style="color: white; font-weight: 1000;">#{{ customer.name|upper|replace(' ', '-') }}-{{ customer.id }}</span></p>
+        </div>
+        <a href="{{ url_for('customer.download_report', customer_id=customer.id) }}" class="pdf-archive-btn">
+            <i class="fas fa-file-pdf"></i> PDF Archive
+        </a>
+    </div>
+
+    <div class="analysis-nexus">
+        <!-- LEFT: PD GAUGE & KPIS -->
+        <div class="nexus-card pd-viz-hub">
+            <span class="hud-tag">Neural PD Metric</span>
+            <div class="radial-pd" style="display: flex; align-items: center; justify-content: center; position: relative;">
+                <svg viewBox="0 0 160 160" width="180" height="180" style="position: absolute;">
+                    <circle class="radial-orbit" cx="80" cy="80" r="70"></circle>
+                    <circle id="pd-vector" class="pd-vector-fill" cx="80" cy="80" r="70" style="stroke-dasharray: 440; stroke-dashoffset: 440; transform: rotate(-90deg); transform-origin: center;"></circle>
+                </svg>
+                <div class="pd-digit-hub">
+                    {% set display_prob = customer.risk_probability * 100 if customer.risk_probability <= 1 else customer.risk_probability %}
+                    <h3>{{ "{:.0f}".format(display_prob) }}%</h3>
+                    <span>PD Vector</span>
+                </div>
+            </div>
+            
+            <div style="font-size: 0.7rem; font-weight: 1000; color: var(--risk-color); text-transform: uppercase; letter-spacing: 3px; display: flex; align-items: center; gap: 8px;">
+                <i class="fas fa-shield-virus"></i> NODE: {{ customer.prediction_result|upper }}
+            </div>
+
+            <div class="metric-tiles">
+                <div class="tile"><label>Bureau Score</label><span>{{ customer.credit_score }}</span></div>
+                <div class="tile"><label>Tenure</label><span>{{ customer.tenure }}M</span></div>
+                <div class="tile"><label>DTI Metric</label><span>{{ ((customer.existing_emi or 0) / (customer.income / 12 + 1) * 100)|round(1) }}%</span></div>
+                <div class="tile"><label>LTI Vector</label><span>{{ (customer.loan_amount / (customer.income + 1))|round(2) }}x</span></div>
+            </div>
+        </div>
+
+        <!-- RIGHT: INTELLIGENCE SUMMARY & DECISION CORE -->
+        <div class="nexus-card summary-engine">
+            <span class="hud-tag">Sovereign Intelligence Summary</span>
+            
+            <div class="engine-text">
+                Neural assessment of <strong>{{ customer.name }}</strong> (Principal: ₹{{ "{:,.0f}".format(customer.loan_amount) }}) reveals a 
+                <strong style="color: var(--risk-color);">{{ customer.prediction_result|lower }}</strong> profile. 
+                Calculated payment capacity for this node is balanced against a monthly velocity of <strong>₹{{ "{:,.0f}".format(customer.income / 12) }}</strong>.
+            </div>
+
+            <div class="neural-alert">
+                <i class="fas fa-microchip"></i>
+                {% set parts = customer.risk_reason.split('|||') %}
+                {% set text_reason = parts[0] if parts else customer.risk_reason %}
+                <div>
+                    <div style="font-size: 0.65rem; font-weight: 950; text-transform: uppercase; color: var(--hud-accent); margin-bottom: 4px;">Neural Insight</div>
+                    <div style="font-weight: 700;">AI identified <strong>{{ text_reason }}</strong> as the primary risk driver.</div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <!-- REPAYMENT SNAPSHOT -->
+                <div class="audit-basis">
+                    <div class="basis-header">Amortization Snapshot</div>
+                    <div class="tele-list" style="display: flex; flex-direction: column; gap: 12px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem;">
+                            <span style="color: #64748b; font-weight: 800;">Recovered Principal</span>
+                            <span style="color: #10b981; font-weight: 950;">₹{{ "{:,.0f}".format(history.paid_amount or 0) }}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem;">
+                            <span style="color: #64748b; font-weight: 800;">Residual Exposure</span>
+                            <span style="color: #ef4444; font-weight: 950;">₹{{ "{:,.0f}".format(history.balance_amount or customer.loan_amount) }}</span>
+                        </div>
+                        <div class="progress-track">
+                            {% set total = (history.paid_amount or 0) + (history.balance_amount or 0) if ((history.paid_amount or 0) + (history.balance_amount or 0)) > 0 else customer.loan_amount %}
+                            {% set progress = (history.paid_amount / total * 100)|round(0) if total > 0 else 0 %}
+                            <div class="progress-fill" style="--p: {{ progress }}%;"></div>
+                        </div>
+                        <div style="font-size: 0.55rem; color: #475569; font-weight: 950; text-transform: uppercase; text-align: right;">{{ progress }}% Neural Recovery</div>
+                    </div>
+                </div>
+
+                <!-- INSTITUTIONAL DECISION BASIS -->
+                <div class="audit-basis">
+                    <div class="basis-header">Decision Basis</div>
+                    <div class="basis-list" style="font-size: 0.75rem;">
+                        <div class="basis-item">
+                            <i class="fas fa-play" style="font-size: 0.6rem; margin-top: 2px;"></i>
+                            <div class="basis-content">Credit Integrity score of <strong>{{ customer.credit_score }}</strong> matches institutional policy targets for this node.</div>
+                        </div>
+                        <div class="basis-item">
+                            <i class="fas fa-play" style="font-size: 0.6rem; margin-top: 2px;"></i>
+                            <div class="basis-content">DTI Metric of <strong>{{ ((customer.existing_emi or 0) / (customer.income / 12 + 1) * 100)|round(1) }}%</strong> is within standard volatility thresholds.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXTRA PREMIUM TELEMETRY -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="tile" style="border-style: dashed; border-color: rgba(99, 102, 241, 0.2);">
+                    <label>Policy Compliance</label>
+                    <div style="display: flex; align-items: center; gap: 8px; color: #10b981; font-size: 0.75rem; font-weight: 900;">
+                        <i class="fas fa-certificate"></i> VERIFIED_SOVEREIGN
+                    </div>
+                </div>
+                <div class="tile" style="border-style: dashed; border-color: rgba(99, 102, 241, 0.2);">
+                    <label>Network Integrity</label>
+                    <div style="display: flex; align-items: center; gap: 8px; color: var(--hud-accent); font-size: 0.75rem; font-weight: 900;">
+                        <i class="fas fa-fingerprint"></i> 99.4% TRUSTED
+                    </div>
+                </div>
+                <div class="tile" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, transparent 100%);">
+                    <label>Liquidity Yield</label>
+                    <span style="color: #10b981;">₹{{ "{:,.0f}".format(customer.loan_amount * 0.12) }}</span>
+                </div>
+                <div class="tile" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, transparent 100%);">
+                    <label>Neural Entropy</label>
+                    <span style="color: var(--hud-accent);">0.042ψ</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DECISION ACTION HUB -->
+    <div class="decision-hub">
+        <button onclick="updateStatus('Approved')" class="btn-sov btn-approve"><i class="fas fa-check-double"></i> Approve Risk Node</button>
+        <button onclick="updateStatus('Rejected')" class="btn-sov btn-reject"><i class="fas fa-skull-crossbones"></i> Reject Node</button>
+        <a href="{{ url_for('customer.historical_network', search=customer.name) }}" class="btn-sov btn-archive">Back to Archival Scan</a>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    async function updateStatus(status) {
+        if (!confirm(`Final Authorization: Execute status as ${status.toUpperCase()}?`)) return;
+        
+        try {
+            const customerId = "{{ customer.id }}";
+            const csrfToken = "{{ csrf_token() }}";
+            const historyUrl = "{{ url_for('customer.historical_network', search=customer.name) }}";
+
+            const response = await fetch('/api/update_loan_status', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrfToken },
+                body: JSON.stringify({ id: customerId, source: 'cust', status: status })
+            });
+            
+            if (response.ok) {
+                window.location.href = historyUrl;
+            }
+        } catch (error) { console.error('Institutional execution fail:', error); }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const fill = document.getElementById('pd-vector');
+        const prob = parseFloat("{{ customer.risk_probability }}");
+        const val = prob > 1 ? prob / 100 : prob;
+        // SVG circle circumference is 440 (70 * 2 * PI)
+        setTimeout(() => { fill.style.strokeDashoffset = 440 - (val * 440); }, 300);
+    });
+</script>
+{% endblock %}

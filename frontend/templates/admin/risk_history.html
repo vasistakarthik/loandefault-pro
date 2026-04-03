@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+
+{% block title %}Risk Evolution Intelligence — Loan Default{% endblock %}
+{% block page_title %}Risk Evolution Tracking{% endblock %}
+
+{% block content %}
+<div class="risk-evolution-container fade-in">
+    <div class="panel-header mb-4">
+        <div class="header-info">
+            <h2 class="panel-title">Borrower: <span class="name-tag">{{ name }}</span></h2>
+            <p class="panel-subtitle">Temporal tracking of calculated risk for this specific applicant profile.</p>
+        </div>
+        <div class="header-actions">
+            <a href="{{ url_for('customer.history_list') }}" class="btn btn-outline btn-sm">
+                <i class="fa-solid fa-clock-rotate-left"></i> &nbsp; Back to History List
+            </a>
+        </div>
+    </div>
+
+    <div class="glass-card chart-panel mb-4">
+        <div class="chart-header">
+            <h3>Calculated Risk Trend Index</h3>
+            <span class="version-tag">Model: Ensemble-v2.3</span>
+        </div>
+        <div style="height: 450px; position: relative;">
+            <canvas id="riskTimeline"></canvas>
+        </div>
+    </div>
+
+    <div class="glass-card info-panel">
+        <div class="info-header">
+            <i class="fa-solid fa-circle-info"></i>
+            <h4>Risk Interpretation Protocol</h4>
+        </div>
+        <p class="info-text">
+            This temporal visualization maps consecutive AI evaluation batches for this specific borrower.
+            Upward trajectories indicate accumulating risk signals (e.g., negative credit events, increasing debt
+            ratios, or shifting economic patterns).
+            Downward trends represent a stabilization of the applicant's financial behavior over time.
+        </p>
+    </div>
+</div>
+
+<!-- Raw data for JS -->
+<div id="historyData" data-labels='{{ history_labels | tojson | safe }}' data-risks='{{ history_data | tojson | safe }}'
+    style="display: none;">
+</div>
+
+<style>
+    .risk-evolution-container {
+        padding: 5px;
+    }
+
+    .panel-title {
+        font-size: 1.6rem;
+        font-weight: 800;
+        margin: 0;
+        color: #fff;
+    }
+
+    .name-tag {
+        color: var(--accent-color);
+        background: rgba(56, 189, 248, 0.1);
+        padding: 4px 12px;
+        border-radius: 50px;
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        font-family: inherit;
+    }
+
+    .panel-subtitle {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin-top: 8px;
+    }
+
+    .chart-panel {
+        padding: 30px;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .chart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding-bottom: 15px;
+    }
+
+    .chart-header h3 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #94a3b8;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .version-tag {
+        font-size: 0.75rem;
+        font-family: monospace;
+        color: #a855f7;
+        font-weight: 700;
+        background: rgba(168, 85, 247, 0.1);
+        padding: 4px 10px;
+        border-radius: 6px;
+    }
+
+    .info-panel {
+        background: rgba(56, 189, 248, 0.05);
+        border: 1px solid rgba(56, 189, 248, 0.1);
+        padding: 20px;
+    }
+
+    .info-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 10px;
+        color: var(--accent-color);
+    }
+
+    .info-header h4 {
+        margin: 0;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+
+    .info-text {
+        font-size: 0.9rem;
+        color: #94a3b8;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .btn-sm {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.8rem !important;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx = document.getElementById('riskTimeline').getContext('2d');
+        const gradient = ctx.createLinearGradient(0, 0, 0, 450);
+        gradient.addColorStop(0, 'rgba(56, 189, 248, 0.25)');
+        gradient.addColorStop(1, 'rgba(2, 6, 23, 0)');
+
+        // Retrieve data from context
+        const dataEl = document.getElementById('historyData');
+        const rawLabels = JSON.parse(dataEl.dataset.labels);
+        const risks = JSON.parse(dataEl.dataset.risks);
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: rawLabels,
+                datasets: [{
+                    label: 'Calculated Risk Intensity (% Probability)',
+                    data: risks,
+                    borderColor: '#38bdf8',
+                    borderWidth: 4,
+                    fill: true,
+                    backgroundColor: gradient,
+                    tension: 0.45,
+                    pointBackgroundColor: '#fff',
+                    pointBorderColor: '#38bdf8',
+                    pointRadius: 6,
+                    pointHoverRadius: 9,
+                    pointHoverBorderWidth: 4,
+                    pointHoverBackgroundColor: 'var(--bg-primary)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.03)',
+                            drawBorder: false
+                        },
+                        ticks: {
+                            color: '#64748b',
+                            font: { size: 11, weight: '500' },
+                            padding: 10,
+                            callback: v => v + '%'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#64748b',
+                            font: { size: 10, weight: '500' },
+                            padding: 10
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        padding: 15,
+                        backgroundColor: 'rgba(2, 6, 23, 0.9)',
+                        titleColor: '#fff',
+                        bodyColor: '#cbd5e1',
+                        borderColor: 'rgba(56, 189, 248, 0.3)',
+                        borderWidth: 1,
+                        displayColors: false,
+                        bodyFont: { size: 13, weight: '600' }
+                    }
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

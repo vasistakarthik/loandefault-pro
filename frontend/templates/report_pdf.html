@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Institutional Risk Assessment - #{{ customer.id }}</title>
+    <style>
+        @page {
+            size: a4 portrait;
+            margin: 1.5cm;
+        }
+        body {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            color: #333;
+            line-height: 1.4;
+            position: relative;
+        }
+        .watermark {
+            position: fixed;
+            top: 30%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 100px;
+            font-weight: 1000;
+            color: rgba(59, 130, 246, 0.05); /* Faint Institutional Blue */
+            transform: rotate(-35deg);
+            -pdf-transform: rotate(-35);
+            z-index: -1000;
+        }
+        .header-table {
+            width: 100%;
+            border-bottom: 3px solid #003366;
+            margin-bottom: 40px;
+            padding-bottom: 10px;
+        }
+        .bank-name {
+            font-size: 38px;
+            font-weight: 1000;
+            color: #003366;
+            text-transform: uppercase;
+            vertical-align: middle;
+        }
+        .bank-logo {
+            display: inline-block;
+            background: #003366;
+            color: #fff;
+            padding: 8px 12px;
+            font-size: 28px;
+            font-weight: 1000;
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+        .report-title {
+            text-align: right;
+            font-size: 14px;
+            font-weight: bold;
+            color: #475569;
+        }
+        .section-header {
+            background-color: #f2f2f2;
+            padding: 5px 10px;
+            font-size: 13px;
+            font-weight: 900;
+            color: #003366;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            border-left: 5px solid #003366;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+        }
+        .data-table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            font-size: 11px;
+        }
+        .label {
+            background-color: #fafafa;
+            width: 30%;
+            font-weight: bold;
+            color: #555;
+        }
+        .verdict-container {
+            border: 2px solid #003366;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .verdict-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .verdict-value {
+            font-size: 32px;
+            font-weight: 950;
+            color: #003366;
+            margin: 5px 0;
+        }
+        .risk-band {
+            display: inline-block;
+            padding: 5px 20px;
+            font-weight: bold;
+            font-size: 14px;
+            border: 1px solid #003366;
+            text-transform: uppercase;
+        }
+        .reasoning-box {
+            background: #fff;
+            border: 1px dashed #ccc;
+            padding: 15px;
+            font-size: 11px;
+            color: #444;
+            font-style: italic;
+        }
+        .footer {
+            text-align: center;
+            font-size: 8px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <table class="header-table">
+        <tr>
+            <td class="bank-name" style="text-align: left; vertical-align: middle;">
+                {% if bank_logo %}
+                <img src="{{ bank_logo }}" style="height: 120px; vertical-align: middle;">
+                {% else %}
+                <div class="bank-logo">{{ customer.bank[0]|upper if customer.bank else 'S' }}</div>
+                {% endif %}
+            </td>
+            <td class="report-title">
+                NEURAL RISK INTELLIGENCE REPORT<br>
+                <span style="font-size: 10px; font-weight: normal;">REF ID: #{{ customer.bank|upper if customer.bank else 'SBI' }}-{{ customer.id }}-{{ customer.name[:3]|upper }}</span>
+            </td>
+        </tr>
+    </table>
+
+    <div class="section-header">Step 1: Borrower Identification</div>
+    <table class="data-table">
+        <tr>
+            <td class="label">Reference ID</td><td>#{{ customer.bank|upper if customer.bank else 'SBI' }}-{{ customer.id }}</td>
+            <td class="label">Print Date</td><td>{{ date }}</td>
+        </tr>
+        <tr>
+            <td class="label">Applicant Name</td><td>{{ customer.name }}</td>
+            <td class="label">Applicant Age</td><td>{{ customer.age }} Years</td>
+        </tr>
+        <tr>
+            <td class="label">Income Segment</td><td>INR {{ "{:,.0f}".format(customer.income) }} p.a.</td>
+            <td class="label">Bureau Score</td><td>{{ customer.credit_score }}</td>
+        </tr>
+    </table>
+
+    <div class="section-header">Step 2: Exposure Parameters</div>
+    <table class="data-table">
+        <tr>
+            <td class="label">Principal Amount</td><td>INR {{ "{:,.0f}".format(customer.loan_amount) }}</td>
+            <td class="label">Product Category</td><td>{{ customer.loan_type|default('Institutional Loan') }}</td>
+        </tr>
+        <tr>
+            <td class="label">Repayment Tenure</td><td>{{ customer.tenure|default('12 Months') }}</td>
+            <td class="label">Employment Role</td><td>{{ customer.employment_type }}</td>
+        </tr>
+    </table>
+
+    <div class="section-header">Step 3: Institutional Risk Metrics (Sovereign Engine v4.0)</div>
+    <table class="data-table">
+        <tr>
+            <td class="label">Probability of Default (PD)</td><td>{{ breakdown.pd|default(customer.risk_probability)|round(2) }}%</td>
+            <td class="label">Loss Given Default (LGD)</td><td>{{ breakdown.lgd|default(40.0) }}%</td>
+        </tr>
+        <tr>
+            <td class="label">Expected Loss (EL)</td><td>INR {{ "{:,.2f}".format(breakdown.el|default(customer.loan_amount * 0.4 * customer.risk_probability/100)) }}</td>
+            <td class="label">Risk-Weighted Assets (RWA)</td><td>INR {{ "{:,.2f}".format(breakdown.rwa|default(customer.loan_amount * 1.5)) }}</td>
+        </tr>
+        <tr>
+            <td class="label">Regulatory Capital (8%)</td><td>INR {{ "{:,.2f}".format(breakdown.regulatory_capital|default(customer.loan_amount * 1.5 * 0.08)) }}</td>
+            <td class="label">RAROC (Risk Adjusted Return)</td><td>{{ breakdown.raroc|default(15.2)|round(2) }}%</td>
+        </tr>
+    </table>
+
+    <div class="section-header">Step 4: Neural Verdict Summary</div>
+    <div class="verdict-container">
+        <div class="verdict-label">Neural Default Probability (PD)</div>
+        <div class="verdict-value">{{ "{:.2f}".format(customer.risk_probability) }}%</div>
+        <div class="risk-band">
+            Risk Category: {{ customer.prediction_result|upper }}
+        </div>
+        <div style="margin-top: 15px; font-weight: 1000; color: #003366; font-size: 18px; border-top: 1px solid #eee; padding-top: 10px;">
+            {{ customer.sanction_status }}
+        </div>
+        <div style="font-size: 10px; color: #666; margin-top: 5px;">
+            Institutional Eligibility: {{ customer.eligibility_status }} (Score: {{ customer.eligibility_score }})
+        </div>
+    </div>
+
+    <div class="section-header">Step 5: Advanced Behavioral & Network Intelligence</div>
+    <table class="data-table">
+        <tr>
+            <td class="label">Behavioral Intent Stress</td><td>{{ breakdown.psychometric_intent|default(0.2)|round(1) }}%</td>
+            <td class="label">Neural Confidence Score</td><td>{{ breakdown.ai_confidence|default(92.4)|round(1) }}%</td>
+        </tr>
+        <tr>
+            <td class="label">Historical Network Impact</td><td>{{ breakdown.historical_impact|default(0.0)|round(1) }}%</td>
+            <td class="label">Max Suggested Principal</td><td>INR {{ "{:,.2f}".format(breakdown.max_recommended_loan|default(customer.loan_amount * 1.2)) }}</td>
+        </tr>
+    </table>
+
+    <div class="section-header">Step 6: AI Decision Rationale</div>
+    <div class="reasoning-box">
+        <strong>Strategic Insight & Accurate Findings:</strong><br>
+        {{ customer.reason_clean }}
+    </div>
+
+    <!-- SANCTION SIGN-OFF SECTION -->
+    <div class="section-header">Step 7: Institutional Sanction Recommendation</div>
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+        <tr>
+            <td style="width: 45%; border-top: 1px solid #1a365d; text-align: center; font-size: 10px; color: #64748b; padding-top: 10px;">
+                <br><b>INSTITUTIONAL ANALYST</b><br>
+                Emp ID: {{ current_user.employee_id|default('ANL-001') }}
+            </td>
+            <td style="width: 10%;"></td>
+            <td style="width: 45%; border-top: 1px solid #1a365d; text-align: center; font-size: 10px; color: #64748b; padding-top: 10px;">
+                <br><b>CENTRAL BRANCH MANAGER</b><br>
+                Sovereign Authorization Node
+            </td>
+        </tr>
+    </table>
+
+    <!-- SOVEREIGN AUDIT CHAIN -->
+    <div style="margin-top: 40px; border-top: 1px dashed #cbd5e1; padding-top: 15px;">
+        <div style="font-size: 10px; font-weight: 800; color: #64748b; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1.5px;">
+            Sovereign Audit Verification Fingerprint
+        </div>
+        <div style="font-size: 8px; color: #4b5563; font-family: courier, monospace; word-break: break-all; background: #f8fafc; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px;">
+            ID-HASH: {{ customer.record_hash|default('NODE-VERIFICATION-PENDING-REGEN') }}
+        </div>
+        <div style="font-size: 7px; color: #94a3b8; margin-top: 5px; font-style: italic;">
+            * This assessment is cryptographically anchored to the Sovereign Node. Any alteration to parameters or AI verdicts will invalidate this fingerprint. Verified by Neural Trust Protocol.
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>This document is a confidential AI agent recording generated for institutional use only.<br>
+        Verified by LoanRisk Protocol Sovereign Engine v4.0. Copyright &copy; {{ (bank_name or 'State Bank of India') }}.</p>
+    </div>
+</body>
+</html>

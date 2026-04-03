@@ -1,0 +1,572 @@
+{% extends "base_dashboard.html" %}
+
+{% block title %}Sovereign Console | Neural Command{% endblock %}
+{% block header_title %}Institutional Administrative Deck{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --hud-accent: #00f2fe;
+        --glass-bg: rgba(2, 6, 23, 0.45);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --neon-glow: rgba(0, 242, 254, 0.4);
+    }
+
+    .console-master-deck {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        animation: sovereignEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes sovereignEntrance {
+        from { opacity: 0; transform: translateY(40px) scale(0.97); filter: blur(15px); }
+        to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    }
+
+    .nexus-grid {
+        display: grid;
+        grid-template-columns: 320px 1fr 340px;
+        gap: 24px;
+        align-items: start;
+    }
+
+    .nexus-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(80px) saturate(180%);
+        border: 1px solid var(--glass-border);
+        border-radius: 36px;
+        padding: 28px;
+        position: relative;
+        overflow: hidden;
+        transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+        box-shadow: 0 40px 120px -30px rgba(0, 0, 0, 0.9);
+    }
+
+    .nexus-card:hover {
+        border-color: var(--hud-accent);
+        background: rgba(0, 242, 254, 0.03);
+        box-shadow: 0 60px 150px -40px rgba(0, 0, 0, 0.95), 0 0 30px var(--neon-glow);
+    }
+
+    /* QUANTUM IDENTITY SCAN */
+    .identity-scan-chamber {
+        position: relative;
+        width: 100%;
+        height: 220px;
+        background: radial-gradient(circle at center, rgba(0, 242, 254, 0.05) 0%, transparent 70%);
+        border-radius: 24px;
+        margin-bottom: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .scan-ring {
+        position: absolute;
+        width: 160px;
+        height: 160px;
+        border: 1px solid var(--hud-accent);
+        border-radius: 50%;
+        opacity: 0.3;
+        animation: pulseRing 3s ease-in-out infinite;
+    }
+
+    .scan-ring-secondary {
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        border: 1px dashed rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        animation: rotateGlow 30s infinite linear;
+    }
+
+    @keyframes pulseRing {
+        0%, 100% { transform: scale(1); opacity: 0.1; }
+        50% { transform: scale(1.1); opacity: 0.4; }
+    }
+
+    .avatar-core {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, var(--hud-accent), #4facfe);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.8rem;
+        font-weight: 950;
+        color: #020617;
+        position: relative;
+        z-index: 5;
+        box-shadow: 0 0 50px var(--neon-glow);
+        border: 4px solid #020617;
+    }
+
+    .nexus-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nexus-header i { color: var(--hud-accent); font-size: 1.1rem; filter: drop-shadow(0 0 5px var(--hud-accent)); }
+    .nexus-header h3 { font-size: 0.75rem; font-weight: 950; text-transform: uppercase; color: #f8fafc; letter-spacing: 2.5px; }
+
+    /* SPECTRUM HUB */
+    .spectrum-deck {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+
+    .spectrum-node {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 22px 14px;
+        cursor: pointer;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        text-align: center;
+        position: relative;
+    }
+
+    .spectrum-node:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.08); border-color: var(--hud-accent); }
+    .spectrum-node.active { 
+        border-color: var(--hud-accent); 
+        background: rgba(0, 242, 254, 0.1); 
+        box-shadow: inset 0 0 20px rgba(0, 242, 254, 0.15), 0 15px 30px -10px rgba(0, 0, 0, 0.5); 
+    }
+    
+    .hue-orb { width: 10px; height: 10px; border-radius: 50%; margin: 0 auto 12px; box-shadow: 0 0 15px currentColor; }
+    .hue-title { font-size: 0.65rem; font-weight: 950; text-transform: uppercase; color: white; letter-spacing: 1.2px; display: block; }
+    .hue-meta { font-size: 0.5rem; color: #64748b; font-weight: 800; text-transform: uppercase; margin-top: 4px; }
+
+    /* INSTRUMENTATION CONTROLS */
+    .control-block { margin-bottom: 28px; }
+    .control-block label { font-size: 0.6rem; font-weight: 950; text-transform: uppercase; color: var(--hud-accent); letter-spacing: 2px; display: block; margin-bottom: 12px; }
+    
+    .instrument-input {
+        width: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        padding: 14px 20px;
+        color: white;
+        font-size: 0.85rem;
+        font-weight: 800;
+        outline: none;
+        transition: 0.4s;
+    }
+    .instrument-input:focus { border-color: var(--hud-accent); background: rgba(0, 0, 0, 0.6); box-shadow: 0 0 15px rgba(0, 242, 254, 0.1); }
+
+    .switch-panel {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 22px;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        margin-bottom: 10px;
+        transition: 0.3s;
+    }
+    .switch-panel:hover { background: rgba(255, 255, 255, 0.05); }
+
+    .hud-toggle {
+        position: relative;
+        width: 50px;
+        height: 26px;
+    }
+    .hud-toggle input { opacity: 0; width: 0; height: 0; }
+    .hud-track {
+        position: absolute;
+        cursor: pointer;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: 0.4s;
+        border-radius: 30px;
+    }
+    .hud-track:before {
+        position: absolute;
+        content: "";
+        height: 18px; width: 18px;
+        left: 4px; bottom: 4px;
+        background-color: #94a3b8;
+        transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        border-radius: 50%;
+    }
+    input:checked + .hud-track { background-color: rgba(0, 242, 254, 0.2); }
+    input:checked + .hud-track:before { transform: translateX(24px); background-color: var(--hud-accent); box-shadow: 0 0 15px var(--hud-accent); }
+
+    .vector-slider { width: 100%; height: 5px; background: rgba(255, 255, 255, 0.08); border-radius: 10px; appearance: none; outline: none; margin: 15px 0; }
+    .vector-slider::-webkit-slider-thumb { appearance: none; width: 18px; height: 18px; background: var(--hud-accent); border-radius: 50%; cursor: pointer; border: 3px solid #020617; box-shadow: 0 0 15px var(--hud-accent); }
+
+    /* TELEMETRY FEED */
+    .status-node {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 16px;
+        margin-bottom: 10px;
+        border-right: 4px solid var(--hud-accent);
+        animation: pulseActive 2s infinite;
+    }
+    @keyframes pulseActive { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
+
+    .node-label { font-size: 0.7rem; font-weight: 950; color: #f8fafc; letter-spacing: 0.5px; }
+    .node-stat { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--hud-accent); font-weight: 900; }
+
+    /* ACTION HUB */
+    .sync-terminal {
+        display: flex;
+        justify-content: center;
+        padding: 30px 0;
+    }
+
+    .btn-sync-sovereign {
+        background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+        color: #020617;
+        padding: 24px 80px;
+        border-radius: 28px;
+        font-weight: 950;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 6px;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 30px 60px rgba(0, 242, 254, 0.35);
+        transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    .btn-sync-sovereign:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 50px 100px rgba(0, 242, 254, 0.6);
+    }
+
+    /* NEURAL SPECTRUM UTILS */
+    .hue-cyan { color: #00f2fe; background: #00f2fe; }
+    .hue-crimson { color: #ef4444; background: #ef4444; }
+    .hue-emerald { color: #10b981; background: #10b981; }
+    .hue-quartz { color: #a855f7; background: #a855f7; }
+    .hue-amber { color: #f59e0b; background: #f59e0b; }
+    .hue-stealth { color: #64748b; background: #64748b; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="console-master-deck">
+    
+    <div class="nexus-grid">
+        
+        <!-- COLUMN 1: IDENTITY ACCESS -->
+        <div class="nexus-card">
+            <div class="nexus-header">
+                <i class="fas fa-microchip"></i>
+                <h3>Identity Core</h3>
+            </div>
+            
+            <div class="identity-scan-chamber">
+                <div class="scan-ring"></div>
+                <div class="scan-ring-secondary"></div>
+                <div class="avatar-core">
+                    {{ user.name[0] | upper if user else session.get('username')[0] | upper }}
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-bottom: 28px;">
+                <div style="font-size: 1.4rem; font-weight: 950; color: white;">{{ user.name if user else session.get('username') }}</div>
+                <div style="font-size: 0.6rem; color: var(--hud-accent); font-weight: 950; text-transform: uppercase; letter-spacing: 3px; margin-top: 8px;">
+                    Sovereign Node #{{ user.id if user else session.get('user_id') }}
+                </div>
+            </div>
+
+            <div class="control-block">
+                <label>Neural Notification Protocol</label>
+                <div class="switch-panel">
+                    <div><span style="font-size: 0.75rem; font-weight: 900; color: white; display: block;">Email Uplink</span><span style="font-size: 0.45rem; color: #64748b;">Critical alerts</span></div>
+                    <label class="hud-toggle">
+                        <input type="checkbox" id="email_notif" checked>
+                        <span class="hud-track"></span>
+                    </label>
+                </div>
+                <div class="switch-panel">
+                    <div><span style="font-size: 0.75rem; font-weight: 900; color: white; display: block;">SMS Pulse</span><span style="font-size: 0.45rem; color: #64748b;">Instant vector drift</span></div>
+                    <label class="hud-toggle">
+                        <input type="checkbox" id="sms_notif">
+                        <span class="hud-track"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="control-block" style="margin-bottom: 0;">
+                <label>Security Cipher</label>
+                <div style="position: relative;">
+                    <input type="password" id="sec-key" value="SOV-AX-77-INF" readonly class="instrument-input" style="font-size: 0.7rem;">
+                    <i class="fas fa-eye" id="toggle-sec" style="position: absolute; right: 16px; top: 14px; cursor: pointer; color: #475569; font-size: 0.8rem;"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUMN 2: NEURAL HUB & VECTORS -->
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+            
+            <div class="nexus-card">
+                <div class="nexus-header">
+                    <i class="fas fa-satellite-dish"></i>
+                    <h3>Neural Spectrum Hub</h3>
+                </div>
+                
+                <div class="spectrum-deck">
+                    {% set current_theme = settings.theme_accent if settings and settings.theme_accent else 'cyan' %}
+                    {% set themes = [
+                        ('cyan', '#00f2fe', 'Cyber Cyan', 'Std-Node'),
+                        ('crimson', '#ef4444', 'Crimson Pulse', 'Critical'),
+                        ('emerald', '#10b981', 'Emerald Core', 'Secure'),
+                        ('quartz', '#a855f7', 'Quartz Royal', 'Tier-1'),
+                        ('amber', '#f59e0b', 'Amber Void', 'Warning'),
+                        ('stealth', '#64748b', 'Onyx Stealth', 'Stealth')
+                    ] %}
+                    {% for id, hex, title, meta in themes %}
+                    <div class="spectrum-node {{ 'active' if current_theme == id else '' }}" data-theme="{{ id }}" data-color="{{ hex }}">
+                        <div class="hue-orb hue-{{ id }}"></div>
+                        <span class="hue-title">{{ title }}</span>
+                        <span class="hue-meta">{{ meta }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="nexus-card">
+                <div class="nexus-header">
+                    <i class="fas fa-radar"></i>
+                    <h3>Institutional Risk Vectors</h3>
+                </div>
+                
+                <div class="nexus-grid" style="grid-template-columns: 1fr 1fr; gap: 32px;">
+                    <div>
+                        <div class="control-block">
+                            <label>Baseline Alert [ <span id="lowLabel" style="color: var(--hud-accent);">{{ settings.low_threshold or 40 }}%</span> ]</label>
+                            <input type="range" class="vector-slider" id="low_threshold" min="0" max="100" value="{{ settings.low_threshold or 40 }}" oninput="document.getElementById('lowLabel').innerText = this.value + '%'">
+                        </div>
+                        <div class="control-block">
+                            <label>Core Inference Engine</label>
+                            <select id="algorithm" class="instrument-input">
+                                <option value="XGBoost" {% if settings.algorithm == 'XGBoost' %}selected{% endif %}>XGBoost Alpha-6</option>
+                                <option value="Random Forest" {% if settings.algorithm == 'Random Forest' %}selected{% endif %}>Neural Forest v4</option>
+                                <option value="Deep Learning" {% if settings.algorithm == 'Deep Learning' %}selected{% endif %}>H-FML Deep Tensor</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="control-block">
+                            <label>Critical Hub [ <span id="medLabel" style="color: var(--hud-accent);">{{ settings.med_threshold or 70 }}%</span> ]</label>
+                            <input type="range" class="vector-slider" id="med_threshold" min="0" max="100" value="{{ settings.med_threshold or 70 }}" oninput="document.getElementById('medLabel').innerText = this.value + '%'">
+                        </div>
+                        
+                        <div class="switch-panel">
+                            <div><span style="font-size: 0.8rem; font-weight: 950; color: white; display: block;">Logical Pilot</span><span style="font-size: 0.5rem; color: #64748b; text-transform: uppercase;">Automated Path</span></div>
+                            <label class="hud-toggle">
+                                <input type="checkbox" id="ai_enabled" {% if settings.ai_enabled %}checked{% endif %}>
+                                <span class="hud-track"></span>
+                            </label>
+                        </div>
+                        <div class="switch-panel">
+                            <div><span style="font-size: 0.8rem; font-weight: 950; color: white; display: block;">Recursive Sync</span><span style="font-size: 0.5rem; color: #64748b; text-transform: uppercase;">Weight Refinement</span></div>
+                            <label class="hud-toggle">
+                                <input type="checkbox" id="auto_retrain" {% if settings.auto_retrain %}checked{% endif %}>
+                                <span class="hud-track"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nexus-card">
+                <div class="nexus-header">
+                    <i class="fas fa-hourglass-half"></i>
+                    <h3>Data Lifecycle Horizon</h3>
+                </div>
+                <div style="display: flex; gap: 24px; align-items: center;">
+                    <div style="flex: 1;">
+                        <label style="font-size: 0.6rem; font-weight: 950; color: #64748b; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 8px;">Audit Persistence</label>
+                        <select class="instrument-input" style="font-size: 0.7rem; padding: 10px 15px;">
+                            <option>90 Terrestrial Days</option>
+                            <option>180 Terrestrial Days</option>
+                            <option>Immutable Indefinite</option>
+                        </select>
+                    </div>
+                    <div style="flex: 1;">
+                        <label style="font-size: 0.6rem; font-weight: 950; color: #64748b; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 8px;">Archive Sluice</label>
+                        <div style="display: flex; align-items: center; gap: 10px; background: rgba(0,0,0,0.3); padding: 8px 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03);">
+                            <i class="fas fa-database" style="color: var(--hud-accent); font-size: 0.7rem;"></i>
+                            <span style="font-size: 0.7rem; color: white; font-weight: 800;">AUTO-PURGE: OFF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- COLUMN 3: NODAL TELEMETRY -->
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div class="nexus-card">
+                <div class="nexus-header">
+                    <i class="fas fa-wave-square"></i>
+                    <h3>Nodal Telemetry</h3>
+                </div>
+                
+                <div class="status-node">
+                    <span class="node-label">Inference Hub</span>
+                    <span class="node-stat">ONLINE [ 24ms ]</span>
+                </div>
+                <div class="status-node" style="border-right-color: #a855f7;">
+                    <span class="node-label">Neural Integrity</span>
+                    <span class="node-stat" style="color: #a855f7;">98.42%</span>
+                </div>
+                <div class="status-node" style="border-right-color: #10b981;">
+                    <span class="node-label">Compliance Layer</span>
+                    <span class="node-stat" style="color: #10b981;">NOMINAL</span>
+                </div>
+                <div class="status-node" style="border-right-color: #ef4444;">
+                    <span class="node-label">Security Shield</span>
+                    <span class="node-stat" style="color: #ef4444;">AES-256 ENCRYPT</span>
+                </div>
+            </div>
+
+            <div class="nexus-card">
+                <div class="nexus-header">
+                    <i class="fas fa-vault"></i>
+                    <h3>Governance Tier</h3>
+                </div>
+                
+                {% set protocols = [('Dual-Phase 2FA', 'Active'), ('Quantum Rotation', 'Cycle: 24h'), ('Kernel Auditing', 'Immutable')] %}
+                {% for p, s in protocols %}
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <div><div style="font-size: 0.8rem; font-weight: 950; color: white;">{{ p }}</div><div style="font-size: 0.55rem; color: #64748b;">{{ s }}</div></div>
+                    <i class="fas fa-shield-check" style="color: var(--hud-accent); font-size: 0.9rem;"></i>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="nexus-card">
+                <div class="nexus-header">
+                    <i class="fas fa-key"></i>
+                    <h3>API Integration Vault</h3>
+                </div>
+                <div class="control-block">
+                    <label>External Access Vector</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="password" value="sk_sov_live_8829xjk22lsk" readonly class="instrument-input" style="flex: 1; font-size: 0.7rem; padding: 10px;">
+                        <button class="instrument-input" style="width: auto; padding: 10px; background: rgba(0,242,254,0.1); border-color: var(--hud-accent); cursor: pointer;" title="Regenerate Key">
+                            <i class="fas fa-rotate" style="color: var(--hud-accent);"></i>
+                        </button>
+                    </div>
+                </div>
+                <div style="font-size: 0.5rem; color: #475569; font-style: italic; line-height: 1.4;">
+                    * API keys grant sovereign access to the inference engine. Rotate every 30 terrestrial cycles.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- GLOBAL SYNC HUB -->
+    <div class="sync-terminal">
+        <button id="saveBtn" class="btn-sync-sovereign" onclick="saveInstitutionalSettings()">
+            <i class="fas fa-atom"></i> Synchronize Logical Protocol
+        </button>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Reveal Security Keyphrase
+    const toggleSec = document.getElementById('toggle-sec');
+    const secInput = document.getElementById('sec-key');
+    toggleSec.addEventListener('click', () => {
+        const isPass = secInput.type === 'password';
+        secInput.type = isPass ? 'text' : 'password';
+        toggleSec.classList.toggle('fa-eye');
+        toggleSec.classList.toggle('fa-eye-slash');
+        toggleSec.style.color = isPass ? 'var(--hud-accent)' : '#475569';
+    });
+
+    // Neural Spectrum Selector
+    const spectrumNodes = document.querySelectorAll('.spectrum-node');
+    spectrumNodes.forEach(node => {
+        node.addEventListener('click', () => {
+            spectrumNodes.forEach(n => n.classList.remove('active'));
+            node.classList.add('active');
+            
+            const color = node.dataset.color;
+            document.documentElement.style.setProperty('--hud-accent', color);
+            document.documentElement.style.setProperty('--primary', color);
+        });
+    });
+
+    // Execute Global Sync
+    async function saveInstitutionalSettings() {
+        const btn = document.getElementById('saveBtn');
+        const originalHtml = btn.innerHTML;
+        
+        btn.innerHTML = '<i class="fas fa-shuttle-space fa-spin"></i> UPLOADING TO KERNEL...';
+        btn.disabled = true;
+
+        const activeNode = document.querySelector('.spectrum-node.active');
+        const payload = {
+            low_threshold: parseInt(document.getElementById('low_threshold').value),
+            med_threshold: parseInt(document.getElementById('med_threshold').value),
+            algorithm: document.getElementById('algorithm').value,
+            ai_enabled: document.getElementById('ai_enabled').checked,
+            auto_retrain: document.getElementById('auto_retrain').checked,
+            theme: activeNode ? activeNode.dataset.theme : 'cyan'
+        };
+
+        try {
+            const resp = await fetch('/save_settings', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await resp.json();
+            
+            if (result.success) {
+                btn.innerHTML = '<i class="fas fa-check-double"></i> PROTOCOL DEPLOYED';
+                btn.style.background = '#10b981';
+                btn.style.color = '#020617';
+                setTimeout(() => {
+                    window.location.reload(); 
+                }, 1000);
+            } else {
+                throw new Error(result.error || 'Interface Sync Error');
+            }
+        } catch (err) {
+            btn.innerHTML = '<i class="fas fa-triangle-exclamation"></i> DEPLOYMENT ERROR';
+            btn.style.background = '#ef4444';
+            btn.style.color = 'white';
+            console.error(err);
+            setTimeout(() => {
+                btn.innerHTML = originalHtml;
+                btn.style.background = '';
+                btn.style.color = '';
+                btn.disabled = false;
+            }, 3000);
+        }
+    }
+</script>
+{% endblock %}

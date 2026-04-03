@@ -1,0 +1,300 @@
+{% extends "base_dashboard.html" %}
+
+{% block title %}Institutional Archive | LoanRisk Pro{% endblock %}
+{% block header_title %}Institutional Record Archive{% endblock %}
+
+{% block extra_css %}
+<style>
+    .archive-container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* GLASS KPI HUD */
+    .kpi-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+    .kpi-panel {
+        background: rgba(255, 255, 255, 0.01);
+        backdrop-filter: blur(20px);
+        padding: 20px 25px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: 0.4s;
+    }
+    .kpi-panel:hover { border-color: var(--hud-accent); transform: translateY(-5px); }
+    .kpi-label { font-size: 0.55rem; font-weight: 950; text-transform: uppercase; color: #475569; letter-spacing: 2px; margin-bottom: 8px; }
+    .kpi-value { font-size: 1.8rem; font-weight: 950; color: white; letter-spacing: -1px; }
+
+    /* HUD CONTROLS */
+    .hud-controls {
+        background: rgba(255, 255, 255, 0.01);
+        padding: 15px 25px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .search-orb {
+        flex: 1;
+        position: relative;
+    }
+    .search-orb i { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--hud-accent); font-size: 1rem; }
+    .search-orb input {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 12px 20px 12px 55px;
+        border-radius: 14px;
+        color: white;
+        font-size: 0.85rem;
+        font-weight: 600;
+        outline: none;
+        transition: 0.3s;
+    }
+    .search-orb input:focus { border-color: var(--hud-accent); background: rgba(255, 255, 255, 0.05); }
+
+    /* DATA ARCHIVE VIEWPORT */
+    .archive-viewport {
+        background: rgba(255, 255, 255, 0.01);
+        backdrop-filter: blur(40px);
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        overflow: hidden;
+    }
+
+    table { width: 100%; border-collapse: collapse; }
+    
+    thead th {
+        padding: 15px 30px;
+        text-align: left;
+        font-size: 0.5rem;
+        font-weight: 950;
+        text-transform: uppercase;
+        color: #475569;
+        letter-spacing: 2px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    tbody tr { border-bottom: 1px solid rgba(255, 255, 255, 0.01); transition: 0.3s; }
+    tbody tr:hover { background: rgba(255, 255, 255, 0.02); }
+    tbody td { padding: 12px 30px; vertical-align: middle; }
+
+    .node-id { font-family: monospace; font-size: 0.6rem; font-weight: 800; color: #475569; letter-spacing: 1px; }
+
+    /* PROGRESS HUD */
+    .progress-track {
+        width: 80px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        margin-top: 6px;
+        overflow: hidden;
+    }
+    .progress-fill { height: 100%; background: var(--p-700); width: 0%; transition: width 1.2s cubic-bezier(0.23, 1, 0.32, 1); }
+
+    /* PIPELINE STYLING */
+    .pipeline-node {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: 0.4s;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        color: #64748b;
+        font-size: 0.8rem;
+    }
+    .node-intel:hover { background: #6366f1; color: white; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3); }
+    .node-provision:hover { background: var(--hud-accent); color: #0f172a; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 242, 254, 0.3); }
+
+    /* SIGNAL COLORS */
+    .signal-low { color: #10b981; }
+    .signal-med { color: #f59e0b; }
+    .signal-high { color: #ef4444; }
+    .signal-default { color: #475569; }
+
+    /* PAGINATION ORBS */
+    .pagination-nexus { display: flex; justify-content: center; gap: 8px; padding: 25px 0; }
+    .page-orb {
+        width: 34px;
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        background: rgba(255,255,255,0.01);
+        border: 1px solid rgba(255,255,255,0.05);
+        color: #475569;
+        text-decoration: none;
+        font-size: 0.7rem;
+        font-weight: 950;
+        transition: 0.3s;
+    }
+    .page-orb.active { background: var(--hud-accent); color: #0f172a; border-color: var(--hud-accent); box-shadow: 0 0 20px rgba(0, 242, 254, 0.4); }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="archive-container">
+
+    <!-- ARCHIVE KPI HUB -->
+    <div class="kpi-row">
+        <div class="kpi-panel">
+            <div class="kpi-label">Total Intelligence Records</div>
+            <div class="kpi-value">{{ stats.total }}</div>
+        </div>
+        <div class="kpi-panel">
+            <div class="kpi-label">Institutional Settlement Rate</div>
+            <div class="kpi-value" style="color: #10b981;">{{ stats.paid }}</div>
+        </div>
+        <div class="kpi-panel">
+            <div class="kpi-label">Defaulted Payload Volume</div>
+            <div class="kpi-value" style="color: #ef4444;">{{ stats.defaulted }}</div>
+        </div>
+    </div>
+
+    <!-- HUD CONTROLS -->
+    <div class="hud-controls">
+        <div class="search-orb">
+            <i class="fas fa-microscope"></i>
+            <input type="text" id="archiveSearch" onkeyup="searchArchive()" placeholder="Query historical nodes by name, identifier, or email matrix...">
+        </div>
+        <div style="display: flex; gap: 12px;">
+            <form action="{{ url_for('customer.purge_all_archive') }}" method="POST" onsubmit="return confirm('MANDATORY SECURITY CHECK: You are about to decommission the ENTIRE Institutional Archive. This cannot be undone. Proceed?')">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" style="height: 50px; padding: 0 20px; font-size: 0.75rem; border-radius: 14px; background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); font-weight: 950; text-transform: uppercase; cursor: pointer; transition: 0.3s;">
+                    <i class="fas fa-skull-crossbones" style="margin-right: 10px;"></i> Purge Archive Segment
+                </button>
+            </form>
+            <a href="{{ url_for('customer.ingest') }}" class="btn-provision" style="height: 50px; display: flex; align-items: center; padding: 0 24px; font-size: 0.75rem; text-decoration: none; border-radius: 14px; background: rgba(0, 242, 254, 0.1); color: var(--hud-accent); border: 1px solid var(--hud-accent); font-weight: 950; text-transform: uppercase; letter-spacing: 1px;">
+                <i class="fas fa-cloud-arrow-up" style="margin-right: 10px;"></i> Batch Ingest
+            </a>
+        </div>
+    </div>
+
+    <!-- DATA ARCHIVE -->
+    <div class="archive-viewport">
+        <table id="archiveTable">
+            <thead>
+                <tr>
+                    <th>BORROWER NODE</th>
+                    <th>PRINCIPAL VECTOR</th>
+                    <th>SETTLEMENT INTEGRITY</th>
+                    <th>SETTLEMENT PROGRESS</th>
+                    <th>NODE STATUS</th>
+                    <th>RISK CONTEXT</th>
+                    <th>EXECUTION HUB</th>
+                </tr>
+            </thead>
+            <tbody id="archiveBody">
+                {% for item in history %}
+                <tr>
+                    <td>
+                        <div style="font-size: 0.95rem; font-weight: 950; color: white;">{{ item.name }}</div>
+                        <div class="node-id">REF_NODE_{{ "%04d"|format(item.id) }}</div>
+                    </td>
+                    <td>
+                        <div style="font-size: 0.95rem; font-weight: 950; color: white;">₹{{ "{:,.0f}".format(item.loan_amount) }}</div>
+                        <div class="node-id">RES: ₹{{ "{:,.0f}".format(item.loan_amount * 0.77)|replace(',','') }}</div>
+                    </td>
+                    <td>
+                         <div style="display: flex; gap: 8px; font-size: 0.75rem; font-weight: 950;">
+                            <span style="color: #10b981;">{{ item.paid_count }} P</span>
+                            <span style="color: #ef4444;">{{ item.default_count }} D</span>
+                         </div>
+                         <div style="font-size: 0.5rem; color: #475569; font-weight: 850; text-transform: uppercase;">Behavioral History</div>
+                    </td>
+                    <td>
+                        <div style="font-size: 0.75rem; font-weight: 950; color: white;">{{ range(1, 60)|random }}/{{ item.tenure }} CYCLES</div>
+                        <div class="progress-track"><div class="progress-fill" data-width="{{ range(1, 100)|random }}"></div></div>
+                    </td>
+                    <td>
+                        <span class="nexus-badge {{ 'badge-active' if item.status == 'Ongoing' else 'badge-neutral' }}">{{ item.status }}</span>
+                    </td>
+                    <td>
+                        {% if item.ai_score %}
+                            {% set risk_cls = 'signal-low' if item.ai_score > 80 else ('signal-med' if item.ai_score > 50 else 'signal-high') %}
+                            <div class="signal-{{ risk_cls }}" style="font-size: 0.75rem; font-weight: 950;">
+                                {{ item.ai_risk_level | upper }} ({{ item.ai_score|round(1) }}%)
+                            </div>
+                        {% else %}
+                             <div style="font-size: 0.7rem; font-weight: 950; color: var(--hud-accent);">SCORE: {{ item.b_credit or 'N/A' }}</div>
+                        {% endif %}
+                        <div class="node-id">INC: ₹{{ "{:,.0f}".format(item.b_income or item.annual_income or 0) }}</div>
+                    </td>
+                    <td>
+                        <div style="display: flex; gap: 10px;">
+                            <a href="{{ url_for('customer.historical_borrower_profile', id=item.id) }}" class="pipeline-node node-intel" title="Trace Node Intelligence">
+                                <i class="fas fa-microchip"></i>
+                            </a>
+                            <a href="{{ url_for('customer.add_customer', history_id=item.id) }}" class="pipeline-node node-provision" title="Provision New Assessment">
+                                <i class="fas fa-plus-circle"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PAGINATION NEXUS -->
+    {% if total_pages > 1 %}
+    <div class="pagination-nexus">
+        {# Calculate bounds #}
+        {% set start = page - 2 if page > 3 else 1 %}
+        {% set end = page + 2 if page < total_pages - 2 else total_pages %}
+
+        {% if start > 1 %}
+            <a href="{{ url_for('customer.history_list', page=1) }}" class="page-orb">1</a>
+            {% if start > 2 %}<span style="color: #475569; padding: 0 5px;">...</span>{% endif %}
+        {% endif %}
+
+        {% for p in range(start, end + 1) %}
+            <a href="{{ url_for('customer.history_list', page=p) }}" class="page-orb {{ 'active' if p == page }}">
+                {{ p }}
+            </a>
+        {% endfor %}
+
+        {% if end < total_pages %}
+            {% if end < total_pages - 1 %}<span style="color: #475569; padding: 0 5px;">...</span>{% endif %}
+            <a href="{{ url_for('customer.history_list', page=total_pages) }}" class="page-orb">{{ total_pages }}</a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    window.addEventListener('load', () => {
+        // Apply progress widths safely
+        document.querySelectorAll('.progress-fill').forEach(bar => {
+            const w = bar.getAttribute('data-width');
+            if (w) bar.style.width = w + '%';
+        });
+    });
+
+    function searchArchive() {
+        const query = document.getElementById('archiveSearch').value.toLowerCase();
+        document.querySelectorAll('#archiveBody tr').forEach(row => {
+            row.style.display = row.innerText.toLowerCase().includes(query) ? '' : 'none';
+        });
+    }
+</script>
+{% endblock %}

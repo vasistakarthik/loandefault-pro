@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block title %}Neural Assessment Result - Loan Default Prediction{% endblock %}
+
+{% block extra_css %}
+<style>
+    .result-header {
+        background: var(--white);
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        margin-bottom: 30px;
+    }
+
+    .result-header h1 {
+        font-size: 32px;
+        color: var(--text-color);
+        margin: 0;
+        font-weight: 800;
+        letter-spacing: -1px;
+    }
+
+    .result-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 30px;
+    }
+
+    .card {
+        background: var(--white);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        padding: 40px;
+    }
+
+    .card h3 {
+        margin-top: 0;
+        margin-bottom: 25px;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--text-color);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 15px;
+    }
+
+    .prediction-badge {
+        display: inline-block;
+        padding: 15px 30px;
+        background: #f0f3ff;
+        border-radius: 12px;
+        text-align: center;
+        margin-bottom: 25px;
+        width: 100%;
+        border-left: 5px solid var(--primary-color);
+    }
+
+    .prediction-badge h2 {
+        margin: 0;
+        font-size: 32px;
+        font-weight: 900;
+        color: var(--primary-color);
+    }
+
+    .prediction-badge span {
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 800;
+        color: #95a5a6;
+    }
+
+    .shap-row {
+        margin-bottom: 20px;
+    }
+
+    .shap-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        font-weight: 700;
+        color: #7f8c8d;
+        margin-bottom: 10px;
+    }
+
+    .shap-bar-container {
+        height: 12px;
+        background: #fbfbfc;
+        border-radius: 6px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .shap-bar {
+        height: 100%;
+        border-radius: 6px;
+    }
+
+    .btn-action {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 800;
+        margin-top: 15px;
+        cursor: pointer;
+    }
+
+    .btn-approve { background: #2ecc71; color: white; }
+    .btn-secondary { background: white; border: 1px solid #eee; color: #7f8c8d; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="result-header">
+    <h1>Neural Assessment Result</h1>
+    <p style="color: #7f8c8d; margin-top: 5px;">Synchronized risk analysis from the central intelligence network.</p>
+</div>
+
+<div class="result-grid">
+    <div>
+        <div class="card">
+            <h3><i class="fa-solid fa-circle-check"></i> Analysis Verdict</h3>
+            <div class="prediction-badge">
+                <span>Subject Risk Level</span>
+                <h2>LOW RISK</h2>
+            </div>
+            <p style="color: #7f8c8d; font-size: 14px; line-height: 1.6; margin-bottom: 30px;">Subject nodes demonstrate high behavioral stability. Credit scores and yield metrics align with the 94th percentile of the risk model.</p>
+            
+            <button class="btn-action btn-approve">VALIDATE APPLICATION</button>
+            <button class="btn-action btn-secondary">MODIFY PARAMETERS</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3><i class="fa-solid fa-chart-line"></i> Neural Feature Mapping (SHAP)</h3>
+        <p style="color: #7f8c8d; font-size: 14px; margin-bottom: 30px;">Influence of individual borrower nodes on the final prediction verdict.</p>
+        
+        <div class="shap-row">
+            <div class="shap-label">
+                <span>Neural Credit Score (720)</span>
+                <span style="color: #2ecc71;">Strongly Positive</span>
+            </div>
+            <div class="shap-bar-container">
+                <div class="shap-bar" style="width: 85%; background: #2ecc71;"></div>
+            </div>
+        </div>
+
+        <div class="shap-row">
+            <div class="shap-label">
+                <span>Institutional Yield (₹8.5L)</span>
+                <span style="color: #2ecc71;">Positive</span>
+            </div>
+            <div class="shap-bar-container">
+                <div class="shap-bar" style="width: 65%; background: #2ecc71;"></div>
+            </div>
+        </div>
+
+        <div class="shap-row">
+            <div class="shap-label">
+                <span>Exposure Liability (₹5L)</span>
+                <span style="color: #e74c3c;">Negative Influence</span>
+            </div>
+            <div class="shap-bar-container">
+                <div class="shap-bar" style="width: 30%; background: #e74c3c;"></div>
+            </div>
+        </div>
+
+        <div class="shap-row">
+            <div class="shap-label">
+                <span>Employment Node Length</span>
+                <span style="color: #2ecc71;">Neutral-Positive</span>
+            </div>
+            <div class="shap-bar-container">
+                <div class="shap-bar" style="width: 45%; background: #2ecc71;"></div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

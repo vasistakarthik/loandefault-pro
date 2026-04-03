@@ -1,0 +1,328 @@
+{% extends "base_dashboard.html" %}
+
+{% block title %}Institutional Ingestion | LoanRisk Pro{% endblock %}
+{% block header_title %}Institutional Data Ingestion Portal{% endblock %}
+
+{% block extra_css %}
+<style>
+    .ingestion-nexus {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 30px;
+        animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* GLASS CARDS */
+    .glass-deck {
+        background: rgba(255, 255, 255, 0.015);
+        backdrop-filter: blur(40px);
+        padding: 40px;
+        border-radius: 32px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.6);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .glass-deck::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 4px;
+        background: linear-gradient(90deg, var(--primary), #4facfe);
+    }
+
+    .nexus-title {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-size: 1.15rem;
+        font-weight: 950;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: -0.5px;
+        margin-bottom: 35px;
+        border-left: 4px solid var(--primary);
+        padding-left: 20px;
+    }
+
+    .nexus-title i { color: var(--primary); font-size: 1.4rem; }
+
+    /* UPLOAD PORTAL */
+    .upload-zone {
+        border: 2px dashed rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        padding: 80px 40px;
+        text-align: center;
+        cursor: pointer;
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        background: rgba(255, 255, 255, 0.01);
+        position: relative;
+    }
+
+    .upload-zone:hover {
+        border-color: var(--primary);
+        background: rgba(99, 102, 241, 0.05);
+        transform: scale(1.02);
+    }
+
+    .upload-zone i {
+        font-size: 4rem;
+        color: var(--primary);
+        margin-bottom: 25px;
+        filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.4));
+    }
+
+    .upload-zone h4 { font-size: 1.4rem; font-weight: 950; color: white; margin-bottom: 10px; }
+    .upload-zone p { color: #64748b; font-size: 0.95rem; font-weight: 700; }
+
+    .status-alert {
+        margin-top: 30px;
+        padding: 20px;
+        border-radius: 16px;
+        font-weight: 850;
+        font-size: 0.85rem;
+        display: none;
+        align-items: center;
+        gap: 12px;
+        backdrop-filter: blur(10px);
+        border: 1px solid transparent;
+    }
+
+    .alert-processing { background: rgba(245, 158, 11, 0.08); color: #f59e0b; border-color: rgba(245, 158, 11, 0.2); }
+    .alert-success { background: rgba(16, 185, 129, 0.08); color: #10b981; border-color: rgba(16, 185, 129, 0.2); }
+
+    /* HUD BUTTON */
+    .btn-ingest {
+        width: 100%;
+        margin-top: 40px;
+        padding: 22px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, var(--primary) 0%, #4facfe 100%);
+        color: white;
+        font-weight: 950;
+        font-size: 1.05rem;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 20px 50px rgba(99, 102, 241, 0.3);
+        transition: 0.4s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .btn-ingest:disabled {
+        opacity: 0.4;
+        filter: grayscale(1);
+        cursor: not-allowed;
+    }
+
+    .btn-ingest:hover:not(:disabled) {
+        transform: translateY(-8px);
+        box-shadow: 0 40px 80px rgba(99, 102, 241, 0.5);
+    }
+
+    /* MAPPING GUIDE HUD */
+    .guide-module {
+        background: rgba(255, 255, 255, 0.01);
+        padding: 25px;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        margin-bottom: 25px;
+    }
+
+    .guide-label {
+        font-size: 0.6rem;
+        font-weight: 950;
+        color: #475569;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        display: block;
+        margin-bottom: 15px;
+    }
+
+    .tag-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+    .tag-node {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 8px 16px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 800;
+        color: #cbd5e1;
+        transition: 0.3s;
+    }
+    .tag-node:hover { border-color: var(--primary); color: white; background: rgba(99, 102, 241, 0.1); }
+
+    .template-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 18px;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 900;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        transition: 0.3s;
+    }
+    .template-link:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="ingestion-nexus">
+    
+    <!-- LEFT PANEL: UPLOAD PORTAL -->
+    <div class="glass-deck">
+        <div class="nexus-title">
+            <i class="fas fa-satellite-dish"></i>
+            <h2>Digital Asset Ingestion</h2>
+        </div>
+
+        <form id="uploadForm">
+            <div class="upload-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+                <i class="fas fa-file-shield"></i>
+                <h4 id="fileName">Ready for Synchronization</h4>
+                <p>Transfer institutional CSV or Excel datasets to the core</p>
+                <input type="file" id="fileInput" hidden accept=".csv, .xlsx, .xls" onchange="handleFile(this)">
+            </div>
+
+            <div id="statusAlert" class="status-alert">
+                <i class="fas fa-circle-notch fa-spin"></i>
+                <span id="statusText">Awaiting Protocol Initialization...</span>
+            </div>
+
+            <button type="button" class="btn-ingest" id="importBtn" disabled onclick="startImport()">
+                <i class="fas fa-atom"></i> Execute Neural Indexing
+            </button>
+        </form>
+    </div>
+
+    <!-- RIGHT PANEL: PARAMETER GUIDE -->
+    <div class="glass-deck" style="background: rgba(2, 6, 23, 0.3);">
+        <div class="nexus-title">
+            <i class="fas fa-microchip"></i>
+            <h2>Mapping Protocol</h2>
+        </div>
+        
+        <p style="color: #64748b; font-size: 0.9rem; font-weight: 700; margin-bottom: 30px; line-height: 1.6;">
+            The ingestion engine automatically maps common institutional headers to our neural risk vectors.
+        </p>
+
+        <div class="guide-module">
+            <span class="guide-label">Identity Vectors</span>
+            <div class="tag-grid">
+                <div class="tag-node">Institutional Name</div>
+                <div class="tag-node">Digital Email</div>
+                <div class="tag-node">Asset Status</div>
+            </div>
+        </div>
+
+        <div class="guide-module">
+            <span class="guide-label">Commercial Metrics</span>
+            <div class="tag-grid">
+                <div class="tag-node">Principal Amount</div>
+                <div class="tag-node">Residual Balance</div>
+                <div class="tag-node">Cycle Completion</div>
+            </div>
+        </div>
+
+        <div class="guide-module" style="border: none; padding-bottom: 0;">
+            <span class="guide-label">Demographic Intelligence</span>
+            <div class="tag-grid">
+                <div class="tag-node">Age</div>
+                <div class="tag-node">Credit Score</div>
+                <div class="tag-node">Annual Income</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <a href="#" class="template-link">
+                <i class="fas fa-file-medical"></i> Fetch Baseline Template
+            </a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function handleFile(input) {
+        if (input.files.length > 0) {
+            const file = input.files[0];
+            document.getElementById('fileName').innerText = "NODE ATTACHED: " + file.name.toUpperCase();
+            document.getElementById('importBtn').disabled = false;
+            
+            const alert = document.getElementById('statusAlert');
+            const text = document.getElementById('statusText');
+            
+            alert.className = "status-alert alert-success";
+            text.innerText = `Source verified: ${file.name}. Ready for deployment.`;
+            alert.style.display = 'flex';
+        }
+    }
+
+    async function startImport() {
+        const fileInput = document.getElementById('fileInput');
+        const btn = document.getElementById('importBtn');
+        const alert = document.getElementById('statusAlert');
+        const text = document.getElementById('statusText');
+        
+        if (!fileInput.files.length) return;
+
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-shuttle-space fa-spin"></i> SYNCING TO CORE...';
+        
+        alert.className = "status-alert alert-processing";
+        text.innerText = "Indexing entries and calibrating risk weights...";
+        alert.style.display = 'flex';
+
+        try {
+            const response = await fetch("{{ url_for('customer.bulk_import') }}", {
+                method: "POST",
+                body: formData
+            });
+            const result = await response.json();
+            
+            if (result.success) {
+                alert.className = "status-alert alert-success";
+                text.innerText = `PROTOCOL COMPLETE: ${result.count} nodes migrated to archive.`;
+                btn.innerHTML = '<i class="fas fa-check-double"></i> SYNCHRONIZATION SUCCESS';
+                btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                
+                setTimeout(() => {
+                    window.location.href = "{{ url_for('customer.history_list') }}";
+                }, 2000);
+            } else {
+                throw new Error(result.error || "Ingestion Failure");
+            }
+        } catch (error) {
+            alert.className = "status-alert alert-processing";
+            alert.style.color = "#ef4444";
+            alert.style.borderColor = "rgba(239, 68, 68, 0.2)";
+            alert.style.background = "rgba(239, 68, 68, 0.05)";
+            text.innerText = "CRITICAL ERROR: " + error.message;
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-rotate"></i> RETRY PROTOCOL';
+        }
+    }
+</script>
+{% endblock %}

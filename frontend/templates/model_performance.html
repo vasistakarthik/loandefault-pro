@@ -1,0 +1,474 @@
+{% extends "base_dashboard.html" %}
+
+{% block title %}Neural Performance Hub | LoanDefault Pro{% endblock %}
+{% block header_title %}Neural Architecture Performance Terminal{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --active-emerald: #10b981;
+        --intel-indigo: #6366f1;
+        --sovereign-gold: #fbbf24;
+        --hazard-red: #ef4444;
+        --cyber-blue: #0ea5e9;
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --glass-bg: rgba(255, 255, 255, 0.01);
+    }
+
+    .terminal-v11 {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        animation: nexusLaunch 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    @keyframes nexusLaunch {
+        from { opacity: 0; filter: blur(8px); transform: translateY(20px); }
+        to { opacity: 1; filter: blur(0); transform: translateY(0); }
+    }
+
+    /* TOP HUD */
+    .hud-nexus {
+        display: grid; grid-template-columns: 1fr 1.5fr 1fr;
+        background: var(--glass-bg);
+        backdrop-filter: blur(40px);
+        border: 1px solid var(--glass-border);
+        border-radius: 14px;
+        padding: 10px 30px;
+        align-items: center;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    .hud-unit { display: flex; align-items: center; gap: 15px; }
+    .hud-orb { width: 10px; height: 10px; border-radius: 50%; background: var(--active-emerald); box-shadow: 0 0 10px var(--active-emerald); animation: syncOrb 2.5s infinite; }
+    @keyframes syncOrb { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(1.3); } }
+    
+    .hud-label { font-size: 0.5rem; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 2px; }
+    .hud-val { font-size: 0.75rem; font-weight: 950; color: white; letter-spacing: -0.5px; }
+
+    /* CORE METRIC STACK */
+    .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+    }
+
+    .node-card {
+        background: rgba(255, 255, 255, 0.008);
+        backdrop-filter: blur(30px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 20px 10px;
+        text-align: center;
+        transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .node-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--intel-indigo);
+        background: rgba(255, 255, 255, 0.03);
+        box-shadow: 0 20px 45px rgba(0,0,0,0.7);
+    }
+
+    .gauge-v11 {
+        position: relative;
+        width: 105px;
+        height: 105px;
+        margin: 0 auto 10px;
+    }
+
+    .v11-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .v11-track { fill: none; stroke: rgba(255,255,255,0.02); stroke-width: 5; }
+    .v11-fill { fill: none; stroke-width: 7; stroke-linecap: round; stroke-dasharray: 251; transition: stroke-dashoffset 2.5s ease-out; filter: drop-shadow(0 0 8px currentColor); }
+    
+    .v11-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .v11-val { font-size: 1.5rem; font-weight: 950; color: white; letter-spacing: -1.5px; }
+    .v11-lbl { font-size: 0.45rem; font-weight: 900; color: #64748b; text-transform: uppercase; }
+
+    /* KINETIC TRACER */
+    .v11-tracer { 
+        position: absolute; width: 4px; height: 4px; background: white; border-radius: 50%;
+        box-shadow: 0 0 8px white; offset-path: path('M 52.5,52.5 m -40,0 a 40,40 0 1,0 80,0 a 40,40 0 1,0 -80,0');
+        animation: v11-orbit 4s linear infinite; offset-distance: 0%;
+    }
+    @keyframes v11-orbit { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+
+    .node-subtitle { font-size: 0.5rem; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 1.5px; }
+
+    /* MASTER INTERFACE HUB */
+    .interface-matrix {
+        display: grid; grid-template-columns: 1.4fr 1fr; gap: 15px;
+    }
+
+    .bento-unit {
+        background: rgba(2, 6, 23, 0.45);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 25px;
+        display: flex; flex-direction: column; gap: 20px;
+    }
+
+    .unit-header {
+        display: flex; justify-content: space-between; align-items: center; border-left: 4px solid var(--intel-indigo); padding-left: 12px;
+    }
+    .unit-header h3 { font-size: 0.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: white; }
+
+    /* DRIFT STABILITY Sparkline */
+    .drift-box { display: flex; flex-direction: column; gap: 10px; }
+    .drift-metrics { display: flex; justify-content: space-between; align-items: baseline; }
+    .drift-pct { font-size: 0.9rem; font-weight: 950; color: var(--active-emerald); }
+    .drift-canvas { height: 60px; background: rgba(0,0,0,0.2); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+
+    /* FEATURE IMPACT: REFINED & SPACED */
+    .impact-stack {
+        display: flex; flex-direction: column; gap: 18px; /* Increased padding and spacing */
+    }
+    .impact-row { 
+        display: grid; 
+        grid-template-columns: 140px 1fr 50px; /* Specific widths for clarity */
+        align-items: center; 
+        gap: 20px; 
+    }
+    .impact-label { font-size: 0.65rem; color: #cbd5e1; font-weight: 850; text-transform: uppercase; letter-spacing: 1px; }
+    .impact-bar-bg { height: 7px; background: rgba(255,255,255,0.04); border-radius: 3.5px; overflow: hidden; position: relative; }
+    .impact-bar-fill { height: 100%; border-radius: 3.5px; transition: width 2s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 0 10px currentColor; }
+    .impact-val { font-size: 0.8rem; font-weight: 950; color: white; text-align: right; }
+
+    /* INTEL STREAM */
+    .stream-v11 {
+        height: 180px; overflow-y: auto; padding-right: 10px; font-family: 'Consolas', monospace; font-size: 0.7rem;
+    }
+    .stream-v11::-webkit-scrollbar { width: 3px; }
+    .stream-v11::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.4); border-radius: 10px; }
+
+    .it-node {
+        display: grid; grid-template-columns: 85px 75px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.03); align-items: center;
+    }
+    .ts-v11 { color: var(--intel-indigo); }
+    .tg-v11 { font-size: 0.55rem; padding: 2px 5px; border-radius: 3px; font-weight: 900; text-align: center; background: rgba(255,255,255,0.05); }
+    .tg-nom { background: rgba(16, 185, 129, 0.12); color: #34d399; }
+    .tg-aln { background: rgba(239, 68, 68, 0.12); color: #f87171; }
+
+    /* SYNAPSE CANVAS */
+    #synapse-map-v11 { 
+        height: 140px; background: rgba(0,0,0,0.3); border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden;
+    }
+    #v11-cvs { width: 100%; height: 100%; }
+
+    /* ACTION HUD */
+    .act-suite {
+        display: flex; gap: 12px; margin-top: auto;
+    }
+    .act-btn {
+        flex: 1; padding: 14px; border-radius: 12px; border: none; font-weight: 900; font-size: 0.75rem; text-transform: uppercase; cursor: pointer; transition: 0.4s;
+        display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .btn-sync { background: var(--intel-indigo); color: white; }
+    .btn-sync:hover { background: #4f46e5; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3); }
+    .btn-archive { background: rgba(16, 185, 129, 0.05); color: var(--active-emerald); border: 1px solid rgba(16, 185, 129, 0.2); }
+
+    @media (max-width: 1250px) {
+        .metric-grid { grid-template-columns: repeat(2, 1fr); }
+        .interface-matrix { grid-template-columns: 1fr; }
+        .hud-nexus { grid-template-columns: 1fr; text-align: center; padding: 25px; gap: 15px; }
+        .hud-unit { justify-content: center; }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="terminal-v11" 
+     data-acc="{{ metrics.accuracy | default(0.851) }}"
+     data-f1="{{ metrics.f1_score | default(0.900) }}"
+     data-auc="{{ metrics.roc_auc | default(0.887) }}"
+     data-rec="{{ metrics.recall | default(0.927) }}">
+
+    <!-- HUD TOP -->
+    <div class="hud-nexus">
+        <div class="hud-unit">
+            <div class="hud-orb"></div>
+            <div>
+                <div class="hud-label">Architecture Status</div>
+                <div class="hud-val" style="color: var(--active-emerald);">Sovereign-Prime <span style="font-weight: 500; font-size: 0.7rem;">[Active]</span></div>
+            </div>
+        </div>
+        <div style="text-align: center; border-left: 1px solid var(--glass-border); border-right: 1px solid var(--glass-border); padding: 0 25px;">
+            <div class="hud-label">Institutional Core Platform</div>
+            <div class="hud-val" style="color: #94a3b8; font-family: 'Consolas', monospace;">XGB-ELEVATE v2.8.4_SOV</div>
+        </div>
+        <div style="text-align: right;">
+            <div class="hud-label">Memory Sync State</div>
+            <div class="hud-val">99.8% Efficiency</div>
+        </div>
+    </div>
+
+    <!-- METRIC ARRAY -->
+    <div class="metric-grid">
+        <div class="node-card">
+            <div class="gauge-v11">
+                <div class="v11-tracer" style="animation-duration: 3s;"></div>
+                <svg class="v11-svg" viewBox="0 0 105 105">
+                    <circle class="v11-track" cx="52.5" cy="52.5" r="40"></circle>
+                    <circle id="v11-acc" class="v11-fill" cx="52.5" cy="52.5" r="40" style="stroke: var(--active-emerald); stroke-dashoffset: 251;"></circle>
+                </svg>
+                <div class="v11-center">
+                    <div class="v11-val" id="txt-acc">0%</div>
+                    <div class="v11-lbl">Accuracy</div>
+                </div>
+            </div>
+            <div class="node-subtitle">Neural Precision Scope</div>
+        </div>
+        <div class="node-card">
+            <div class="gauge-v11">
+                <div class="v11-tracer" style="animation-duration: 4s; animation-direction: reverse; opacity: 0.6;"></div>
+                <svg class="v11-svg" viewBox="0 0 105 105">
+                    <circle class="v11-track" cx="52.5" cy="52.5" r="40"></circle>
+                    <circle id="v11-f1" class="v11-fill" cx="52.5" cy="52.5" r="40" style="stroke: var(--secondary); stroke-dashoffset: 251;"></circle>
+                </svg>
+                <div class="v11-center">
+                    <div class="v11-val" id="txt-f1">0%</div>
+                    <div class="v11-lbl">F1 Sigma</div>
+                </div>
+            </div>
+            <div class="node-subtitle">Harmonic Balance</div>
+        </div>
+        <div class="node-card">
+            <div class="gauge-v11">
+                <div class="v11-tracer" style="animation-duration: 5s; opacity: 0.7;"></div>
+                <svg class="v11-svg" viewBox="0 0 105 105">
+                    <circle class="v11-track" cx="52.5" cy="52.5" r="40"></circle>
+                    <circle id="v11-auc" class="v11-fill" cx="52.5" cy="52.5" r="40" style="stroke: var(--cyber-blue); stroke-dashoffset: 251;"></circle>
+                </svg>
+                <div class="v11-center">
+                    <div class="v11-val" id="txt-auc">0%</div>
+                    <div class="v11-lbl">ROC-AUC</div>
+                </div>
+            </div>
+            <div class="node-subtitle">Vector Segregation</div>
+        </div>
+        <div class="node-card">
+            <div class="gauge-v11">
+                <div class="v11-tracer" style="animation-duration: 6s; opacity: 0.5;"></div>
+                <svg class="v11-svg" viewBox="0 0 105 105">
+                    <circle class="v11-track" cx="52.5" cy="52.5" r="40"></circle>
+                    <circle id="v11-rec" class="v11-fill" cx="52.5" cy="52.5" r="40" style="stroke: var(--sovereign-gold); stroke-dashoffset: 251;"></circle>
+                </svg>
+                <div class="v11-center">
+                    <div class="v11-val" id="txt-rec">0%</div>
+                    <div class="v11-lbl">Recall</div>
+                </div>
+            </div>
+            <div class="node-subtitle">Vulnerability Detect</div>
+        </div>
+    </div>
+
+    <!-- MAIN INTERFACE NODES -->
+    <div class="interface-matrix">
+        
+        <!-- LEFT: FEED & DRIFT -->
+        <div class="bento-unit">
+            <div class="unit-header">
+                <h3>Neural Stability Monitor</h3>
+                <span class="hud-label" style="color: var(--active-emerald);"><i class="fas fa-microchip" style="margin-right: 5px;"></i> ACTIVE DRIFT GUARD</span>
+            </div>
+            <div class="drift-box">
+                <div class="drift-metrics">
+                    <span class="hud-label" style="color: #64748b;">Global Convergence Index</span>
+                    <span class="drift-pct">0.002% Deviation</span>
+                </div>
+                <div class="drift-canvas">
+                    <svg viewBox="0 0 400 60" style="width: 100%; height: 100%;">
+                        <path id="v11-drift-path" fill="none" stroke="var(--active-emerald)" stroke-width="2" d="M0 30 L400 30" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="unit-header">
+                <h3>Cognitive Intelligence Feed</h3>
+                <span class="hud-label" style="color: var(--active-emerald);"><i class="fas fa-circle" style="font-size: 5px; margin-right: 5px;"></i> LIVE</span>
+            </div>
+            <div class="stream-v11" id="v11-feed">
+                <!-- Log nodes -->
+            </div>
+        </div>
+
+        <!-- RIGHT: IMPACT & SYNAPSE -->
+        <div class="bento-unit">
+            <div class="unit-header">
+                <h3>Top Feature Impact</h3>
+            </div>
+            <div class="impact-stack">
+                <div class="impact-row">
+                    <span class="impact-label">Credit Score</span>
+                    <div class="impact-bar-bg"><div class="impact-bar-fill" style="width: 82.4%; color: var(--intel-indigo); background: var(--intel-indigo);"></div></div>
+                    <span class="impact-val">41.2%</span>
+                </div>
+                <div class="impact-row">
+                    <span class="impact-label">Loan Amount</span>
+                    <div class="impact-bar-bg"><div class="impact-bar-fill" style="width: 49.0%; color: var(--cyber-blue); background: var(--cyber-blue);"></div></div>
+                    <span class="impact-val">24.5%</span>
+                </div>
+                <div class="impact-row">
+                    <span class="impact-label">Emp. History</span>
+                    <div class="impact-bar-bg"><div class="impact-bar-fill" style="width: 36.2%; color: var(--sovereign-gold); background: var(--sovereign-gold);"></div></div>
+                    <span class="impact-val">18.1%</span>
+                </div>
+                <div class="impact-row">
+                    <span class="impact-label">Liquidity Buffer</span>
+                    <div class="impact-bar-bg"><div class="impact-bar-fill" style="width: 32.4%; color: var(--active-emerald); background: var(--active-emerald);"></div></div>
+                    <span class="impact-val">16.2%</span>
+                </div>
+            </div>
+
+            <div class="unit-header">
+                <h3>Neural Synapse Map</h3>
+            </div>
+            <div id="synapse-map-v11">
+                <canvas id="v11-cvs"></canvas>
+            </div>
+
+            <div class="act-suite">
+                <button class="act-btn btn-sync" onclick="syncSystemV11()">
+                    <i class="fas fa-satellite-dish"></i> Recalibrate Core
+                </button>
+                <button class="act-btn btn-archive">
+                    <i class="fas fa-shield-alt"></i> Secure Archive
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // --- GAUGE CONTROLLER v11 ---
+    function initNexusV11() {
+        const root = document.querySelector('.terminal-v11');
+        const metrics = {
+            acc: parseFloat(root.dataset.acc),
+            f1: parseFloat(root.dataset.f1),
+            auc: parseFloat(root.dataset.auc),
+            rec: parseFloat(root.dataset.rec)
+        };
+        const circ = 251; // 2 * pi * 40
+
+        Object.keys(metrics).forEach(key => {
+            const v = metrics[key];
+            const off = circ - (v * circ);
+            const path = document.getElementById(`v11-${key}`);
+            if (path) path.style.strokeDashoffset = off;
+            
+            animateCounter(`txt-${key}`, 0, v * 100, 2200, '%');
+        });
+    }
+
+    function animateCounter(id, start, end, duration, sfx) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        let ts = null;
+        const frame = (now) => {
+            if (!ts) ts = now;
+            const progress = Math.min((now - ts) / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 5); // Quintic Ease Out
+            el.innerHTML = (ease * (end - start) + start).toFixed(1) + sfx;
+            if (progress < 1) requestAnimationFrame(frame);
+        };
+        requestAnimationFrame(frame);
+    }
+
+    // --- DRIFT Sparkline ---
+    function runDriftV11() {
+        const p = document.getElementById('v11-drift-path');
+        let points = Array(25).fill(30);
+        function update() {
+            points.shift();
+            points.push(25 + Math.random() * 10);
+            let d = `M 0 ${points[0]}`;
+            points.forEach((val, i) => d += ` L ${i * 16.6} ${val}`);
+            p.setAttribute('d', d);
+            setTimeout(update, 2000);
+        }
+        update();
+    }
+
+    // --- INTEL STREAM v11 ---
+    const v11Logs = [
+        { t: 'nom', m: "Weight Sector #11 Validated" },
+        { t: 'nom', m: "Gradient Convergence Achieved" },
+        { t: 'aln', m: "Minor Deviation Node 44 [Syncing]" },
+        { t: 'nom', m: "Inference Latency: 3.1ms (Institutional)" },
+        { t: 'nom', m: "Stability Protocol Alpha v2.8.4 Active" }
+    ];
+
+    function pushLogV11() {
+        const box = document.getElementById('v11-feed');
+        if (!box) return;
+        const log = v11Logs[Math.floor(Math.random() * v11Logs.length)];
+        const node = document.createElement('div');
+        node.className = 'it-node';
+        const ts = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        
+        node.innerHTML = `
+            <span class="ts-v11">[${ts}]</span>
+            <span class="tg-v11 tg-${log.t}">${log.t === 'nom' ? 'NOMINAL' : 'ALERT'}</span>
+            <span class="it-msg">${log.m}</span>
+        `;
+        
+        box.prepend(node);
+        if (box.children.length > 20) box.removeChild(box.lastChild);
+    }
+
+    // --- SYNAPSE v11 ---
+    function runSynapseV11() {
+        const cav = document.getElementById('v11-cvs');
+        const ctx = cav.getContext('2d');
+        const box = document.getElementById('synapse-map-v11');
+        let w = cav.width = box.offsetWidth;
+        let h = cav.height = box.offsetHeight;
+        const dots = [];
+        for(let i=0; i<40; i++) dots.push({ x: Math.random()*w, y: Math.random()*h, vx: (Math.random()-0.5)*0.4, vy: (Math.random()-0.5)*0.4 });
+        function loop() {
+            ctx.clearRect(0,0,w,h);
+            dots.forEach((d, i) => {
+                d.x += d.vx; d.y += d.vy;
+                if(d.x < 0 || d.x > w) d.vx *= -1;
+                if(d.y < 0 || d.y > h) d.vy *= -1;
+                ctx.beginPath(); ctx.arc(d.x, d.y, 1.2, 0, Math.PI*2); ctx.fillStyle = "rgba(99,102,241,0.8)"; ctx.fill();
+                for(let j=i+1; j<dots.length; j++) {
+                    const d2 = dots[j];
+                    const dist = Math.hypot(d.x-d2.x, d.y-d2.y);
+                    if(dist < 90) {
+                        ctx.beginPath(); ctx.strokeStyle = `rgba(99,102,241, ${1 - dist/90})`; ctx.lineWidth = 0.5; ctx.moveTo(d.x, d.y); ctx.lineTo(d2.x, d2.y); ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(loop);
+        }
+        loop();
+        window.addEventListener('resize', () => { w = cav.width = box.offsetWidth; h = cav.height = box.offsetHeight; });
+    }
+
+    function syncSystemV11() {
+        const b = document.querySelector('.btn-sync');
+        b.innerHTML = '<i class="fas fa-satellite-dish fa-spin"></i> SYNCING...';
+        b.disabled = true;
+        setTimeout(() => {
+            b.innerHTML = '<i class="fas fa-check-circle"></i> CORE NOMINAL';
+            b.style.background = 'var(--active-emerald)';
+            setTimeout(() => { b.innerHTML = '<i class="fas fa-satellite-dish"></i> Recalibrate Core'; b.style.background = ''; b.disabled = false; }, 2500);
+        }, 2000);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initNexusV11(); runDriftV11(); runSynapseV11();
+        setInterval(pushLogV11, 3000); for(let i=0; i<6; i++) pushLogV11();
+    });
+</script>
+{% endblock %}

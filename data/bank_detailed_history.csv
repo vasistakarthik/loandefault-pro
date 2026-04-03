@@ -1,0 +1,2001 @@
+id,name,email,loan_amount,paid_amount,balance_amount,status,tenure,months_completed,default_reason
+1,Reyansh Kumar 882,reyansh.kumar.882@bank.com,335500,335500,0,Paid,60,60,N/A
+2,Pari Gupta,pari.gupta@bank.com,1256500,1256500,0,Paid,48,48,N/A
+3,Jennifer Taylor,jennifer.taylor@bank.com,54500,54500,0,Paid,24,24,N/A
+4,Diya Sharma 286,diya.sharma.286@bank.com,792300,26410.0,765890.0,Defaulted,24,1,Business Multi-sector Failure
+5,David Brown 833,david.brown.833@bank.com,864500,828479.17,36020.82999999996,Ongoing,48,46,N/A
+6,Shweta Aggarwal 451,shweta.aggarwal.451@bank.com,1336600,1336600,0,Paid,48,48,N/A
+7,Anvi Singh,anvi.singh@bank.com,1777600,553031.11,1224568.8900000001,Defaulted,36,14,Personal/Family Crisis
+8,Amit Joshi 730,amit.joshi.730@bank.com,679200,241493.33,437706.67000000004,Defaulted,36,16,Unemployment / Job Loss
+9,Vihaan Patel,vihaan.patel@bank.com,267300,267300,0,Paid,12,12,N/A
+10,Jessica Wilson 976,jessica.wilson.976@bank.com,424600,424600,0,Paid,60,60,N/A
+11,Sonal Kapoor 363,sonal.kapoor.363@bank.com,1585200,1585200,0,Paid,48,48,N/A
+12,Aadhya Reddy,aadhya.reddy@bank.com,1701500,1701500,0,Paid,48,48,N/A
+13,Zara Nair 359,zara.nair.359@bank.com,916400,916400,0,Paid,24,24,N/A
+14,Vivaan Gupta 578,vivaan.gupta.578@bank.com,1254800,1254800,0,Paid,12,12,N/A
+15,Sonal Kapoor,sonal.kapoor@bank.com,1690900,1690900,0,Paid,36,36,N/A
+16,Shanaya Kumar,shanaya.kumar@bank.com,391200,78240.0,312960.0,Defaulted,36,9,Personal/Family Crisis
+17,James Smith 772,james.smith.772@bank.com,480200,480200,0,Paid,48,48,N/A
+18,Vihaan Patel 855,vihaan.patel.855@bank.com,205400,68466.67,136933.33000000002,Defaulted,48,20,Business Multi-sector Failure
+19,Priya Das,priya.das@bank.com,1570500,1570500,0,Paid,48,48,N/A
+20,Rohan Sethi 713,rohan.sethi.713@bank.com,407900,407900,0,Paid,36,36,N/A
+21,Vihaan Patel 445,vihaan.patel.445@bank.com,608500,608500,0,Paid,60,60,N/A
+22,David Brown,david.brown@bank.com,642000,642000,0,Paid,36,36,N/A
+23,Myra Patel,myra.patel@bank.com,1611300,1611300,0,Paid,36,36,N/A
+24,Robert Williams,robert.williams@bank.com,1487600,1487600,0,Paid,36,36,N/A
+25,Aarav Sharma 942,aarav.sharma.942@bank.com,1340100,1340100,0,Paid,12,12,N/A
+26,Vihaan Patel 666,vihaan.patel.666@bank.com,1723300,753943.75,969356.25,Ongoing,48,21,N/A
+27,Shweta Aggarwal,shweta.aggarwal@bank.com,209900,150428.33,59471.67000000001,Ongoing,60,43,N/A
+28,Reyansh Kumar 627,reyansh.kumar.627@bank.com,1110800,786816.67,323983.32999999996,Ongoing,24,17,N/A
+29,Rohan Sethi,rohan.sethi@bank.com,1449800,1449800,0,Paid,36,36,N/A
+30,Aadhya Reddy 877,aadhya.reddy.877@bank.com,104500,104500,0,Paid,12,12,N/A
+31,Deepak Malhotra,deepak.malhotra@bank.com,687300,286375.0,400925.0,Ongoing,24,10,N/A
+32,Sonal Kapoor 937,sonal.kapoor.937@bank.com,600500,600500,0,Paid,60,60,N/A
+33,Krishna Murthy,krishna.murthy@bank.com,377100,377100,0,Paid,24,24,N/A
+34,Shweta Aggarwal,shweta.aggarwal@bank.com,1849700,1849700,0,Paid,48,48,N/A
+35,Saanvi Iyer 607,saanvi.iyer.607@bank.com,1677000,1677000,0,Paid,24,24,N/A
+36,Vikram Khanna,vikram.khanna@bank.com,1982300,1982300,0,Paid,48,48,N/A
+37,Zara Nair,zara.nair@bank.com,1194700,1194700,0,Paid,36,36,N/A
+38,Sarah Miller,sarah.miller@bank.com,1602900,133575.0,1469325.0,Ongoing,12,1,N/A
+39,Sonal Kapoor,sonal.kapoor@bank.com,201600,201600,0,Paid,36,36,N/A
+40,Aaryan Iyer 833,aaryan.iyer.833@bank.com,887500,147916.67,739583.33,Ongoing,24,4,N/A
+41,James Smith 265,james.smith.265@bank.com,1449400,251229.33,1198170.67,Defaulted,60,13,Business Multi-sector Failure
+42,David Brown,david.brown@bank.com,425100,265687.5,159412.5,Ongoing,48,30,N/A
+43,Anvi Singh 524,anvi.singh.524@bank.com,772500,772500,0,Paid,24,24,N/A
+44,Sonal Kapoor 696,sonal.kapoor.696@bank.com,995900,995900,0,Paid,24,24,N/A
+45,James Smith 176,james.smith.176@bank.com,687000,446550.0,240450.0,Ongoing,60,39,N/A
+46,Vivaan Gupta 747,vivaan.gupta.747@bank.com,694600,694600,0,Paid,12,12,N/A
+47,Ishaan Nair 611,ishaan.nair.611@bank.com,1485200,33004.44,1452195.56,Defaulted,36,1,Personal/Family Crisis
+48,Michael Johnson 979,michael.johnson.979@bank.com,314000,314000,0,Paid,36,36,N/A
+49,Arjun Verma 491,arjun.verma.491@bank.com,1473100,1473100,0,Paid,48,48,N/A
+50,Sai Reddy 235,sai.reddy.235@bank.com,976800,122100.0,854700.0,Ongoing,48,6,N/A
+51,Jennifer Taylor 501,jennifer.taylor.501@bank.com,780400,780400,0,Paid,12,12,N/A
+52,Pari Gupta 850,pari.gupta.850@bank.com,1329500,553958.33,775541.67,Ongoing,12,5,N/A
+53,Shanaya Kumar 320,shanaya.kumar.320@bank.com,47500,41562.5,5937.5,Ongoing,24,21,N/A
+54,Zara Nair,zara.nair@bank.com,1004300,1004300,0,Paid,60,60,N/A
+55,Krishna Murthy 757,krishna.murthy.757@bank.com,1642000,1642000,0,Paid,48,48,N/A
+56,Aditya Singh 451,aditya.singh.451@bank.com,659700,659700,0,Paid,24,24,N/A
+57,David Brown 404,david.brown.404@bank.com,765500,765500,0,Paid,48,48,N/A
+58,Aditya Singh 449,aditya.singh.449@bank.com,755700,755700,0,Paid,36,36,N/A
+59,Deepak Malhotra 846,deepak.malhotra.846@bank.com,747900,747900,0,Paid,24,24,N/A
+60,Pari Gupta 632,pari.gupta.632@bank.com,1976600,625923.33,1350676.67,Defaulted,48,19,Interest Rate Overrun
+61,Reyansh Kumar 457,reyansh.kumar.457@bank.com,649500,649500,0,Paid,24,24,N/A
+62,Karan Oberoi,karan.oberoi@bank.com,78500,78500,0,Paid,36,36,N/A
+63,Arjun Verma 359,arjun.verma.359@bank.com,708400,708400,0,Paid,60,60,N/A
+64,David Brown 462,david.brown.462@bank.com,1745600,1745600,0,Paid,24,24,N/A
+65,Reyansh Kumar 515,reyansh.kumar.515@bank.com,806800,806800,0,Paid,24,24,N/A
+66,Sai Reddy,sai.reddy@bank.com,1105700,1105700,0,Paid,36,36,N/A
+67,Richard Taylor,richard.taylor@bank.com,714500,714500,0,Paid,12,12,N/A
+68,Vikram Khanna 356,vikram.khanna.356@bank.com,1514300,1514300,0,Paid,36,36,N/A
+69,Sai Reddy,sai.reddy@bank.com,250100,33346.67,216753.33000000002,Defaulted,24,4,Unemployment / Job Loss
+70,Robert Williams 505,robert.williams.505@bank.com,394700,394700,0,Paid,12,12,N/A
+71,Diya Sharma 822,diya.sharma.822@bank.com,1726300,1726300,0,Paid,12,12,N/A
+72,Aadhya Reddy,aadhya.reddy@bank.com,1980800,1980800,0,Paid,48,48,N/A
+73,Deepak Malhotra,deepak.malhotra@bank.com,1459700,1459700,0,Paid,60,60,N/A
+74,Sai Reddy 359,sai.reddy.359@bank.com,673600,673600,0,Paid,36,36,N/A
+75,Jennifer Taylor 517,jennifer.taylor.517@bank.com,1233300,1233300,0,Paid,60,60,N/A
+76,Rohan Sethi,rohan.sethi@bank.com,55600,55600,0,Paid,36,36,N/A
+77,Rahul Mehra 918,rahul.mehra.918@bank.com,1787200,1787200,0,Paid,24,24,N/A
+78,Ananya Iyer,ananya.iyer@bank.com,1734400,231253.33,1503146.67,Defaulted,24,4,Interest Rate Overrun
+79,Vihaan Patel 243,vihaan.patel.243@bank.com,1492800,1492800,0,Paid,12,12,N/A
+80,Inaya Murthy 381,inaya.murthy.381@bank.com,997800,997800,0,Paid,12,12,N/A
+81,Shweta Aggarwal 229,shweta.aggarwal.229@bank.com,1702600,1702600,0,Paid,48,48,N/A
+82,Shweta Aggarwal 729,shweta.aggarwal.729@bank.com,1787900,1787900,0,Paid,48,48,N/A
+83,Vivaan Gupta,vivaan.gupta@bank.com,1555500,622200.0,933300.0,Defaulted,12,6,Medical Emergency / High Bills
+84,Ashley Moore 830,ashley.moore.830@bank.com,1296200,1296200,0,Paid,60,60,N/A
+85,Ishaan Nair,ishaan.nair@bank.com,1443800,256675.56,1187124.44,Defaulted,36,8,Medical Emergency / High Bills
+86,Amit Joshi 357,amit.joshi.357@bank.com,690300,690300,0,Paid,24,24,N/A
+87,Aadhya Reddy 838,aadhya.reddy.838@bank.com,1071500,1071500,0,Paid,12,12,N/A
+88,Jessica Wilson 993,jessica.wilson.993@bank.com,890700,74225.0,816475.0,Ongoing,12,1,N/A
+89,Aadhya Reddy 393,aadhya.reddy.393@bank.com,75100,75100,0,Paid,48,48,N/A
+90,David Brown,david.brown@bank.com,212800,212800,0,Paid,24,24,N/A
+91,Aaryan Iyer,aaryan.iyer@bank.com,214900,214900,0,Paid,60,60,N/A
+92,Sai Reddy 682,sai.reddy.682@bank.com,497000,497000,0,Paid,36,36,N/A
+93,Diya Sharma,diya.sharma@bank.com,817000,817000,0,Paid,24,24,N/A
+94,Saanvi Iyer 485,saanvi.iyer.485@bank.com,827600,827600,0,Paid,60,60,N/A
+95,Reyansh Kumar 240,reyansh.kumar.240@bank.com,1361500,363066.67,998433.3300000001,Defaulted,24,8,Medical Emergency / High Bills
+96,Shanaya Kumar 922,shanaya.kumar.922@bank.com,756000,756000,0,Paid,24,24,N/A
+97,Myra Patel 342,myra.patel.342@bank.com,1145700,76380.0,1069320.0,Defaulted,60,5,High Debt Consolidation
+98,Jennifer Taylor 513,jennifer.taylor.513@bank.com,1012600,1012600,0,Paid,36,36,N/A
+99,Aditya Singh 561,aditya.singh.561@bank.com,782700,782700,0,Paid,48,48,N/A
+100,Inaya Murthy,inaya.murthy@bank.com,1430600,1430600,0,Paid,24,24,N/A
+101,Karan Oberoi 398,karan.oberoi.398@bank.com,1235200,1235200,0,Paid,36,36,N/A
+102,Inaya Murthy 349,inaya.murthy.349@bank.com,44500,44500,0,Paid,60,60,N/A
+103,Aadhya Reddy 940,aadhya.reddy.940@bank.com,1496200,872783.33,623416.67,Ongoing,24,14,N/A
+104,Vivaan Gupta 824,vivaan.gupta.824@bank.com,639600,213200.0,426400.0,Ongoing,60,20,N/A
+105,Rahul Mehra 909,rahul.mehra.909@bank.com,1322700,1322700,0,Paid,12,12,N/A
+106,Karan Oberoi 424,karan.oberoi.424@bank.com,1416200,1416200,0,Paid,24,24,N/A
+107,Vikram Khanna 709,vikram.khanna.709@bank.com,468400,156133.33,312266.67000000004,Ongoing,24,8,N/A
+108,Inaya Murthy 230,inaya.murthy.230@bank.com,713700,713700,0,Paid,12,12,N/A
+109,Sai Reddy 808,sai.reddy.808@bank.com,1273600,1273600,0,Paid,12,12,N/A
+110,Zara Nair 244,zara.nair.244@bank.com,1812200,694676.67,1117523.33,Ongoing,60,23,N/A
+111,Ishaan Nair 303,ishaan.nair.303@bank.com,1574000,1574000,0,Paid,60,60,N/A
+112,Karan Oberoi,karan.oberoi@bank.com,1544100,1544100,0,Paid,36,36,N/A
+113,Aarav Sharma 854,aarav.sharma.854@bank.com,557000,37133.33,519866.67,Ongoing,60,4,N/A
+114,Aditya Singh 649,aditya.singh.649@bank.com,1124200,1124200,0,Paid,48,48,N/A
+115,Sarah Miller,sarah.miller@bank.com,1353900,1353900,0,Paid,12,12,N/A
+116,Diya Sharma 179,diya.sharma.179@bank.com,319300,239475.0,79825.0,Ongoing,12,9,N/A
+117,Anvi Singh,anvi.singh@bank.com,1046900,1046900,0,Paid,60,60,N/A
+118,Vivaan Gupta 343,vivaan.gupta.343@bank.com,1355100,1355100,0,Paid,12,12,N/A
+119,James Smith,james.smith@bank.com,985000,985000,0,Paid,48,48,N/A
+120,Vihaan Patel 602,vihaan.patel.602@bank.com,1606200,1606200,0,Paid,36,36,N/A
+121,Ishaan Nair,ishaan.nair@bank.com,199100,141029.17,58070.82999999999,Ongoing,24,17,N/A
+122,Vihaan Patel 602,vihaan.patel.602@bank.com,1937600,1937600,0,Paid,24,24,N/A
+123,Rohan Sethi,rohan.sethi@bank.com,1790400,1790400,0,Paid,60,60,N/A
+124,Aadhya Reddy 487,aadhya.reddy.487@bank.com,1030700,858916.67,171783.32999999996,Ongoing,12,10,N/A
+125,Krishna Murthy 662,krishna.murthy.662@bank.com,1092400,1092400,0,Paid,24,24,N/A
+126,Emily Davis,emily.davis@bank.com,1818200,181820.0,1636380.0,Defaulted,48,6,Interest Rate Overrun
+127,Zara Nair,zara.nair@bank.com,1079800,1079800,0,Paid,48,48,N/A
+128,Diya Sharma 298,diya.sharma.298@bank.com,1033400,1033400,0,Paid,12,12,N/A
+129,Jennifer Taylor 152,jennifer.taylor.152@bank.com,1235100,1235100,0,Paid,48,48,N/A
+130,Aarav Sharma,aarav.sharma@bank.com,972100,810083.33,162016.67000000004,Ongoing,12,10,N/A
+131,Robert Williams,robert.williams@bank.com,501600,501600,0,Paid,36,36,N/A
+132,Deepak Malhotra,deepak.malhotra@bank.com,1883200,1883200,0,Paid,36,36,N/A
+133,Rahul Mehra 336,rahul.mehra.336@bank.com,559200,559200,0,Paid,24,24,N/A
+134,Sai Reddy 861,sai.reddy.861@bank.com,1626400,1626400,0,Paid,48,48,N/A
+135,Aadhya Reddy,aadhya.reddy@bank.com,1523400,1523400,0,Paid,24,24,N/A
+136,Vivaan Gupta 120,vivaan.gupta.120@bank.com,591700,591700,0,Paid,24,24,N/A
+137,Anvi Singh 558,anvi.singh.558@bank.com,1315800,394740.0,921060.0,Defaulted,24,9,Personal/Family Crisis
+138,Aditya Singh 620,aditya.singh.620@bank.com,1751500,1313625.0,437875.0,Ongoing,12,9,N/A
+139,Aaryan Iyer 869,aaryan.iyer.869@bank.com,1944400,1944400,0,Paid,60,60,N/A
+140,Aditya Singh,aditya.singh@bank.com,1863600,1863600,0,Paid,24,24,N/A
+141,Saanvi Iyer 464,saanvi.iyer.464@bank.com,630800,630800,0,Paid,24,24,N/A
+142,Saanvi Iyer,saanvi.iyer@bank.com,742500,742500,0,Paid,36,36,N/A
+143,Aditya Singh 247,aditya.singh.247@bank.com,500900,125225.0,375675.0,Ongoing,48,12,N/A
+144,Diya Sharma 473,diya.sharma.473@bank.com,1084200,1084200,0,Paid,24,24,N/A
+145,Richard Taylor 307,richard.taylor.307@bank.com,1460500,1460500,0,Paid,60,60,N/A
+146,Aaryan Iyer 701,aaryan.iyer.701@bank.com,896900,896900,0,Paid,60,60,N/A
+147,Jennifer Taylor,jennifer.taylor@bank.com,1856000,1856000,0,Paid,60,60,N/A
+148,Richard Taylor,richard.taylor@bank.com,388700,388700,0,Paid,48,48,N/A
+149,Priya Das,priya.das@bank.com,795100,795100,0,Paid,48,48,N/A
+150,Jennifer Taylor,jennifer.taylor@bank.com,1344700,1344700,0,Paid,12,12,N/A
+151,Arjun Verma,arjun.verma@bank.com,1331600,1331600,0,Paid,36,36,N/A
+152,Sai Reddy 750,sai.reddy.750@bank.com,1340200,1340200,0,Paid,36,36,N/A
+153,Rahul Mehra,rahul.mehra@bank.com,170700,170700,0,Paid,24,24,N/A
+154,Rohan Sethi 722,rohan.sethi.722@bank.com,773700,773700,0,Paid,24,24,N/A
+155,Myra Patel 441,myra.patel.441@bank.com,389800,389800,0,Paid,24,24,N/A
+156,Shanaya Kumar 588,shanaya.kumar.588@bank.com,1327400,442466.67,884933.3300000001,Ongoing,48,16,N/A
+157,Aarav Sharma 735,aarav.sharma.735@bank.com,1972000,131466.67,1840533.33,Defaulted,12,1,Medical Emergency / High Bills
+158,Ashley Moore 697,ashley.moore.697@bank.com,746900,663911.11,82988.89000000001,Ongoing,36,32,N/A
+159,Sonal Kapoor 388,sonal.kapoor.388@bank.com,1404600,187280.0,1217320.0,Defaulted,24,4,Medical Emergency / High Bills
+160,Shanaya Kumar 746,shanaya.kumar.746@bank.com,172000,48733.33,123266.67,Defaulted,48,17,Personal/Family Crisis
+161,Aarav Sharma,aarav.sharma@bank.com,1071500,1071500,0,Paid,24,24,N/A
+162,Emily Davis 286,emily.davis.286@bank.com,1925500,1925500,0,Paid,24,24,N/A
+163,Sarah Miller 289,sarah.miller.289@bank.com,1927900,1927900,0,Paid,36,36,N/A
+164,Jessica Wilson 596,jessica.wilson.596@bank.com,1442100,1442100,0,Paid,36,36,N/A
+165,Ishaan Nair 258,ishaan.nair.258@bank.com,1571300,1571300,0,Paid,12,12,N/A
+166,Jessica Wilson 579,jessica.wilson.579@bank.com,139300,139300,0,Paid,36,36,N/A
+167,Sai Reddy,sai.reddy@bank.com,1661000,1661000,0,Paid,24,24,N/A
+168,Michael Johnson 250,michael.johnson.250@bank.com,432300,163313.33,268986.67000000004,Defaulted,36,17,Personal/Family Crisis
+169,Emily Davis,emily.davis@bank.com,384300,384300,0,Paid,24,24,N/A
+170,Saanvi Iyer,saanvi.iyer@bank.com,1983500,595050.0,1388450.0,Ongoing,60,18,N/A
+171,Priya Das,priya.das@bank.com,1931200,1931200,0,Paid,24,24,N/A
+172,Zara Nair 584,zara.nair.584@bank.com,1947900,77916.0,1869984.0,Defaulted,60,3,High Debt Consolidation
+173,Karan Oberoi,karan.oberoi@bank.com,626700,626700,0,Paid,48,48,N/A
+174,James Smith 538,james.smith.538@bank.com,1574900,1574900,0,Paid,48,48,N/A
+175,Karan Oberoi,karan.oberoi@bank.com,757700,189425.0,568275.0,Ongoing,60,15,N/A
+176,Ashley Moore 286,ashley.moore.286@bank.com,688800,688800,0,Paid,36,36,N/A
+177,Priya Das 731,priya.das.731@bank.com,1457900,194386.67,1263513.33,Defaulted,12,2,Personal/Family Crisis
+178,Richard Taylor,richard.taylor@bank.com,69400,32772.22,36627.78,Ongoing,36,17,N/A
+179,Robert Williams 836,robert.williams.836@bank.com,1576000,1576000,0,Paid,24,24,N/A
+180,Sai Reddy,sai.reddy@bank.com,1178600,58930.0,1119670.0,Defaulted,48,3,Business Multi-sector Failure
+181,Aadhya Reddy 457,aadhya.reddy.457@bank.com,1929700,1929700,0,Paid,12,12,N/A
+182,Vihaan Patel 700,vihaan.patel.700@bank.com,710200,710200,0,Paid,48,48,N/A
+183,Reyansh Kumar 412,reyansh.kumar.412@bank.com,1028300,1028300,0,Paid,60,60,N/A
+184,Priya Das,priya.das@bank.com,1751300,1751300,0,Paid,24,24,N/A
+185,Richard Taylor 287,richard.taylor.287@bank.com,1413200,588833.33,824366.67,Ongoing,24,10,N/A
+186,Vihaan Patel 854,vihaan.patel.854@bank.com,1872500,1872500,0,Paid,24,24,N/A
+187,Aarav Sharma 476,aarav.sharma.476@bank.com,1043900,826420.83,217479.17000000004,Ongoing,48,38,N/A
+188,Arjun Verma 847,arjun.verma.847@bank.com,1975700,26342.67,1949357.33,Defaulted,60,1,Interest Rate Overrun
+189,Inaya Murthy 903,inaya.murthy.903@bank.com,396200,396200,0,Paid,24,24,N/A
+190,Shanaya Kumar 761,shanaya.kumar.761@bank.com,1468300,411124.0,1057176.0,Defaulted,60,21,Personal/Family Crisis
+191,Saanvi Iyer 463,saanvi.iyer.463@bank.com,1328000,1328000,0,Paid,60,60,N/A
+192,Nisha Bhatia 352,nisha.bhatia.352@bank.com,1392700,1392700,0,Paid,60,60,N/A
+193,Sarah Miller,sarah.miller@bank.com,912600,344760.0,567840.0,Defaulted,36,17,Business Multi-sector Failure
+194,Diya Sharma 348,diya.sharma.348@bank.com,1473100,1473100,0,Paid,48,48,N/A
+195,Michael Johnson,michael.johnson@bank.com,490700,490700,0,Paid,24,24,N/A
+196,Saanvi Iyer,saanvi.iyer@bank.com,1510700,382710.67,1127989.33,Defaulted,60,19,Business Multi-sector Failure
+197,Rahul Mehra,rahul.mehra@bank.com,1697300,1697300,0,Paid,60,60,N/A
+198,Rahul Mehra 397,rahul.mehra.397@bank.com,904800,829400.0,75400.0,Ongoing,24,22,N/A
+199,Shanaya Kumar 388,shanaya.kumar.388@bank.com,858300,858300,0,Paid,48,48,N/A
+200,Karan Oberoi,karan.oberoi@bank.com,638600,638600,0,Paid,12,12,N/A
+201,Rahul Mehra 237,rahul.mehra.237@bank.com,637900,53158.33,584741.67,Defaulted,48,5,Business Multi-sector Failure
+202,Jessica Wilson 694,jessica.wilson.694@bank.com,1179800,1179800,0,Paid,12,12,N/A
+203,Diya Sharma,diya.sharma@bank.com,90600,90600,0,Paid,36,36,N/A
+204,Vivaan Gupta 548,vivaan.gupta.548@bank.com,1589400,1589400,0,Paid,24,24,N/A
+205,Ananya Iyer 853,ananya.iyer.853@bank.com,879400,879400,0,Paid,12,12,N/A
+206,Pari Gupta,pari.gupta@bank.com,1762000,1762000,0,Paid,36,36,N/A
+207,Inaya Murthy,inaya.murthy@bank.com,1209600,161280.0,1048320.0,Defaulted,24,4,Business Multi-sector Failure
+208,Saanvi Iyer,saanvi.iyer@bank.com,215000,71666.67,143333.33000000002,Defaulted,12,5,Interest Rate Overrun
+209,Vikram Khanna,vikram.khanna@bank.com,675800,675800,0,Paid,48,48,N/A
+210,Deepak Malhotra,deepak.malhotra@bank.com,378000,189000.0,189000.0,Ongoing,12,6,N/A
+211,Inaya Murthy,inaya.murthy@bank.com,1540200,1540200,0,Paid,48,48,N/A
+212,Karan Oberoi 754,karan.oberoi.754@bank.com,986100,986100,0,Paid,60,60,N/A
+213,Diya Sharma,diya.sharma@bank.com,370700,23168.75,347531.25,Ongoing,48,3,N/A
+214,Karan Oberoi,karan.oberoi@bank.com,822700,822700,0,Paid,48,48,N/A
+215,Jessica Wilson 969,jessica.wilson.969@bank.com,456100,456100,0,Paid,12,12,N/A
+216,Inaya Murthy,inaya.murthy@bank.com,966900,523737.5,443162.5,Ongoing,24,13,N/A
+217,Ishaan Nair,ishaan.nair@bank.com,178100,178100,0,Paid,48,48,N/A
+218,Michael Johnson,michael.johnson@bank.com,906500,906500,0,Paid,12,12,N/A
+219,Aditya Singh,aditya.singh@bank.com,1568500,1568500,0,Paid,60,60,N/A
+220,Saanvi Iyer 597,saanvi.iyer.597@bank.com,608700,608700,0,Paid,36,36,N/A
+221,Rohan Sethi,rohan.sethi@bank.com,858900,858900,0,Paid,36,36,N/A
+222,Pari Gupta,pari.gupta@bank.com,1799500,559844.44,1239655.56,Defaulted,36,14,Medical Emergency / High Bills
+223,Zara Nair 394,zara.nair.394@bank.com,1774400,1774400,0,Paid,36,36,N/A
+224,Karan Oberoi 326,karan.oberoi.326@bank.com,617700,617700,0,Paid,60,60,N/A
+225,Aditya Singh 665,aditya.singh.665@bank.com,1665100,659102.08,1005997.92,Ongoing,48,19,N/A
+226,Shweta Aggarwal,shweta.aggarwal@bank.com,1326800,353813.33,972986.6699999999,Defaulted,24,8,Unemployment / Job Loss
+227,Vihaan Patel,vihaan.patel@bank.com,1246600,1246600,0,Paid,48,48,N/A
+228,Sai Reddy 915,sai.reddy.915@bank.com,689400,57450.0,631950.0,Ongoing,12,1,N/A
+229,Krishna Murthy,krishna.murthy@bank.com,1047500,1047500,0,Paid,48,48,N/A
+230,Ashley Moore 706,ashley.moore.706@bank.com,1652100,1652100,0,Paid,24,24,N/A
+231,Karan Oberoi,karan.oberoi@bank.com,1279300,159912.5,1119387.5,Ongoing,24,3,N/A
+232,Sarah Miller 875,sarah.miller.875@bank.com,1600200,1600200,0,Paid,24,24,N/A
+233,Vihaan Patel 813,vihaan.patel.813@bank.com,464100,464100,0,Paid,60,60,N/A
+234,Rohan Sethi,rohan.sethi@bank.com,1319900,1319900,0,Paid,60,60,N/A
+235,Sarah Miller,sarah.miller@bank.com,719700,719700,0,Paid,48,48,N/A
+236,Vikram Khanna 673,vikram.khanna.673@bank.com,1073200,536600.0,536600.0,Ongoing,12,6,N/A
+237,Ashley Moore 511,ashley.moore.511@bank.com,863100,827137.5,35962.5,Ongoing,24,23,N/A
+238,Sai Reddy,sai.reddy@bank.com,1082500,1082500,0,Paid,60,60,N/A
+239,Nisha Bhatia 721,nisha.bhatia.721@bank.com,27400,27400,0,Paid,60,60,N/A
+240,Nisha Bhatia 327,nisha.bhatia.327@bank.com,482800,128746.67,354053.33,Defaulted,48,16,Personal/Family Crisis
+241,Vikram Khanna,vikram.khanna@bank.com,689200,275680.0,413520.0,Defaulted,12,6,Business Multi-sector Failure
+242,Karan Oberoi 737,karan.oberoi.737@bank.com,801000,200250.0,600750.0,Ongoing,24,6,N/A
+243,Diya Sharma 241,diya.sharma.241@bank.com,221100,221100,0,Paid,60,60,N/A
+244,Rohan Sethi 654,rohan.sethi.654@bank.com,645400,645400,0,Paid,24,24,N/A
+245,Zara Nair 235,zara.nair.235@bank.com,1854700,659448.89,1195251.1099999999,Defaulted,36,16,Unemployment / Job Loss
+246,Krishna Murthy 101,krishna.murthy.101@bank.com,1880800,1880800,0,Paid,60,60,N/A
+247,Inaya Murthy 454,inaya.murthy.454@bank.com,756900,756900,0,Paid,12,12,N/A
+248,Amit Joshi 371,amit.joshi.371@bank.com,903800,40168.89,863631.11,Defaulted,36,2,Medical Emergency / High Bills
+249,Saanvi Iyer,saanvi.iyer@bank.com,331400,331400,0,Paid,36,36,N/A
+250,Karan Oberoi,karan.oberoi@bank.com,1047200,1047200,0,Paid,12,12,N/A
+251,Diya Sharma 643,diya.sharma.643@bank.com,1372900,183053.33,1189846.67,Defaulted,24,4,Interest Rate Overrun
+252,Priya Das,priya.das@bank.com,1253200,1253200,0,Paid,12,12,N/A
+253,Anvi Singh,anvi.singh@bank.com,55400,55400,0,Paid,12,12,N/A
+254,Vihaan Patel 825,vihaan.patel.825@bank.com,1464900,1464900,0,Paid,36,36,N/A
+255,Krishna Murthy 786,krishna.murthy.786@bank.com,258400,258400,0,Paid,48,48,N/A
+256,Myra Patel 216,myra.patel.216@bank.com,589200,589200,0,Paid,36,36,N/A
+257,Shanaya Kumar,shanaya.kumar@bank.com,1367300,1367300,0,Paid,24,24,N/A
+258,Robert Williams 507,robert.williams.507@bank.com,1995600,1995600,0,Paid,36,36,N/A
+259,Rahul Mehra 936,rahul.mehra.936@bank.com,113600,7573.33,106026.67,Defaulted,48,4,High Debt Consolidation
+260,Saanvi Iyer 525,saanvi.iyer.525@bank.com,1129300,1129300,0,Paid,48,48,N/A
+261,Sonal Kapoor 793,sonal.kapoor.793@bank.com,92900,74836.11,18063.89,Ongoing,36,29,N/A
+262,Sarah Miller,sarah.miller@bank.com,1212500,1212500,0,Paid,12,12,N/A
+263,Vivaan Gupta,vivaan.gupta@bank.com,782100,782100,0,Paid,60,60,N/A
+264,Sai Reddy,sai.reddy@bank.com,971700,971700,0,Paid,60,60,N/A
+265,Shweta Aggarwal,shweta.aggarwal@bank.com,815300,815300,0,Paid,48,48,N/A
+266,Michael Johnson,michael.johnson@bank.com,882800,846016.67,36783.32999999996,Ongoing,24,23,N/A
+267,Priya Das 681,priya.das.681@bank.com,50900,50900,0,Paid,12,12,N/A
+268,Ananya Iyer 960,ananya.iyer.960@bank.com,1451500,387066.67,1064433.33,Defaulted,60,20,Business Multi-sector Failure
+269,Priya Das,priya.das@bank.com,35700,35700,0,Paid,60,60,N/A
+270,Jessica Wilson,jessica.wilson@bank.com,669700,669700,0,Paid,48,48,N/A
+271,Myra Patel 827,myra.patel.827@bank.com,1603000,1603000,0,Paid,60,60,N/A
+272,Robert Williams 790,robert.williams.790@bank.com,238000,238000,0,Paid,60,60,N/A
+273,Jennifer Taylor 578,jennifer.taylor.578@bank.com,1930400,1930400,0,Paid,36,36,N/A
+274,Priya Das 685,priya.das.685@bank.com,972800,972800,0,Paid,48,48,N/A
+275,Myra Patel 432,myra.patel.432@bank.com,1321500,264300.0,1057200.0,Defaulted,12,3,High Debt Consolidation
+276,Zara Nair 529,zara.nair.529@bank.com,212800,212800,0,Paid,24,24,N/A
+277,Aditya Singh 875,aditya.singh.875@bank.com,667400,667400,0,Paid,12,12,N/A
+278,Aadhya Reddy,aadhya.reddy@bank.com,1942300,1942300,0,Paid,24,24,N/A
+279,Krishna Murthy,krishna.murthy@bank.com,548900,445981.25,102918.75,Ongoing,48,39,N/A
+280,Inaya Murthy 789,inaya.murthy.789@bank.com,1361200,453733.33,907466.6699999999,Defaulted,36,15,Business Multi-sector Failure
+281,Myra Patel,myra.patel@bank.com,1130300,1130300,0,Paid,36,36,N/A
+282,Ananya Iyer,ananya.iyer@bank.com,66500,66500,0,Paid,60,60,N/A
+283,Amit Joshi,amit.joshi@bank.com,787600,787600,0,Paid,12,12,N/A
+284,Ashley Moore 319,ashley.moore.319@bank.com,780300,780300,0,Paid,12,12,N/A
+285,Reyansh Kumar 531,reyansh.kumar.531@bank.com,1038500,1038500,0,Paid,36,36,N/A
+286,Saanvi Iyer 225,saanvi.iyer.225@bank.com,206900,206900,0,Paid,60,60,N/A
+287,Ananya Iyer 895,ananya.iyer.895@bank.com,1917900,1917900,0,Paid,24,24,N/A
+288,Vihaan Patel,vihaan.patel@bank.com,1664900,665960.0,998940.0,Defaulted,12,6,High Debt Consolidation
+289,Zara Nair 612,zara.nair.612@bank.com,1561900,846029.17,715870.83,Ongoing,24,13,N/A
+290,Saanvi Iyer 823,saanvi.iyer.823@bank.com,1955500,1955500,0,Paid,48,48,N/A
+291,Shweta Aggarwal,shweta.aggarwal@bank.com,797400,797400,0,Paid,48,48,N/A
+292,Rahul Mehra,rahul.mehra@bank.com,400600,160240.0,240360.0,Defaulted,12,6,Unemployment / Job Loss
+293,Priya Das 266,priya.das.266@bank.com,1835900,1835900,0,Paid,36,36,N/A
+294,Aadhya Reddy,aadhya.reddy@bank.com,1283300,42776.67,1240523.33,Defaulted,24,1,High Debt Consolidation
+295,Inaya Murthy 173,inaya.murthy.173@bank.com,1421100,1421100,0,Paid,60,60,N/A
+296,Reyansh Kumar 426,reyansh.kumar.426@bank.com,1048300,34943.33,1013356.67,Defaulted,24,1,Interest Rate Overrun
+297,Karan Oberoi 139,karan.oberoi.139@bank.com,1644900,1644900,0,Paid,12,12,N/A
+298,Nisha Bhatia,nisha.bhatia@bank.com,1951000,1951000,0,Paid,60,60,N/A
+299,Ananya Iyer 208,ananya.iyer.208@bank.com,1618800,1618800,0,Paid,48,48,N/A
+300,Saanvi Iyer 155,saanvi.iyer.155@bank.com,408600,136200.0,272400.0,Defaulted,36,15,Interest Rate Overrun
+301,Reyansh Kumar 304,reyansh.kumar.304@bank.com,384300,384300,0,Paid,24,24,N/A
+302,Vikram Khanna,vikram.khanna@bank.com,1064000,1064000,0,Paid,60,60,N/A
+303,Amit Joshi 232,amit.joshi.232@bank.com,1951300,86724.44,1864575.56,Defaulted,36,2,Business Multi-sector Failure
+304,Pari Gupta 137,pari.gupta.137@bank.com,1292200,1292200,0,Paid,24,24,N/A
+305,Karan Oberoi 724,karan.oberoi.724@bank.com,1861700,1861700,0,Paid,24,24,N/A
+306,Diya Sharma 134,diya.sharma.134@bank.com,312700,312700,0,Paid,60,60,N/A
+307,Saanvi Iyer 733,saanvi.iyer.733@bank.com,138600,138600,0,Paid,48,48,N/A
+308,Karan Oberoi,karan.oberoi@bank.com,786500,524333.33,262166.67000000004,Ongoing,12,8,N/A
+309,Ishaan Nair,ishaan.nair@bank.com,771000,771000,0,Paid,36,36,N/A
+310,Aarav Sharma,aarav.sharma@bank.com,720700,720700,0,Paid,12,12,N/A
+311,Sarah Miller,sarah.miller@bank.com,1340000,1340000,0,Paid,48,48,N/A
+312,Reyansh Kumar 391,reyansh.kumar.391@bank.com,1502600,292172.22,1210427.78,Ongoing,36,7,N/A
+313,Rohan Sethi 244,rohan.sethi.244@bank.com,972400,972400,0,Paid,48,48,N/A
+314,Diya Sharma 662,diya.sharma.662@bank.com,1078900,1078900,0,Paid,48,48,N/A
+315,Anvi Singh 785,anvi.singh.785@bank.com,1738800,1738800,0,Paid,60,60,N/A
+316,Vivaan Gupta,vivaan.gupta@bank.com,1258600,1258600,0,Paid,60,60,N/A
+317,Sarah Miller,sarah.miller@bank.com,1774900,1774900,0,Paid,12,12,N/A
+318,Sarah Miller 132,sarah.miller.132@bank.com,987200,987200,0,Paid,60,60,N/A
+319,Vikram Khanna 851,vikram.khanna.851@bank.com,427900,332811.11,95088.89000000001,Ongoing,36,28,N/A
+320,Vikram Khanna 831,vikram.khanna.831@bank.com,965800,965800,0,Paid,48,48,N/A
+321,David Brown,david.brown@bank.com,1529800,1529800,0,Paid,48,48,N/A
+322,Richard Taylor 486,richard.taylor.486@bank.com,102300,40920.0,61380.0,Defaulted,12,6,Interest Rate Overrun
+323,Myra Patel,myra.patel@bank.com,1966700,1966700,0,Paid,60,60,N/A
+324,Ashley Moore 710,ashley.moore.710@bank.com,669500,8926.67,660573.33,Defaulted,60,1,Personal/Family Crisis
+325,James Smith,james.smith@bank.com,270700,270700,0,Paid,60,60,N/A
+326,Jennifer Taylor,jennifer.taylor@bank.com,1234600,1234600,0,Paid,36,36,N/A
+327,Arjun Verma 465,arjun.verma.465@bank.com,404900,404900,0,Paid,60,60,N/A
+328,Anvi Singh 282,anvi.singh.282@bank.com,681800,681800,0,Paid,24,24,N/A
+329,Ananya Iyer 573,ananya.iyer.573@bank.com,1398800,1398800,0,Paid,36,36,N/A
+330,Jessica Wilson,jessica.wilson@bank.com,476100,476100,0,Paid,60,60,N/A
+331,Zara Nair,zara.nair@bank.com,1351500,1351500,0,Paid,24,24,N/A
+332,Anvi Singh,anvi.singh@bank.com,1779900,1779900,0,Paid,12,12,N/A
+333,Karan Oberoi 859,karan.oberoi.859@bank.com,1203100,1203100,0,Paid,24,24,N/A
+334,Saanvi Iyer,saanvi.iyer@bank.com,533300,533300,0,Paid,12,12,N/A
+335,Rohan Sethi 577,rohan.sethi.577@bank.com,179200,164266.67,14933.329999999987,Ongoing,60,55,N/A
+336,Aarav Sharma 723,aarav.sharma.723@bank.com,1952000,1952000,0,Paid,48,48,N/A
+337,Saanvi Iyer,saanvi.iyer@bank.com,1681100,1681100,0,Paid,12,12,N/A
+338,Jennifer Taylor 927,jennifer.taylor.927@bank.com,725100,725100,0,Paid,24,24,N/A
+339,Shanaya Kumar 340,shanaya.kumar.340@bank.com,1598500,586116.67,1012383.33,Defaulted,24,11,High Debt Consolidation
+340,Shweta Aggarwal 195,shweta.aggarwal.195@bank.com,1913300,1913300,0,Paid,36,36,N/A
+341,Shanaya Kumar,shanaya.kumar@bank.com,555800,185266.67,370533.32999999996,Ongoing,12,4,N/A
+342,Aarav Sharma,aarav.sharma@bank.com,1856600,1856600,0,Paid,24,24,N/A
+343,Amit Joshi,amit.joshi@bank.com,1485500,1485500,0,Paid,36,36,N/A
+344,Aarav Sharma 845,aarav.sharma.845@bank.com,26200,10480.0,15720.0,Ongoing,60,24,N/A
+345,Ananya Iyer,ananya.iyer@bank.com,1601400,1601400,0,Paid,60,60,N/A
+346,Richard Taylor 993,richard.taylor.993@bank.com,917700,917700,0,Paid,12,12,N/A
+347,Aaryan Iyer 507,aaryan.iyer.507@bank.com,1295800,107983.33,1187816.67,Ongoing,48,4,N/A
+348,Shanaya Kumar,shanaya.kumar@bank.com,284500,18966.67,265533.33,Defaulted,24,2,Unemployment / Job Loss
+349,Rohan Sethi 487,rohan.sethi.487@bank.com,282900,282900,0,Paid,24,24,N/A
+350,Amit Joshi,amit.joshi@bank.com,974100,974100,0,Paid,12,12,N/A
+351,Arjun Verma,arjun.verma@bank.com,1543200,1414600.0,128600.0,Ongoing,12,11,N/A
+352,Sonal Kapoor 942,sonal.kapoor.942@bank.com,302900,302900,0,Paid,60,60,N/A
+353,Sonal Kapoor,sonal.kapoor@bank.com,1957200,1957200,0,Paid,12,12,N/A
+354,Myra Patel 245,myra.patel.245@bank.com,747400,747400,0,Paid,24,24,N/A
+355,Shanaya Kumar 514,shanaya.kumar.514@bank.com,842100,842100,0,Paid,24,24,N/A
+356,Diya Sharma 366,diya.sharma.366@bank.com,1103500,597729.17,505770.82999999996,Ongoing,24,13,N/A
+357,Priya Das 631,priya.das.631@bank.com,499600,235922.22,263677.78,Ongoing,36,17,N/A
+358,Priya Das,priya.das@bank.com,703900,62568.89,641331.11,Defaulted,36,4,High Debt Consolidation
+359,Richard Taylor,richard.taylor@bank.com,968000,968000,0,Paid,12,12,N/A
+360,Michael Johnson,michael.johnson@bank.com,1752200,233626.67,1518573.33,Defaulted,24,4,Medical Emergency / High Bills
+361,Vikram Khanna 932,vikram.khanna.932@bank.com,1160800,1160800,0,Paid,36,36,N/A
+362,Emily Davis 410,emily.davis.410@bank.com,1298600,1298600,0,Paid,24,24,N/A
+363,Ananya Iyer 453,ananya.iyer.453@bank.com,1044300,34810.0,1009490.0,Defaulted,24,1,Unemployment / Job Loss
+364,Jessica Wilson 640,jessica.wilson.640@bank.com,1340800,335200.0,1005600.0,Ongoing,60,15,N/A
+365,Pari Gupta,pari.gupta@bank.com,649000,259600.0,389400.0,Defaulted,12,6,Business Multi-sector Failure
+366,Diya Sharma,diya.sharma@bank.com,501000,501000,0,Paid,12,12,N/A
+367,Jennifer Taylor 537,jennifer.taylor.537@bank.com,661800,661800,0,Paid,24,24,N/A
+368,Sai Reddy,sai.reddy@bank.com,183300,183300,0,Paid,24,24,N/A
+369,Priya Das 524,priya.das.524@bank.com,1772300,406152.08,1366147.92,Ongoing,48,11,N/A
+370,Shanaya Kumar 248,shanaya.kumar.248@bank.com,1882300,376460.0,1505840.0,Defaulted,12,3,Personal/Family Crisis
+371,Rohan Sethi,rohan.sethi@bank.com,1025400,1025400,0,Paid,12,12,N/A
+372,Aditya Singh 614,aditya.singh.614@bank.com,192000,192000,0,Paid,12,12,N/A
+373,Vikram Khanna 315,vikram.khanna.315@bank.com,1383100,1383100,0,Paid,36,36,N/A
+374,Ishaan Nair 208,ishaan.nair.208@bank.com,531200,165262.22,365937.78,Defaulted,36,14,Interest Rate Overrun
+375,Ashley Moore,ashley.moore@bank.com,1119000,699375.0,419625.0,Ongoing,24,15,N/A
+376,Karan Oberoi 202,karan.oberoi.202@bank.com,1636400,1636400,0,Paid,36,36,N/A
+377,Aditya Singh 616,aditya.singh.616@bank.com,1391400,1391400,0,Paid,12,12,N/A
+378,Richard Taylor 299,richard.taylor.299@bank.com,1710200,1068875.0,641325.0,Ongoing,24,15,N/A
+379,Sonal Kapoor,sonal.kapoor@bank.com,704600,704600,0,Paid,60,60,N/A
+380,Rahul Mehra,rahul.mehra@bank.com,515900,515900,0,Paid,36,36,N/A
+381,Pari Gupta 274,pari.gupta.274@bank.com,186700,12446.67,174253.33,Defaulted,12,1,Unemployment / Job Loss
+382,Deepak Malhotra,deepak.malhotra@bank.com,1063600,236355.56,827244.44,Defaulted,36,10,Unemployment / Job Loss
+383,Ashley Moore,ashley.moore@bank.com,1297900,1297900,0,Paid,48,48,N/A
+384,Aditya Singh 845,aditya.singh.845@bank.com,1953600,1953600,0,Paid,60,60,N/A
+385,Emily Davis 170,emily.davis.170@bank.com,1378000,1378000,0,Paid,12,12,N/A
+386,Rahul Mehra 141,rahul.mehra.141@bank.com,1253000,1253000,0,Paid,60,60,N/A
+387,Shweta Aggarwal 473,shweta.aggarwal.473@bank.com,1583000,1292783.33,290216.6699999999,Ongoing,60,49,N/A
+388,Shanaya Kumar,shanaya.kumar@bank.com,602800,602800,0,Paid,12,12,N/A
+389,Arjun Verma,arjun.verma@bank.com,244000,6506.67,237493.33,Defaulted,60,2,Unemployment / Job Loss
+390,Priya Das 710,priya.das.710@bank.com,144000,144000,0,Paid,12,12,N/A
+391,Aditya Singh,aditya.singh@bank.com,1069400,1069400,0,Paid,36,36,N/A
+392,James Smith,james.smith@bank.com,906500,906500,0,Paid,36,36,N/A
+393,Myra Patel,myra.patel@bank.com,1350700,90046.67,1260653.33,Defaulted,60,5,Interest Rate Overrun
+394,Ananya Iyer,ananya.iyer@bank.com,899300,275785.33,623514.6699999999,Defaulted,60,23,Medical Emergency / High Bills
+395,Sarah Miller,sarah.miller@bank.com,1750500,389000.0,1361500.0,Defaulted,36,10,Medical Emergency / High Bills
+396,Pari Gupta,pari.gupta@bank.com,548900,548900,0,Paid,12,12,N/A
+397,Vihaan Patel,vihaan.patel@bank.com,1723700,1723700,0,Paid,24,24,N/A
+398,Aditya Singh 357,aditya.singh.357@bank.com,1124800,1124800,0,Paid,60,60,N/A
+399,Emily Davis 347,emily.davis.347@bank.com,1607900,1607900,0,Paid,36,36,N/A
+400,Deepak Malhotra,deepak.malhotra@bank.com,1449800,531593.33,918206.67,Defaulted,48,22,Personal/Family Crisis
+401,James Smith,james.smith@bank.com,534400,534400,0,Paid,36,36,N/A
+402,Arjun Verma,arjun.verma@bank.com,1063500,1063500,0,Paid,36,36,N/A
+403,Vivaan Gupta,vivaan.gupta@bank.com,864000,288000.0,576000.0,Defaulted,12,5,High Debt Consolidation
+404,David Brown,david.brown@bank.com,132700,132700,0,Paid,12,12,N/A
+405,Vihaan Patel 776,vihaan.patel.776@bank.com,1904800,126986.67,1777813.33,Defaulted,12,1,Business Multi-sector Failure
+406,Jessica Wilson 603,jessica.wilson.603@bank.com,1392500,1392500,0,Paid,48,48,N/A
+407,Karan Oberoi 472,karan.oberoi.472@bank.com,1865700,1865700,0,Paid,12,12,N/A
+408,Sarah Miller,sarah.miller@bank.com,1893000,1893000,0,Paid,36,36,N/A
+409,Aditya Singh,aditya.singh@bank.com,1508900,1508900,0,Paid,60,60,N/A
+410,Saanvi Iyer 800,saanvi.iyer.800@bank.com,874800,801900.0,72900.0,Ongoing,36,33,N/A
+411,Inaya Murthy,inaya.murthy@bank.com,1993000,1993000,0,Paid,36,36,N/A
+412,Ananya Iyer 628,ananya.iyer.628@bank.com,436600,436600,0,Paid,48,48,N/A
+413,Vivaan Gupta 943,vivaan.gupta.943@bank.com,126900,126900,0,Paid,60,60,N/A
+414,Saanvi Iyer 318,saanvi.iyer.318@bank.com,506300,421916.67,84383.33000000002,Ongoing,48,40,N/A
+415,Aaryan Iyer 125,aaryan.iyer.125@bank.com,1144000,71500.0,1072500.0,Ongoing,48,3,N/A
+416,Krishna Murthy,krishna.murthy@bank.com,419600,55946.67,363653.33,Defaulted,24,4,Medical Emergency / High Bills
+417,Robert Williams 407,robert.williams.407@bank.com,450700,450700,0,Paid,12,12,N/A
+418,Aadhya Reddy 368,aadhya.reddy.368@bank.com,349800,349800,0,Paid,48,48,N/A
+419,Reyansh Kumar 146,reyansh.kumar.146@bank.com,1528000,1528000,0,Paid,36,36,N/A
+420,Ishaan Nair 144,ishaan.nair.144@bank.com,543700,543700,0,Paid,12,12,N/A
+421,Ananya Iyer,ananya.iyer@bank.com,1846100,1846100,0,Paid,48,48,N/A
+422,Arjun Verma 740,arjun.verma.740@bank.com,1377500,1377500,0,Paid,36,36,N/A
+423,David Brown 338,david.brown.338@bank.com,1810700,1810700,0,Paid,24,24,N/A
+424,Reyansh Kumar 686,reyansh.kumar.686@bank.com,1512700,100846.67,1411853.33,Defaulted,12,1,Personal/Family Crisis
+425,Sonal Kapoor 992,sonal.kapoor.992@bank.com,1055400,117266.67,938133.33,Defaulted,36,5,Personal/Family Crisis
+426,Rohan Sethi,rohan.sethi@bank.com,1031900,1031900,0,Paid,48,48,N/A
+427,Sai Reddy 383,sai.reddy.383@bank.com,325900,325900,0,Paid,60,60,N/A
+428,Aadhya Reddy,aadhya.reddy@bank.com,36000,36000,0,Paid,12,12,N/A
+429,Aadhya Reddy,aadhya.reddy@bank.com,1078000,1078000,0,Paid,36,36,N/A
+430,Richard Taylor,richard.taylor@bank.com,691300,230433.33,460866.67000000004,Ongoing,12,4,N/A
+431,Myra Patel,myra.patel@bank.com,1005300,1005300,0,Paid,36,36,N/A
+432,Jennifer Taylor 643,jennifer.taylor.643@bank.com,912900,547740.0,365160.0,Ongoing,60,36,N/A
+433,Amit Joshi,amit.joshi@bank.com,1912800,350680.0,1562120.0,Defaulted,48,11,Personal/Family Crisis
+434,Sai Reddy 756,sai.reddy.756@bank.com,1436000,1436000,0,Paid,36,36,N/A
+435,Ishaan Nair 117,ishaan.nair.117@bank.com,950000,950000,0,Paid,24,24,N/A
+436,Sai Reddy,sai.reddy@bank.com,1617500,1482708.33,134791.66999999993,Ongoing,36,33,N/A
+437,Shweta Aggarwal 430,shweta.aggarwal.430@bank.com,1359600,1359600,0,Paid,60,60,N/A
+438,Jennifer Taylor 395,jennifer.taylor.395@bank.com,1538500,256416.67,1282083.33,Ongoing,36,6,N/A
+439,Aadhya Reddy 564,aadhya.reddy.564@bank.com,291600,291600,0,Paid,48,48,N/A
+440,Vivaan Gupta 648,vivaan.gupta.648@bank.com,110100,110100,0,Paid,60,60,N/A
+441,Emily Davis,emily.davis@bank.com,1523000,1523000,0,Paid,60,60,N/A
+442,Aditya Singh 439,aditya.singh.439@bank.com,1691600,1691600,0,Paid,60,60,N/A
+443,Ashley Moore 475,ashley.moore.475@bank.com,1398300,186440.0,1211860.0,Defaulted,24,4,Medical Emergency / High Bills
+444,Rahul Mehra 613,rahul.mehra.613@bank.com,882600,882600,0,Paid,60,60,N/A
+445,James Smith,james.smith@bank.com,1223000,1223000,0,Paid,36,36,N/A
+446,Shweta Aggarwal,shweta.aggarwal@bank.com,18200,18200,0,Paid,24,24,N/A
+447,Priya Das 990,priya.das.990@bank.com,140400,2340.0,138060.0,Defaulted,48,1,Personal/Family Crisis
+448,Aarav Sharma,aarav.sharma@bank.com,434800,434800,0,Paid,36,36,N/A
+449,Aadhya Reddy 661,aadhya.reddy.661@bank.com,1084100,1084100,0,Paid,60,60,N/A
+450,Deepak Malhotra,deepak.malhotra@bank.com,755700,755700,0,Paid,60,60,N/A
+451,David Brown 134,david.brown.134@bank.com,402100,160840.0,241260.0,Defaulted,24,12,Business Multi-sector Failure
+452,Saanvi Iyer,saanvi.iyer@bank.com,723900,723900,0,Paid,12,12,N/A
+453,Shweta Aggarwal,shweta.aggarwal@bank.com,1714800,1714800,0,Paid,12,12,N/A
+454,Aadhya Reddy,aadhya.reddy@bank.com,561400,163741.67,397658.32999999996,Ongoing,24,7,N/A
+455,Ashley Moore 579,ashley.moore.579@bank.com,553800,323050.0,230750.0,Ongoing,12,7,N/A
+456,Diya Sharma,diya.sharma@bank.com,64800,64800,0,Paid,36,36,N/A
+457,Anvi Singh 198,anvi.singh.198@bank.com,1172600,1172600,0,Paid,12,12,N/A
+458,David Brown 837,david.brown.837@bank.com,862300,862300,0,Paid,36,36,N/A
+459,Jennifer Taylor,jennifer.taylor@bank.com,1095500,1095500,0,Paid,36,36,N/A
+460,Deepak Malhotra 164,deepak.malhotra.164@bank.com,1129900,75326.67,1054573.33,Defaulted,24,2,Medical Emergency / High Bills
+461,Jessica Wilson,jessica.wilson@bank.com,1178700,98225.0,1080475.0,Ongoing,24,2,N/A
+462,Robert Williams,robert.williams@bank.com,1558000,1558000,0,Paid,24,24,N/A
+463,Deepak Malhotra,deepak.malhotra@bank.com,652400,652400,0,Paid,60,60,N/A
+464,Robert Williams 436,robert.williams.436@bank.com,1403900,1403900,0,Paid,24,24,N/A
+465,Inaya Murthy 904,inaya.murthy.904@bank.com,963100,963100,0,Paid,12,12,N/A
+466,Krishna Murthy 444,krishna.murthy.444@bank.com,1843200,1843200,0,Paid,60,60,N/A
+467,Aaryan Iyer,aaryan.iyer@bank.com,598500,598500,0,Paid,24,24,N/A
+468,Vihaan Patel,vihaan.patel@bank.com,548400,219360.0,329040.0,Defaulted,24,12,Medical Emergency / High Bills
+469,Nisha Bhatia 719,nisha.bhatia.719@bank.com,1148900,287225.0,861675.0,Ongoing,36,9,N/A
+470,Amit Joshi 422,amit.joshi.422@bank.com,60700,60700,0,Paid,36,36,N/A
+471,Nisha Bhatia 866,nisha.bhatia.866@bank.com,1761800,1761800,0,Paid,60,60,N/A
+472,Amit Joshi 453,amit.joshi.453@bank.com,810500,810500,0,Paid,36,36,N/A
+473,Sai Reddy 529,sai.reddy.529@bank.com,1455600,252304.0,1203296.0,Defaulted,60,13,Unemployment / Job Loss
+474,Diya Sharma 466,diya.sharma.466@bank.com,664000,664000,0,Paid,36,36,N/A
+475,Shanaya Kumar,shanaya.kumar@bank.com,1275400,1275400,0,Paid,12,12,N/A
+476,Krishna Murthy 705,krishna.murthy.705@bank.com,1400200,373386.67,1026813.3300000001,Defaulted,12,4,Unemployment / Job Loss
+477,Diya Sharma,diya.sharma@bank.com,1673700,89264.0,1584436.0,Defaulted,60,4,High Debt Consolidation
+478,David Brown,david.brown@bank.com,1034700,1034700,0,Paid,48,48,N/A
+479,Sai Reddy 656,sai.reddy.656@bank.com,1031600,859666.67,171933.32999999996,Ongoing,24,20,N/A
+480,Pari Gupta,pari.gupta@bank.com,1960900,522906.67,1437993.33,Defaulted,60,20,Unemployment / Job Loss
+481,Zara Nair 582,zara.nair.582@bank.com,451600,451600,0,Paid,36,36,N/A
+482,Deepak Malhotra,deepak.malhotra@bank.com,523800,523800,0,Paid,48,48,N/A
+483,Rahul Mehra,rahul.mehra@bank.com,1171100,1073508.33,97591.66999999993,Ongoing,36,33,N/A
+484,Priya Das 501,priya.das.501@bank.com,296900,296900,0,Paid,24,24,N/A
+485,Jennifer Taylor 297,jennifer.taylor.297@bank.com,1333200,1333200,0,Paid,24,24,N/A
+486,Nisha Bhatia,nisha.bhatia@bank.com,1136800,1136800,0,Paid,36,36,N/A
+487,Priya Das,priya.das@bank.com,1380600,1380600,0,Paid,24,24,N/A
+488,Amit Joshi,amit.joshi@bank.com,1669500,1669500,0,Paid,48,48,N/A
+489,Sonal Kapoor,sonal.kapoor@bank.com,374300,374300,0,Paid,36,36,N/A
+490,Karan Oberoi,karan.oberoi@bank.com,1877500,1877500,0,Paid,60,60,N/A
+491,Amit Joshi,amit.joshi@bank.com,523700,523700,0,Paid,60,60,N/A
+492,Priya Das 770,priya.das.770@bank.com,756800,756800,0,Paid,60,60,N/A
+493,Myra Patel 917,myra.patel.917@bank.com,1182900,1182900,0,Paid,48,48,N/A
+494,Amit Joshi 294,amit.joshi.294@bank.com,1813700,1813700,0,Paid,24,24,N/A
+495,Vikram Khanna 877,vikram.khanna.877@bank.com,584600,194866.67,389733.32999999996,Defaulted,24,10,Unemployment / Job Loss
+496,Pari Gupta 774,pari.gupta.774@bank.com,1312700,1312700,0,Paid,36,36,N/A
+497,Vikram Khanna,vikram.khanna@bank.com,1654600,1240950.0,413650.0,Ongoing,48,36,N/A
+498,Karan Oberoi,karan.oberoi@bank.com,588100,156826.67,431273.32999999996,Defaulted,24,8,Personal/Family Crisis
+499,Arjun Verma 571,arjun.verma.571@bank.com,1704300,530226.67,1174073.33,Defaulted,36,14,Medical Emergency / High Bills
+500,Deepak Malhotra 470,deepak.malhotra.470@bank.com,1476500,1476500,0,Paid,36,36,N/A
+501,Vihaan Patel 341,vihaan.patel.341@bank.com,1200600,1200600,0,Paid,36,36,N/A
+502,Myra Patel,myra.patel@bank.com,615000,615000,0,Paid,24,24,N/A
+503,Aadhya Reddy 214,aadhya.reddy.214@bank.com,565100,263713.33,301386.67,Ongoing,60,28,N/A
+504,Shweta Aggarwal,shweta.aggarwal@bank.com,1570300,1570300,0,Paid,24,24,N/A
+505,Vivaan Gupta 470,vivaan.gupta.470@bank.com,765600,765600,0,Paid,12,12,N/A
+506,Sarah Miller 291,sarah.miller.291@bank.com,1754300,1754300,0,Paid,24,24,N/A
+507,Karan Oberoi 487,karan.oberoi.487@bank.com,16400,16400,0,Paid,12,12,N/A
+508,Sarah Miller 434,sarah.miller.434@bank.com,618000,401700.0,216300.0,Ongoing,60,39,N/A
+509,Aditya Singh 232,aditya.singh.232@bank.com,701600,701600,0,Paid,24,24,N/A
+510,Aditya Singh,aditya.singh@bank.com,1267000,1267000,0,Paid,12,12,N/A
+511,Anvi Singh 391,anvi.singh.391@bank.com,1321900,1321900,0,Paid,24,24,N/A
+512,Sarah Miller,sarah.miller@bank.com,73000,73000,0,Paid,60,60,N/A
+513,Saanvi Iyer,saanvi.iyer@bank.com,1433700,238950.0,1194750.0,Ongoing,24,4,N/A
+514,Rohan Sethi 478,rohan.sethi.478@bank.com,1772900,369354.17,1403545.83,Ongoing,24,5,N/A
+515,Vihaan Patel,vihaan.patel@bank.com,1628700,180966.67,1447733.33,Ongoing,36,4,N/A
+516,Arjun Verma,arjun.verma@bank.com,57400,33483.33,23916.67,Ongoing,24,14,N/A
+517,Karan Oberoi 878,karan.oberoi.878@bank.com,546900,182300.0,364600.0,Defaulted,24,10,High Debt Consolidation
+518,Diya Sharma,diya.sharma@bank.com,1597100,532366.67,1064733.33,Defaulted,12,5,Interest Rate Overrun
+519,Priya Das,priya.das@bank.com,966300,966300,0,Paid,60,60,N/A
+520,Pari Gupta,pari.gupta@bank.com,1143000,1143000,0,Paid,12,12,N/A
+521,David Brown,david.brown@bank.com,525200,328250.0,196950.0,Ongoing,24,15,N/A
+522,Priya Das 232,priya.das.232@bank.com,355900,142360.0,213540.0,Ongoing,60,24,N/A
+523,Pari Gupta 865,pari.gupta.865@bank.com,1573600,1573600,0,Paid,48,48,N/A
+524,Deepak Malhotra 432,deepak.malhotra.432@bank.com,914200,914200,0,Paid,48,48,N/A
+525,Robert Williams 768,robert.williams.768@bank.com,890600,890600,0,Paid,48,48,N/A
+526,Sai Reddy 865,sai.reddy.865@bank.com,1355200,1355200,0,Paid,36,36,N/A
+527,Richard Taylor,richard.taylor@bank.com,248600,248600,0,Paid,36,36,N/A
+528,Nisha Bhatia,nisha.bhatia@bank.com,1779600,29660.0,1749940.0,Ongoing,60,1,N/A
+529,Sarah Miller,sarah.miller@bank.com,1743200,1743200,0,Paid,36,36,N/A
+530,Aarav Sharma,aarav.sharma@bank.com,1046500,1046500,0,Paid,60,60,N/A
+531,Aarav Sharma,aarav.sharma@bank.com,251000,251000,0,Paid,60,60,N/A
+532,Krishna Murthy 217,krishna.murthy.217@bank.com,1066600,71106.67,995493.33,Defaulted,12,1,Personal/Family Crisis
+533,Anvi Singh 508,anvi.singh.508@bank.com,834600,194740.0,639860.0,Ongoing,60,14,N/A
+534,Aadhya Reddy,aadhya.reddy@bank.com,1021300,404264.58,617035.4199999999,Ongoing,48,19,N/A
+535,James Smith 821,james.smith.821@bank.com,328500,191625.0,136875.0,Ongoing,24,14,N/A
+536,Karan Oberoi 529,karan.oberoi.529@bank.com,1895100,1895100,0,Paid,24,24,N/A
+537,Michael Johnson 519,michael.johnson.519@bank.com,398500,19925.0,378575.0,Defaulted,48,3,Medical Emergency / High Bills
+538,Inaya Murthy,inaya.murthy@bank.com,1107900,507787.5,600112.5,Ongoing,48,22,N/A
+539,Richard Taylor 668,richard.taylor.668@bank.com,530500,530500,0,Paid,24,24,N/A
+540,Richard Taylor,richard.taylor@bank.com,702400,702400,0,Paid,48,48,N/A
+541,Inaya Murthy 732,inaya.murthy.732@bank.com,1657200,1657200,0,Paid,12,12,N/A
+542,Aadhya Reddy 937,aadhya.reddy.937@bank.com,1217400,1217400,0,Paid,48,48,N/A
+543,Robert Williams 548,robert.williams.548@bank.com,825200,275066.67,550133.3300000001,Defaulted,12,5,Interest Rate Overrun
+544,Aarav Sharma,aarav.sharma@bank.com,580000,580000,0,Paid,48,48,N/A
+545,Shanaya Kumar 442,shanaya.kumar.442@bank.com,267000,173550.0,93450.0,Ongoing,60,39,N/A
+546,Sarah Miller,sarah.miller@bank.com,819000,819000,0,Paid,12,12,N/A
+547,Ashley Moore,ashley.moore@bank.com,519400,519400,0,Paid,48,48,N/A
+548,Shanaya Kumar 930,shanaya.kumar.930@bank.com,543800,543800,0,Paid,12,12,N/A
+549,Aadhya Reddy 853,aadhya.reddy.853@bank.com,1805300,1805300,0,Paid,36,36,N/A
+550,Priya Das,priya.das@bank.com,1680500,1680500,0,Paid,60,60,N/A
+551,Nisha Bhatia 797,nisha.bhatia.797@bank.com,1587800,423413.33,1164386.67,Defaulted,12,4,Personal/Family Crisis
+552,Pari Gupta 843,pari.gupta.843@bank.com,1572700,471810.0,1100890.0,Defaulted,24,9,Unemployment / Job Loss
+553,Karan Oberoi 975,karan.oberoi.975@bank.com,1750600,1750600,0,Paid,12,12,N/A
+554,Michael Johnson 185,michael.johnson.185@bank.com,1348200,1348200,0,Paid,48,48,N/A
+555,Aaryan Iyer 298,aaryan.iyer.298@bank.com,1302400,1302400,0,Paid,60,60,N/A
+556,Richard Taylor,richard.taylor@bank.com,533700,533700,0,Paid,36,36,N/A
+557,Arjun Verma,arjun.verma@bank.com,61200,61200,0,Paid,48,48,N/A
+558,Inaya Murthy 665,inaya.murthy.665@bank.com,1621300,1621300,0,Paid,48,48,N/A
+559,Ashley Moore 645,ashley.moore.645@bank.com,1440400,1440400,0,Paid,60,60,N/A
+560,Myra Patel,myra.patel@bank.com,1961200,1961200,0,Paid,12,12,N/A
+561,Priya Das 515,priya.das.515@bank.com,675300,675300,0,Paid,48,48,N/A
+562,Aadhya Reddy,aadhya.reddy@bank.com,1059200,1059200,0,Paid,12,12,N/A
+563,Krishna Murthy,krishna.murthy@bank.com,449900,449900,0,Paid,48,48,N/A
+564,Reyansh Kumar 314,reyansh.kumar.314@bank.com,752900,752900,0,Paid,24,24,N/A
+565,Emily Davis 176,emily.davis.176@bank.com,1718300,526945.33,1191354.67,Defaulted,60,23,High Debt Consolidation
+566,Krishna Murthy,krishna.murthy@bank.com,1954900,1954900,0,Paid,12,12,N/A
+567,Saanvi Iyer 555,saanvi.iyer.555@bank.com,1907100,1907100,0,Paid,12,12,N/A
+568,Nisha Bhatia,nisha.bhatia@bank.com,1619000,1619000,0,Paid,24,24,N/A
+569,Karan Oberoi,karan.oberoi@bank.com,1297500,86500.0,1211000.0,Defaulted,24,2,High Debt Consolidation
+570,Jessica Wilson 585,jessica.wilson.585@bank.com,644900,644900,0,Paid,60,60,N/A
+571,Nisha Bhatia 669,nisha.bhatia.669@bank.com,143800,143800,0,Paid,60,60,N/A
+572,Vikram Khanna,vikram.khanna@bank.com,1501600,1251333.33,250266.66999999993,Ongoing,24,20,N/A
+573,Aaryan Iyer 188,aaryan.iyer.188@bank.com,232500,162750.0,69750.0,Ongoing,60,42,N/A
+574,Arjun Verma 936,arjun.verma.936@bank.com,1883600,1883600,0,Paid,48,48,N/A
+575,Saanvi Iyer 750,saanvi.iyer.750@bank.com,833200,833200,0,Paid,12,12,N/A
+576,Aarav Sharma 754,aarav.sharma.754@bank.com,876800,876800,0,Paid,36,36,N/A
+577,Krishna Murthy,krishna.murthy@bank.com,1776100,1776100,0,Paid,48,48,N/A
+578,Jennifer Taylor 420,jennifer.taylor.420@bank.com,1996100,1996100,0,Paid,24,24,N/A
+579,Ananya Iyer,ananya.iyer@bank.com,1872900,749160.0,1123740.0,Defaulted,24,12,Interest Rate Overrun
+580,Shweta Aggarwal 290,shweta.aggarwal.290@bank.com,721300,163494.67,557805.33,Defaulted,60,17,High Debt Consolidation
+581,Amit Joshi 134,amit.joshi.134@bank.com,812200,216586.67,595613.33,Defaulted,12,4,Unemployment / Job Loss
+582,Sai Reddy,sai.reddy@bank.com,1463300,1463300,0,Paid,12,12,N/A
+583,Priya Das 270,priya.das.270@bank.com,1235900,1235900,0,Paid,24,24,N/A
+584,Jessica Wilson 778,jessica.wilson.778@bank.com,699200,93226.67,605973.33,Defaulted,36,6,Interest Rate Overrun
+585,Rohan Sethi 713,rohan.sethi.713@bank.com,1601100,1601100,0,Paid,48,48,N/A
+586,Vivaan Gupta 768,vivaan.gupta.768@bank.com,1342000,615083.33,726916.67,Ongoing,24,11,N/A
+587,James Smith,james.smith@bank.com,1157000,1157000,0,Paid,12,12,N/A
+588,Aditya Singh 621,aditya.singh.621@bank.com,1989200,1989200,0,Paid,24,24,N/A
+589,Anvi Singh,anvi.singh@bank.com,862900,862900,0,Paid,12,12,N/A
+590,Vikram Khanna 490,vikram.khanna.490@bank.com,1018000,1018000,0,Paid,24,24,N/A
+591,Krishna Murthy,krishna.murthy@bank.com,1108400,1108400,0,Paid,60,60,N/A
+592,Jennifer Taylor,jennifer.taylor@bank.com,387600,387600,0,Paid,48,48,N/A
+593,Nisha Bhatia 803,nisha.bhatia.803@bank.com,839900,839900,0,Paid,60,60,N/A
+594,Anvi Singh 482,anvi.singh.482@bank.com,69100,69100,0,Paid,36,36,N/A
+595,Michael Johnson 109,michael.johnson.109@bank.com,1201100,320293.33,880806.6699999999,Defaulted,48,16,Medical Emergency / High Bills
+596,Aditya Singh,aditya.singh@bank.com,490400,163466.67,326933.32999999996,Ongoing,24,8,N/A
+597,Jessica Wilson 531,jessica.wilson.531@bank.com,358500,358500,0,Paid,12,12,N/A
+598,Shweta Aggarwal,shweta.aggarwal@bank.com,210700,18728.89,191971.11,Defaulted,36,4,Unemployment / Job Loss
+599,Myra Patel 485,myra.patel.485@bank.com,160000,160000,0,Paid,12,12,N/A
+600,Anvi Singh 944,anvi.singh.944@bank.com,652800,652800,0,Paid,12,12,N/A
+601,Saanvi Iyer 475,saanvi.iyer.475@bank.com,1577200,867460.0,709740.0,Ongoing,60,33,N/A
+602,Sonal Kapoor,sonal.kapoor@bank.com,1271700,84780.0,1186920.0,Defaulted,24,2,Unemployment / Job Loss
+603,Vikram Khanna 629,vikram.khanna.629@bank.com,271500,54300.0,217200.0,Defaulted,48,12,High Debt Consolidation
+604,Krishna Murthy 560,krishna.murthy.560@bank.com,502100,133893.33,368206.67000000004,Defaulted,60,20,Medical Emergency / High Bills
+605,Deepak Malhotra 970,deepak.malhotra.970@bank.com,1767600,471360.0,1296240.0,Defaulted,24,8,Personal/Family Crisis
+606,David Brown 602,david.brown.602@bank.com,1520500,1520500,0,Paid,48,48,N/A
+607,Deepak Malhotra,deepak.malhotra@bank.com,477900,477900,0,Paid,24,24,N/A
+608,Amit Joshi 820,amit.joshi.820@bank.com,702400,526800.0,175600.0,Ongoing,48,36,N/A
+609,Aditya Singh 650,aditya.singh.650@bank.com,1687200,1687200,0,Paid,24,24,N/A
+610,Reyansh Kumar,reyansh.kumar@bank.com,1618300,438289.58,1180010.42,Ongoing,48,13,N/A
+611,Vivaan Gupta 587,vivaan.gupta.587@bank.com,712800,712800,0,Paid,24,24,N/A
+612,Vivaan Gupta 278,vivaan.gupta.278@bank.com,1339500,502312.5,837187.5,Ongoing,24,9,N/A
+613,James Smith,james.smith@bank.com,1536000,102400.0,1433600.0,Defaulted,48,4,Interest Rate Overrun
+614,Ashley Moore,ashley.moore@bank.com,193500,129000.0,64500.0,Ongoing,12,8,N/A
+615,Emily Davis,emily.davis@bank.com,978400,978400,0,Paid,60,60,N/A
+616,James Smith 985,james.smith.985@bank.com,1956700,1956700,0,Paid,60,60,N/A
+617,James Smith,james.smith@bank.com,965000,965000,0,Paid,12,12,N/A
+618,Vikram Khanna 265,vikram.khanna.265@bank.com,1189500,277550.0,911950.0,Defaulted,24,7,Business Multi-sector Failure
+619,Aarav Sharma,aarav.sharma@bank.com,1903600,697986.67,1205613.33,Defaulted,48,22,Personal/Family Crisis
+620,Diya Sharma 137,diya.sharma.137@bank.com,13200,13200,0,Paid,24,24,N/A
+621,Priya Das,priya.das@bank.com,265400,265400,0,Paid,36,36,N/A
+622,Karan Oberoi,karan.oberoi@bank.com,819800,819800,0,Paid,60,60,N/A
+623,Rohan Sethi 225,rohan.sethi.225@bank.com,386600,386600,0,Paid,48,48,N/A
+624,Rohan Sethi 501,rohan.sethi.501@bank.com,371100,371100,0,Paid,24,24,N/A
+625,Diya Sharma,diya.sharma@bank.com,1779600,1779600,0,Paid,36,36,N/A
+626,Myra Patel,myra.patel@bank.com,192000,192000,0,Paid,36,36,N/A
+627,Ashley Moore 396,ashley.moore.396@bank.com,834300,834300,0,Paid,12,12,N/A
+628,Myra Patel,myra.patel@bank.com,432200,129660.0,302540.0,Defaulted,48,18,High Debt Consolidation
+629,James Smith,james.smith@bank.com,1006600,1006600,0,Paid,36,36,N/A
+630,Jessica Wilson,jessica.wilson@bank.com,69500,69500,0,Paid,36,36,N/A
+631,Inaya Murthy 388,inaya.murthy.388@bank.com,269500,269500,0,Paid,48,48,N/A
+632,Aditya Singh 463,aditya.singh.463@bank.com,1976200,1070441.67,905758.3300000001,Ongoing,48,26,N/A
+633,Jennifer Taylor 417,jennifer.taylor.417@bank.com,1481600,1481600,0,Paid,24,24,N/A
+634,Ashley Moore,ashley.moore@bank.com,1401400,1401400,0,Paid,12,12,N/A
+635,Richard Taylor 222,richard.taylor.222@bank.com,194100,194100,0,Paid,36,36,N/A
+636,Zara Nair,zara.nair@bank.com,398300,398300,0,Paid,36,36,N/A
+637,Richard Taylor 977,richard.taylor.977@bank.com,1502900,976885.0,526015.0,Ongoing,60,39,N/A
+638,Vivaan Gupta 452,vivaan.gupta.452@bank.com,913100,913100,0,Paid,60,60,N/A
+639,Pari Gupta,pari.gupta@bank.com,1030400,1030400,0,Paid,48,48,N/A
+640,Reyansh Kumar,reyansh.kumar@bank.com,757800,757800,0,Paid,36,36,N/A
+641,Rahul Mehra 674,rahul.mehra.674@bank.com,326300,326300,0,Paid,36,36,N/A
+642,Aarav Sharma,aarav.sharma@bank.com,170900,170900,0,Paid,60,60,N/A
+643,Jennifer Taylor 312,jennifer.taylor.312@bank.com,1724200,1724200,0,Paid,24,24,N/A
+644,Robert Williams,robert.williams@bank.com,582000,582000,0,Paid,24,24,N/A
+645,Emily Davis 788,emily.davis.788@bank.com,1457700,583080.0,874620.0,Defaulted,12,6,Personal/Family Crisis
+646,Karan Oberoi,karan.oberoi@bank.com,542300,515185.0,27115.0,Ongoing,60,57,N/A
+647,Aaryan Iyer 465,aaryan.iyer.465@bank.com,1142100,76140.0,1065960.0,Defaulted,36,3,Medical Emergency / High Bills
+648,Ananya Iyer 254,ananya.iyer.254@bank.com,1640100,1640100,0,Paid,12,12,N/A
+649,Shanaya Kumar 638,shanaya.kumar.638@bank.com,1072200,1072200,0,Paid,24,24,N/A
+650,Sonal Kapoor,sonal.kapoor@bank.com,870400,870400,0,Paid,36,36,N/A
+651,Robert Williams 139,robert.williams.139@bank.com,96900,96900,0,Paid,60,60,N/A
+652,Arjun Verma,arjun.verma@bank.com,309700,309700,0,Paid,24,24,N/A
+653,Pari Gupta,pari.gupta@bank.com,790600,790600,0,Paid,48,48,N/A
+654,Zara Nair,zara.nair@bank.com,321500,64300.0,257200.0,Defaulted,12,3,Unemployment / Job Loss
+655,Amit Joshi,amit.joshi@bank.com,1840900,1534083.33,306816.6699999999,Ongoing,12,10,N/A
+656,Shweta Aggarwal 603,shweta.aggarwal.603@bank.com,1056500,1056500,0,Paid,36,36,N/A
+657,Aditya Singh,aditya.singh@bank.com,504800,504800,0,Paid,48,48,N/A
+658,Aadhya Reddy 700,aadhya.reddy.700@bank.com,1912300,1912300,0,Paid,60,60,N/A
+659,Vivaan Gupta 281,vivaan.gupta.281@bank.com,35100,13104.0,21996.0,Defaulted,60,28,Personal/Family Crisis
+660,Aarav Sharma 831,aarav.sharma.831@bank.com,1762900,39175.56,1723724.44,Defaulted,36,1,Unemployment / Job Loss
+661,Jessica Wilson 913,jessica.wilson.913@bank.com,590300,590300,0,Paid,60,60,N/A
+662,Sai Reddy,sai.reddy@bank.com,786900,786900,0,Paid,60,60,N/A
+663,Anvi Singh 308,anvi.singh.308@bank.com,349200,349200,0,Paid,24,24,N/A
+664,Jessica Wilson 901,jessica.wilson.901@bank.com,467600,467600,0,Paid,12,12,N/A
+665,Nisha Bhatia 624,nisha.bhatia.624@bank.com,1996700,1996700,0,Paid,12,12,N/A
+666,Ashley Moore,ashley.moore@bank.com,119300,27339.58,91960.42,Ongoing,48,11,N/A
+667,Sai Reddy 569,sai.reddy.569@bank.com,564300,564300,0,Paid,60,60,N/A
+668,James Smith 317,james.smith.317@bank.com,1477000,1477000,0,Paid,48,48,N/A
+669,Inaya Murthy,inaya.murthy@bank.com,1346800,1346800,0,Paid,24,24,N/A
+670,Sonal Kapoor 893,sonal.kapoor.893@bank.com,1349800,1349800,0,Paid,36,36,N/A
+671,Pari Gupta,pari.gupta@bank.com,1027300,410920.0,616380.0,Defaulted,12,6,Business Multi-sector Failure
+672,David Brown 850,david.brown.850@bank.com,1015700,1015700,0,Paid,60,60,N/A
+673,Robert Williams,robert.williams@bank.com,342000,342000,0,Paid,60,60,N/A
+674,David Brown,david.brown@bank.com,103000,103000,0,Paid,48,48,N/A
+675,Jennifer Taylor,jennifer.taylor@bank.com,441600,441600,0,Paid,24,24,N/A
+676,Karan Oberoi 808,karan.oberoi.808@bank.com,1796200,1796200,0,Paid,36,36,N/A
+677,Zara Nair,zara.nair@bank.com,1758000,703200.0,1054800.0,Defaulted,12,6,Medical Emergency / High Bills
+678,Aditya Singh,aditya.singh@bank.com,1316400,1316400,0,Paid,12,12,N/A
+679,Diya Sharma,diya.sharma@bank.com,1371700,1371700,0,Paid,24,24,N/A
+680,Sai Reddy 409,sai.reddy.409@bank.com,290800,290800,0,Paid,24,24,N/A
+681,Karan Oberoi,karan.oberoi@bank.com,274400,274400,0,Paid,48,48,N/A
+682,Vihaan Patel 744,vihaan.patel.744@bank.com,1607000,294616.67,1312383.33,Ongoing,60,11,N/A
+683,Saanvi Iyer 711,saanvi.iyer.711@bank.com,1752800,1168533.33,584266.6699999999,Ongoing,12,8,N/A
+684,Shanaya Kumar 522,shanaya.kumar.522@bank.com,1073700,1073700,0,Paid,60,60,N/A
+685,Deepak Malhotra,deepak.malhotra@bank.com,520400,138773.33,381626.67000000004,Defaulted,48,16,High Debt Consolidation
+686,Aarav Sharma 187,aarav.sharma.187@bank.com,1189400,1189400,0,Paid,24,24,N/A
+687,Aaryan Iyer,aaryan.iyer@bank.com,520700,520700,0,Paid,24,24,N/A
+688,Vikram Khanna,vikram.khanna@bank.com,100900,100900,0,Paid,48,48,N/A
+689,Myra Patel 204,myra.patel.204@bank.com,677900,677900,0,Paid,24,24,N/A
+690,Sai Reddy 739,sai.reddy.739@bank.com,1243600,932700.0,310900.0,Ongoing,12,9,N/A
+691,Ashley Moore,ashley.moore@bank.com,753800,753800,0,Paid,60,60,N/A
+692,James Smith 103,james.smith.103@bank.com,1471500,1471500,0,Paid,36,36,N/A
+693,Aadhya Reddy,aadhya.reddy@bank.com,1401000,429640.0,971360.0,Defaulted,60,23,Business Multi-sector Failure
+694,Reyansh Kumar,reyansh.kumar@bank.com,813200,813200,0,Paid,24,24,N/A
+695,Aditya Singh,aditya.singh@bank.com,1259400,1259400,0,Paid,24,24,N/A
+696,Jennifer Taylor,jennifer.taylor@bank.com,779600,779600,0,Paid,36,36,N/A
+697,Ishaan Nair,ishaan.nair@bank.com,964600,964600,0,Paid,60,60,N/A
+698,Zara Nair 436,zara.nair.436@bank.com,416900,416900,0,Paid,12,12,N/A
+699,Ishaan Nair,ishaan.nair@bank.com,352100,352100,0,Paid,12,12,N/A
+700,Vihaan Patel,vihaan.patel@bank.com,204500,204500,0,Paid,24,24,N/A
+701,Jennifer Taylor 250,jennifer.taylor.250@bank.com,1217800,1217800,0,Paid,48,48,N/A
+702,Amit Joshi,amit.joshi@bank.com,1099800,1099800,0,Paid,36,36,N/A
+703,Pari Gupta 609,pari.gupta.609@bank.com,1809700,1809700,0,Paid,12,12,N/A
+704,Aadhya Reddy,aadhya.reddy@bank.com,1653000,1653000,0,Paid,12,12,N/A
+705,Vikram Khanna 142,vikram.khanna.142@bank.com,1068400,1068400,0,Paid,12,12,N/A
+706,Anvi Singh,anvi.singh@bank.com,1527700,700195.83,827504.17,Ongoing,24,11,N/A
+707,Priya Das,priya.das@bank.com,57300,57300,0,Paid,48,48,N/A
+708,Aaryan Iyer 724,aaryan.iyer.724@bank.com,1759200,1759200,0,Paid,36,36,N/A
+709,Reyansh Kumar,reyansh.kumar@bank.com,1840400,552120.0,1288280.0,Defaulted,48,18,Business Multi-sector Failure
+710,Karan Oberoi,karan.oberoi@bank.com,249000,249000,0,Paid,12,12,N/A
+711,Diya Sharma,diya.sharma@bank.com,1627400,1446577.78,180822.21999999997,Ongoing,36,32,N/A
+712,Aaryan Iyer 878,aaryan.iyer.878@bank.com,1957200,1957200,0,Paid,48,48,N/A
+713,Aaryan Iyer,aaryan.iyer@bank.com,502900,195572.22,307327.78,Ongoing,36,14,N/A
+714,Sonal Kapoor,sonal.kapoor@bank.com,1191400,1191400,0,Paid,36,36,N/A
+715,Krishna Murthy,krishna.murthy@bank.com,1349300,1349300,0,Paid,12,12,N/A
+716,Pari Gupta 900,pari.gupta.900@bank.com,1463300,1463300,0,Paid,24,24,N/A
+717,Aaryan Iyer 767,aaryan.iyer.767@bank.com,1128600,1128600,0,Paid,12,12,N/A
+718,Priya Das 339,priya.das.339@bank.com,530100,530100,0,Paid,36,36,N/A
+719,Krishna Murthy 187,krishna.murthy.187@bank.com,1483300,1483300,0,Paid,48,48,N/A
+720,Anvi Singh,anvi.singh@bank.com,1965100,131006.67,1834093.33,Defaulted,12,1,Business Multi-sector Failure
+721,Inaya Murthy 867,inaya.murthy.867@bank.com,770900,770900,0,Paid,60,60,N/A
+722,Sai Reddy 336,sai.reddy.336@bank.com,1759400,1759400,0,Paid,36,36,N/A
+723,Saanvi Iyer 740,saanvi.iyer.740@bank.com,37100,27825.0,9275.0,Ongoing,48,36,N/A
+724,Shweta Aggarwal 153,shweta.aggarwal.153@bank.com,1569600,1569600,0,Paid,60,60,N/A
+725,Jessica Wilson,jessica.wilson@bank.com,1744200,1744200,0,Paid,60,60,N/A
+726,Aditya Singh 289,aditya.singh.289@bank.com,393000,393000,0,Paid,36,36,N/A
+727,Myra Patel,myra.patel@bank.com,527300,193343.33,333956.67000000004,Defaulted,24,11,Unemployment / Job Loss
+728,Sarah Miller,sarah.miller@bank.com,1270900,1270900,0,Paid,36,36,N/A
+729,Sai Reddy 345,sai.reddy.345@bank.com,899500,899500,0,Paid,12,12,N/A
+730,Robert Williams 910,robert.williams.910@bank.com,527800,527800,0,Paid,36,36,N/A
+731,Diya Sharma 590,diya.sharma.590@bank.com,991100,991100,0,Paid,24,24,N/A
+732,Saanvi Iyer 327,saanvi.iyer.327@bank.com,900600,900600,0,Paid,12,12,N/A
+733,Pari Gupta 395,pari.gupta.395@bank.com,1428800,1428800,0,Paid,60,60,N/A
+734,Vivaan Gupta,vivaan.gupta@bank.com,112200,112200,0,Paid,24,24,N/A
+735,Richard Taylor,richard.taylor@bank.com,1208900,1208900,0,Paid,24,24,N/A
+736,Shweta Aggarwal,shweta.aggarwal@bank.com,1894000,1420500.0,473500.0,Ongoing,24,18,N/A
+737,Aditya Singh 734,aditya.singh.734@bank.com,1221600,1221600,0,Paid,12,12,N/A
+738,Michael Johnson 572,michael.johnson.572@bank.com,420800,420800,0,Paid,60,60,N/A
+739,Anvi Singh,anvi.singh@bank.com,667300,667300,0,Paid,60,60,N/A
+740,Michael Johnson 917,michael.johnson.917@bank.com,391000,391000,0,Paid,48,48,N/A
+741,Shweta Aggarwal 625,shweta.aggarwal.625@bank.com,1389900,1389900,0,Paid,24,24,N/A
+742,Vikram Khanna 656,vikram.khanna.656@bank.com,302000,302000,0,Paid,24,24,N/A
+743,Reyansh Kumar,reyansh.kumar@bank.com,236900,236900,0,Paid,48,48,N/A
+744,Diya Sharma,diya.sharma@bank.com,944800,944800,0,Paid,36,36,N/A
+745,Jessica Wilson 820,jessica.wilson.820@bank.com,1233400,131562.67,1101837.33,Defaulted,60,8,Unemployment / Job Loss
+746,Aaryan Iyer 918,aaryan.iyer.918@bank.com,1810500,1810500,0,Paid,36,36,N/A
+747,Aadhya Reddy 957,aadhya.reddy.957@bank.com,723000,723000,0,Paid,12,12,N/A
+748,Vihaan Patel 216,vihaan.patel.216@bank.com,734200,176208.0,557992.0,Defaulted,60,18,Medical Emergency / High Bills
+749,Sarah Miller 808,sarah.miller.808@bank.com,1696200,1696200,0,Paid,48,48,N/A
+750,Jessica Wilson 314,jessica.wilson.314@bank.com,740400,740400,0,Paid,48,48,N/A
+751,Nisha Bhatia 130,nisha.bhatia.130@bank.com,1124400,562200.0,562200.0,Ongoing,12,6,N/A
+752,Rohan Sethi 296,rohan.sethi.296@bank.com,1499000,1499000,0,Paid,60,60,N/A
+753,Emily Davis,emily.davis@bank.com,174200,174200,0,Paid,12,12,N/A
+754,Ashley Moore,ashley.moore@bank.com,1731600,1731600,0,Paid,36,36,N/A
+755,Vivaan Gupta 615,vivaan.gupta.615@bank.com,1377900,1377900,0,Paid,36,36,N/A
+756,Aadhya Reddy 671,aadhya.reddy.671@bank.com,1322300,477497.22,844802.78,Ongoing,36,13,N/A
+757,Shanaya Kumar,shanaya.kumar@bank.com,1065400,1065400,0,Paid,36,36,N/A
+758,Aarav Sharma 180,aarav.sharma.180@bank.com,1724600,1724600,0,Paid,12,12,N/A
+759,Krishna Murthy 428,krishna.murthy.428@bank.com,1490600,1490600,0,Paid,60,60,N/A
+760,Karan Oberoi,karan.oberoi@bank.com,1890800,1890800,0,Paid,36,36,N/A
+761,Vihaan Patel 283,vihaan.patel.283@bank.com,1346000,1346000,0,Paid,60,60,N/A
+762,Ishaan Nair 372,ishaan.nair.372@bank.com,1360200,453400.0,906800.0,Defaulted,48,20,Unemployment / Job Loss
+763,Vikram Khanna 994,vikram.khanna.994@bank.com,1643500,1643500,0,Paid,60,60,N/A
+764,Aditya Singh 684,aditya.singh.684@bank.com,950800,792333.33,158466.67000000004,Ongoing,48,40,N/A
+765,David Brown 195,david.brown.195@bank.com,1755200,1755200,0,Paid,24,24,N/A
+766,Aaryan Iyer 540,aaryan.iyer.540@bank.com,1090900,1090900,0,Paid,12,12,N/A
+767,Ananya Iyer 402,ananya.iyer.402@bank.com,1369900,1369900,0,Paid,24,24,N/A
+768,Shanaya Kumar,shanaya.kumar@bank.com,1893100,1893100,0,Paid,48,48,N/A
+769,Vihaan Patel 492,vihaan.patel.492@bank.com,1236000,1236000,0,Paid,36,36,N/A
+770,Ashley Moore 329,ashley.moore.329@bank.com,854400,854400,0,Paid,36,36,N/A
+771,Pari Gupta,pari.gupta@bank.com,1658000,1658000,0,Paid,12,12,N/A
+772,Jennifer Taylor 344,jennifer.taylor.344@bank.com,1747200,660053.33,1087146.67,Defaulted,36,17,High Debt Consolidation
+773,Reyansh Kumar 965,reyansh.kumar.965@bank.com,137100,137100,0,Paid,36,36,N/A
+774,Sarah Miller 118,sarah.miller.118@bank.com,1845400,1845400,0,Paid,48,48,N/A
+775,Ishaan Nair,ishaan.nair@bank.com,671700,671700,0,Paid,48,48,N/A
+776,Vivaan Gupta 220,vivaan.gupta.220@bank.com,1219500,1219500,0,Paid,12,12,N/A
+777,Anvi Singh 330,anvi.singh.330@bank.com,1021300,1021300,0,Paid,24,24,N/A
+778,Aaryan Iyer 393,aaryan.iyer.393@bank.com,1347000,1347000,0,Paid,48,48,N/A
+779,Nisha Bhatia 690,nisha.bhatia.690@bank.com,416300,83260.0,333040.0,Defaulted,12,3,Business Multi-sector Failure
+780,Myra Patel,myra.patel@bank.com,1895800,1895800,0,Paid,60,60,N/A
+781,David Brown 876,david.brown.876@bank.com,279200,279200,0,Paid,48,48,N/A
+782,Saanvi Iyer,saanvi.iyer@bank.com,646200,204630.0,441570.0,Defaulted,48,19,Business Multi-sector Failure
+783,Zara Nair 819,zara.nair.819@bank.com,140600,140600,0,Paid,48,48,N/A
+784,Saanvi Iyer,saanvi.iyer@bank.com,583600,259377.78,324222.22,Ongoing,36,16,N/A
+785,Myra Patel 222,myra.patel.222@bank.com,585700,585700,0,Paid,12,12,N/A
+786,Reyansh Kumar,reyansh.kumar@bank.com,1502300,1502300,0,Paid,60,60,N/A
+787,Ashley Moore 807,ashley.moore.807@bank.com,1083600,180600.0,903000.0,Ongoing,12,2,N/A
+788,James Smith 278,james.smith.278@bank.com,846500,56433.33,790066.67,Defaulted,12,1,High Debt Consolidation
+789,Michael Johnson,michael.johnson@bank.com,473400,473400,0,Paid,24,24,N/A
+790,Karan Oberoi 683,karan.oberoi.683@bank.com,15800,13605.56,2194.4400000000005,Ongoing,36,31,N/A
+791,Zara Nair,zara.nair@bank.com,473600,370986.67,102613.33000000002,Ongoing,60,47,N/A
+792,Diya Sharma 511,diya.sharma.511@bank.com,1549900,1549900,0,Paid,48,48,N/A
+793,Emily Davis 669,emily.davis.669@bank.com,339700,339700,0,Paid,60,60,N/A
+794,Rahul Mehra 915,rahul.mehra.915@bank.com,1146800,1146800,0,Paid,48,48,N/A
+795,Myra Patel 598,myra.patel.598@bank.com,1162100,1162100,0,Paid,24,24,N/A
+796,Vihaan Patel 755,vihaan.patel.755@bank.com,1330700,53228.0,1277472.0,Defaulted,60,3,High Debt Consolidation
+797,Nisha Bhatia 688,nisha.bhatia.688@bank.com,1334600,1334600,0,Paid,36,36,N/A
+798,Deepak Malhotra 553,deepak.malhotra.553@bank.com,705800,705800,0,Paid,24,24,N/A
+799,Arjun Verma,arjun.verma@bank.com,1136800,284200.0,852600.0,Ongoing,12,3,N/A
+800,Sai Reddy,sai.reddy@bank.com,1611800,483540.0,1128260.0,Defaulted,24,9,High Debt Consolidation
+801,Ishaan Nair 747,ishaan.nair.747@bank.com,322400,322400,0,Paid,60,60,N/A
+802,Rohan Sethi 383,rohan.sethi.383@bank.com,1983200,1983200,0,Paid,12,12,N/A
+803,Rohan Sethi,rohan.sethi@bank.com,1242000,386400.0,855600.0,Defaulted,36,14,Business Multi-sector Failure
+804,Amit Joshi 460,amit.joshi.460@bank.com,1361200,1361200,0,Paid,60,60,N/A
+805,David Brown 580,david.brown.580@bank.com,93300,93300,0,Paid,60,60,N/A
+806,Diya Sharma 655,diya.sharma.655@bank.com,1713600,1713600,0,Paid,48,48,N/A
+807,Krishna Murthy 294,krishna.murthy.294@bank.com,1433000,1433000,0,Paid,36,36,N/A
+808,Rohan Sethi,rohan.sethi@bank.com,1887900,1887900,0,Paid,36,36,N/A
+809,Shweta Aggarwal,shweta.aggarwal@bank.com,623100,623100,0,Paid,48,48,N/A
+810,Shanaya Kumar 725,shanaya.kumar.725@bank.com,1027400,1027400,0,Paid,12,12,N/A
+811,Reyansh Kumar,reyansh.kumar@bank.com,1201900,427342.22,774557.78,Defaulted,36,16,Unemployment / Job Loss
+812,Arjun Verma,arjun.verma@bank.com,861000,861000,0,Paid,36,36,N/A
+813,Priya Das,priya.das@bank.com,1749000,1749000,0,Paid,60,60,N/A
+814,Arjun Verma,arjun.verma@bank.com,992500,992500,0,Paid,36,36,N/A
+815,Vikram Khanna,vikram.khanna@bank.com,529000,470222.22,58777.78000000003,Ongoing,36,32,N/A
+816,Reyansh Kumar,reyansh.kumar@bank.com,714000,714000,0,Paid,60,60,N/A
+817,Michael Johnson 151,michael.johnson.151@bank.com,233600,233600,0,Paid,48,48,N/A
+818,Rohan Sethi,rohan.sethi@bank.com,929600,185920.0,743680.0,Defaulted,24,6,Medical Emergency / High Bills
+819,Shanaya Kumar,shanaya.kumar@bank.com,1569400,83701.33,1485698.67,Defaulted,60,4,High Debt Consolidation
+820,Jennifer Taylor 159,jennifer.taylor.159@bank.com,1214900,1214900,0,Paid,36,36,N/A
+821,Vihaan Patel 944,vihaan.patel.944@bank.com,1877700,1877700,0,Paid,12,12,N/A
+822,Pari Gupta,pari.gupta@bank.com,341800,341800,0,Paid,12,12,N/A
+823,Ananya Iyer 637,ananya.iyer.637@bank.com,1564800,1564800,0,Paid,24,24,N/A
+824,Vivaan Gupta,vivaan.gupta@bank.com,821700,821700,0,Paid,48,48,N/A
+825,Priya Das 452,priya.das.452@bank.com,560900,350562.5,210337.5,Ongoing,24,15,N/A
+826,Zara Nair 763,zara.nair.763@bank.com,1025000,683333.33,341666.67000000004,Ongoing,24,16,N/A
+827,David Brown 221,david.brown.221@bank.com,150300,150300,0,Paid,48,48,N/A
+828,Robert Williams 652,robert.williams.652@bank.com,571000,571000,0,Paid,12,12,N/A
+829,Robert Williams 628,robert.williams.628@bank.com,176300,176300,0,Paid,48,48,N/A
+830,Aarav Sharma,aarav.sharma@bank.com,1439500,1439500,0,Paid,48,48,N/A
+831,Priya Das 884,priya.das.884@bank.com,22200,22200,0,Paid,48,48,N/A
+832,Deepak Malhotra,deepak.malhotra@bank.com,1826800,487146.67,1339653.33,Defaulted,24,8,High Debt Consolidation
+833,Priya Das 132,priya.das.132@bank.com,30600,26350.0,4250.0,Ongoing,36,31,N/A
+834,Rohan Sethi,rohan.sethi@bank.com,974700,974700,0,Paid,12,12,N/A
+835,Vivaan Gupta,vivaan.gupta@bank.com,599600,239840.0,359760.0,Defaulted,12,6,Medical Emergency / High Bills
+836,Michael Johnson 457,michael.johnson.457@bank.com,1660900,1660900,0,Paid,36,36,N/A
+837,Saanvi Iyer,saanvi.iyer@bank.com,1551700,1551700,0,Paid,48,48,N/A
+838,Emily Davis 503,emily.davis.503@bank.com,1081700,1081700,0,Paid,36,36,N/A
+839,Vivaan Gupta 683,vivaan.gupta.683@bank.com,889700,518991.67,370708.33,Ongoing,12,7,N/A
+840,Aditya Singh,aditya.singh@bank.com,118400,71533.33,46866.67,Ongoing,48,29,N/A
+841,Priya Das,priya.das@bank.com,1673700,1673700,0,Paid,12,12,N/A
+842,Rahul Mehra,rahul.mehra@bank.com,884600,626591.67,258008.32999999996,Ongoing,48,34,N/A
+843,Michael Johnson 350,michael.johnson.350@bank.com,1035800,1035800,0,Paid,48,48,N/A
+844,Jessica Wilson 758,jessica.wilson.758@bank.com,872300,872300,0,Paid,12,12,N/A
+845,Ananya Iyer 483,ananya.iyer.483@bank.com,753200,117164.44,636035.56,Defaulted,36,7,Medical Emergency / High Bills
+846,Rohan Sethi,rohan.sethi@bank.com,30500,30500,0,Paid,12,12,N/A
+847,Sarah Miller 757,sarah.miller.757@bank.com,103900,39828.33,64071.67,Defaulted,48,23,Interest Rate Overrun
+848,Sonal Kapoor 530,sonal.kapoor.530@bank.com,1856300,1856300,0,Paid,36,36,N/A
+849,Pari Gupta 459,pari.gupta.459@bank.com,1081300,946137.5,135162.5,Ongoing,48,42,N/A
+850,Reyansh Kumar,reyansh.kumar@bank.com,326400,119680.0,206720.0,Defaulted,48,22,High Debt Consolidation
+851,Ananya Iyer,ananya.iyer@bank.com,1599600,1333000.0,266600.0,Ongoing,12,10,N/A
+852,Ashley Moore 742,ashley.moore.742@bank.com,261400,65350.0,196050.0,Ongoing,12,3,N/A
+853,Karan Oberoi,karan.oberoi@bank.com,70400,67466.67,2933.3300000000017,Ongoing,24,23,N/A
+854,Saanvi Iyer 202,saanvi.iyer.202@bank.com,50800,20320.0,30480.0,Defaulted,12,6,High Debt Consolidation
+855,Ashley Moore,ashley.moore@bank.com,761700,761700,0,Paid,12,12,N/A
+856,Sonal Kapoor 268,sonal.kapoor.268@bank.com,348300,92880.0,255420.0,Defaulted,12,4,Business Multi-sector Failure
+857,Vikram Khanna,vikram.khanna@bank.com,146700,146700,0,Paid,60,60,N/A
+858,Ashley Moore,ashley.moore@bank.com,1974700,1974700,0,Paid,36,36,N/A
+859,Anvi Singh,anvi.singh@bank.com,1124500,1124500,0,Paid,36,36,N/A
+860,Amit Joshi,amit.joshi@bank.com,1017300,1017300,0,Paid,12,12,N/A
+861,Sonal Kapoor 402,sonal.kapoor.402@bank.com,1111100,1111100,0,Paid,48,48,N/A
+862,Sonal Kapoor 138,sonal.kapoor.138@bank.com,426800,64020.0,362780.0,Defaulted,48,9,Unemployment / Job Loss
+863,Aadhya Reddy,aadhya.reddy@bank.com,1249500,166600.0,1082900.0,Defaulted,48,8,Unemployment / Job Loss
+864,Ananya Iyer,ananya.iyer@bank.com,286900,28690.0,258210.0,Defaulted,48,6,Personal/Family Crisis
+865,Rahul Mehra,rahul.mehra@bank.com,861700,861700,0,Paid,36,36,N/A
+866,Zara Nair 820,zara.nair.820@bank.com,1295700,863800.0,431900.0,Ongoing,12,8,N/A
+867,Amit Joshi 964,amit.joshi.964@bank.com,1558700,1558700,0,Paid,60,60,N/A
+868,Arjun Verma,arjun.verma@bank.com,49500,49500,0,Paid,12,12,N/A
+869,Richard Taylor,richard.taylor@bank.com,572700,572700,0,Paid,36,36,N/A
+870,Jessica Wilson 210,jessica.wilson.210@bank.com,1596300,665125.0,931175.0,Ongoing,12,5,N/A
+871,Krishna Murthy,krishna.murthy@bank.com,973000,973000,0,Paid,12,12,N/A
+872,Ananya Iyer 342,ananya.iyer.342@bank.com,201400,201400,0,Paid,24,24,N/A
+873,Rohan Sethi 729,rohan.sethi.729@bank.com,1523700,548532.0,975168.0,Defaulted,60,27,Medical Emergency / High Bills
+874,Myra Patel 847,myra.patel.847@bank.com,1289600,1289600,0,Paid,48,48,N/A
+875,Amit Joshi,amit.joshi@bank.com,288100,288100,0,Paid,24,24,N/A
+876,James Smith 686,james.smith.686@bank.com,960700,960700,0,Paid,36,36,N/A
+877,Sai Reddy 824,sai.reddy.824@bank.com,1360800,1360800,0,Paid,12,12,N/A
+878,Nisha Bhatia 199,nisha.bhatia.199@bank.com,1628500,1628500,0,Paid,12,12,N/A
+879,Ishaan Nair 790,ishaan.nair.790@bank.com,1653300,661320.0,991980.0,Defaulted,36,18,High Debt Consolidation
+880,Krishna Murthy,krishna.murthy@bank.com,1807800,502166.67,1305633.33,Ongoing,36,10,N/A
+881,Robert Williams 458,robert.williams.458@bank.com,68000,68000,0,Paid,48,48,N/A
+882,Robert Williams 540,robert.williams.540@bank.com,1551600,1551600,0,Paid,36,36,N/A
+883,Vihaan Patel 797,vihaan.patel.797@bank.com,1787200,1563800.0,223400.0,Ongoing,24,21,N/A
+884,Robert Williams,robert.williams@bank.com,1089700,158914.58,930785.42,Ongoing,48,7,N/A
+885,Karan Oberoi 852,karan.oberoi.852@bank.com,1887900,1887900,0,Paid,12,12,N/A
+886,Sarah Miller 471,sarah.miller.471@bank.com,166900,166900,0,Paid,36,36,N/A
+887,Aarav Sharma 645,aarav.sharma.645@bank.com,1180100,1180100,0,Paid,24,24,N/A
+888,Priya Das,priya.das@bank.com,363600,363600,0,Paid,48,48,N/A
+889,Inaya Murthy,inaya.murthy@bank.com,1808000,1808000,0,Paid,36,36,N/A
+890,Shanaya Kumar 172,shanaya.kumar.172@bank.com,1582500,1582500,0,Paid,60,60,N/A
+891,Rohan Sethi,rohan.sethi@bank.com,32500,32500,0,Paid,48,48,N/A
+892,Rohan Sethi 541,rohan.sethi.541@bank.com,1559300,1559300,0,Paid,60,60,N/A
+893,Myra Patel,myra.patel@bank.com,827400,827400,0,Paid,12,12,N/A
+894,Priya Das 860,priya.das.860@bank.com,583300,583300,0,Paid,48,48,N/A
+895,Diya Sharma 500,diya.sharma.500@bank.com,1747100,1747100,0,Paid,12,12,N/A
+896,Reyansh Kumar 447,reyansh.kumar.447@bank.com,50200,50200,0,Paid,12,12,N/A
+897,Diya Sharma 335,diya.sharma.335@bank.com,1183100,1183100,0,Paid,60,60,N/A
+898,Pari Gupta 207,pari.gupta.207@bank.com,852800,852800,0,Paid,12,12,N/A
+899,Deepak Malhotra 708,deepak.malhotra.708@bank.com,246400,32853.33,213546.66999999998,Defaulted,12,2,Interest Rate Overrun
+900,Shanaya Kumar,shanaya.kumar@bank.com,479300,119825.0,359475.0,Ongoing,12,3,N/A
+901,Diya Sharma 492,diya.sharma.492@bank.com,1488300,1488300,0,Paid,48,48,N/A
+902,Sarah Miller 913,sarah.miller.913@bank.com,1211000,1211000,0,Paid,60,60,N/A
+903,Jessica Wilson,jessica.wilson@bank.com,1776600,1776600,0,Paid,36,36,N/A
+904,Arjun Verma 265,arjun.verma.265@bank.com,180200,180200,0,Paid,36,36,N/A
+905,Pari Gupta 394,pari.gupta.394@bank.com,221600,221600,0,Paid,48,48,N/A
+906,James Smith 933,james.smith.933@bank.com,525300,525300,0,Paid,48,48,N/A
+907,Deepak Malhotra 834,deepak.malhotra.834@bank.com,107400,107400,0,Paid,36,36,N/A
+908,Robert Williams 917,robert.williams.917@bank.com,498400,498400,0,Paid,48,48,N/A
+909,Ishaan Nair,ishaan.nair@bank.com,514300,514300,0,Paid,48,48,N/A
+910,Jessica Wilson,jessica.wilson@bank.com,238100,238100,0,Paid,48,48,N/A
+911,Saanvi Iyer,saanvi.iyer@bank.com,466800,466800,0,Paid,36,36,N/A
+912,Jessica Wilson,jessica.wilson@bank.com,614900,614900,0,Paid,12,12,N/A
+913,Aditya Singh 868,aditya.singh.868@bank.com,1176400,718911.11,457488.89,Ongoing,36,22,N/A
+914,Rahul Mehra,rahul.mehra@bank.com,1474800,1474800,0,Paid,36,36,N/A
+915,Sarah Miller 103,sarah.miller.103@bank.com,178900,31804.44,147095.56,Defaulted,36,8,Unemployment / Job Loss
+916,Jessica Wilson,jessica.wilson@bank.com,351400,351400,0,Paid,48,48,N/A
+917,Aditya Singh 101,aditya.singh.101@bank.com,553700,369133.33,184566.66999999998,Ongoing,36,24,N/A
+918,Amit Joshi,amit.joshi@bank.com,495600,495600,0,Paid,24,24,N/A
+919,Rohan Sethi 643,rohan.sethi.643@bank.com,981500,981500,0,Paid,24,24,N/A
+920,Saanvi Iyer 508,saanvi.iyer.508@bank.com,276600,276600,0,Paid,12,12,N/A
+921,Richard Taylor 399,richard.taylor.399@bank.com,536300,185917.33,350382.67000000004,Defaulted,60,26,Unemployment / Job Loss
+922,Vikram Khanna,vikram.khanna@bank.com,70500,3916.67,66583.33,Ongoing,36,2,N/A
+923,Aarav Sharma 383,aarav.sharma.383@bank.com,1955600,814833.33,1140766.67,Ongoing,36,15,N/A
+924,Ananya Iyer,ananya.iyer@bank.com,1632600,1632600,0,Paid,60,60,N/A
+925,Shanaya Kumar 956,shanaya.kumar.956@bank.com,841600,140266.67,701333.33,Defaulted,24,5,Personal/Family Crisis
+926,Vikram Khanna 226,vikram.khanna.226@bank.com,588200,147050.0,441150.0,Ongoing,12,3,N/A
+927,Anvi Singh 601,anvi.singh.601@bank.com,734400,65280.0,669120.0,Defaulted,36,4,Personal/Family Crisis
+928,Ashley Moore 657,ashley.moore.657@bank.com,1776400,370083.33,1406316.67,Ongoing,24,5,N/A
+929,James Smith 441,james.smith.441@bank.com,485100,485100,0,Paid,60,60,N/A
+930,Diya Sharma,diya.sharma@bank.com,112500,112500,0,Paid,12,12,N/A
+931,Myra Patel,myra.patel@bank.com,1169300,1130323.33,38976.669999999925,Ongoing,60,58,N/A
+932,Jessica Wilson 923,jessica.wilson.923@bank.com,1822300,1822300,0,Paid,60,60,N/A
+933,Shanaya Kumar,shanaya.kumar@bank.com,1590800,1590800,0,Paid,24,24,N/A
+934,Arjun Verma 293,arjun.verma.293@bank.com,120300,112280.0,8020.0,Ongoing,60,56,N/A
+935,James Smith 467,james.smith.467@bank.com,1654700,1654700,0,Paid,24,24,N/A
+936,Ananya Iyer 820,ananya.iyer.820@bank.com,804400,804400,0,Paid,24,24,N/A
+937,Deepak Malhotra 699,deepak.malhotra.699@bank.com,166700,22226.67,144473.33000000002,Defaulted,12,2,Medical Emergency / High Bills
+938,Priya Das 696,priya.das.696@bank.com,1271300,1271300,0,Paid,48,48,N/A
+939,Ishaan Nair 181,ishaan.nair.181@bank.com,1260200,1260200,0,Paid,12,12,N/A
+940,Aditya Singh 305,aditya.singh.305@bank.com,1200400,675225.0,525175.0,Ongoing,48,27,N/A
+941,Aarav Sharma 646,aarav.sharma.646@bank.com,1248400,1248400,0,Paid,12,12,N/A
+942,Emily Davis,emily.davis@bank.com,705200,705200,0,Paid,60,60,N/A
+943,Shanaya Kumar,shanaya.kumar@bank.com,294500,294500,0,Paid,36,36,N/A
+944,Jennifer Taylor 435,jennifer.taylor.435@bank.com,1866600,1866600,0,Paid,12,12,N/A
+945,Krishna Murthy 268,krishna.murthy.268@bank.com,1224300,1224300,0,Paid,48,48,N/A
+946,Saanvi Iyer,saanvi.iyer@bank.com,490400,490400,0,Paid,24,24,N/A
+947,Anvi Singh 285,anvi.singh.285@bank.com,1495100,1495100,0,Paid,24,24,N/A
+948,Aadhya Reddy,aadhya.reddy@bank.com,1399500,1399500,0,Paid,12,12,N/A
+949,Emily Davis 891,emily.davis.891@bank.com,1884900,1570750.0,314150.0,Ongoing,12,10,N/A
+950,Sai Reddy,sai.reddy@bank.com,1103100,1103100,0,Paid,48,48,N/A
+951,Richard Taylor 681,richard.taylor.681@bank.com,1975700,65856.67,1909843.33,Defaulted,24,1,Interest Rate Overrun
+952,Rahul Mehra 888,rahul.mehra.888@bank.com,1491700,1491700,0,Paid,24,24,N/A
+953,Jennifer Taylor,jennifer.taylor@bank.com,656800,656800,0,Paid,48,48,N/A
+954,Ananya Iyer,ananya.iyer@bank.com,1156700,1156700,0,Paid,60,60,N/A
+955,Inaya Murthy,inaya.murthy@bank.com,1690600,704416.67,986183.33,Ongoing,12,5,N/A
+956,Aarav Sharma,aarav.sharma@bank.com,1874000,1874000,0,Paid,60,60,N/A
+957,Shweta Aggarwal 232,shweta.aggarwal.232@bank.com,901600,160284.44,741315.56,Defaulted,36,8,Personal/Family Crisis
+958,Saanvi Iyer 280,saanvi.iyer.280@bank.com,910900,910900,0,Paid,36,36,N/A
+959,James Smith 307,james.smith.307@bank.com,65000,65000,0,Paid,60,60,N/A
+960,Saanvi Iyer 673,saanvi.iyer.673@bank.com,1318900,1318900,0,Paid,24,24,N/A
+961,Reyansh Kumar 331,reyansh.kumar.331@bank.com,1359800,1359800,0,Paid,60,60,N/A
+962,Emily Davis 555,emily.davis.555@bank.com,1537200,1537200,0,Paid,24,24,N/A
+963,Aditya Singh 171,aditya.singh.171@bank.com,1839500,1839500,0,Paid,60,60,N/A
+964,Rahul Mehra,rahul.mehra@bank.com,606200,606200,0,Paid,24,24,N/A
+965,Vikram Khanna 731,vikram.khanna.731@bank.com,1298600,1298600,0,Paid,24,24,N/A
+966,Arjun Verma 247,arjun.verma.247@bank.com,806800,53786.67,753013.33,Ongoing,60,4,N/A
+967,Rahul Mehra 587,rahul.mehra.587@bank.com,845100,845100,0,Paid,60,60,N/A
+968,Reyansh Kumar 175,reyansh.kumar.175@bank.com,361200,361200,0,Paid,36,36,N/A
+969,Arjun Verma 298,arjun.verma.298@bank.com,1069600,1069600,0,Paid,36,36,N/A
+970,Jennifer Taylor 308,jennifer.taylor.308@bank.com,385000,385000,0,Paid,36,36,N/A
+971,Arjun Verma,arjun.verma@bank.com,1687400,674960.0,1012440.0,Defaulted,48,24,Medical Emergency / High Bills
+972,Pari Gupta 602,pari.gupta.602@bank.com,881500,881500,0,Paid,12,12,N/A
+973,Arjun Verma,arjun.verma@bank.com,700400,700400,0,Paid,48,48,N/A
+974,Amit Joshi,amit.joshi@bank.com,213000,79875.0,133125.0,Ongoing,24,9,N/A
+975,Priya Das,priya.das@bank.com,182500,182500,0,Paid,12,12,N/A
+976,David Brown 553,david.brown.553@bank.com,1114700,1114700,0,Paid,36,36,N/A
+977,Anvi Singh 931,anvi.singh.931@bank.com,695600,695600,0,Paid,12,12,N/A
+978,Michael Johnson,michael.johnson@bank.com,1607600,71448.89,1536151.11,Defaulted,36,2,Medical Emergency / High Bills
+979,Anvi Singh 230,anvi.singh.230@bank.com,1283000,1283000,0,Paid,60,60,N/A
+980,Rahul Mehra,rahul.mehra@bank.com,1540500,1540500,0,Paid,48,48,N/A
+981,Rahul Mehra,rahul.mehra@bank.com,269300,269300,0,Paid,36,36,N/A
+982,Vihaan Patel,vihaan.patel@bank.com,75500,75500,0,Paid,60,60,N/A
+983,Pari Gupta 819,pari.gupta.819@bank.com,1005500,188531.25,816968.75,Ongoing,48,9,N/A
+984,Michael Johnson,michael.johnson@bank.com,1713600,114240.0,1599360.0,Defaulted,36,3,Unemployment / Job Loss
+985,Zara Nair,zara.nair@bank.com,212600,212600,0,Paid,12,12,N/A
+986,Ashley Moore,ashley.moore@bank.com,1288200,1288200,0,Paid,36,36,N/A
+987,Myra Patel 285,myra.patel.285@bank.com,1107500,1107500,0,Paid,36,36,N/A
+988,Reyansh Kumar 146,reyansh.kumar.146@bank.com,1386600,499176.0,887424.0,Defaulted,60,27,Medical Emergency / High Bills
+989,Vivaan Gupta 182,vivaan.gupta.182@bank.com,690400,690400,0,Paid,48,48,N/A
+990,David Brown,david.brown@bank.com,1381700,1381700,0,Paid,48,48,N/A
+991,Aaryan Iyer 767,aaryan.iyer.767@bank.com,555400,555400,0,Paid,24,24,N/A
+992,Rahul Mehra 906,rahul.mehra.906@bank.com,712700,665186.67,47513.32999999996,Ongoing,60,56,N/A
+993,Shweta Aggarwal 177,shweta.aggarwal.177@bank.com,18600,13950.0,4650.0,Ongoing,12,9,N/A
+994,Priya Das 967,priya.das.967@bank.com,1430500,1281489.58,149010.41999999993,Ongoing,48,43,N/A
+995,Reyansh Kumar,reyansh.kumar@bank.com,1536100,1203278.33,332821.6699999999,Ongoing,60,47,N/A
+996,Richard Taylor 712,richard.taylor.712@bank.com,1618500,1213875.0,404625.0,Ongoing,48,36,N/A
+997,Pari Gupta 833,pari.gupta.833@bank.com,1757400,1757400,0,Paid,36,36,N/A
+998,Vikram Khanna,vikram.khanna@bank.com,1876300,667128.89,1209171.1099999999,Defaulted,36,16,Unemployment / Job Loss
+999,Rohan Sethi,rohan.sethi@bank.com,744500,744500,0,Paid,24,24,N/A
+1000,Shanaya Kumar 264,shanaya.kumar.264@bank.com,1687100,1687100,0,Paid,48,48,N/A
+1001,Vivaan Gupta,vivaan.gupta@bank.com,1952400,732150.0,1220250.0,Ongoing,48,18,N/A
+1002,Shweta Aggarwal 907,shweta.aggarwal.907@bank.com,825200,220053.33,605146.67,Defaulted,36,12,Medical Emergency / High Bills
+1003,Ananya Iyer 767,ananya.iyer.767@bank.com,600400,600400,0,Paid,24,24,N/A
+1004,Ashley Moore,ashley.moore@bank.com,20700,20700,0,Paid,60,60,N/A
+1005,James Smith 970,james.smith.970@bank.com,224400,224400,0,Paid,12,12,N/A
+1006,Aarav Sharma,aarav.sharma@bank.com,846700,846700,0,Paid,12,12,N/A
+1007,Aarav Sharma,aarav.sharma@bank.com,1452100,1452100,0,Paid,24,24,N/A
+1008,Diya Sharma 817,diya.sharma.817@bank.com,1268600,1268600,0,Paid,24,24,N/A
+1009,Krishna Murthy,krishna.murthy@bank.com,1751800,1751800,0,Paid,12,12,N/A
+1010,Rohan Sethi,rohan.sethi@bank.com,1761100,1100687.5,660412.5,Ongoing,48,30,N/A
+1011,Sonal Kapoor,sonal.kapoor@bank.com,1508400,1508400,0,Paid,60,60,N/A
+1012,Robert Williams 137,robert.williams.137@bank.com,1353200,1353200,0,Paid,48,48,N/A
+1013,Vikram Khanna 506,vikram.khanna.506@bank.com,322100,75156.67,246943.33000000002,Defaulted,48,14,High Debt Consolidation
+1014,Jessica Wilson,jessica.wilson@bank.com,381800,67875.56,313924.44,Defaulted,36,8,Interest Rate Overrun
+1015,Anvi Singh 639,anvi.singh.639@bank.com,168800,9002.67,159797.33,Defaulted,60,4,High Debt Consolidation
+1016,Robert Williams 980,robert.williams.980@bank.com,1635000,1635000,0,Paid,12,12,N/A
+1017,Saanvi Iyer,saanvi.iyer@bank.com,1108800,184800.0,924000.0,Defaulted,24,5,Business Multi-sector Failure
+1018,Amit Joshi,amit.joshi@bank.com,765200,765200,0,Paid,48,48,N/A
+1019,Pari Gupta 829,pari.gupta.829@bank.com,1039700,1039700,0,Paid,48,48,N/A
+1020,Vikram Khanna 767,vikram.khanna.767@bank.com,1532900,1532900,0,Paid,48,48,N/A
+1021,Arjun Verma 949,arjun.verma.949@bank.com,259700,259700,0,Paid,60,60,N/A
+1022,Inaya Murthy 368,inaya.murthy.368@bank.com,1944600,1944600,0,Paid,60,60,N/A
+1023,Sai Reddy,sai.reddy@bank.com,608800,608800,0,Paid,60,60,N/A
+1024,Reyansh Kumar 159,reyansh.kumar.159@bank.com,1911100,1911100,0,Paid,24,24,N/A
+1025,Diya Sharma 950,diya.sharma.950@bank.com,521100,182385.0,338715.0,Ongoing,60,21,N/A
+1026,Deepak Malhotra,deepak.malhotra@bank.com,367800,291175.0,76625.0,Ongoing,48,38,N/A
+1027,Zara Nair 287,zara.nair.287@bank.com,1991700,1991700,0,Paid,36,36,N/A
+1028,Karan Oberoi,karan.oberoi@bank.com,373600,373600,0,Paid,12,12,N/A
+1029,James Smith 675,james.smith.675@bank.com,373100,373100,0,Paid,24,24,N/A
+1030,Sai Reddy 294,sai.reddy.294@bank.com,464400,464400,0,Paid,36,36,N/A
+1031,Reyansh Kumar,reyansh.kumar@bank.com,1994000,1994000,0,Paid,36,36,N/A
+1032,Arjun Verma 841,arjun.verma.841@bank.com,1229000,1229000,0,Paid,36,36,N/A
+1033,Aaryan Iyer 177,aaryan.iyer.177@bank.com,1152600,1152600,0,Paid,36,36,N/A
+1034,Deepak Malhotra,deepak.malhotra@bank.com,1122500,1122500,0,Paid,48,48,N/A
+1035,Rahul Mehra 132,rahul.mehra.132@bank.com,31100,31100,0,Paid,36,36,N/A
+1036,Sarah Miller 576,sarah.miller.576@bank.com,487900,487900,0,Paid,36,36,N/A
+1037,Shanaya Kumar 617,shanaya.kumar.617@bank.com,750300,750300,0,Paid,12,12,N/A
+1038,Vihaan Patel 439,vihaan.patel.439@bank.com,419500,419500,0,Paid,24,24,N/A
+1039,Sarah Miller 653,sarah.miller.653@bank.com,1642800,1300550.0,342250.0,Ongoing,48,38,N/A
+1040,Shweta Aggarwal,shweta.aggarwal@bank.com,999000,999000,0,Paid,36,36,N/A
+1041,Vihaan Patel 930,vihaan.patel.930@bank.com,828400,202497.78,625902.22,Defaulted,36,11,High Debt Consolidation
+1042,Anvi Singh,anvi.singh@bank.com,266500,266500,0,Paid,48,48,N/A
+1043,Richard Taylor,richard.taylor@bank.com,1543100,1543100,0,Paid,48,48,N/A
+1044,Ishaan Nair 769,ishaan.nair.769@bank.com,1953300,1953300,0,Paid,60,60,N/A
+1045,Aadhya Reddy 838,aadhya.reddy.838@bank.com,37200,37200,0,Paid,36,36,N/A
+1046,David Brown 722,david.brown.722@bank.com,276000,276000,0,Paid,48,48,N/A
+1047,Rohan Sethi,rohan.sethi@bank.com,599500,289758.33,309741.67,Ongoing,60,29,N/A
+1048,Emily Davis 103,emily.davis.103@bank.com,854400,341760.0,512640.0,Defaulted,24,12,High Debt Consolidation
+1049,Myra Patel,myra.patel@bank.com,1489300,119144.0,1370156.0,Defaulted,60,6,Business Multi-sector Failure
+1050,Karan Oberoi 316,karan.oberoi.316@bank.com,1286700,643350.0,643350.0,Ongoing,36,18,N/A
+1051,James Smith,james.smith@bank.com,1222700,489080.0,733620.0,Defaulted,12,6,Unemployment / Job Loss
+1052,Ashley Moore,ashley.moore@bank.com,1634600,1634600,0,Paid,24,24,N/A
+1053,Vihaan Patel,vihaan.patel@bank.com,1968900,1968900,0,Paid,24,24,N/A
+1054,Rahul Mehra 885,rahul.mehra.885@bank.com,1730400,1730400,0,Paid,36,36,N/A
+1055,Aaryan Iyer 362,aaryan.iyer.362@bank.com,751000,751000,0,Paid,12,12,N/A
+1056,Shanaya Kumar 717,shanaya.kumar.717@bank.com,633800,169013.33,464786.67000000004,Defaulted,24,8,High Debt Consolidation
+1057,Deepak Malhotra,deepak.malhotra@bank.com,878500,878500,0,Paid,24,24,N/A
+1058,Shanaya Kumar 789,shanaya.kumar.789@bank.com,895500,895500,0,Paid,24,24,N/A
+1059,Rohan Sethi,rohan.sethi@bank.com,1671700,1671700,0,Paid,36,36,N/A
+1060,Anvi Singh 651,anvi.singh.651@bank.com,118700,118700,0,Paid,36,36,N/A
+1061,Reyansh Kumar 988,reyansh.kumar.988@bank.com,642700,80337.5,562362.5,Ongoing,24,3,N/A
+1062,Inaya Murthy,inaya.murthy@bank.com,1579600,1579600,0,Paid,36,36,N/A
+1063,Aarav Sharma 791,aarav.sharma.791@bank.com,1255600,1255600,0,Paid,24,24,N/A
+1064,Michael Johnson,michael.johnson@bank.com,446300,446300,0,Paid,36,36,N/A
+1065,Richard Taylor,richard.taylor@bank.com,456100,209045.83,247054.17,Ongoing,24,11,N/A
+1066,Zara Nair,zara.nair@bank.com,1850300,308383.33,1541916.67,Defaulted,24,5,Unemployment / Job Loss
+1067,Aditya Singh 167,aditya.singh.167@bank.com,467500,467500,0,Paid,36,36,N/A
+1068,Rahul Mehra 458,rahul.mehra.458@bank.com,1431400,1431400,0,Paid,24,24,N/A
+1069,Nisha Bhatia,nisha.bhatia@bank.com,1504500,50150.0,1454350.0,Ongoing,60,2,N/A
+1070,Arjun Verma 820,arjun.verma.820@bank.com,1921600,640533.33,1281066.67,Ongoing,12,4,N/A
+1071,David Brown 605,david.brown.605@bank.com,341800,56966.67,284833.33,Defaulted,48,10,Interest Rate Overrun
+1072,Sonal Kapoor 992,sonal.kapoor.992@bank.com,245600,245600,0,Paid,60,60,N/A
+1073,Karan Oberoi 159,karan.oberoi.159@bank.com,1162400,1162400,0,Paid,12,12,N/A
+1074,Rohan Sethi 183,rohan.sethi.183@bank.com,1527600,1527600,0,Paid,24,24,N/A
+1075,Zara Nair 108,zara.nair.108@bank.com,1094300,1094300,0,Paid,60,60,N/A
+1076,Zara Nair,zara.nair@bank.com,1530200,1530200,0,Paid,12,12,N/A
+1077,Jessica Wilson 248,jessica.wilson.248@bank.com,1525500,1525500,0,Paid,36,36,N/A
+1078,Jessica Wilson,jessica.wilson@bank.com,711300,711300,0,Paid,12,12,N/A
+1079,Myra Patel 952,myra.patel.952@bank.com,1182600,1182600,0,Paid,36,36,N/A
+1080,Aadhya Reddy,aadhya.reddy@bank.com,646800,35933.33,610866.67,Ongoing,36,2,N/A
+1081,Aaryan Iyer,aaryan.iyer@bank.com,1217300,1217300,0,Paid,60,60,N/A
+1082,James Smith,james.smith@bank.com,1331200,1331200,0,Paid,36,36,N/A
+1083,Aaryan Iyer,aaryan.iyer@bank.com,1819900,1819900,0,Paid,24,24,N/A
+1084,Sarah Miller,sarah.miller@bank.com,1222300,1222300,0,Paid,36,36,N/A
+1085,Shanaya Kumar 462,shanaya.kumar.462@bank.com,1472100,1472100,0,Paid,36,36,N/A
+1086,Priya Das,priya.das@bank.com,1452000,1452000,0,Paid,24,24,N/A
+1087,Shweta Aggarwal 393,shweta.aggarwal.393@bank.com,1243400,1243400,0,Paid,48,48,N/A
+1088,Robert Williams 565,robert.williams.565@bank.com,1348600,1348600,0,Paid,36,36,N/A
+1089,Sonal Kapoor 241,sonal.kapoor.241@bank.com,1286400,1286400,0,Paid,36,36,N/A
+1090,Jessica Wilson 858,jessica.wilson.858@bank.com,708400,708400,0,Paid,12,12,N/A
+1091,Pari Gupta 498,pari.gupta.498@bank.com,1640800,1640800,0,Paid,24,24,N/A
+1092,Aarav Sharma 397,aarav.sharma.397@bank.com,340700,340700,0,Paid,48,48,N/A
+1093,Diya Sharma,diya.sharma@bank.com,1245200,1245200,0,Paid,12,12,N/A
+1094,Jennifer Taylor 554,jennifer.taylor.554@bank.com,1314500,1040645.83,273854.17000000004,Ongoing,48,38,N/A
+1095,Myra Patel,myra.patel@bank.com,158100,158100,0,Paid,48,48,N/A
+1096,Emily Davis 683,emily.davis.683@bank.com,1141700,1141700,0,Paid,48,48,N/A
+1097,Michael Johnson 565,michael.johnson.565@bank.com,1244100,1244100,0,Paid,12,12,N/A
+1098,Sonal Kapoor 827,sonal.kapoor.827@bank.com,1989200,1989200,0,Paid,24,24,N/A
+1099,Shanaya Kumar 629,shanaya.kumar.629@bank.com,1656300,1656300,0,Paid,36,36,N/A
+1100,Emily Davis 533,emily.davis.533@bank.com,106900,106900,0,Paid,24,24,N/A
+1101,Nisha Bhatia 949,nisha.bhatia.949@bank.com,219100,219100,0,Paid,24,24,N/A
+1102,Karan Oberoi 979,karan.oberoi.979@bank.com,1519500,455850.0,1063650.0,Defaulted,48,18,Unemployment / Job Loss
+1103,Vihaan Patel,vihaan.patel@bank.com,1575700,1575700,0,Paid,48,48,N/A
+1104,Myra Patel 995,myra.patel.995@bank.com,1499500,1499500,0,Paid,24,24,N/A
+1105,Saanvi Iyer 266,saanvi.iyer.266@bank.com,1226800,1226800,0,Paid,24,24,N/A
+1106,Richard Taylor 593,richard.taylor.593@bank.com,770100,770100,0,Paid,24,24,N/A
+1107,Karan Oberoi 600,karan.oberoi.600@bank.com,1151900,883123.33,268776.67000000004,Ongoing,60,46,N/A
+1108,Emily Davis 891,emily.davis.891@bank.com,1199600,453182.22,746417.78,Defaulted,36,17,High Debt Consolidation
+1109,Emily Davis 178,emily.davis.178@bank.com,1432400,1432400,0,Paid,24,24,N/A
+1110,Richard Taylor,richard.taylor@bank.com,825300,247590.0,577710.0,Defaulted,24,9,Medical Emergency / High Bills
+1111,Ashley Moore 517,ashley.moore.517@bank.com,918700,918700,0,Paid,60,60,N/A
+1112,Sarah Miller,sarah.miller@bank.com,1892800,1892800,0,Paid,60,60,N/A
+1113,James Smith 471,james.smith.471@bank.com,371700,371700,0,Paid,36,36,N/A
+1114,Sonal Kapoor 120,sonal.kapoor.120@bank.com,1499400,1499400,0,Paid,36,36,N/A
+1115,Karan Oberoi,karan.oberoi@bank.com,425600,425600,0,Paid,36,36,N/A
+1116,Aarav Sharma 383,aarav.sharma.383@bank.com,168100,168100,0,Paid,60,60,N/A
+1117,Shweta Aggarwal 480,shweta.aggarwal.480@bank.com,1039900,1039900,0,Paid,36,36,N/A
+1118,David Brown 726,david.brown.726@bank.com,150500,150500,0,Paid,24,24,N/A
+1119,Ishaan Nair 861,ishaan.nair.861@bank.com,929900,929900,0,Paid,36,36,N/A
+1120,Inaya Murthy 726,inaya.murthy.726@bank.com,293000,122083.33,170916.66999999998,Ongoing,12,5,N/A
+1121,David Brown,david.brown@bank.com,61600,61600,0,Paid,36,36,N/A
+1122,Diya Sharma 338,diya.sharma.338@bank.com,1692500,1128333.33,564166.6699999999,Ongoing,24,16,N/A
+1123,Aditya Singh,aditya.singh@bank.com,1087500,1087500,0,Paid,60,60,N/A
+1124,Aditya Singh,aditya.singh@bank.com,244700,244700,0,Paid,24,24,N/A
+1125,Jessica Wilson 974,jessica.wilson.974@bank.com,1401100,140110.0,1260990.0,Defaulted,24,3,Personal/Family Crisis
+1126,Aadhya Reddy 618,aadhya.reddy.618@bank.com,1787500,1787500,0,Paid,12,12,N/A
+1127,Ishaan Nair 366,ishaan.nair.366@bank.com,1315200,1315200,0,Paid,60,60,N/A
+1128,Aarav Sharma,aarav.sharma@bank.com,812500,812500,0,Paid,36,36,N/A
+1129,Jessica Wilson 298,jessica.wilson.298@bank.com,1047100,1047100,0,Paid,24,24,N/A
+1130,Myra Patel 881,myra.patel.881@bank.com,313900,313900,0,Paid,24,24,N/A
+1131,Ananya Iyer,ananya.iyer@bank.com,1418900,94593.33,1324306.67,Defaulted,24,2,Personal/Family Crisis
+1132,Aadhya Reddy 410,aadhya.reddy.410@bank.com,1977200,1977200,0,Paid,36,36,N/A
+1133,Jessica Wilson,jessica.wilson@bank.com,154600,154600,0,Paid,60,60,N/A
+1134,Amit Joshi,amit.joshi@bank.com,27500,6600.0,20900.0,Defaulted,60,18,Medical Emergency / High Bills
+1135,Robert Williams 212,robert.williams.212@bank.com,865900,865900,0,Paid,12,12,N/A
+1136,Vihaan Patel,vihaan.patel@bank.com,1152700,409848.89,742851.11,Defaulted,36,16,High Debt Consolidation
+1137,Pari Gupta 364,pari.gupta.364@bank.com,1866000,1866000,0,Paid,24,24,N/A
+1138,Karan Oberoi,karan.oberoi@bank.com,970400,970400,0,Paid,48,48,N/A
+1139,Krishna Murthy,krishna.murthy@bank.com,1223900,326373.33,897526.6699999999,Defaulted,12,4,High Debt Consolidation
+1140,Rahul Mehra 650,rahul.mehra.650@bank.com,1550700,1550700,0,Paid,24,24,N/A
+1141,Vikram Khanna,vikram.khanna@bank.com,607600,64810.67,542789.33,Defaulted,60,8,Interest Rate Overrun
+1142,Nisha Bhatia 600,nisha.bhatia.600@bank.com,1791300,1791300,0,Paid,60,60,N/A
+1143,Anvi Singh 291,anvi.singh.291@bank.com,1613200,1613200,0,Paid,36,36,N/A
+1144,James Smith 909,james.smith.909@bank.com,417700,167080.0,250620.0,Defaulted,36,18,Unemployment / Job Loss
+1145,Amit Joshi,amit.joshi@bank.com,1982300,1982300,0,Paid,24,24,N/A
+1146,Ishaan Nair,ishaan.nair@bank.com,1608700,1608700,0,Paid,24,24,N/A
+1147,Diya Sharma,diya.sharma@bank.com,1947300,1947300,0,Paid,36,36,N/A
+1148,Shweta Aggarwal 214,shweta.aggarwal.214@bank.com,51100,51100,0,Paid,48,48,N/A
+1149,Ashley Moore,ashley.moore@bank.com,1839600,1686300.0,153300.0,Ongoing,24,22,N/A
+1150,Rohan Sethi,rohan.sethi@bank.com,195300,195300,0,Paid,12,12,N/A
+1151,Arjun Verma 470,arjun.verma.470@bank.com,1122700,1122700,0,Paid,36,36,N/A
+1152,Aditya Singh 602,aditya.singh.602@bank.com,1654000,1654000,0,Paid,12,12,N/A
+1153,Rohan Sethi,rohan.sethi@bank.com,134700,89800.0,44900.0,Ongoing,12,8,N/A
+1154,Sai Reddy 476,sai.reddy.476@bank.com,384400,25626.67,358773.33,Defaulted,12,1,Business Multi-sector Failure
+1155,Krishna Murthy 880,krishna.murthy.880@bank.com,545900,545900,0,Paid,60,60,N/A
+1156,Jessica Wilson,jessica.wilson@bank.com,20900,20900,0,Paid,12,12,N/A
+1157,Ishaan Nair 401,ishaan.nair.401@bank.com,713200,713200,0,Paid,36,36,N/A
+1158,Priya Das,priya.das@bank.com,147400,147400,0,Paid,24,24,N/A
+1159,Deepak Malhotra 391,deepak.malhotra.391@bank.com,830800,761566.67,69233.32999999996,Ongoing,12,11,N/A
+1160,Deepak Malhotra,deepak.malhotra@bank.com,890700,890700,0,Paid,12,12,N/A
+1161,Saanvi Iyer,saanvi.iyer@bank.com,1340100,1340100,0,Paid,60,60,N/A
+1162,Shanaya Kumar,shanaya.kumar@bank.com,1149700,210778.33,938921.67,Defaulted,48,11,Personal/Family Crisis
+1163,Saanvi Iyer 833,saanvi.iyer.833@bank.com,1323700,1323700,0,Paid,24,24,N/A
+1164,Jessica Wilson 895,jessica.wilson.895@bank.com,1511100,1511100,0,Paid,60,60,N/A
+1165,Ananya Iyer,ananya.iyer@bank.com,1269600,507840.0,761760.0,Defaulted,36,18,Medical Emergency / High Bills
+1166,David Brown,david.brown@bank.com,771400,771400,0,Paid,36,36,N/A
+1167,Inaya Murthy 563,inaya.murthy.563@bank.com,1091000,1091000,0,Paid,24,24,N/A
+1168,David Brown,david.brown@bank.com,323800,323800,0,Paid,24,24,N/A
+1169,Amit Joshi,amit.joshi@bank.com,1224900,1224900,0,Paid,60,60,N/A
+1170,Robert Williams,robert.williams@bank.com,851700,851700,0,Paid,60,60,N/A
+1171,Deepak Malhotra 587,deepak.malhotra.587@bank.com,1447700,1447700,0,Paid,60,60,N/A
+1172,Sai Reddy,sai.reddy@bank.com,758400,758400,0,Paid,24,24,N/A
+1173,Saanvi Iyer 407,saanvi.iyer.407@bank.com,553100,525445.0,27655.0,Ongoing,60,57,N/A
+1174,Aaryan Iyer,aaryan.iyer@bank.com,1224700,489880.0,734820.0,Defaulted,12,6,Business Multi-sector Failure
+1175,Deepak Malhotra,deepak.malhotra@bank.com,1247600,1247600,0,Paid,36,36,N/A
+1176,Ananya Iyer 733,ananya.iyer.733@bank.com,1595000,1196250.0,398750.0,Ongoing,48,36,N/A
+1177,Vihaan Patel,vihaan.patel@bank.com,1169800,1169800,0,Paid,24,24,N/A
+1178,Myra Patel 653,myra.patel.653@bank.com,1844000,1844000,0,Paid,48,48,N/A
+1179,Rohan Sethi 632,rohan.sethi.632@bank.com,1234100,1234100,0,Paid,36,36,N/A
+1180,Zara Nair 744,zara.nair.744@bank.com,1275300,1275300,0,Paid,24,24,N/A
+1181,Reyansh Kumar 593,reyansh.kumar.593@bank.com,553700,553700,0,Paid,60,60,N/A
+1182,Jennifer Taylor 142,jennifer.taylor.142@bank.com,813800,203450.0,610350.0,Ongoing,36,9,N/A
+1183,Sai Reddy,sai.reddy@bank.com,57500,57500,0,Paid,12,12,N/A
+1184,Krishna Murthy,krishna.murthy@bank.com,1212600,1212600,0,Paid,24,24,N/A
+1185,Zara Nair,zara.nair@bank.com,1772300,1772300,0,Paid,48,48,N/A
+1186,Aditya Singh,aditya.singh@bank.com,1386600,1386600,0,Paid,60,60,N/A
+1187,Vihaan Patel,vihaan.patel@bank.com,1679800,1679800,0,Paid,12,12,N/A
+1188,Karan Oberoi 391,karan.oberoi.391@bank.com,1488000,496000.0,992000.0,Defaulted,12,5,High Debt Consolidation
+1189,Aadhya Reddy 907,aadhya.reddy.907@bank.com,1414500,1414500,0,Paid,48,48,N/A
+1190,Aaryan Iyer,aaryan.iyer@bank.com,1588300,1588300,0,Paid,60,60,N/A
+1191,Priya Das 271,priya.das.271@bank.com,101700,101700,0,Paid,12,12,N/A
+1192,Jennifer Taylor 384,jennifer.taylor.384@bank.com,289400,12058.33,277341.67,Ongoing,24,1,N/A
+1193,Nisha Bhatia 811,nisha.bhatia.811@bank.com,1587600,1587600,0,Paid,60,60,N/A
+1194,Vihaan Patel 566,vihaan.patel.566@bank.com,1184200,236840.0,947360.0,Defaulted,12,3,Interest Rate Overrun
+1195,Anvi Singh,anvi.singh@bank.com,131300,131300,0,Paid,12,12,N/A
+1196,Aadhya Reddy 953,aadhya.reddy.953@bank.com,66600,66600,0,Paid,12,12,N/A
+1197,David Brown 404,david.brown.404@bank.com,1240700,1240700,0,Paid,12,12,N/A
+1198,Zara Nair,zara.nair@bank.com,790400,70257.78,720142.22,Defaulted,36,4,High Debt Consolidation
+1199,Aarav Sharma,aarav.sharma@bank.com,19900,19900,0,Paid,48,48,N/A
+1200,Deepak Malhotra,deepak.malhotra@bank.com,1871500,1871500,0,Paid,12,12,N/A
+1201,Ashley Moore,ashley.moore@bank.com,69300,69300,0,Paid,36,36,N/A
+1202,James Smith 405,james.smith.405@bank.com,357100,357100,0,Paid,60,60,N/A
+1203,Nisha Bhatia,nisha.bhatia@bank.com,1569500,1569500,0,Paid,12,12,N/A
+1204,Emily Davis 147,emily.davis.147@bank.com,791400,791400,0,Paid,60,60,N/A
+1205,Rahul Mehra 209,rahul.mehra.209@bank.com,163400,65360.0,98040.0,Defaulted,48,24,Personal/Family Crisis
+1206,Vivaan Gupta,vivaan.gupta@bank.com,949800,949800,0,Paid,12,12,N/A
+1207,Aditya Singh 798,aditya.singh.798@bank.com,631000,631000,0,Paid,36,36,N/A
+1208,Vivaan Gupta 801,vivaan.gupta.801@bank.com,310000,310000,0,Paid,60,60,N/A
+1209,Amit Joshi,amit.joshi@bank.com,917100,917100,0,Paid,60,60,N/A
+1210,Zara Nair,zara.nair@bank.com,1501500,166833.33,1334666.67,Ongoing,36,4,N/A
+1211,Diya Sharma 395,diya.sharma.395@bank.com,965000,965000,0,Paid,48,48,N/A
+1212,Aaryan Iyer 504,aaryan.iyer.504@bank.com,950400,138600.0,811800.0,Ongoing,48,7,N/A
+1213,Nisha Bhatia,nisha.bhatia@bank.com,1073400,1073400,0,Paid,60,60,N/A
+1214,Nisha Bhatia 211,nisha.bhatia.211@bank.com,1047100,244323.33,802776.67,Defaulted,24,7,Business Multi-sector Failure
+1215,Sai Reddy,sai.reddy@bank.com,1984100,1984100,0,Paid,36,36,N/A
+1216,Sonal Kapoor,sonal.kapoor@bank.com,231900,231900,0,Paid,60,60,N/A
+1217,Vikram Khanna,vikram.khanna@bank.com,487000,487000,0,Paid,36,36,N/A
+1218,Aarav Sharma,aarav.sharma@bank.com,1070300,1070300,0,Paid,48,48,N/A
+1219,Anvi Singh,anvi.singh@bank.com,1520200,1520200,0,Paid,24,24,N/A
+1220,Sonal Kapoor 840,sonal.kapoor.840@bank.com,942800,942800,0,Paid,24,24,N/A
+1221,Rahul Mehra,rahul.mehra@bank.com,600500,600500,0,Paid,36,36,N/A
+1222,Vivaan Gupta 904,vivaan.gupta.904@bank.com,1926300,1926300,0,Paid,36,36,N/A
+1223,Reyansh Kumar 852,reyansh.kumar.852@bank.com,1515200,1515200,0,Paid,60,60,N/A
+1224,Jessica Wilson 385,jessica.wilson.385@bank.com,21400,21400,0,Paid,12,12,N/A
+1225,David Brown 357,david.brown.357@bank.com,1498600,561975.0,936625.0,Ongoing,24,9,N/A
+1226,Inaya Murthy,inaya.murthy@bank.com,885100,885100,0,Paid,24,24,N/A
+1227,Michael Johnson 417,michael.johnson.417@bank.com,178000,89000.0,89000.0,Ongoing,12,6,N/A
+1228,Anvi Singh 472,anvi.singh.472@bank.com,321500,321500,0,Paid,12,12,N/A
+1229,Jessica Wilson 676,jessica.wilson.676@bank.com,593600,593600,0,Paid,12,12,N/A
+1230,Richard Taylor 161,richard.taylor.161@bank.com,837000,837000,0,Paid,60,60,N/A
+1231,Saanvi Iyer,saanvi.iyer@bank.com,122300,122300,0,Paid,60,60,N/A
+1232,Sai Reddy,sai.reddy@bank.com,124300,124300,0,Paid,36,36,N/A
+1233,Saanvi Iyer 685,saanvi.iyer.685@bank.com,1088200,1088200,0,Paid,24,24,N/A
+1234,Amit Joshi,amit.joshi@bank.com,677800,677800,0,Paid,12,12,N/A
+1235,Jennifer Taylor 946,jennifer.taylor.946@bank.com,1318700,1318700,0,Paid,24,24,N/A
+1236,Myra Patel 134,myra.patel.134@bank.com,960300,960300,0,Paid,48,48,N/A
+1237,Karan Oberoi 602,karan.oberoi.602@bank.com,1939300,1939300,0,Paid,60,60,N/A
+1238,Inaya Murthy,inaya.murthy@bank.com,1553000,1553000,0,Paid,60,60,N/A
+1239,Aditya Singh 483,aditya.singh.483@bank.com,350900,350900,0,Paid,60,60,N/A
+1240,Shweta Aggarwal 828,shweta.aggarwal.828@bank.com,738800,738800,0,Paid,24,24,N/A
+1241,Karan Oberoi 677,karan.oberoi.677@bank.com,1695800,1695800,0,Paid,24,24,N/A
+1242,Shweta Aggarwal,shweta.aggarwal@bank.com,1161100,1161100,0,Paid,60,60,N/A
+1243,Anvi Singh 873,anvi.singh.873@bank.com,99600,99600,0,Paid,48,48,N/A
+1244,Robert Williams,robert.williams@bank.com,1590700,1590700,0,Paid,36,36,N/A
+1245,Rahul Mehra 674,rahul.mehra.674@bank.com,1081400,630816.67,450583.32999999996,Ongoing,60,35,N/A
+1246,Shweta Aggarwal,shweta.aggarwal@bank.com,1626100,1626100,0,Paid,24,24,N/A
+1247,Ashley Moore 886,ashley.moore.886@bank.com,1169400,1169400,0,Paid,24,24,N/A
+1248,Sai Reddy 615,sai.reddy.615@bank.com,1099200,1099200,0,Paid,12,12,N/A
+1249,Ishaan Nair 109,ishaan.nair.109@bank.com,1234400,1234400,0,Paid,24,24,N/A
+1250,Sarah Miller 693,sarah.miller.693@bank.com,978300,978300,0,Paid,36,36,N/A
+1251,Saanvi Iyer,saanvi.iyer@bank.com,125800,125800,0,Paid,48,48,N/A
+1252,Sai Reddy,sai.reddy@bank.com,548500,548500,0,Paid,24,24,N/A
+1253,Richard Taylor 353,richard.taylor.353@bank.com,1514600,1135950.0,378650.0,Ongoing,60,45,N/A
+1254,Richard Taylor 777,richard.taylor.777@bank.com,379500,379500,0,Paid,24,24,N/A
+1255,Aarav Sharma 430,aarav.sharma.430@bank.com,1413700,1413700,0,Paid,48,48,N/A
+1256,Saanvi Iyer 330,saanvi.iyer.330@bank.com,146900,146900,0,Paid,12,12,N/A
+1257,Ananya Iyer 628,ananya.iyer.628@bank.com,1540600,213972.22,1326627.78,Ongoing,36,5,N/A
+1258,David Brown 636,david.brown.636@bank.com,740600,296240.0,444360.0,Defaulted,24,12,Unemployment / Job Loss
+1259,Shanaya Kumar 604,shanaya.kumar.604@bank.com,1199400,899550.0,299850.0,Ongoing,12,9,N/A
+1260,Jessica Wilson,jessica.wilson@bank.com,102100,102100,0,Paid,12,12,N/A
+1261,Zara Nair 109,zara.nair.109@bank.com,1041700,1041700,0,Paid,60,60,N/A
+1262,Aditya Singh 304,aditya.singh.304@bank.com,1184400,315840.0,868560.0,Defaulted,12,4,Medical Emergency / High Bills
+1263,Shweta Aggarwal 118,shweta.aggarwal.118@bank.com,824500,824500,0,Paid,24,24,N/A
+1264,Aaryan Iyer 864,aaryan.iyer.864@bank.com,1356700,1356700,0,Paid,36,36,N/A
+1265,Priya Das,priya.das@bank.com,1456100,1456100,0,Paid,60,60,N/A
+1266,Ashley Moore 662,ashley.moore.662@bank.com,1644600,1644600,0,Paid,24,24,N/A
+1267,Aaryan Iyer 900,aaryan.iyer.900@bank.com,143200,143200,0,Paid,24,24,N/A
+1268,Vivaan Gupta 399,vivaan.gupta.399@bank.com,1315100,219183.33,1095916.67,Ongoing,60,10,N/A
+1269,Emily Davis,emily.davis@bank.com,699600,155466.67,544133.33,Defaulted,36,10,Interest Rate Overrun
+1270,Aadhya Reddy 985,aadhya.reddy.985@bank.com,1089600,1089600,0,Paid,48,48,N/A
+1271,Jennifer Taylor 224,jennifer.taylor.224@bank.com,1226200,76637.5,1149562.5,Ongoing,48,3,N/A
+1272,Saanvi Iyer,saanvi.iyer@bank.com,818500,818500,0,Paid,24,24,N/A
+1273,Reyansh Kumar 998,reyansh.kumar.998@bank.com,551700,551700,0,Paid,60,60,N/A
+1274,Vikram Khanna 831,vikram.khanna.831@bank.com,505600,379200.0,126400.0,Ongoing,12,9,N/A
+1275,James Smith 894,james.smith.894@bank.com,720200,720200,0,Paid,24,24,N/A
+1276,Shanaya Kumar 420,shanaya.kumar.420@bank.com,187600,187600,0,Paid,48,48,N/A
+1277,Krishna Murthy 788,krishna.murthy.788@bank.com,843400,56226.67,787173.33,Defaulted,12,1,High Debt Consolidation
+1278,Vikram Khanna,vikram.khanna@bank.com,897600,897600,0,Paid,60,60,N/A
+1279,Nisha Bhatia 580,nisha.bhatia.580@bank.com,1870500,1870500,0,Paid,24,24,N/A
+1280,Jennifer Taylor 728,jennifer.taylor.728@bank.com,1815600,1815600,0,Paid,24,24,N/A
+1281,Aadhya Reddy 255,aadhya.reddy.255@bank.com,1761700,1702976.67,58723.330000000075,Ongoing,60,58,N/A
+1282,Jessica Wilson 544,jessica.wilson.544@bank.com,373900,373900,0,Paid,12,12,N/A
+1283,Nisha Bhatia,nisha.bhatia@bank.com,977800,977800,0,Paid,24,24,N/A
+1284,Karan Oberoi,karan.oberoi@bank.com,52900,52900,0,Paid,48,48,N/A
+1285,Reyansh Kumar,reyansh.kumar@bank.com,1724200,814205.56,909994.44,Ongoing,36,17,N/A
+1286,Krishna Murthy,krishna.murthy@bank.com,1650000,1650000,0,Paid,48,48,N/A
+1287,Reyansh Kumar 708,reyansh.kumar.708@bank.com,1585200,1585200,0,Paid,60,60,N/A
+1288,Sarah Miller,sarah.miller@bank.com,408000,408000,0,Paid,48,48,N/A
+1289,David Brown,david.brown@bank.com,1098400,1098400,0,Paid,12,12,N/A
+1290,Krishna Murthy 439,krishna.murthy.439@bank.com,61200,61200,0,Paid,12,12,N/A
+1291,Shweta Aggarwal 874,shweta.aggarwal.874@bank.com,1522400,507466.67,1014933.3300000001,Defaulted,12,5,Medical Emergency / High Bills
+1292,Saanvi Iyer 536,saanvi.iyer.536@bank.com,983700,635306.25,348393.75,Ongoing,48,31,N/A
+1293,Krishna Murthy 731,krishna.murthy.731@bank.com,1541100,1541100,0,Paid,12,12,N/A
+1294,Arjun Verma 478,arjun.verma.478@bank.com,1370500,1113531.25,256968.75,Ongoing,48,39,N/A
+1295,Sonal Kapoor,sonal.kapoor@bank.com,1322000,1322000,0,Paid,12,12,N/A
+1296,Sonal Kapoor 213,sonal.kapoor.213@bank.com,930000,310000.0,620000.0,Defaulted,60,25,Business Multi-sector Failure
+1297,Zara Nair 245,zara.nair.245@bank.com,1889700,1889700,0,Paid,48,48,N/A
+1298,Ashley Moore 297,ashley.moore.297@bank.com,738500,738500,0,Paid,36,36,N/A
+1299,James Smith 152,james.smith.152@bank.com,167300,167300,0,Paid,48,48,N/A
+1300,Ananya Iyer 113,ananya.iyer.113@bank.com,794700,794700,0,Paid,48,48,N/A
+1301,Emily Davis 801,emily.davis.801@bank.com,248700,248700,0,Paid,12,12,N/A
+1302,Myra Patel,myra.patel@bank.com,711200,711200,0,Paid,48,48,N/A
+1303,Reyansh Kumar,reyansh.kumar@bank.com,324500,324500,0,Paid,24,24,N/A
+1304,Rahul Mehra 309,rahul.mehra.309@bank.com,1116800,1116800,0,Paid,36,36,N/A
+1305,Aditya Singh,aditya.singh@bank.com,162400,60900.0,101500.0,Ongoing,24,9,N/A
+1306,Aditya Singh,aditya.singh@bank.com,341200,341200,0,Paid,60,60,N/A
+1307,Sarah Miller 752,sarah.miller.752@bank.com,1063200,1063200,0,Paid,36,36,N/A
+1308,Ashley Moore 918,ashley.moore.918@bank.com,300800,300800,0,Paid,48,48,N/A
+1309,Vihaan Patel 671,vihaan.patel.671@bank.com,1882500,1882500,0,Paid,12,12,N/A
+1310,Inaya Murthy,inaya.murthy@bank.com,211700,211700,0,Paid,36,36,N/A
+1311,Jessica Wilson,jessica.wilson@bank.com,495300,495300,0,Paid,36,36,N/A
+1312,Ananya Iyer 718,ananya.iyer.718@bank.com,416200,393077.78,23122.219999999972,Ongoing,36,34,N/A
+1313,Inaya Murthy 492,inaya.murthy.492@bank.com,276800,276800,0,Paid,60,60,N/A
+1314,Zara Nair 972,zara.nair.972@bank.com,659600,659600,0,Paid,12,12,N/A
+1315,Anvi Singh 190,anvi.singh.190@bank.com,183200,183200,0,Paid,48,48,N/A
+1316,Shanaya Kumar 246,shanaya.kumar.246@bank.com,1242300,1242300,0,Paid,36,36,N/A
+1317,Amit Joshi 622,amit.joshi.622@bank.com,696000,696000,0,Paid,24,24,N/A
+1318,Vivaan Gupta 231,vivaan.gupta.231@bank.com,1554000,1554000,0,Paid,24,24,N/A
+1319,Sai Reddy 255,sai.reddy.255@bank.com,1120000,1120000,0,Paid,60,60,N/A
+1320,Myra Patel,myra.patel@bank.com,1100400,1100400,0,Paid,12,12,N/A
+1321,Reyansh Kumar,reyansh.kumar@bank.com,1632700,1632700,0,Paid,24,24,N/A
+1322,Rahul Mehra 431,rahul.mehra.431@bank.com,491200,491200,0,Paid,48,48,N/A
+1323,Sai Reddy,sai.reddy@bank.com,1380600,1380600,0,Paid,36,36,N/A
+1324,Shweta Aggarwal,shweta.aggarwal@bank.com,1411300,1411300,0,Paid,48,48,N/A
+1325,Sonal Kapoor 141,sonal.kapoor.141@bank.com,1911100,1911100,0,Paid,60,60,N/A
+1326,Zara Nair 224,zara.nair.224@bank.com,1139000,246783.33,892216.67,Defaulted,48,13,Unemployment / Job Loss
+1327,Aditya Singh,aditya.singh@bank.com,928700,851308.33,77391.67000000004,Ongoing,24,22,N/A
+1328,Aaryan Iyer 308,aaryan.iyer.308@bank.com,1693300,1693300,0,Paid,12,12,N/A
+1329,Amit Joshi,amit.joshi@bank.com,654200,654200,0,Paid,36,36,N/A
+1330,Reyansh Kumar 702,reyansh.kumar.702@bank.com,867700,198847.92,668852.08,Ongoing,48,11,N/A
+1331,Arjun Verma,arjun.verma@bank.com,1170600,195100.0,975500.0,Ongoing,12,2,N/A
+1332,Vivaan Gupta 587,vivaan.gupta.587@bank.com,1807800,1807800,0,Paid,36,36,N/A
+1333,Ashley Moore,ashley.moore@bank.com,282700,282700,0,Paid,36,36,N/A
+1334,Aadhya Reddy 185,aadhya.reddy.185@bank.com,737300,737300,0,Paid,48,48,N/A
+1335,Amit Joshi,amit.joshi@bank.com,1572600,1572600,0,Paid,60,60,N/A
+1336,Shweta Aggarwal,shweta.aggarwal@bank.com,907000,831416.67,75583.32999999996,Ongoing,24,22,N/A
+1337,Emily Davis,emily.davis@bank.com,1322300,1322300,0,Paid,48,48,N/A
+1338,Anvi Singh 612,anvi.singh.612@bank.com,1519800,1519800,0,Paid,36,36,N/A
+1339,Ishaan Nair,ishaan.nair@bank.com,644100,644100,0,Paid,48,48,N/A
+1340,Vikram Khanna,vikram.khanna@bank.com,1992900,1992900,0,Paid,36,36,N/A
+1341,Vihaan Patel 416,vihaan.patel.416@bank.com,274900,274900,0,Paid,12,12,N/A
+1342,Anvi Singh,anvi.singh@bank.com,1744900,1744900,0,Paid,24,24,N/A
+1343,Aadhya Reddy 406,aadhya.reddy.406@bank.com,1274600,1274600,0,Paid,48,48,N/A
+1344,Shweta Aggarwal 266,shweta.aggarwal.266@bank.com,1386100,1386100,0,Paid,36,36,N/A
+1345,Shanaya Kumar 909,shanaya.kumar.909@bank.com,1409000,1409000,0,Paid,36,36,N/A
+1346,Aaryan Iyer,aaryan.iyer@bank.com,812300,54153.33,758146.67,Defaulted,60,5,Unemployment / Job Loss
+1347,Inaya Murthy 427,inaya.murthy.427@bank.com,952100,952100,0,Paid,60,60,N/A
+1348,Jessica Wilson 697,jessica.wilson.697@bank.com,535300,535300,0,Paid,36,36,N/A
+1349,Emily Davis,emily.davis@bank.com,803900,294763.33,509136.67,Defaulted,24,11,Medical Emergency / High Bills
+1350,Rahul Mehra,rahul.mehra@bank.com,1305300,1305300,0,Paid,12,12,N/A
+1351,Saanvi Iyer 933,saanvi.iyer.933@bank.com,1514400,1514400,0,Paid,36,36,N/A
+1352,Michael Johnson,michael.johnson@bank.com,1847400,769750.0,1077650.0,Ongoing,36,15,N/A
+1353,Sonal Kapoor 175,sonal.kapoor.175@bank.com,1474700,1474700,0,Paid,12,12,N/A
+1354,David Brown 595,david.brown.595@bank.com,393800,344575.0,49225.0,Ongoing,24,21,N/A
+1355,Rahul Mehra,rahul.mehra@bank.com,1500700,1500700,0,Paid,48,48,N/A
+1356,Rohan Sethi 115,rohan.sethi.115@bank.com,159000,159000,0,Paid,24,24,N/A
+1357,Krishna Murthy 111,krishna.murthy.111@bank.com,1297900,1297900,0,Paid,60,60,N/A
+1358,Arjun Verma 724,arjun.verma.724@bank.com,231700,231700,0,Paid,60,60,N/A
+1359,Karan Oberoi 295,karan.oberoi.295@bank.com,739100,307958.33,431141.67,Ongoing,12,5,N/A
+1360,Aadhya Reddy 379,aadhya.reddy.379@bank.com,1904800,444453.33,1460346.67,Defaulted,24,7,Personal/Family Crisis
+1361,Robert Williams,robert.williams@bank.com,1380600,1380600,0,Paid,12,12,N/A
+1362,Ananya Iyer 523,ananya.iyer.523@bank.com,1183200,1183200,0,Paid,48,48,N/A
+1363,Inaya Murthy,inaya.murthy@bank.com,1019100,254775.0,764325.0,Ongoing,48,12,N/A
+1364,Aarav Sharma,aarav.sharma@bank.com,1205700,1205700,0,Paid,60,60,N/A
+1365,David Brown 947,david.brown.947@bank.com,1179100,1179100,0,Paid,36,36,N/A
+1366,Deepak Malhotra 686,deepak.malhotra.686@bank.com,166800,166800,0,Paid,24,24,N/A
+1367,Karan Oberoi,karan.oberoi@bank.com,42200,42200,0,Paid,60,60,N/A
+1368,Vikram Khanna 186,vikram.khanna.186@bank.com,252600,136825.0,115775.0,Ongoing,48,26,N/A
+1369,Vikram Khanna,vikram.khanna@bank.com,801600,801600,0,Paid,36,36,N/A
+1370,Nisha Bhatia 548,nisha.bhatia.548@bank.com,434200,434200,0,Paid,60,60,N/A
+1371,Anvi Singh 152,anvi.singh.152@bank.com,102600,39672.0,62928.0,Defaulted,60,29,Business Multi-sector Failure
+1372,Emily Davis 175,emily.davis.175@bank.com,1893900,1893900,0,Paid,48,48,N/A
+1373,Shweta Aggarwal 746,shweta.aggarwal.746@bank.com,468300,468300,0,Paid,60,60,N/A
+1374,Emily Davis,emily.davis@bank.com,1923800,1923800,0,Paid,12,12,N/A
+1375,Sonal Kapoor,sonal.kapoor@bank.com,698900,535823.33,163076.67000000004,Ongoing,60,46,N/A
+1376,James Smith 100,james.smith.100@bank.com,1708000,1708000,0,Paid,48,48,N/A
+1377,Krishna Murthy,krishna.murthy@bank.com,1263700,1263700,0,Paid,24,24,N/A
+1378,Emily Davis 848,emily.davis.848@bank.com,265400,66350.0,199050.0,Ongoing,48,12,N/A
+1379,Sai Reddy 791,sai.reddy.791@bank.com,1310900,1310900,0,Paid,24,24,N/A
+1380,Emily Davis 687,emily.davis.687@bank.com,1139100,1139100,0,Paid,60,60,N/A
+1381,Amit Joshi,amit.joshi@bank.com,1111000,1111000,0,Paid,48,48,N/A
+1382,Sarah Miller,sarah.miller@bank.com,1552400,1552400,0,Paid,60,60,N/A
+1383,Sarah Miller 728,sarah.miller.728@bank.com,1665300,1665300,0,Paid,24,24,N/A
+1384,Saanvi Iyer 285,saanvi.iyer.285@bank.com,1567800,130650.0,1437150.0,Ongoing,36,3,N/A
+1385,Jessica Wilson 229,jessica.wilson.229@bank.com,1713600,1713600,0,Paid,24,24,N/A
+1386,Karan Oberoi,karan.oberoi@bank.com,1842200,1842200,0,Paid,24,24,N/A
+1387,Saanvi Iyer 831,saanvi.iyer.831@bank.com,629300,629300,0,Paid,48,48,N/A
+1388,Aaryan Iyer 801,aaryan.iyer.801@bank.com,538300,538300,0,Paid,12,12,N/A
+1389,Arjun Verma,arjun.verma@bank.com,1945300,648433.33,1296866.67,Defaulted,24,10,Interest Rate Overrun
+1390,Aaryan Iyer 852,aaryan.iyer.852@bank.com,1643000,1643000,0,Paid,48,48,N/A
+1391,David Brown 835,david.brown.835@bank.com,416400,416400,0,Paid,24,24,N/A
+1392,Aadhya Reddy 189,aadhya.reddy.189@bank.com,1916200,95810.0,1820390.0,Ongoing,60,3,N/A
+1393,David Brown,david.brown@bank.com,1448400,1448400,0,Paid,48,48,N/A
+1394,Karan Oberoi 404,karan.oberoi.404@bank.com,733700,733700,0,Paid,12,12,N/A
+1395,Aadhya Reddy 409,aadhya.reddy.409@bank.com,1620900,1620900,0,Paid,48,48,N/A
+1396,Saanvi Iyer 746,saanvi.iyer.746@bank.com,1179200,1179200,0,Paid,36,36,N/A
+1397,Jessica Wilson 792,jessica.wilson.792@bank.com,972700,972700,0,Paid,60,60,N/A
+1398,Shweta Aggarwal 611,shweta.aggarwal.611@bank.com,1237000,1237000,0,Paid,48,48,N/A
+1399,Arjun Verma,arjun.verma@bank.com,1383200,1383200,0,Paid,24,24,N/A
+1400,Priya Das 491,priya.das.491@bank.com,1594800,212640.0,1382160.0,Defaulted,36,6,Unemployment / Job Loss
+1401,Nisha Bhatia 906,nisha.bhatia.906@bank.com,1533200,306640.0,1226560.0,Defaulted,48,12,Business Multi-sector Failure
+1402,James Smith,james.smith@bank.com,1930800,1930800,0,Paid,36,36,N/A
+1403,Priya Das 174,priya.das.174@bank.com,856000,856000,0,Paid,36,36,N/A
+1404,Shweta Aggarwal 372,shweta.aggarwal.372@bank.com,352000,352000,0,Paid,24,24,N/A
+1405,Jennifer Taylor,jennifer.taylor@bank.com,1191300,645287.5,546012.5,Ongoing,48,26,N/A
+1406,Aditya Singh 541,aditya.singh.541@bank.com,1401900,373840.0,1028060.0,Defaulted,24,8,Business Multi-sector Failure
+1407,Sai Reddy 280,sai.reddy.280@bank.com,515700,515700,0,Paid,12,12,N/A
+1408,Jessica Wilson 335,jessica.wilson.335@bank.com,1844100,614700.0,1229400.0,Defaulted,24,10,Business Multi-sector Failure
+1409,Nisha Bhatia,nisha.bhatia@bank.com,324700,324700,0,Paid,36,36,N/A
+1410,Priya Das 902,priya.das.902@bank.com,1818400,1818400,0,Paid,24,24,N/A
+1411,Zara Nair,zara.nair@bank.com,1218000,1218000,0,Paid,60,60,N/A
+1412,Anvi Singh 172,anvi.singh.172@bank.com,1196700,39890.0,1156810.0,Defaulted,48,2,Unemployment / Job Loss
+1413,Krishna Murthy,krishna.murthy@bank.com,1345600,1345600,0,Paid,48,48,N/A
+1414,Robert Williams,robert.williams@bank.com,1673200,1673200,0,Paid,60,60,N/A
+1415,Krishna Murthy,krishna.murthy@bank.com,1087500,1087500,0,Paid,24,24,N/A
+1416,Aarav Sharma,aarav.sharma@bank.com,1293500,1293500,0,Paid,60,60,N/A
+1417,Amit Joshi,amit.joshi@bank.com,1572500,1572500,0,Paid,48,48,N/A
+1418,James Smith,james.smith@bank.com,1060700,1060700,0,Paid,12,12,N/A
+1419,Sarah Miller,sarah.miller@bank.com,1651500,110100.0,1541400.0,Defaulted,36,3,Interest Rate Overrun
+1420,Emily Davis,emily.davis@bank.com,357000,357000,0,Paid,36,36,N/A
+1421,Vihaan Patel 314,vihaan.patel.314@bank.com,695500,695500,0,Paid,36,36,N/A
+1422,Vivaan Gupta,vivaan.gupta@bank.com,633100,633100,0,Paid,48,48,N/A
+1423,Rahul Mehra,rahul.mehra@bank.com,354700,354700,0,Paid,12,12,N/A
+1424,Michael Johnson 647,michael.johnson.647@bank.com,484500,484500,0,Paid,12,12,N/A
+1425,Ananya Iyer 507,ananya.iyer.507@bank.com,865100,865100,0,Paid,60,60,N/A
+1426,Ashley Moore 338,ashley.moore.338@bank.com,1835200,1835200,0,Paid,48,48,N/A
+1427,Shanaya Kumar 651,shanaya.kumar.651@bank.com,222600,222600,0,Paid,48,48,N/A
+1428,Shweta Aggarwal,shweta.aggarwal@bank.com,1966400,1147066.67,819333.3300000001,Ongoing,12,7,N/A
+1429,Shweta Aggarwal,shweta.aggarwal@bank.com,490600,255520.83,235079.17,Ongoing,48,25,N/A
+1430,Karan Oberoi 795,karan.oberoi.795@bank.com,1060300,1060300,0,Paid,36,36,N/A
+1431,Michael Johnson 176,michael.johnson.176@bank.com,294200,294200,0,Paid,48,48,N/A
+1432,Aadhya Reddy 788,aadhya.reddy.788@bank.com,784200,784200,0,Paid,48,48,N/A
+1433,Shweta Aggarwal,shweta.aggarwal@bank.com,480900,120225.0,360675.0,Ongoing,36,9,N/A
+1434,Sonal Kapoor,sonal.kapoor@bank.com,1318800,205146.67,1113653.33,Defaulted,36,7,Medical Emergency / High Bills
+1435,Jessica Wilson 395,jessica.wilson.395@bank.com,180100,180100,0,Paid,60,60,N/A
+1436,Shweta Aggarwal 132,shweta.aggarwal.132@bank.com,1444800,1444800,0,Paid,36,36,N/A
+1437,Ananya Iyer 218,ananya.iyer.218@bank.com,983100,737325.0,245775.0,Ongoing,12,9,N/A
+1438,Ananya Iyer 716,ananya.iyer.716@bank.com,152000,152000,0,Paid,36,36,N/A
+1439,Robert Williams,robert.williams@bank.com,577300,577300,0,Paid,12,12,N/A
+1440,Nisha Bhatia,nisha.bhatia@bank.com,76400,76400,0,Paid,60,60,N/A
+1441,Sai Reddy,sai.reddy@bank.com,1616100,134675.0,1481425.0,Ongoing,12,1,N/A
+1442,Deepak Malhotra 668,deepak.malhotra.668@bank.com,1512400,1512400,0,Paid,24,24,N/A
+1443,David Brown 636,david.brown.636@bank.com,731900,658710.0,73190.0,Ongoing,60,54,N/A
+1444,Inaya Murthy,inaya.murthy@bank.com,571100,571100,0,Paid,12,12,N/A
+1445,Rohan Sethi 307,rohan.sethi.307@bank.com,708700,708700,0,Paid,12,12,N/A
+1446,Saanvi Iyer 329,saanvi.iyer.329@bank.com,595300,79373.33,515926.67,Defaulted,12,2,Business Multi-sector Failure
+1447,Krishna Murthy,krishna.murthy@bank.com,642700,642700,0,Paid,12,12,N/A
+1448,Rohan Sethi 540,rohan.sethi.540@bank.com,1540200,1540200,0,Paid,24,24,N/A
+1449,Shweta Aggarwal,shweta.aggarwal@bank.com,794800,794800,0,Paid,60,60,N/A
+1450,Sonal Kapoor 977,sonal.kapoor.977@bank.com,438700,136484.44,302215.56,Defaulted,36,14,Interest Rate Overrun
+1451,Saanvi Iyer,saanvi.iyer@bank.com,609900,38118.75,571781.25,Ongoing,48,3,N/A
+1452,Krishna Murthy 447,krishna.murthy.447@bank.com,1105100,699896.67,405203.32999999996,Ongoing,60,38,N/A
+1453,Zara Nair 202,zara.nair.202@bank.com,1666500,1666500,0,Paid,24,24,N/A
+1454,Vikram Khanna,vikram.khanna@bank.com,853800,246653.33,607146.67,Defaulted,36,13,Interest Rate Overrun
+1455,James Smith,james.smith@bank.com,796900,796900,0,Paid,48,48,N/A
+1456,Vivaan Gupta,vivaan.gupta@bank.com,838300,186288.89,652011.11,Defaulted,36,10,Business Multi-sector Failure
+1457,Emily Davis,emily.davis@bank.com,1613800,1613800,0,Paid,12,12,N/A
+1458,Pari Gupta 658,pari.gupta.658@bank.com,137300,137300,0,Paid,36,36,N/A
+1459,Ananya Iyer 533,ananya.iyer.533@bank.com,1154200,654046.67,500153.32999999996,Ongoing,60,34,N/A
+1460,Ishaan Nair 512,ishaan.nair.512@bank.com,502400,167466.67,334933.32999999996,Defaulted,48,20,Personal/Family Crisis
+1461,Pari Gupta,pari.gupta@bank.com,975700,195140.0,780560.0,Defaulted,12,3,Personal/Family Crisis
+1462,Robert Williams 967,robert.williams.967@bank.com,1755900,1755900,0,Paid,24,24,N/A
+1463,Saanvi Iyer 581,saanvi.iyer.581@bank.com,176500,105900.0,70600.0,Ongoing,60,36,N/A
+1464,Richard Taylor,richard.taylor@bank.com,1418800,1418800,0,Paid,24,24,N/A
+1465,Michael Johnson 567,michael.johnson.567@bank.com,344200,344200,0,Paid,48,48,N/A
+1466,Ananya Iyer 777,ananya.iyer.777@bank.com,278300,278300,0,Paid,24,24,N/A
+1467,Vivaan Gupta,vivaan.gupta@bank.com,582100,582100,0,Paid,12,12,N/A
+1468,Aaryan Iyer,aaryan.iyer@bank.com,370400,61733.33,308666.67,Ongoing,36,6,N/A
+1469,Sonal Kapoor 608,sonal.kapoor.608@bank.com,157200,157200,0,Paid,12,12,N/A
+1470,Ananya Iyer,ananya.iyer@bank.com,222500,148333.33,74166.67000000001,Ongoing,12,8,N/A
+1471,Jennifer Taylor,jennifer.taylor@bank.com,1397900,1397900,0,Paid,48,48,N/A
+1472,Arjun Verma 386,arjun.verma.386@bank.com,929600,929600,0,Paid,60,60,N/A
+1473,Ananya Iyer 820,ananya.iyer.820@bank.com,914500,914500,0,Paid,24,24,N/A
+1474,Arjun Verma 237,arjun.verma.237@bank.com,1355200,1355200,0,Paid,60,60,N/A
+1475,Deepak Malhotra 584,deepak.malhotra.584@bank.com,251600,83866.67,167733.33000000002,Defaulted,36,15,Interest Rate Overrun
+1476,Vihaan Patel,vihaan.patel@bank.com,420400,420400,0,Paid,24,24,N/A
+1477,Emily Davis,emily.davis@bank.com,707200,165013.33,542186.67,Defaulted,24,7,Interest Rate Overrun
+1478,Jennifer Taylor 393,jennifer.taylor.393@bank.com,109400,109400,0,Paid,60,60,N/A
+1479,Vikram Khanna 421,vikram.khanna.421@bank.com,1861900,1861900,0,Paid,24,24,N/A
+1480,Shanaya Kumar 572,shanaya.kumar.572@bank.com,1004400,1004400,0,Paid,24,24,N/A
+1481,Karan Oberoi,karan.oberoi@bank.com,536800,536800,0,Paid,48,48,N/A
+1482,Vivaan Gupta,vivaan.gupta@bank.com,404300,404300,0,Paid,60,60,N/A
+1483,Vihaan Patel 189,vihaan.patel.189@bank.com,725800,725800,0,Paid,60,60,N/A
+1484,Anvi Singh,anvi.singh@bank.com,1802500,721000.0,1081500.0,Defaulted,36,18,Personal/Family Crisis
+1485,Ananya Iyer 494,ananya.iyer.494@bank.com,624500,174860.0,449640.0,Defaulted,60,21,Interest Rate Overrun
+1486,Ashley Moore 525,ashley.moore.525@bank.com,383900,383900,0,Paid,60,60,N/A
+1487,Deepak Malhotra 884,deepak.malhotra.884@bank.com,1583800,26396.67,1557403.33,Defaulted,48,1,Unemployment / Job Loss
+1488,Vikram Khanna 100,vikram.khanna.100@bank.com,1052900,1052900,0,Paid,36,36,N/A
+1489,Richard Taylor 842,richard.taylor.842@bank.com,1663300,1663300,0,Paid,24,24,N/A
+1490,Inaya Murthy 780,inaya.murthy.780@bank.com,35300,7648.33,27651.67,Defaulted,48,13,Personal/Family Crisis
+1491,James Smith 825,james.smith.825@bank.com,1520000,1520000,0,Paid,48,48,N/A
+1492,Sai Reddy,sai.reddy@bank.com,547300,547300,0,Paid,24,24,N/A
+1493,James Smith 787,james.smith.787@bank.com,1999600,1999600,0,Paid,48,48,N/A
+1494,Aadhya Reddy 596,aadhya.reddy.596@bank.com,1519800,835890.0,683910.0,Ongoing,60,33,N/A
+1495,Deepak Malhotra,deepak.malhotra@bank.com,1256200,1256200,0,Paid,48,48,N/A
+1496,Ishaan Nair 984,ishaan.nair.984@bank.com,711600,711600,0,Paid,12,12,N/A
+1497,David Brown,david.brown@bank.com,291300,291300,0,Paid,36,36,N/A
+1498,Shanaya Kumar 284,shanaya.kumar.284@bank.com,1381300,1381300,0,Paid,36,36,N/A
+1499,Myra Patel 899,myra.patel.899@bank.com,607200,607200,0,Paid,24,24,N/A
+1500,Ishaan Nair,ishaan.nair@bank.com,655100,655100,0,Paid,48,48,N/A
+1501,Sarah Miller,sarah.miller@bank.com,1788800,1788800,0,Paid,36,36,N/A
+1502,Jessica Wilson 329,jessica.wilson.329@bank.com,1207100,48284.0,1158816.0,Defaulted,60,3,High Debt Consolidation
+1503,Myra Patel 192,myra.patel.192@bank.com,1648100,1648100,0,Paid,24,24,N/A
+1504,David Brown 665,david.brown.665@bank.com,647200,647200,0,Paid,48,48,N/A
+1505,Inaya Murthy,inaya.murthy@bank.com,1844000,1844000,0,Paid,60,60,N/A
+1506,Aditya Singh 560,aditya.singh.560@bank.com,311700,311700,0,Paid,36,36,N/A
+1507,Nisha Bhatia,nisha.bhatia@bank.com,1193100,1193100,0,Paid,12,12,N/A
+1508,Inaya Murthy 443,inaya.murthy.443@bank.com,643800,643800,0,Paid,48,48,N/A
+1509,Anvi Singh,anvi.singh@bank.com,1535300,1535300,0,Paid,36,36,N/A
+1510,Priya Das 649,priya.das.649@bank.com,1916500,511066.67,1405433.33,Defaulted,12,4,Unemployment / Job Loss
+1511,Sonal Kapoor 895,sonal.kapoor.895@bank.com,981700,981700,0,Paid,60,60,N/A
+1512,Ashley Moore,ashley.moore@bank.com,1983400,1983400,0,Paid,48,48,N/A
+1513,Shweta Aggarwal 953,shweta.aggarwal.953@bank.com,1164000,1164000,0,Paid,12,12,N/A
+1514,Richard Taylor,richard.taylor@bank.com,568100,28405.0,539695.0,Defaulted,48,3,Unemployment / Job Loss
+1515,Aarav Sharma,aarav.sharma@bank.com,1503000,1503000,0,Paid,12,12,N/A
+1516,Ishaan Nair 588,ishaan.nair.588@bank.com,47700,47700,0,Paid,24,24,N/A
+1517,Robert Williams,robert.williams@bank.com,1959200,1502053.33,457146.6699999999,Ongoing,60,46,N/A
+1518,Emily Davis 773,emily.davis.773@bank.com,465100,80617.33,384482.67,Defaulted,60,13,High Debt Consolidation
+1519,Jessica Wilson 994,jessica.wilson.994@bank.com,953100,953100,0,Paid,48,48,N/A
+1520,Michael Johnson,michael.johnson@bank.com,1756400,175640.0,1580760.0,Defaulted,48,6,Interest Rate Overrun
+1521,Pari Gupta,pari.gupta@bank.com,922700,307566.67,615133.3300000001,Defaulted,48,20,Personal/Family Crisis
+1522,Shweta Aggarwal 883,shweta.aggarwal.883@bank.com,1211200,363360.0,847840.0,Defaulted,24,9,Business Multi-sector Failure
+1523,Nisha Bhatia 360,nisha.bhatia.360@bank.com,354200,354200,0,Paid,48,48,N/A
+1524,Sonal Kapoor 384,sonal.kapoor.384@bank.com,1330500,1053312.5,277187.5,Ongoing,48,38,N/A
+1525,Rahul Mehra 161,rahul.mehra.161@bank.com,1722800,574266.67,1148533.33,Defaulted,24,10,Interest Rate Overrun
+1526,Anvi Singh 715,anvi.singh.715@bank.com,473600,473600,0,Paid,12,12,N/A
+1527,Myra Patel,myra.patel@bank.com,1304600,1304600,0,Paid,48,48,N/A
+1528,Richard Taylor 410,richard.taylor.410@bank.com,1400200,1400200,0,Paid,48,48,N/A
+1529,Sonal Kapoor 655,sonal.kapoor.655@bank.com,1017200,1017200,0,Paid,48,48,N/A
+1530,Jennifer Taylor,jennifer.taylor@bank.com,1526700,152670.0,1374030.0,Defaulted,48,6,Medical Emergency / High Bills
+1531,Michael Johnson,michael.johnson@bank.com,1420300,1420300,0,Paid,60,60,N/A
+1532,Jessica Wilson 702,jessica.wilson.702@bank.com,1528500,1528500,0,Paid,60,60,N/A
+1533,Anvi Singh 701,anvi.singh.701@bank.com,274500,274500,0,Paid,24,24,N/A
+1534,Aditya Singh,aditya.singh@bank.com,1447800,443992.0,1003808.0,Defaulted,60,23,High Debt Consolidation
+1535,Ishaan Nair,ishaan.nair@bank.com,1748000,1748000,0,Paid,36,36,N/A
+1536,Pari Gupta 499,pari.gupta.499@bank.com,115700,115700,0,Paid,12,12,N/A
+1537,Vikram Khanna 161,vikram.khanna.161@bank.com,1877900,1877900,0,Paid,24,24,N/A
+1538,Robert Williams,robert.williams@bank.com,1990200,1990200,0,Paid,24,24,N/A
+1539,Nisha Bhatia 588,nisha.bhatia.588@bank.com,1965000,1965000,0,Paid,60,60,N/A
+1540,David Brown,david.brown@bank.com,1349600,1349600,0,Paid,36,36,N/A
+1541,Aarav Sharma 553,aarav.sharma.553@bank.com,1139600,1139600,0,Paid,48,48,N/A
+1542,Shweta Aggarwal 729,shweta.aggarwal.729@bank.com,477100,387643.75,89456.25,Ongoing,48,39,N/A
+1543,Krishna Murthy 883,krishna.murthy.883@bank.com,88500,88500,0,Paid,48,48,N/A
+1544,Zara Nair,zara.nair@bank.com,1042800,330220.0,712580.0,Ongoing,60,19,N/A
+1545,Rahul Mehra,rahul.mehra@bank.com,1766600,1766600,0,Paid,24,24,N/A
+1546,Priya Das 577,priya.das.577@bank.com,848800,848800,0,Paid,24,24,N/A
+1547,Deepak Malhotra,deepak.malhotra@bank.com,330900,22060.0,308840.0,Defaulted,12,1,Business Multi-sector Failure
+1548,Deepak Malhotra 934,deepak.malhotra.934@bank.com,1533100,1533100,0,Paid,60,60,N/A
+1549,Diya Sharma,diya.sharma@bank.com,664500,248080.0,416420.0,Defaulted,60,28,Business Multi-sector Failure
+1550,Ananya Iyer,ananya.iyer@bank.com,1636300,340895.83,1295404.17,Ongoing,24,5,N/A
+1551,James Smith 939,james.smith.939@bank.com,554900,184966.67,369933.32999999996,Defaulted,12,5,High Debt Consolidation
+1552,Sarah Miller 680,sarah.miller.680@bank.com,842800,842800,0,Paid,48,48,N/A
+1553,Amit Joshi 730,amit.joshi.730@bank.com,1006300,357795.56,648504.44,Defaulted,36,16,Medical Emergency / High Bills
+1554,Rohan Sethi,rohan.sethi@bank.com,1407900,1407900,0,Paid,24,24,N/A
+1555,Pari Gupta,pari.gupta@bank.com,1119800,1119800,0,Paid,48,48,N/A
+1556,Sonal Kapoor 611,sonal.kapoor.611@bank.com,698900,698900,0,Paid,12,12,N/A
+1557,Richard Taylor 547,richard.taylor.547@bank.com,85400,85400,0,Paid,36,36,N/A
+1558,Vivaan Gupta,vivaan.gupta@bank.com,1417900,1417900,0,Paid,48,48,N/A
+1559,Aditya Singh,aditya.singh@bank.com,744100,744100,0,Paid,48,48,N/A
+1560,Diya Sharma 527,diya.sharma.527@bank.com,624100,624100,0,Paid,60,60,N/A
+1561,Myra Patel,myra.patel@bank.com,1825900,1825900,0,Paid,12,12,N/A
+1562,Krishna Murthy 699,krishna.murthy.699@bank.com,1167600,1167600,0,Paid,60,60,N/A
+1563,Zara Nair 930,zara.nair.930@bank.com,38700,38700,0,Paid,60,60,N/A
+1564,Aaryan Iyer 577,aaryan.iyer.577@bank.com,1518200,1518200,0,Paid,24,24,N/A
+1565,David Brown 937,david.brown.937@bank.com,311200,311200,0,Paid,60,60,N/A
+1566,Sai Reddy,sai.reddy@bank.com,1192600,1192600,0,Paid,36,36,N/A
+1567,Robert Williams,robert.williams@bank.com,1185900,52706.67,1133193.33,Defaulted,36,2,Medical Emergency / High Bills
+1568,Deepak Malhotra,deepak.malhotra@bank.com,826800,826800,0,Paid,12,12,N/A
+1569,Nisha Bhatia,nisha.bhatia@bank.com,653700,653700,0,Paid,12,12,N/A
+1570,Ashley Moore 430,ashley.moore.430@bank.com,1574100,1574100,0,Paid,48,48,N/A
+1571,Sai Reddy 880,sai.reddy.880@bank.com,599900,599900,0,Paid,12,12,N/A
+1572,Inaya Murthy 107,inaya.murthy.107@bank.com,1026900,1026900,0,Paid,60,60,N/A
+1573,Sarah Miller,sarah.miller@bank.com,1323600,1323600,0,Paid,48,48,N/A
+1574,Aditya Singh,aditya.singh@bank.com,1306900,1306900,0,Paid,24,24,N/A
+1575,Sonal Kapoor 949,sonal.kapoor.949@bank.com,236000,26222.22,209777.78,Ongoing,36,4,N/A
+1576,Aarav Sharma 797,aarav.sharma.797@bank.com,1716900,1502287.5,214612.5,Ongoing,24,21,N/A
+1577,Zara Nair 245,zara.nair.245@bank.com,1884200,1884200,0,Paid,60,60,N/A
+1578,Karan Oberoi,karan.oberoi@bank.com,993200,993200,0,Paid,24,24,N/A
+1579,Sarah Miller,sarah.miller@bank.com,161000,161000,0,Paid,60,60,N/A
+1580,Inaya Murthy 647,inaya.murthy.647@bank.com,1706500,1706500,0,Paid,24,24,N/A
+1581,Vivaan Gupta 200,vivaan.gupta.200@bank.com,1901500,1901500,0,Paid,60,60,N/A
+1582,Pari Gupta,pari.gupta@bank.com,1333600,1333600,0,Paid,36,36,N/A
+1583,Shanaya Kumar 928,shanaya.kumar.928@bank.com,1006700,1006700,0,Paid,24,24,N/A
+1584,James Smith,james.smith@bank.com,243500,243500,0,Paid,36,36,N/A
+1585,Priya Das,priya.das@bank.com,1016200,1016200,0,Paid,36,36,N/A
+1586,Ishaan Nair 625,ishaan.nair.625@bank.com,1706900,1706900,0,Paid,36,36,N/A
+1587,Ashley Moore,ashley.moore@bank.com,1008600,1008600,0,Paid,36,36,N/A
+1588,Karan Oberoi,karan.oberoi@bank.com,1944700,1539554.17,405145.8300000001,Ongoing,24,19,N/A
+1589,Aarav Sharma,aarav.sharma@bank.com,867100,260130.0,606970.0,Ongoing,60,18,N/A
+1590,Aaryan Iyer,aaryan.iyer@bank.com,409600,409600,0,Paid,12,12,N/A
+1591,Jennifer Taylor,jennifer.taylor@bank.com,1694900,1694900,0,Paid,12,12,N/A
+1592,Aarav Sharma,aarav.sharma@bank.com,482100,482100,0,Paid,48,48,N/A
+1593,Vivaan Gupta 366,vivaan.gupta.366@bank.com,371900,371900,0,Paid,60,60,N/A
+1594,Krishna Murthy 814,krishna.murthy.814@bank.com,213500,213500,0,Paid,48,48,N/A
+1595,Vikram Khanna,vikram.khanna@bank.com,1132500,1132500,0,Paid,60,60,N/A
+1596,Shanaya Kumar 755,shanaya.kumar.755@bank.com,507100,507100,0,Paid,36,36,N/A
+1597,Richard Taylor,richard.taylor@bank.com,740300,740300,0,Paid,60,60,N/A
+1598,Saanvi Iyer,saanvi.iyer@bank.com,404300,404300,0,Paid,48,48,N/A
+1599,Deepak Malhotra,deepak.malhotra@bank.com,1763800,1763800,0,Paid,36,36,N/A
+1600,Diya Sharma 869,diya.sharma.869@bank.com,180400,180400,0,Paid,48,48,N/A
+1601,Rahul Mehra,rahul.mehra@bank.com,1514400,1514400,0,Paid,48,48,N/A
+1602,Jennifer Taylor,jennifer.taylor@bank.com,990400,495200.0,495200.0,Ongoing,60,30,N/A
+1603,Diya Sharma,diya.sharma@bank.com,584100,584100,0,Paid,60,60,N/A
+1604,Priya Das 961,priya.das.961@bank.com,762400,529444.44,232955.56000000006,Ongoing,36,25,N/A
+1605,Krishna Murthy 755,krishna.murthy.755@bank.com,1499500,1499500,0,Paid,60,60,N/A
+1606,Richard Taylor 567,richard.taylor.567@bank.com,729500,729500,0,Paid,48,48,N/A
+1607,Aaryan Iyer,aaryan.iyer@bank.com,721900,721900,0,Paid,48,48,N/A
+1608,Aditya Singh 733,aditya.singh.733@bank.com,727800,727800,0,Paid,24,24,N/A
+1609,Emily Davis 914,emily.davis.914@bank.com,1632200,1190145.83,442054.1699999999,Ongoing,48,35,N/A
+1610,Michael Johnson 765,michael.johnson.765@bank.com,213500,213500,0,Paid,36,36,N/A
+1611,Anvi Singh 862,anvi.singh.862@bank.com,1883000,313833.33,1569166.67,Ongoing,24,4,N/A
+1612,David Brown,david.brown@bank.com,1920800,1920800,0,Paid,12,12,N/A
+1613,Nisha Bhatia,nisha.bhatia@bank.com,1412900,1412900,0,Paid,36,36,N/A
+1614,Sonal Kapoor 460,sonal.kapoor.460@bank.com,1681700,358762.67,1322937.33,Defaulted,60,16,High Debt Consolidation
+1615,James Smith,james.smith@bank.com,803800,53586.67,750213.33,Defaulted,24,2,Personal/Family Crisis
+1616,Arjun Verma 381,arjun.verma.381@bank.com,132700,132700,0,Paid,24,24,N/A
+1617,Saanvi Iyer 985,saanvi.iyer.985@bank.com,1731100,1731100,0,Paid,12,12,N/A
+1618,Diya Sharma,diya.sharma@bank.com,341800,341800,0,Paid,12,12,N/A
+1619,Robert Williams 568,robert.williams.568@bank.com,1700400,1700400,0,Paid,60,60,N/A
+1620,Myra Patel 850,myra.patel.850@bank.com,1291900,1291900,0,Paid,12,12,N/A
+1621,Priya Das,priya.das@bank.com,991800,991800,0,Paid,12,12,N/A
+1622,Vivaan Gupta 762,vivaan.gupta.762@bank.com,1512000,1512000,0,Paid,48,48,N/A
+1623,Anvi Singh 502,anvi.singh.502@bank.com,724200,724200,0,Paid,48,48,N/A
+1624,Myra Patel,myra.patel@bank.com,1724300,1724300,0,Paid,60,60,N/A
+1625,Vikram Khanna,vikram.khanna@bank.com,1463700,1463700,0,Paid,12,12,N/A
+1626,Shanaya Kumar,shanaya.kumar@bank.com,1867600,1867600,0,Paid,48,48,N/A
+1627,Aaryan Iyer 282,aaryan.iyer.282@bank.com,1108500,1108500,0,Paid,12,12,N/A
+1628,Myra Patel 754,myra.patel.754@bank.com,723300,723300,0,Paid,24,24,N/A
+1629,Krishna Murthy,krishna.murthy@bank.com,1633100,254037.78,1379062.22,Defaulted,36,7,Medical Emergency / High Bills
+1630,Shweta Aggarwal,shweta.aggarwal@bank.com,454200,170325.0,283875.0,Ongoing,24,9,N/A
+1631,Vikram Khanna,vikram.khanna@bank.com,1917500,1917500,0,Paid,36,36,N/A
+1632,Jennifer Taylor 464,jennifer.taylor.464@bank.com,1741800,1741800,0,Paid,24,24,N/A
+1633,Deepak Malhotra 106,deepak.malhotra.106@bank.com,1675700,74475.56,1601224.44,Defaulted,36,2,Personal/Family Crisis
+1634,Rohan Sethi 733,rohan.sethi.733@bank.com,676200,676200,0,Paid,48,48,N/A
+1635,Emily Davis 231,emily.davis.231@bank.com,914200,914200,0,Paid,48,48,N/A
+1636,Anvi Singh,anvi.singh@bank.com,1407300,1407300,0,Paid,24,24,N/A
+1637,Richard Taylor 152,richard.taylor.152@bank.com,282800,56560.0,226240.0,Defaulted,12,3,Business Multi-sector Failure
+1638,Vikram Khanna 489,vikram.khanna.489@bank.com,997400,997400,0,Paid,48,48,N/A
+1639,Reyansh Kumar,reyansh.kumar@bank.com,1598800,1598800,0,Paid,12,12,N/A
+1640,Sarah Miller 493,sarah.miller.493@bank.com,337600,337600,0,Paid,48,48,N/A
+1641,Sai Reddy 507,sai.reddy.507@bank.com,1471800,122650.0,1349150.0,Ongoing,36,3,N/A
+1642,Krishna Murthy,krishna.murthy@bank.com,1954600,390920.0,1563680.0,Defaulted,12,3,Interest Rate Overrun
+1643,Diya Sharma 671,diya.sharma.671@bank.com,243500,16233.33,227266.67,Defaulted,12,1,Personal/Family Crisis
+1644,Sai Reddy,sai.reddy@bank.com,1255800,1255800,0,Paid,24,24,N/A
+1645,Vivaan Gupta,vivaan.gupta@bank.com,441300,441300,0,Paid,36,36,N/A
+1646,Sarah Miller,sarah.miller@bank.com,1751900,1751900,0,Paid,36,36,N/A
+1647,Diya Sharma,diya.sharma@bank.com,1580000,1580000,0,Paid,60,60,N/A
+1648,Jennifer Taylor 474,jennifer.taylor.474@bank.com,1475200,1475200,0,Paid,24,24,N/A
+1649,Aditya Singh,aditya.singh@bank.com,840200,246458.67,593741.33,Defaulted,60,22,Unemployment / Job Loss
+1650,Sarah Miller,sarah.miller@bank.com,1373400,1373400,0,Paid,36,36,N/A
+1651,Zara Nair,zara.nair@bank.com,80900,80900,0,Paid,36,36,N/A
+1652,Sarah Miller 530,sarah.miller.530@bank.com,747300,747300,0,Paid,12,12,N/A
+1653,James Smith 876,james.smith.876@bank.com,825900,825900,0,Paid,12,12,N/A
+1654,Jessica Wilson,jessica.wilson@bank.com,1204200,1204200,0,Paid,24,24,N/A
+1655,Ishaan Nair 242,ishaan.nair.242@bank.com,1305900,1305900,0,Paid,36,36,N/A
+1656,Sai Reddy 532,sai.reddy.532@bank.com,1395800,1395800,0,Paid,12,12,N/A
+1657,Pari Gupta 681,pari.gupta.681@bank.com,103000,87979.17,15020.830000000002,Ongoing,48,41,N/A
+1658,Karan Oberoi,karan.oberoi@bank.com,1495900,1495900,0,Paid,12,12,N/A
+1659,Ashley Moore 935,ashley.moore.935@bank.com,1196600,1196600,0,Paid,36,36,N/A
+1660,Vivaan Gupta 677,vivaan.gupta.677@bank.com,1388400,1388400,0,Paid,60,60,N/A
+1661,Sai Reddy,sai.reddy@bank.com,1162900,1162900,0,Paid,48,48,N/A
+1662,Anvi Singh,anvi.singh@bank.com,475500,475500,0,Paid,48,48,N/A
+1663,Rahul Mehra,rahul.mehra@bank.com,267100,267100,0,Paid,36,36,N/A
+1664,Ananya Iyer,ananya.iyer@bank.com,871400,363083.33,508316.67,Ongoing,36,15,N/A
+1665,Krishna Murthy,krishna.murthy@bank.com,1346800,1346800,0,Paid,60,60,N/A
+1666,Sai Reddy,sai.reddy@bank.com,1455500,1455500,0,Paid,12,12,N/A
+1667,Sarah Miller 103,sarah.miller.103@bank.com,688800,73472.0,615328.0,Defaulted,60,8,Unemployment / Job Loss
+1668,Priya Das,priya.das@bank.com,1401400,1401400,0,Paid,24,24,N/A
+1669,Ananya Iyer,ananya.iyer@bank.com,48800,48800,0,Paid,12,12,N/A
+1670,Zara Nair 119,zara.nair.119@bank.com,484300,484300,0,Paid,24,24,N/A
+1671,David Brown 220,david.brown.220@bank.com,269600,28757.33,240842.66999999998,Defaulted,60,8,Business Multi-sector Failure
+1672,Anvi Singh 309,anvi.singh.309@bank.com,525300,525300,0,Paid,12,12,N/A
+1673,Aditya Singh,aditya.singh@bank.com,51300,1140.0,50160.0,Defaulted,36,1,Medical Emergency / High Bills
+1674,Myra Patel 454,myra.patel.454@bank.com,1089800,1089800,0,Paid,60,60,N/A
+1675,Shweta Aggarwal 243,shweta.aggarwal.243@bank.com,924000,61600.0,862400.0,Defaulted,36,3,Interest Rate Overrun
+1676,Jennifer Taylor,jennifer.taylor@bank.com,1720600,1720600,0,Paid,12,12,N/A
+1677,Aaryan Iyer 120,aaryan.iyer.120@bank.com,941400,104600.0,836800.0,Ongoing,36,4,N/A
+1678,Vivaan Gupta 971,vivaan.gupta.971@bank.com,1645300,1645300,0,Paid,12,12,N/A
+1679,Inaya Murthy 864,inaya.murthy.864@bank.com,697300,58108.33,639191.67,Ongoing,24,2,N/A
+1680,Karan Oberoi 630,karan.oberoi.630@bank.com,201900,201900,0,Paid,24,24,N/A
+1681,David Brown,david.brown@bank.com,909000,909000,0,Paid,48,48,N/A
+1682,Sarah Miller 202,sarah.miller.202@bank.com,520300,520300,0,Paid,48,48,N/A
+1683,Richard Taylor 157,richard.taylor.157@bank.com,99200,99200,0,Paid,60,60,N/A
+1684,Anvi Singh,anvi.singh@bank.com,487100,487100,0,Paid,36,36,N/A
+1685,Saanvi Iyer,saanvi.iyer@bank.com,469500,469500,0,Paid,60,60,N/A
+1686,Sai Reddy,sai.reddy@bank.com,1172300,1172300,0,Paid,60,60,N/A
+1687,Myra Patel 156,myra.patel.156@bank.com,1430900,894312.5,536587.5,Ongoing,24,15,N/A
+1688,David Brown 423,david.brown.423@bank.com,228800,11440.0,217360.0,Defaulted,48,3,High Debt Consolidation
+1689,Richard Taylor 396,richard.taylor.396@bank.com,1243700,41456.67,1202243.33,Defaulted,24,1,Medical Emergency / High Bills
+1690,Diya Sharma 832,diya.sharma.832@bank.com,1410600,1410600,0,Paid,12,12,N/A
+1691,Amit Joshi,amit.joshi@bank.com,554200,554200,0,Paid,12,12,N/A
+1692,Richard Taylor 260,richard.taylor.260@bank.com,516400,516400,0,Paid,12,12,N/A
+1693,Aditya Singh 475,aditya.singh.475@bank.com,737500,737500,0,Paid,12,12,N/A
+1694,Jessica Wilson 228,jessica.wilson.228@bank.com,801800,801800,0,Paid,48,48,N/A
+1695,Pari Gupta 703,pari.gupta.703@bank.com,484300,484300,0,Paid,24,24,N/A
+1696,Robert Williams,robert.williams@bank.com,745000,745000,0,Paid,60,60,N/A
+1697,Vivaan Gupta 145,vivaan.gupta.145@bank.com,2000000,2000000,0,Paid,60,60,N/A
+1698,Ananya Iyer,ananya.iyer@bank.com,1286400,1286400,0,Paid,36,36,N/A
+1699,Jennifer Taylor 470,jennifer.taylor.470@bank.com,812200,324880.0,487320.0,Defaulted,60,30,High Debt Consolidation
+1700,Inaya Murthy 143,inaya.murthy.143@bank.com,818600,818600,0,Paid,36,36,N/A
+1701,Michael Johnson 600,michael.johnson.600@bank.com,1928000,192800.0,1735200.0,Defaulted,24,3,High Debt Consolidation
+1702,Sai Reddy 989,sai.reddy.989@bank.com,397400,397400,0,Paid,12,12,N/A
+1703,Ashley Moore,ashley.moore@bank.com,1410000,1410000,0,Paid,12,12,N/A
+1704,Amit Joshi,amit.joshi@bank.com,1317100,1042704.17,274395.82999999996,Ongoing,24,19,N/A
+1705,Emily Davis 195,emily.davis.195@bank.com,1062800,1062800,0,Paid,12,12,N/A
+1706,Arjun Verma 283,arjun.verma.283@bank.com,185300,185300,0,Paid,48,48,N/A
+1707,Myra Patel 384,myra.patel.384@bank.com,421200,421200,0,Paid,48,48,N/A
+1708,Vikram Khanna 879,vikram.khanna.879@bank.com,1598600,1598600,0,Paid,24,24,N/A
+1709,Nisha Bhatia,nisha.bhatia@bank.com,1791800,1791800,0,Paid,12,12,N/A
+1710,Deepak Malhotra 568,deepak.malhotra.568@bank.com,919900,919900,0,Paid,48,48,N/A
+1711,Aaryan Iyer,aaryan.iyer@bank.com,439900,439900,0,Paid,12,12,N/A
+1712,Vihaan Patel,vihaan.patel@bank.com,141800,41358.33,100441.67,Ongoing,24,7,N/A
+1713,Aaryan Iyer 827,aaryan.iyer.827@bank.com,370800,370800,0,Paid,36,36,N/A
+1714,Saanvi Iyer,saanvi.iyer@bank.com,962200,962200,0,Paid,48,48,N/A
+1715,Amit Joshi 300,amit.joshi.300@bank.com,746900,219090.67,527809.33,Defaulted,60,22,Business Multi-sector Failure
+1716,Ishaan Nair 878,ishaan.nair.878@bank.com,265600,265600,0,Paid,24,24,N/A
+1717,Aditya Singh,aditya.singh@bank.com,76800,76800,0,Paid,60,60,N/A
+1718,Michael Johnson,michael.johnson@bank.com,894600,894600,0,Paid,48,48,N/A
+1719,Aarav Sharma 371,aarav.sharma.371@bank.com,1539900,1539900,0,Paid,12,12,N/A
+1720,Vikram Khanna,vikram.khanna@bank.com,46700,46700,0,Paid,60,60,N/A
+1721,Krishna Murthy 669,krishna.murthy.669@bank.com,599000,599000,0,Paid,48,48,N/A
+1722,Ashley Moore 649,ashley.moore.649@bank.com,1807500,1807500,0,Paid,24,24,N/A
+1723,Robert Williams 264,robert.williams.264@bank.com,1837100,1837100,0,Paid,60,60,N/A
+1724,Priya Das 203,priya.das.203@bank.com,449900,12497.22,437402.78,Ongoing,36,1,N/A
+1725,Sonal Kapoor,sonal.kapoor@bank.com,1277400,1277400,0,Paid,48,48,N/A
+1726,Pari Gupta 116,pari.gupta.116@bank.com,1401100,1401100,0,Paid,36,36,N/A
+1727,Priya Das 607,priya.das.607@bank.com,1494300,1494300,0,Paid,60,60,N/A
+1728,Diya Sharma,diya.sharma@bank.com,1609400,1609400,0,Paid,60,60,N/A
+1729,Ashley Moore,ashley.moore@bank.com,1419100,1419100,0,Paid,24,24,N/A
+1730,Ashley Moore 160,ashley.moore.160@bank.com,965800,965800,0,Paid,12,12,N/A
+1731,Jennifer Taylor 387,jennifer.taylor.387@bank.com,705200,705200,0,Paid,12,12,N/A
+1732,Shweta Aggarwal 708,shweta.aggarwal.708@bank.com,1791400,1791400,0,Paid,36,36,N/A
+1733,Jessica Wilson 674,jessica.wilson.674@bank.com,829000,829000,0,Paid,36,36,N/A
+1734,Krishna Murthy,krishna.murthy@bank.com,1882700,1882700,0,Paid,48,48,N/A
+1735,Aditya Singh 552,aditya.singh.552@bank.com,1590900,1590900,0,Paid,48,48,N/A
+1736,Myra Patel 212,myra.patel.212@bank.com,1963100,1963100,0,Paid,24,24,N/A
+1737,Rohan Sethi 644,rohan.sethi.644@bank.com,345300,345300,0,Paid,12,12,N/A
+1738,Aditya Singh 813,aditya.singh.813@bank.com,463500,299343.75,164156.25,Ongoing,48,31,N/A
+1739,Aditya Singh 919,aditya.singh.919@bank.com,1263000,736750.0,526250.0,Ongoing,60,35,N/A
+1740,Priya Das,priya.das@bank.com,1822400,1822400,0,Paid,48,48,N/A
+1741,Jessica Wilson,jessica.wilson@bank.com,957200,366926.67,590273.3300000001,Defaulted,48,23,Unemployment / Job Loss
+1742,Sai Reddy,sai.reddy@bank.com,540500,540500,0,Paid,12,12,N/A
+1743,Ananya Iyer 844,ananya.iyer.844@bank.com,1213700,1213700,0,Paid,60,60,N/A
+1744,Myra Patel,myra.patel@bank.com,1455700,1455700,0,Paid,36,36,N/A
+1745,Aadhya Reddy 664,aadhya.reddy.664@bank.com,1036900,1036900,0,Paid,12,12,N/A
+1746,Shweta Aggarwal 927,shweta.aggarwal.927@bank.com,1243200,62160.0,1181040.0,Defaulted,48,3,Unemployment / Job Loss
+1747,Aadhya Reddy 705,aadhya.reddy.705@bank.com,653100,653100,0,Paid,60,60,N/A
+1748,Ishaan Nair,ishaan.nair@bank.com,1571700,628680.0,943020.0,Defaulted,24,12,Business Multi-sector Failure
+1749,Karan Oberoi 328,karan.oberoi.328@bank.com,1201600,1201600,0,Paid,36,36,N/A
+1750,Priya Das,priya.das@bank.com,285200,35650.0,249550.0,Ongoing,24,3,N/A
+1751,Jessica Wilson 659,jessica.wilson.659@bank.com,612300,612300,0,Paid,48,48,N/A
+1752,Vikram Khanna 830,vikram.khanna.830@bank.com,981600,981600,0,Paid,60,60,N/A
+1753,Shweta Aggarwal 637,shweta.aggarwal.637@bank.com,157200,157200,0,Paid,12,12,N/A
+1754,Anvi Singh 158,anvi.singh.158@bank.com,56500,12241.67,44258.33,Defaulted,48,13,Medical Emergency / High Bills
+1755,Sonal Kapoor,sonal.kapoor@bank.com,1264400,1264400,0,Paid,48,48,N/A
+1756,Vihaan Patel 720,vihaan.patel.720@bank.com,1300300,1300300,0,Paid,36,36,N/A
+1757,Jennifer Taylor,jennifer.taylor@bank.com,956300,956300,0,Paid,24,24,N/A
+1758,Richard Taylor 357,richard.taylor.357@bank.com,1926900,1926900,0,Paid,60,60,N/A
+1759,Aarav Sharma 784,aarav.sharma.784@bank.com,839300,839300,0,Paid,12,12,N/A
+1760,Deepak Malhotra,deepak.malhotra@bank.com,397000,397000,0,Paid,12,12,N/A
+1761,Zara Nair,zara.nair@bank.com,1382500,1382500,0,Paid,36,36,N/A
+1762,Pari Gupta 558,pari.gupta.558@bank.com,1781400,1781400,0,Paid,24,24,N/A
+1763,Krishna Murthy 491,krishna.murthy.491@bank.com,797600,432033.33,365566.67,Ongoing,48,26,N/A
+1764,Sai Reddy,sai.reddy@bank.com,1952100,1952100,0,Paid,12,12,N/A
+1765,Myra Patel 802,myra.patel.802@bank.com,402600,402600,0,Paid,60,60,N/A
+1766,Aarav Sharma,aarav.sharma@bank.com,1497500,1497500,0,Paid,48,48,N/A
+1767,Ashley Moore,ashley.moore@bank.com,832200,832200,0,Paid,24,24,N/A
+1768,Sonal Kapoor,sonal.kapoor@bank.com,1474900,1474900,0,Paid,48,48,N/A
+1769,Rahul Mehra 341,rahul.mehra.341@bank.com,327200,204500.0,122700.0,Ongoing,48,30,N/A
+1770,Shweta Aggarwal 185,shweta.aggarwal.185@bank.com,592500,237000.0,355500.0,Defaulted,12,6,Interest Rate Overrun
+1771,Ashley Moore,ashley.moore@bank.com,954600,875050.0,79550.0,Ongoing,12,11,N/A
+1772,Priya Das 848,priya.das.848@bank.com,1463200,1463200,0,Paid,24,24,N/A
+1773,Richard Taylor,richard.taylor@bank.com,896000,896000,0,Paid,48,48,N/A
+1774,Ishaan Nair,ishaan.nair@bank.com,166800,166800,0,Paid,36,36,N/A
+1775,Amit Joshi 981,amit.joshi.981@bank.com,672100,672100,0,Paid,12,12,N/A
+1776,Karan Oberoi,karan.oberoi@bank.com,398700,398700,0,Paid,12,12,N/A
+1777,Inaya Murthy,inaya.murthy@bank.com,1185700,1086891.67,98808.33000000007,Ongoing,48,44,N/A
+1778,Karan Oberoi,karan.oberoi@bank.com,1500500,1500500,0,Paid,12,12,N/A
+1779,Inaya Murthy 571,inaya.murthy.571@bank.com,50300,50300,0,Paid,12,12,N/A
+1780,Nisha Bhatia 164,nisha.bhatia.164@bank.com,1326100,1326100,0,Paid,24,24,N/A
+1781,Vivaan Gupta 569,vivaan.gupta.569@bank.com,1196200,1196200,0,Paid,36,36,N/A
+1782,Saanvi Iyer 234,saanvi.iyer.234@bank.com,412900,412900,0,Paid,36,36,N/A
+1783,Myra Patel 295,myra.patel.295@bank.com,870700,507908.33,362791.67,Ongoing,24,14,N/A
+1784,Pari Gupta 868,pari.gupta.868@bank.com,437700,437700,0,Paid,48,48,N/A
+1785,Shanaya Kumar 663,shanaya.kumar.663@bank.com,1757700,1757700,0,Paid,12,12,N/A
+1786,Krishna Murthy 231,krishna.murthy.231@bank.com,324200,324200,0,Paid,60,60,N/A
+1787,Shweta Aggarwal 946,shweta.aggarwal.946@bank.com,1773800,1773800,0,Paid,60,60,N/A
+1788,Inaya Murthy,inaya.murthy@bank.com,1010900,884537.5,126362.5,Ongoing,48,42,N/A
+1789,Robert Williams,robert.williams@bank.com,596400,596400,0,Paid,60,60,N/A
+1790,Rohan Sethi,rohan.sethi@bank.com,186800,186800,0,Paid,24,24,N/A
+1791,Robert Williams 104,robert.williams.104@bank.com,15300,15300,0,Paid,36,36,N/A
+1792,David Brown 429,david.brown.429@bank.com,443500,443500,0,Paid,36,36,N/A
+1793,Shweta Aggarwal 655,shweta.aggarwal.655@bank.com,1438100,898812.5,539287.5,Ongoing,48,30,N/A
+1794,Michael Johnson,michael.johnson@bank.com,1136100,1136100,0,Paid,60,60,N/A
+1795,Jessica Wilson 713,jessica.wilson.713@bank.com,204600,204600,0,Paid,24,24,N/A
+1796,Diya Sharma 161,diya.sharma.161@bank.com,1773000,1773000,0,Paid,36,36,N/A
+1797,Shanaya Kumar 564,shanaya.kumar.564@bank.com,932300,932300,0,Paid,48,48,N/A
+1798,Emily Davis,emily.davis@bank.com,721100,721100,0,Paid,48,48,N/A
+1799,Deepak Malhotra,deepak.malhotra@bank.com,901400,901400,0,Paid,24,24,N/A
+1800,Rohan Sethi,rohan.sethi@bank.com,1564800,1564800,0,Paid,36,36,N/A
+1801,Vikram Khanna 921,vikram.khanna.921@bank.com,951200,528444.44,422755.56000000006,Ongoing,36,20,N/A
+1802,Shanaya Kumar 669,shanaya.kumar.669@bank.com,1275500,1275500,0,Paid,36,36,N/A
+1803,Ishaan Nair,ishaan.nair@bank.com,1954500,1954500,0,Paid,12,12,N/A
+1804,Richard Taylor,richard.taylor@bank.com,754700,176096.67,578603.33,Ongoing,60,14,N/A
+1805,Aaryan Iyer 366,aaryan.iyer.366@bank.com,1699900,1322144.44,377755.56000000006,Ongoing,36,28,N/A
+1806,Karan Oberoi 209,karan.oberoi.209@bank.com,795800,596850.0,198950.0,Ongoing,24,18,N/A
+1807,Deepak Malhotra 345,deepak.malhotra.345@bank.com,1408600,1408600,0,Paid,12,12,N/A
+1808,Nisha Bhatia 351,nisha.bhatia.351@bank.com,773700,773700,0,Paid,24,24,N/A
+1809,Priya Das 259,priya.das.259@bank.com,1378700,229783.33,1148916.67,Ongoing,12,2,N/A
+1810,Nisha Bhatia,nisha.bhatia@bank.com,1220800,1220800,0,Paid,48,48,N/A
+1811,Zara Nair 944,zara.nair.944@bank.com,911200,911200,0,Paid,12,12,N/A
+1812,Amit Joshi,amit.joshi@bank.com,482500,482500,0,Paid,60,60,N/A
+1813,Amit Joshi,amit.joshi@bank.com,1023500,1023500,0,Paid,36,36,N/A
+1814,David Brown 588,david.brown.588@bank.com,1668300,1668300,0,Paid,24,24,N/A
+1815,Anvi Singh,anvi.singh@bank.com,1285800,1285800,0,Paid,24,24,N/A
+1816,Arjun Verma 466,arjun.verma.466@bank.com,1578700,1578700,0,Paid,48,48,N/A
+1817,Rahul Mehra,rahul.mehra@bank.com,1161800,871350.0,290450.0,Ongoing,12,9,N/A
+1818,Aarav Sharma,aarav.sharma@bank.com,25900,25900,0,Paid,24,24,N/A
+1819,Sonal Kapoor 429,sonal.kapoor.429@bank.com,1515700,1515700,0,Paid,12,12,N/A
+1820,Aarav Sharma 621,aarav.sharma.621@bank.com,1114800,1114800,0,Paid,36,36,N/A
+1821,Emily Davis,emily.davis@bank.com,392700,392700,0,Paid,36,36,N/A
+1822,Aarav Sharma,aarav.sharma@bank.com,707200,707200,0,Paid,60,60,N/A
+1823,Priya Das,priya.das@bank.com,54800,54800,0,Paid,24,24,N/A
+1824,Myra Patel,myra.patel@bank.com,307100,307100,0,Paid,12,12,N/A
+1825,Aaryan Iyer,aaryan.iyer@bank.com,950600,950600,0,Paid,12,12,N/A
+1826,Reyansh Kumar,reyansh.kumar@bank.com,27600,27600,0,Paid,60,60,N/A
+1827,Rahul Mehra,rahul.mehra@bank.com,936300,140445.0,795855.0,Defaulted,48,9,Medical Emergency / High Bills
+1828,Zara Nair,zara.nair@bank.com,1855800,1855800,0,Paid,60,60,N/A
+1829,Vivaan Gupta,vivaan.gupta@bank.com,1126000,1126000,0,Paid,12,12,N/A
+1830,Sai Reddy 746,sai.reddy.746@bank.com,1658200,1658200,0,Paid,24,24,N/A
+1831,David Brown,david.brown@bank.com,905300,905300,0,Paid,12,12,N/A
+1832,Rahul Mehra 165,rahul.mehra.165@bank.com,1202100,1202100,0,Paid,24,24,N/A
+1833,Ananya Iyer 292,ananya.iyer.292@bank.com,88300,88300,0,Paid,60,60,N/A
+1834,Sarah Miller 458,sarah.miller.458@bank.com,653100,653100,0,Paid,36,36,N/A
+1835,Vivaan Gupta,vivaan.gupta@bank.com,340400,340400,0,Paid,36,36,N/A
+1836,Vikram Khanna,vikram.khanna@bank.com,706600,706600,0,Paid,36,36,N/A
+1837,Myra Patel 522,myra.patel.522@bank.com,1480500,1480500,0,Paid,60,60,N/A
+1838,Vikram Khanna 377,vikram.khanna.377@bank.com,243000,243000,0,Paid,12,12,N/A
+1839,Vikram Khanna,vikram.khanna@bank.com,1242400,1190633.33,51766.669999999925,Ongoing,24,23,N/A
+1840,Amit Joshi 468,amit.joshi.468@bank.com,1274500,311544.44,962955.56,Defaulted,36,11,Medical Emergency / High Bills
+1841,Aadhya Reddy 802,aadhya.reddy.802@bank.com,1816700,1816700,0,Paid,48,48,N/A
+1842,Ashley Moore 740,ashley.moore.740@bank.com,1625000,1625000,0,Paid,48,48,N/A
+1843,Aarav Sharma 480,aarav.sharma.480@bank.com,148600,61916.67,86683.33,Ongoing,12,5,N/A
+1844,Pari Gupta 451,pari.gupta.451@bank.com,742500,297000.0,445500.0,Defaulted,24,12,Personal/Family Crisis
+1845,Vikram Khanna 194,vikram.khanna.194@bank.com,1643300,383436.67,1259863.33,Defaulted,24,7,Medical Emergency / High Bills
+1846,Amit Joshi 512,amit.joshi.512@bank.com,540100,540100,0,Paid,24,24,N/A
+1847,Ashley Moore,ashley.moore@bank.com,791000,791000,0,Paid,24,24,N/A
+1848,Shanaya Kumar 121,shanaya.kumar.121@bank.com,791000,791000,0,Paid,60,60,N/A
+1849,Shweta Aggarwal,shweta.aggarwal@bank.com,59700,59700,0,Paid,24,24,N/A
+1850,Shweta Aggarwal,shweta.aggarwal@bank.com,1848900,30815.0,1818085.0,Defaulted,48,1,Unemployment / Job Loss
+1851,Inaya Murthy 602,inaya.murthy.602@bank.com,356300,356300,0,Paid,24,24,N/A
+1852,Robert Williams,robert.williams@bank.com,1938700,1938700,0,Paid,12,12,N/A
+1853,Aditya Singh 616,aditya.singh.616@bank.com,1160400,1160400,0,Paid,60,60,N/A
+1854,Shweta Aggarwal 453,shweta.aggarwal.453@bank.com,1249000,832666.67,416333.32999999996,Ongoing,12,8,N/A
+1855,Rohan Sethi,rohan.sethi@bank.com,289400,104184.0,185216.0,Defaulted,60,27,Medical Emergency / High Bills
+1856,Vihaan Patel 356,vihaan.patel.356@bank.com,1422100,237016.67,1185083.33,Defaulted,48,10,Business Multi-sector Failure
+1857,Aadhya Reddy 934,aadhya.reddy.934@bank.com,1345200,1345200,0,Paid,12,12,N/A
+1858,Inaya Murthy,inaya.murthy@bank.com,826800,826800,0,Paid,12,12,N/A
+1859,Shanaya Kumar,shanaya.kumar@bank.com,542000,542000,0,Paid,36,36,N/A
+1860,Richard Taylor 722,richard.taylor.722@bank.com,1031500,1031500,0,Paid,48,48,N/A
+1861,Inaya Murthy,inaya.murthy@bank.com,1864100,1864100,0,Paid,12,12,N/A
+1862,Diya Sharma 952,diya.sharma.952@bank.com,699000,699000,0,Paid,12,12,N/A
+1863,Inaya Murthy,inaya.murthy@bank.com,165300,165300,0,Paid,12,12,N/A
+1864,Myra Patel 282,myra.patel.282@bank.com,48400,7260.0,41140.0,Defaulted,48,9,Business Multi-sector Failure
+1865,Jessica Wilson,jessica.wilson@bank.com,1939600,323266.67,1616333.33,Ongoing,36,6,N/A
+1866,Sai Reddy 467,sai.reddy.467@bank.com,1160900,1160900,0,Paid,24,24,N/A
+1867,Michael Johnson,michael.johnson@bank.com,1054500,1054500,0,Paid,60,60,N/A
+1868,Sonal Kapoor,sonal.kapoor@bank.com,1144300,1144300,0,Paid,24,24,N/A
+1869,Sai Reddy 700,sai.reddy.700@bank.com,180300,180300,0,Paid,60,60,N/A
+1870,Aditya Singh,aditya.singh@bank.com,1711100,1711100,0,Paid,36,36,N/A
+1871,Sonal Kapoor 638,sonal.kapoor.638@bank.com,1073300,357766.67,715533.3300000001,Defaulted,12,5,Unemployment / Job Loss
+1872,Saanvi Iyer 846,saanvi.iyer.846@bank.com,1638300,511968.75,1126331.25,Ongoing,48,15,N/A
+1873,Amit Joshi,amit.joshi@bank.com,881900,881900,0,Paid,60,60,N/A
+1874,Sai Reddy 157,sai.reddy.157@bank.com,294900,270325.0,24575.0,Ongoing,12,11,N/A
+1875,Robert Williams 873,robert.williams.873@bank.com,955300,165585.33,789714.67,Defaulted,60,13,High Debt Consolidation
+1876,Michael Johnson,michael.johnson@bank.com,215700,215700,0,Paid,60,60,N/A
+1877,Sonal Kapoor 268,sonal.kapoor.268@bank.com,464100,425425.0,38675.0,Ongoing,12,11,N/A
+1878,Aditya Singh 697,aditya.singh.697@bank.com,475900,475900,0,Paid,60,60,N/A
+1879,Aarav Sharma,aarav.sharma@bank.com,279600,279600,0,Paid,48,48,N/A
+1880,Vihaan Patel,vihaan.patel@bank.com,308600,144013.33,164586.67,Ongoing,60,28,N/A
+1881,Rohan Sethi 109,rohan.sethi.109@bank.com,182000,54600.0,127400.0,Defaulted,24,9,Personal/Family Crisis
+1882,Vihaan Patel 353,vihaan.patel.353@bank.com,1037200,1037200,0,Paid,24,24,N/A
+1883,Jennifer Taylor 211,jennifer.taylor.211@bank.com,135000,135000,0,Paid,12,12,N/A
+1884,Vihaan Patel 224,vihaan.patel.224@bank.com,270800,270800,0,Paid,60,60,N/A
+1885,Aarav Sharma 968,aarav.sharma.968@bank.com,1277700,1277700,0,Paid,24,24,N/A
+1886,Sarah Miller,sarah.miller@bank.com,100700,37762.5,62937.5,Ongoing,48,18,N/A
+1887,Rahul Mehra,rahul.mehra@bank.com,471200,471200,0,Paid,48,48,N/A
+1888,Richard Taylor 926,richard.taylor.926@bank.com,415400,415400,0,Paid,60,60,N/A
+1889,Zara Nair,zara.nair@bank.com,1175400,1175400,0,Paid,24,24,N/A
+1890,Rahul Mehra,rahul.mehra@bank.com,364400,364400,0,Paid,36,36,N/A
+1891,Priya Das 294,priya.das.294@bank.com,1934000,1934000,0,Paid,24,24,N/A
+1892,Emily Davis 969,emily.davis.969@bank.com,1626100,1626100,0,Paid,12,12,N/A
+1893,Priya Das 551,priya.das.551@bank.com,1605700,53523.33,1552176.67,Defaulted,24,1,Medical Emergency / High Bills
+1894,Shanaya Kumar 530,shanaya.kumar.530@bank.com,1830500,305083.33,1525416.67,Ongoing,48,8,N/A
+1895,Ishaan Nair 779,ishaan.nair.779@bank.com,1105600,1105600,0,Paid,36,36,N/A
+1896,Reyansh Kumar 795,reyansh.kumar.795@bank.com,555000,555000,0,Paid,60,60,N/A
+1897,Anvi Singh,anvi.singh@bank.com,1634600,1634600,0,Paid,36,36,N/A
+1898,Aarav Sharma,aarav.sharma@bank.com,706500,706500,0,Paid,60,60,N/A
+1899,Richard Taylor,richard.taylor@bank.com,1072600,143013.33,929586.67,Defaulted,60,10,Unemployment / Job Loss
+1900,Sarah Miller 991,sarah.miller.991@bank.com,33200,33200,0,Paid,60,60,N/A
+1901,Sai Reddy 216,sai.reddy.216@bank.com,147200,34346.67,112853.33,Defaulted,24,7,Personal/Family Crisis
+1902,Zara Nair,zara.nair@bank.com,687500,238333.33,449166.67000000004,Defaulted,60,26,High Debt Consolidation
+1903,Myra Patel 765,myra.patel.765@bank.com,252700,252700,0,Paid,12,12,N/A
+1904,Robert Williams 231,robert.williams.231@bank.com,343600,286333.33,57266.669999999984,Ongoing,24,20,N/A
+1905,Ananya Iyer,ananya.iyer@bank.com,46900,46900,0,Paid,12,12,N/A
+1906,Krishna Murthy,krishna.murthy@bank.com,1658600,1658600,0,Paid,12,12,N/A
+1907,Inaya Murthy 980,inaya.murthy.980@bank.com,67800,67800,0,Paid,36,36,N/A
+1908,Aarav Sharma 206,aarav.sharma.206@bank.com,1559400,623760.0,935640.0,Defaulted,12,6,High Debt Consolidation
+1909,Jessica Wilson,jessica.wilson@bank.com,1530400,1530400,0,Paid,12,12,N/A
+1910,Priya Das 971,priya.das.971@bank.com,1308400,305293.33,1003106.6699999999,Defaulted,24,7,Business Multi-sector Failure
+1911,Aaryan Iyer 360,aaryan.iyer.360@bank.com,663300,88440.0,574860.0,Defaulted,12,2,Business Multi-sector Failure
+1912,Sai Reddy 641,sai.reddy.641@bank.com,362300,362300,0,Paid,24,24,N/A
+1913,Arjun Verma,arjun.verma@bank.com,1355400,790650.0,564750.0,Ongoing,12,7,N/A
+1914,Nisha Bhatia,nisha.bhatia@bank.com,916700,916700,0,Paid,24,24,N/A
+1915,Vivaan Gupta 319,vivaan.gupta.319@bank.com,1598800,666166.67,932633.33,Ongoing,12,5,N/A
+1916,Amit Joshi 807,amit.joshi.807@bank.com,1227700,1227700,0,Paid,12,12,N/A
+1917,Rohan Sethi,rohan.sethi@bank.com,1412300,1412300,0,Paid,36,36,N/A
+1918,Richard Taylor,richard.taylor@bank.com,1845600,1845600,0,Paid,60,60,N/A
+1919,Shweta Aggarwal,shweta.aggarwal@bank.com,1177100,1177100,0,Paid,36,36,N/A
+1920,Myra Patel 894,myra.patel.894@bank.com,1162100,1162100,0,Paid,48,48,N/A
+1921,Inaya Murthy,inaya.murthy@bank.com,689800,689800,0,Paid,48,48,N/A
+1922,Pari Gupta 752,pari.gupta.752@bank.com,1827800,1827800,0,Paid,24,24,N/A
+1923,Karan Oberoi,karan.oberoi@bank.com,579500,579500,0,Paid,12,12,N/A
+1924,James Smith 960,james.smith.960@bank.com,1963500,1963500,0,Paid,12,12,N/A
+1925,Myra Patel 937,myra.patel.937@bank.com,284000,284000,0,Paid,48,48,N/A
+1926,Aarav Sharma 575,aarav.sharma.575@bank.com,489600,489600,0,Paid,60,60,N/A
+1927,Jennifer Taylor,jennifer.taylor@bank.com,1220600,1220600,0,Paid,12,12,N/A
+1928,Amit Joshi 370,amit.joshi.370@bank.com,670500,670500,0,Paid,48,48,N/A
+1929,Krishna Murthy 789,krishna.murthy.789@bank.com,444400,259233.33,185166.67,Ongoing,36,21,N/A
+1930,Jennifer Taylor,jennifer.taylor@bank.com,111400,44560.0,66840.0,Defaulted,60,30,Unemployment / Job Loss
+1931,Rohan Sethi 438,rohan.sethi.438@bank.com,1320300,1320300,0,Paid,36,36,N/A
+1932,Sai Reddy,sai.reddy@bank.com,96700,96700,0,Paid,36,36,N/A
+1933,Michael Johnson 571,michael.johnson.571@bank.com,1717100,152631.11,1564468.8900000001,Defaulted,36,4,Interest Rate Overrun
+1934,Priya Das,priya.das@bank.com,1633600,1633600,0,Paid,24,24,N/A
+1935,Vivaan Gupta,vivaan.gupta@bank.com,1508600,1508600,0,Paid,36,36,N/A
+1936,Krishna Murthy,krishna.murthy@bank.com,1290200,344053.33,946146.6699999999,Defaulted,12,4,Business Multi-sector Failure
+1937,Deepak Malhotra,deepak.malhotra@bank.com,397600,397600,0,Paid,12,12,N/A
+1938,Krishna Murthy 639,krishna.murthy.639@bank.com,553600,202986.67,350613.32999999996,Defaulted,24,11,Business Multi-sector Failure
+1939,Shanaya Kumar 922,shanaya.kumar.922@bank.com,852200,852200,0,Paid,24,24,N/A
+1940,Rohan Sethi,rohan.sethi@bank.com,1415800,1415800,0,Paid,60,60,N/A
+1941,Aadhya Reddy 223,aadhya.reddy.223@bank.com,776100,776100,0,Paid,24,24,N/A
+1942,Saanvi Iyer,saanvi.iyer@bank.com,1292100,107675.0,1184425.0,Ongoing,48,4,N/A
+1943,Rohan Sethi,rohan.sethi@bank.com,1287100,1158390.0,128710.0,Ongoing,60,54,N/A
+1944,Vivaan Gupta 452,vivaan.gupta.452@bank.com,1114400,897711.11,216688.89,Ongoing,36,29,N/A
+1945,Jessica Wilson 225,jessica.wilson.225@bank.com,966500,257733.33,708766.67,Defaulted,12,4,Medical Emergency / High Bills
+1946,Aditya Singh,aditya.singh@bank.com,1925000,1925000,0,Paid,36,36,N/A
+1947,Jessica Wilson,jessica.wilson@bank.com,958900,958900,0,Paid,12,12,N/A
+1948,Sonal Kapoor,sonal.kapoor@bank.com,1587400,1587400,0,Paid,60,60,N/A
+1949,David Brown,david.brown@bank.com,1490200,1490200,0,Paid,12,12,N/A
+1950,Ashley Moore,ashley.moore@bank.com,90900,90900,0,Paid,60,60,N/A
+1951,Amit Joshi,amit.joshi@bank.com,299200,299200,0,Paid,24,24,N/A
+1952,Ashley Moore,ashley.moore@bank.com,1849300,1849300,0,Paid,12,12,N/A
+1953,Reyansh Kumar,reyansh.kumar@bank.com,1887800,1887800,0,Paid,24,24,N/A
+1954,Vivaan Gupta 164,vivaan.gupta.164@bank.com,1706600,1706600,0,Paid,12,12,N/A
+1955,Robert Williams 271,robert.williams.271@bank.com,1191000,1191000,0,Paid,48,48,N/A
+1956,Michael Johnson,michael.johnson@bank.com,372800,186400.0,186400.0,Ongoing,12,6,N/A
+1957,Jennifer Taylor,jennifer.taylor@bank.com,1617700,80885.0,1536815.0,Defaulted,48,3,High Debt Consolidation
+1958,Amit Joshi 542,amit.joshi.542@bank.com,1937400,1937400,0,Paid,24,24,N/A
+1959,Ananya Iyer 818,ananya.iyer.818@bank.com,1749400,1749400,0,Paid,60,60,N/A
+1960,Sarah Miller 392,sarah.miller.392@bank.com,607200,229386.67,377813.32999999996,Defaulted,36,17,Unemployment / Job Loss
+1961,James Smith 141,james.smith.141@bank.com,749400,269784.0,479616.0,Defaulted,60,27,Interest Rate Overrun
+1962,Shanaya Kumar,shanaya.kumar@bank.com,1771600,1771600,0,Paid,60,60,N/A
+1963,Aaryan Iyer 933,aaryan.iyer.933@bank.com,326000,326000,0,Paid,24,24,N/A
+1964,Arjun Verma,arjun.verma@bank.com,1625900,1625900,0,Paid,48,48,N/A
+1965,Nisha Bhatia 126,nisha.bhatia.126@bank.com,1336200,1336200,0,Paid,12,12,N/A
+1966,Diya Sharma 718,diya.sharma.718@bank.com,222400,222400,0,Paid,12,12,N/A
+1967,Robert Williams 190,robert.williams.190@bank.com,925800,30860.0,894940.0,Defaulted,24,1,Business Multi-sector Failure
+1968,Zara Nair 623,zara.nair.623@bank.com,583900,583900,0,Paid,36,36,N/A
+1969,Richard Taylor 483,richard.taylor.483@bank.com,1462200,1462200,0,Paid,36,36,N/A
+1970,Ananya Iyer 612,ananya.iyer.612@bank.com,555900,555900,0,Paid,36,36,N/A
+1971,Shweta Aggarwal,shweta.aggarwal@bank.com,297800,297800,0,Paid,60,60,N/A
+1972,Nisha Bhatia,nisha.bhatia@bank.com,1932400,1932400,0,Paid,24,24,N/A
+1973,James Smith,james.smith@bank.com,1484600,247433.33,1237166.67,Ongoing,12,2,N/A
+1974,Rohan Sethi 233,rohan.sethi.233@bank.com,1239400,1239400,0,Paid,12,12,N/A
+1975,Rahul Mehra 822,rahul.mehra.822@bank.com,1969800,656600.0,1313200.0,Defaulted,24,10,High Debt Consolidation
+1976,Sai Reddy 884,sai.reddy.884@bank.com,1951500,1951500,0,Paid,48,48,N/A
+1977,Aaryan Iyer 688,aaryan.iyer.688@bank.com,466000,466000,0,Paid,48,48,N/A
+1978,Karan Oberoi,karan.oberoi@bank.com,542100,542100,0,Paid,36,36,N/A
+1979,Zara Nair,zara.nair@bank.com,1188500,1188500,0,Paid,60,60,N/A
+1980,Priya Das 927,priya.das.927@bank.com,682500,682500,0,Paid,36,36,N/A
+1981,Pari Gupta,pari.gupta@bank.com,1864300,1864300,0,Paid,48,48,N/A
+1982,James Smith 324,james.smith.324@bank.com,80700,80700,0,Paid,24,24,N/A
+1983,Nisha Bhatia 175,nisha.bhatia.175@bank.com,486500,486500,0,Paid,36,36,N/A
+1984,Reyansh Kumar 156,reyansh.kumar.156@bank.com,1084400,1084400,0,Paid,48,48,N/A
+1985,David Brown 191,david.brown.191@bank.com,1598900,355311.11,1243588.8900000001,Defaulted,36,10,High Debt Consolidation
+1986,Jessica Wilson 487,jessica.wilson.487@bank.com,1453600,1453600,0,Paid,36,36,N/A
+1987,Deepak Malhotra,deepak.malhotra@bank.com,1660900,1660900,0,Paid,60,60,N/A
+1988,Diya Sharma 680,diya.sharma.680@bank.com,358900,358900,0,Paid,24,24,N/A
+1989,Richard Taylor,richard.taylor@bank.com,1899300,1899300,0,Paid,12,12,N/A
+1990,Vikram Khanna 409,vikram.khanna.409@bank.com,1459000,1459000,0,Paid,12,12,N/A
+1991,Michael Johnson,michael.johnson@bank.com,686000,686000,0,Paid,24,24,N/A
+1992,Ashley Moore 300,ashley.moore.300@bank.com,1574700,1574700,0,Paid,36,36,N/A
+1993,Vihaan Patel 474,vihaan.patel.474@bank.com,975600,975600,0,Paid,36,36,N/A
+1994,Aarav Sharma,aarav.sharma@bank.com,1871800,1871800,0,Paid,60,60,N/A
+1995,Aadhya Reddy,aadhya.reddy@bank.com,1997600,1997600,0,Paid,36,36,N/A
+1996,David Brown 146,david.brown.146@bank.com,638900,638900,0,Paid,48,48,N/A
+1997,Michael Johnson,michael.johnson@bank.com,1529200,1529200,0,Paid,24,24,N/A
+1998,Pari Gupta,pari.gupta@bank.com,353200,111846.67,241353.33000000002,Defaulted,48,19,High Debt Consolidation
+1999,James Smith,james.smith@bank.com,1568500,52283.33,1516216.67,Defaulted,24,1,High Debt Consolidation
+2000,Anvi Singh 588,anvi.singh.588@bank.com,430300,161362.5,268937.5,Ongoing,24,9,N/A

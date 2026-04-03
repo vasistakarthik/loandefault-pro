@@ -1,0 +1,357 @@
+{% extends "base.html" %}
+
+{% block title %}Loan Applications - Loan Default Prediction{% endblock %}
+
+{% block extra_css %}
+<style>
+    .app-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        padding: 30px;
+        background: var(--white);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+    }
+
+    .app-header h1 {
+        font-size: 32px;
+        color: var(--text-color);
+        margin: 0;
+        font-weight: 800;
+        letter-spacing: -1px;
+    }
+
+    .filter-card {
+        background: var(--white);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        padding: 20px;
+        margin-bottom: 30px;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .filter-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .filter-group label {
+        font-size: 11px;
+        text-transform: uppercase;
+        color: #95a5a6;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+
+    .filter-group input, .filter-group select {
+        padding: 10px 15px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        font-size: 14px;
+        min-width: 200px;
+    }
+
+    .table-container {
+        background: var(--white);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+    }
+
+    .app-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .app-table th {
+        background: #f8f9fa;
+        padding: 15px 20px;
+        text-align: left;
+        color: #7f8c8d;
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 700;
+        border-bottom: 2px solid #eee;
+    }
+
+    .app-table td {
+        padding: 15px 20px;
+        border-bottom: 1px solid #eee;
+        color: var(--text-color);
+        font-size: 14px;
+        vertical-align: middle;
+    }
+
+    .app-table tr:hover {
+        background: #fbfbfc;
+    }
+
+    .risk-badge {
+        padding: 5px 12px;
+        border-radius: 50px;
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    .risk-low { background: #e8f5e9; color: #2e7d32; border: 1px solid rgba(46,125,50,0.2); }
+    .risk-medium { background: #fff8e1; color: #f57f17; border: 1px solid rgba(245,127,23,0.2); }
+    .risk-high { background: #ffebee; color: #c62828; border: 1px solid rgba(198,40,40,0.2); }
+
+    .status-pill {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    .action-btn {
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        background: #f0f3ff;
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: 0.2s;
+    }
+
+    .action-btn:hover {
+        background: var(--primary-color);
+        color: white;
+    }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="app-header">
+    <div>
+        <h1>Risk Assessments</h1>
+        <p style="color: #7f8c8d; margin-top: 5px;">Review and manage institutional credit analysis results.</p>
+    </div>
+    <div style="display: flex; gap: 10px;">
+        <button class="btn" style="background: #fff; border: 1px solid #ddd; color: #666;" onclick="exportCSV()">
+            <i class="fa-solid fa-file-csv"></i> Export Dataset
+        </button>
+        <button class="btn btn-primary" onclick="location.reload()">
+            <i class="fa-solid fa-sync"></i> Refresh Matrix
+        </button>
+    </div>
+</div>
+
+<div class="filter-card">
+    <div class="filter-group">
+        <label>Identity Search</label>
+        <input type="text" id="searchInput" placeholder="Applicant name or ID..." onkeyup="filterTable()">
+    </div>
+    <div class="filter-group">
+        <label>Risk Spectrum</label>
+        <select id="riskFilter" onchange="filterTable()">
+            <option value="all">All Profiles</option>
+            <option value="Low Risk">Low Risk</option>
+            <option value="Medium Risk">Medium Risk</option>
+            <option value="High Risk">High Risk</option>
+        </select>
+    </div>
+    <div class="filter-group" style="margin-left: auto;">
+        <label>Showing</label>
+        <div style="font-weight: 700; color: var(--text-color);" id="showingCount">0 Results</div>
+    </div>
+</div>
+
+<div class="table-container">
+    <table class="app-table" id="applicationsTable">
+        <thead>
+            <tr>
+                <th>Reference</th>
+                <th>Applicant Profile</th>
+                <th>Financial Parameters</th>
+                <th>AI Risk Band</th>
+                <th>Score</th>
+                <th>Protocol Result</th>
+                <th style="text-align: right;">Operations</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Rendered by JS -->
+        </tbody>
+    </table>
+    
+    <div id="loadingState" style="text-align: center; padding: 40px; color: #bdc3c7;">
+        <i class="fa-solid fa-spinner fa-spin" style="font-size: 30px; margin-bottom: 10px;"></i>
+        <p>Analyzing Neural Records...</p>
+    </div>
+
+    <div id="emptyState" style="display: none; text-align: center; padding: 60px; color: #bdc3c7;">
+        <i class="fa-solid fa-magnifying-glass" style="font-size: 40px; margin-bottom: 15px;"></i>
+        <h3>No matching institutional records found.</h3>
+    </div>
+</div>
+
+<div id="pagination" style="display: flex; justify-content: center; gap: 10px; margin-top: 30px;">
+    <!-- Rendered by JS -->
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    let allData = [];
+    let filteredData = [];
+    let currentPage = 1;
+    const rowsPerPage = 10;
+
+    document.addEventListener('DOMContentLoaded', () => { fetchData(); });
+
+    async function fetchData() {
+        document.getElementById('loadingState').style.display = 'block';
+        try {
+            const response = await fetch('/api/applications?limit=1000');
+            const data = await response.json();
+            allData = data.applications || [];
+            filteredData = [...allData];
+            renderTable();
+        } catch (error) {
+            console.error('Fetch Error:', error);
+        } finally {
+            document.getElementById('loadingState').style.display = 'none';
+        }
+    }
+
+    function renderTable() {
+        const tbody = document.getElementById('tableBody');
+        tbody.innerHTML = '';
+        
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = Math.min(start + rowsPerPage, filteredData.length);
+        const pageData = filteredData.slice(start, end);
+
+        if (pageData.length === 0) {
+            document.getElementById('emptyState').style.display = 'block';
+        } else {
+            document.getElementById('emptyState').style.display = 'none';
+            pageData.forEach(app => {
+                const tr = document.createElement('tr');
+                tr.className = 'app-row';
+                
+                let riskClass = 'risk-high';
+                if (app.prediction_result === 'Low Risk') riskClass = 'risk-low';
+                else if (app.prediction_result === 'Medium Risk') riskClass = 'risk-medium';
+
+                const income = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(app.income);
+                const loan = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(app.loan_amount);
+
+                tr.innerHTML = `
+                    <td style="font-family: monospace; color: #7f8c8d;">#LD-${app.id}</td>
+                    <td>
+                        <div style="font-weight:700;">${app.name}</div>
+                        <div style="font-size:12px; color:#95a5a6;">${app.location || 'San Francisco, US'}</div>
+                    </td>
+                    <td>
+                        <div style="font-weight:600;">Loan: ${loan}</div>
+                        <div style="font-size:12px; color:#95a5a6;">Annual Node: ${income}</div>
+                    </td>
+                    <td><span class="risk-badge ${riskClass}">${app.prediction_result}</span></td>
+                    <td style="font-weight:700; color:var(--primary-color);">${app.credit_score}</td>
+                    <td>
+                        <span class="status-pill" style="background: ${app.status === 'Approved' ? '#2ecc71' : app.status === 'Defaulted' ? '#e74c3c' : '#f1c40f'};"></span>
+                        <span style="font-size:13px; font-weight:600;">${app.status || 'Under Review'}</span>
+                    </td>
+                    <td style="text-align: right;">
+                        <div style="display:flex; gap:8px; justify-content:flex-end;">
+                            <a href="#" class="action-btn" title="View Assessment" onclick="generatePDF(${app.id})"><i class="fa-solid fa-file-pdf"></i></a>
+                            <a href="#" class="action-btn" title="Audit Trail" style="background:#fef9e7; color:#d4ac0d;"><i class="fa-solid fa-shield-halved"></i></a>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        document.getElementById('showingCount').innerText = `${filteredData.length} Results`;
+        renderPagination();
+    }
+
+    function renderPagination() {
+        const pag = document.getElementById('pagination');
+        pag.innerHTML = '';
+        const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+        
+        for(let i=1; i<=totalPages; i++) {
+            const btn = document.createElement('a');
+            btn.href = '#';
+            btn.className = `btn ${i === currentPage ? 'btn-primary' : ''}`;
+            btn.style.padding = '8px 16px';
+            btn.innerText = i;
+            btn.onclick = (e) => { e.preventDefault(); currentPage = i; renderTable(); };
+            pag.appendChild(btn);
+        }
+    }
+
+    function filterTable() {
+        const q = document.getElementById('searchInput').value.toLowerCase();
+        const r = document.getElementById('riskFilter').value;
+        filteredData = allData.filter(a => {
+            return (a.name.toLowerCase().includes(q) || a.id.toString().includes(q)) && (r === 'all' || a.prediction_result === r);
+        });
+        currentPage = 1;
+        renderTable();
+    }
+
+    function exportCSV() {
+        const headers = ["ID", "Name", "Income", "Loan", "Score", "Risk"];
+        const rows = filteredData.map(a => [a.id, a.name, a.income, a.loan_amount, a.credit_score, a.prediction_result]);
+        let csv = "data:text/csv;charset=utf-8," + headers.join(",") + "\n" + rows.map(r => r.join(",")).join("\n");
+        const link = document.createElement("a");
+        link.href = encodeURI(csv);
+        link.download = "risk_assessments.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    function generatePDF(id) {
+        const app = allData.find(a => a.id === id);
+        if (!app) return;
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        doc.setFontSize(22);
+        doc.setTextColor(102, 126, 234);
+        doc.text("Risk Intelligence Report", 20, 20);
+        doc.setFontSize(12);
+        doc.setTextColor(100, 100, 100);
+        doc.text(`Reference ID: #LD-${app.id} | Date: ${new Date().toLocaleDateString()}`, 20, 30);
+        
+        const body = [
+            ['Indicator', 'Identity'],
+            ['Applicant', app.name],
+            ['Credit Spectrum', app.credit_score.toString()],
+            ['Income Profile', `INR ${app.income}`],
+            ['Loan Exposure', `INR ${app.loan_amount}`],
+            ['AI Verdict', app.prediction_result],
+            ['Compliance Status', app.status || 'Pending']
+        ];
+        
+        doc.autoTable({
+            startY: 40,
+            head: [body[0]],
+            body: body.slice(1),
+            theme: 'striped',
+            headStyles: { fillColor: [102, 126, 234] }
+        });
+        
+        doc.save(`Risk_Report_LD_${app.id}.pdf`);
+    }
+</script>
+{% endblock %}

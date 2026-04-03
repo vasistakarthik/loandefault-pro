@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}404 - Node Not Found | LoanRisk Pro{% endblock %}
+
+{% block extra_css %}
+<style>
+    .error-wrapper {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 40px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .error-wrapper::before {
+        content: '404';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 35rem;
+        font-weight: 900;
+        color: rgba(255, 255, 255, 0.02);
+        z-index: -1;
+        letter-spacing: -30px;
+        pointer-events: none;
+    }
+
+    .glitch-code {
+        font-size: 10rem;
+        font-weight: 950;
+        margin: 0;
+        line-height: 0.8;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -10px;
+        margin-bottom: 24px;
+        animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+
+    .error-info h1 {
+        font-size: 2.25rem;
+        font-weight: 900;
+        color: white;
+        margin-bottom: 16px;
+        letter-spacing: -1px;
+    }
+
+    .error-info p {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+        max-width: 550px;
+        margin: 0 auto 40px;
+        font-weight: 500;
+        line-height: 1.8;
+    }
+
+    .cta-well {
+        background: var(--card-glass);
+        padding: 40px;
+        border-radius: 32px;
+        border: 1px solid var(--border-glass);
+        box-shadow: 0 40px 100px -20px rgba(0,0,0,0.6);
+        backdrop-filter: blur(20px);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="error-wrapper">
+    <div class="glitch-code">404</div>
+    
+    <div class="cta-well">
+        <div class="error-info">
+            <h1>Institutional Protocol Terminated</h1>
+            <p>The requested neural coordinate or resource could not be synchronized with the central risk network. The target node might have been decommissioned.</p>
+            <a href="{{ url_for('customer.dashboard') }}" class="btn btn-primary">
+                <i class="fas fa-home" style="margin-right: 12px;"></i> Re-Initialize Terminal
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

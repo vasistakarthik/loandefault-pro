@@ -1,0 +1,226 @@
+{% extends "base_dashboard.html" %}
+
+{% block title %}Neural Diagnostic | Archive Record{% endblock %}
+{% block header_title %}Institutional Record Diagnostic{% endblock %}
+
+{% block extra_css %}
+<style>
+    .diagnostic-nexus {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        animation: diagnosticFade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    @keyframes diagnosticFade {
+        from { opacity: 0; transform: scale(0.98); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* GLASS HUD PANEL */
+    .glass-deck {
+        background: rgba(255, 255, 255, 0.015);
+        backdrop-filter: blur(40px);
+        padding: 40px;
+        border-radius: 35px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.6);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .nexus-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 35px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        padding-bottom: 25px;
+    }
+
+    .back-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--hud-accent);
+        text-decoration: none;
+        font-weight: 950;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: 0.3s;
+    }
+    .back-link:hover { transform: translateX(-5px); filter: brightness(1.2); }
+
+    .node-header h1 { font-size: 2.2rem; font-weight: 950; color: white; letter-spacing: -1.5px; margin-bottom: 5px; }
+    .node-id-tag { font-family: monospace; font-size: 0.8rem; font-weight: 950; color: #475569; letter-spacing: 1.5px; }
+
+    /* TELEMETRY CARDS */
+    .telemetry-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        margin-bottom: 40px;
+    }
+
+    .telemetry-node {
+        background: rgba(255, 255, 255, 0.01);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 25px;
+        transition: 0.4s;
+    }
+    .telemetry-node:hover { border-color: var(--hud-accent); background: rgba(255,255,255,0.03); }
+
+    .tele-label { font-size: 0.6rem; font-weight: 950; text-transform: uppercase; color: #475569; letter-spacing: 2px; margin-bottom: 12px; display: block; }
+    .tele-val { font-size: 1.8rem; font-weight: 950; color: white; letter-spacing: -0.5px; }
+
+    /* STATUS BADGES */
+    .nexus-badge {
+        padding: 10px 24px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 950;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        backdrop-filter: blur(10px);
+        border: 1px solid transparent;
+    }
+    .badge-paid { background: rgba(16, 185, 129, 0.1); color: #10b981; border-color: rgba(16, 185, 129, 0.2); }
+    .badge-default { background: rgba(239, 68, 68, 0.1); color: #ef4444; border-color: rgba(239, 68, 68, 0.2); }
+
+    /* PROGRESS HUD */
+    .sync-progress-box {
+        background: rgba(255, 255, 255, 0.01);
+        padding: 30px;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .progress-labels { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+    .progress-track { width: 100%; height: 8px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--hud-accent); transition: 1.5s cubic-bezier(0.2, 0.8, 0.2, 1); box-shadow: 0 0 20px var(--hud-accent); }
+
+    /* DECOMMISSION BTN */
+    .btn-decommission {
+        background: rgba(239, 68, 68, 0.05);
+        border: 1px solid rgba(239, 68, 68, 0.2);
+        color: #ef4444;
+        padding: 14px 28px;
+        border-radius: 16px;
+        font-weight: 950;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: 0.4s;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .btn-decommission:hover { background: #ef4444; color: white; box-shadow: 0 15px 35px rgba(239, 68, 68, 0.3); transform: translateY(-3px); }
+
+    .split-layout { display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="diagnostic-nexus">
+
+    <!-- HEADER STATUS HUD -->
+    <div class="glass-deck" style="padding: 30px 40px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <a href="{{ url_for('customer.history_list') }}" class="back-link">
+                    <i class="fas fa-chevron-left"></i> Institutional record archive
+                </a>
+                <h1 style="font-size: 2.2rem; font-weight: 950; color: white; letter-spacing: -1.5px; margin: 10px 0 5px 0;">Record Diagnostic: {{ item.name }}</h1>
+                <div class="node-id-tag">REF_NODE_HIST_{{ "%04d"|format(item.id) }}</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <span class="nexus-badge {{ 'badge-paid' if item.status == 'Paid' else 'badge-default' }}">
+                    {{ item.status }} Node Segment
+                </span>
+                <form action="{{ url_for('customer.history_delete', id=item.id) }}" method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn-decommission" onclick="return confirm('MANDATORY PROTOCOL: Decommission historical telemetry for this node? This cannot be undone.')">
+                        <i class="fas fa-biohazard"></i> Purge Record
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="split-layout">
+        <!-- LEFT PANEL: TELEMETRY & PROGRESS -->
+        <div class="glass-deck">
+            <div class="panel-head" style="margin-bottom: 35px; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 15px; display: flex; align-items: center; gap: 12px;">
+                <i class="fas fa-vault" style="color: var(--hud-accent);"></i>
+                <span style="font-size: 0.75rem; font-weight: 950; text-transform: uppercase; color: #475569; letter-spacing: 2.5px;">Institutional Financial Mapping</span>
+            </div>
+
+            <div class="telemetry-grid">
+                <div class="telemetry-node">
+                    <span class="tele-label">Allocated Principal</span>
+                    <div class="tele-val">₹{{ "{:,.0f}".format(item.loan_amount) }}</div>
+                </div>
+                <div class="telemetry-node">
+                    <span class="tele-label">Nodal Settlement</span>
+                    <div class="tele-val" style="color: #10b981;">₹{{ "{:,.0f}".format(item.paid_amount) }}</div>
+                </div>
+                <div class="telemetry-node">
+                    <span class="tele-label">Net Delta Balance</span>
+                    <div class="tele-val" style="color: #ef4444;">₹{{ "{:,.0f}".format(item.balance_amount) }}</div>
+                </div>
+            </div>
+
+            <div class="sync-progress-box">
+                <div class="progress-labels">
+                    <span style="font-size: 0.85rem; font-weight: 950; color: white;">Synchronization Maturity</span>
+                    {% set progress = (item.months_completed / (item.tenure if item.tenure > 0 else 1) * 100)|round|int %}
+                    <span style="font-size: 1.1rem; font-weight: 950; color: var(--hud-accent);">{{ progress }}%</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" style="--w: {{ progress }}%; width: var(--w);"></div>
+                </div>
+                <div style="margin-top: 15px; font-size: 0.75rem; color: #64748b; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-clock"></i>
+                    {{ item.months_completed }} institutional cycles synchronized across {{ item.tenure }} total tenure nodes.
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL: METADATA -->
+        <div class="glass-deck" style="background: rgba(2, 6, 23, 0.3);">
+             <div class="panel-head" style="margin-bottom: 35px; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 15px; display: flex; align-items: center; gap: 12px;">
+                <i class="fas fa-dna" style="color: var(--hud-accent);"></i>
+                <span style="font-size: 0.75rem; font-weight: 950; text-transform: uppercase; color: #475569; letter-spacing: 2.5px;">Node Logistics</span>
+            </div>
+
+            <div style="margin-bottom: 35px;">
+                <span class="tele-label">Signal Identity (Email)</span>
+                <div style="font-size: 1.05rem; font-weight: 950; color: white;">{{ item.email or 'N/A' }}</div>
+            </div>
+
+            <div style="margin-bottom: 35px;">
+                <span class="tele-label">Central Record Pointer</span>
+                <div style="font-family: monospace; font-size: 1.05rem; font-weight: 1000; color: var(--hud-accent);">#SYNC-NODE-{{ item.id }}-7Y2</div>
+            </div>
+
+            <div style="margin-bottom: 35px;">
+                <span class="tele-label">Last Synchronization</span>
+                <div style="font-size: 1.05rem; font-weight: 950; color: white;">{{ item.created_at }}</div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.02); padding: 25px; border-radius: 24px; display: flex; gap: 15px; align-items: flex-start;">
+                <i class="fas fa-circle-info" style="color: var(--hud-accent); margin-top: 5px;"></i>
+                <p style="font-size: 0.65rem; color: #64748b; line-height: 1.6; font-weight: 700;">
+                    This record is archived in the Sovereign database. Any modifications will be reflected across all linked neural models during the next recalibration cycle.
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

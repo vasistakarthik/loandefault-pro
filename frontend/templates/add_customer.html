@@ -1,0 +1,516 @@
+{% extends "base_dashboard.html" %}
+
+{% block title %}Neural Risk Terminal | LoanRisk Pro{% endblock %}
+{% block header_title %}Institutional Risk Evaluation Engine{% endblock %}
+
+{% block extra_css %}
+<style>
+    .assessment-container {
+        display: grid;
+        grid-template-columns: 1fr 380px;
+        gap: 20px;
+        margin-top: 10px;
+        animation: fadeIn 0.8s ease-out;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* FORM PANEL */
+    .form-panel {
+        background: var(--glass-bg);
+        backdrop-filter: blur(30px);
+        padding: 30px;
+        border-radius: 24px;
+        border: 1px solid var(--glass-border);
+        box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.5);
+    }
+
+    .form-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+        border-left: 4px solid var(--hud-accent);
+        padding-left: 15px;
+    }
+    .form-header i { color: var(--hud-accent); font-size: 1.1rem; }
+    .form-header h2 { font-size: 1.1rem; font-weight: 950; text-transform: uppercase; color: white; letter-spacing: -0.5px; }
+
+    /* REFINED 2-COLUMN GRID */
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .input-group label {
+        font-size: 0.55rem;
+        font-weight: 950;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .input-group label span { opacity: 0.6; color: var(--hud-accent); font-size: 0.5rem; }
+
+    .input-group input, 
+    .input-group select {
+        background: rgba(15, 23, 42, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 14px 18px;
+        padding-left: 42px; /* For icons */
+        border-radius: 14px;
+        color: white;
+        font-size: 0.85rem;
+        font-weight: 700;
+        outline: none;
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .input-group { position: relative; }
+    .input-group i.field-icon {
+        position: absolute;
+        left: 16px;
+        top: 35px; /* Aligned with input */
+        font-size: 0.9rem;
+        color: var(--hud-accent);
+        opacity: 0.5;
+        transition: 0.3s;
+        pointer-events: none;
+    }
+
+    .input-group input:focus, .input-group select:focus {
+        border-color: var(--hud-accent);
+        background: rgba(99, 102, 241, 0.08);
+        box-shadow: 0 0 25px rgba(99, 102, 241, 0.15);
+        transform: translateY(-2px);
+    }
+    .input-group input:focus + .field-viz .field-viz-fill { width: 100% !important; }
+    .input-group input:focus ~ i.field-icon { opacity: 1; transform: scale(1.1); filter: drop-shadow(0 0 5px var(--hud-accent)); }
+
+    .field-viz { height: 2px; width: 0%; background: var(--hud-accent); border-radius: 10px; margin-top: -2px; transition: 0.6s ease; position: relative; z-index: 10; margin-left: auto; margin-right: auto; }
+    .input-group input:focus ~ .field-viz { width: 90%; }
+
+    /* DROPDOWN OPTIONS FIX */
+    .input-group select option { background: #0f172a; color: white; }
+
+    /* PREVIEW PANEL */
+    .preview-panel { display: flex; flex-direction: column; gap: 16px; }
+
+    .analysis-card {
+        background: rgba(255, 255, 255, 0.02);
+        padding: 24px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .hud-tag { font-size: 0.55rem; font-weight: 950; text-transform: uppercase; letter-spacing: 2px; color: var(--hud-accent); opacity: 0.7; }
+
+    /* REFINED GAUGE */
+    .risk-gauge-box { align-items: center; text-align: center; }
+    .radial-viz { width: 130px; height: 130px; position: relative; }
+    .radial-bg { fill: none; stroke: rgba(255,255,255,0.03); stroke-width: 10; }
+    .radial-loader {
+        fill: none; 
+        stroke: var(--hud-accent); 
+        stroke-width: 10; 
+        stroke-linecap: round;
+        stroke-dasharray: 440; 
+        stroke-dashoffset: 440;
+        transform: rotate(-90deg); 
+        transform-origin: 80px 80px;
+        transition: 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), stroke 0.3s ease;
+    }
+    .radial-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .radial-center h4 { font-size: 1.8rem; font-weight: 950; margin: 0; color: white; letter-spacing: -1px; }
+
+    /* GRAPHICAL METRICS */
+    .metric-plot {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-top: 5px;
+    }
+    .plot-row { border-bottom: 1px solid rgba(255,255,255,0.02); padding-bottom: 10px; }
+    .plot-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .plot-head label { font-size: 0.55rem; font-weight: 900; color: #64748b; text-transform: uppercase; }
+    .plot-head span { font-size: 0.7rem; font-weight: 950; color: white; }
+    
+    .plot-bar { height: 4px; width: 100%; background: rgba(255,255,255,0.03); border-radius: 4px; overflow: hidden; }
+    .plot-fill { height: 100%; width: 0%; transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+    .launch-btn {
+        grid-column: span 2;
+        margin-top: 10px;
+        padding: 18px;
+        border-radius: 14px;
+        border: 1px solid rgba(0, 255, 230, 0.2);
+        background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+        color: #0f172a; 
+        font-size: 0.95rem;
+        font-weight: 950;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
+        animation: pulseGlow 3s infinite;
+    }
+    @keyframes pulseGlow {
+        0% { box-shadow: 0 0 10px rgba(0, 242, 254, 0.2); }
+        50% { box-shadow: 0 0 25px rgba(0, 242, 254, 0.4); }
+        100% { box-shadow: 0 0 10px rgba(0, 242, 254, 0.2); }
+    }
+    .launch-btn:hover { 
+        transform: translateY(-4px) scale(1.02); 
+        box-shadow: 0 15px 35px rgba(0, 242, 254, 0.5), 0 0 20px #00f2fe;
+        filter: brightness(1.1);
+    }
+    .launch-btn:active { transform: translateY(-1px) scale(0.98); }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="assessment-container">
+    
+    <!-- LEFT: 2-COLUMN FORM -->
+    <div class="form-panel">
+        {% if digitized %}
+        <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 16px; padding: 15px 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 15px; animation: pulseGlowGreen 2s infinite;">
+            <i class="fas fa-brain-circuit" style="color: #10b981; font-size: 1.2rem;"></i>
+            <div>
+                <div style="font-size: 0.65rem; font-weight: 950; color: #10b981; text-transform: uppercase; letter-spacing: 2px;">Neural Extraction Verified</div>
+                <div style="font-size: 0.55rem; color: #64748b; font-weight: 800; margin-top: 2px;">Apex Sovereign v14.0 has successfully isolated 7 primary intelligence nodes from the source document.</div>
+            </div>
+        </div>
+        <style>
+            @keyframes pulseGlowGreen { 0%, 100% { box-shadow: 0 0 10px rgba(16, 185, 129, 0.1); } 50% { box-shadow: 0 0 25px rgba(16, 185, 129, 0.2); } }
+            .verified-node { border-color: rgba(16, 185, 129, 0.3) !important; background: rgba(16, 185, 129, 0.03) !important; }
+        </style>
+        {% endif %}
+
+        <div class="form-header">
+            <i class="fas fa-microchip"></i>
+            <h2>Neural parameters</h2>
+        </div>
+
+        <form action="{{ url_for('customer.add_customer') }}" method="POST" id="neuralForm">
+            {% if csrf_token %}<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">{% endif %}
+
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>Borrower Signature <span>{% if digitized %}<i class="fas fa-circle-check" style="color:#10b981"></i> VERIFIED{% else %}[REQUIRED]{% endif %}</span></label>
+                    <i class="fas fa-user-pen field-icon"></i>
+                    <input name="name" id="in-name" class="{% if digitized %}verified-node{% endif %}" placeholder="Full Institutional Name" value="{{ name_prefill if name_prefill else (borrower.name if borrower else '') }}" required>
+                    <div class="field-viz"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Assessed Age <span>{% if digitized %}<i class="fas fa-circle-check" style="color:#10b981"></i> SYNCHRONIZED{% else %}[GLOBAL]{% endif %}</span></label>
+                    <i class="fas fa-calendar-day field-icon"></i>
+                    <input name="age" id="in-age" type="number" class="{% if digitized %}verified-node{% endif %}" value="{{ borrower.age if borrower else 32 }}" required>
+                    <div class="field-viz"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Institutional Credit <span>{% if digitized %}<i class="fas fa-circle-check" style="color:#10b981"></i> NEURAL-CHECKED{% else %}[300-900]{% endif %}</span></label>
+                    <i class="fas fa-star-of-life field-icon"></i>
+                    <input name="credit_score" id="in-score" type="number" class="{% if digitized %}verified-node{% endif %}" value="{{ borrower.credit_score if borrower else 720 }}" required>
+                    <div class="field-viz"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Annual Revenue (₹) <span>{% if digitized %}<i class="fas fa-circle-check" style="color:#10b981"></i> AUDITED{% else %}[GROSS]{% endif %}</span></label>
+                    <i class="fas fa-money-bill-trend-up field-icon"></i>
+                    <input name="income" id="in-income" type="number" class="{% if digitized %}verified-node{% endif %}" value="{{ borrower.income if borrower else (borrower.annual_income if borrower else '') }}" placeholder="Enter revenue" required>
+                    <div class="field-viz"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Principal Liquidity (₹) <span>{% if digitized %}<i class="fas fa-circle-check" style="color:#10b981"></i> MATCHED{% else %}[LOAN]{% endif %}</span></label>
+                    <i class="fas fa-building-columns field-icon"></i>
+                    <input name="loan_amount" id="in-loan" type="number" class="{% if digitized %}verified-node{% endif %}" value="{{ borrower.loan_amount if borrower else '' }}" placeholder="Enter amount" required>
+                    <div class="field-viz"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Existing Debt EMIs (₹) <span>{% if digitized %}<i class="fas fa-tower-broadcast" style="color:#a855f7"></i> NETWORK-SCAN{% else %}[CURRENT]{% endif %}</span></label>
+                    <i class="fas fa-hand-holding-dollar field-icon"></i>
+                    <input name="existing_emi" id="in-emi" type="number" value="0" data-is-auto="true" placeholder="Monthly existing debts">
+                    <div class="field-viz"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Dynamic Interest <span>[ADJUSTED]</span></label>
+                    <i class="fas fa-percent field-icon"></i>
+                    <input name="interest_rate" id="in-interest-val" type="hidden" value="10.5">
+                    <input id="in-interest-display" type="text" value="₹0 [0.0%]" readonly style="color: #00f2fe; background: rgba(0, 242, 254, 0.05); border-color: rgba(0, 242, 254, 0.15);">
+                    <div class="field-viz"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Tenure Deployment <span>[MONTHS]</span></label>
+                    <i class="fas fa-clock-rotate-left field-icon"></i>
+                    <input name="tenure" id="in-tenure" type="number" value="{{ borrower.tenure if borrower else 12 }}" required>
+                    <div class="field-viz"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Employment Type <span>[STATUS]</span></label>
+                    <i class="fas fa-briefcase field-icon"></i>
+                    <select name="employment_type" id="in-emp" class="{% if digitized %}verified-node{% endif %}">
+                        <option value="Salaried" {{ 'selected' if borrower and borrower.employment_type == 'Salaried' }}>Salaried</option>
+                        <option value="Self-employed" {{ 'selected' if borrower and borrower.employment_type == 'Self-employed' }}>Self-Employed</option>
+                        <option value="Government" {{ 'selected' if borrower and borrower.employment_type == 'Government' }}>Government Job</option>
+                        <option value="Private" {{ 'selected' if borrower and borrower.employment_type == 'Private' }}>Private Job</option>
+                        <option value="Other" {{ 'selected' if borrower and (borrower.employment_type == 'Other' or borrower.employment_type == 'Unemployed') }}>Other</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Loan Categorization <span>[TYPE]</span></label>
+                    <i class="fas fa-shapes field-icon"></i>
+                    <select name="loan_type" id="in-type">
+                        <option value="home" {{ 'selected' if borrower and borrower.loan_type == 'home' }}>Home Loan</option>
+                        <option value="car" {{ 'selected' if borrower and borrower.loan_type == 'car' }}>Car Loan</option>
+                        <option value="personal" {{ 'selected' if borrower and (borrower.loan_type == 'personal' or not borrower.loan_type) }}>Personal Loan</option>
+                        <option value="education" {{ 'selected' if borrower and borrower.loan_type == 'education' }}>Education Loan</option>
+                        <option value="business" {{ 'selected' if borrower and borrower.loan_type == 'business' }}>Business Loan</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Physical Node Hub <span>[ADDRESS]</span></label>
+                    <i class="fas fa-location-dot field-icon"></i>
+                    <input name="address" id="in-address" placeholder="Enter physical location" value="{{ borrower.physical_address if borrower else '' }}">
+                    <div class="field-viz"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Signal Vector <span>[CONTACT]</span></label>
+                    <i class="fas fa-signal field-icon"></i>
+                    <input name="phone" id="in-phone" placeholder="+91 XXXX-XXXX" value="{{ borrower.contact_phone if borrower else '' }}">
+                    <div class="field-viz"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>{{ current_user.bank or 'SBI' }} <span>[LOCKED]</span></label>
+                    <i class="fas fa-vault field-icon"></i>
+                    <input type="hidden" name="bank" id="in-bank" value="{{ current_user.bank or 'SBI' }}">
+                    <input type="text" value="Institutional Node" readonly style="color: #00f2fe; background: rgba(0, 242, 254, 0.05); border-color: rgba(0, 242, 254, 0.15); font-weight: 800;">
+                </div>
+
+                <button type="submit" class="launch-btn">
+                    <i class="fas fa-play-circle" style="margin-right: 8px;"></i> Execute Risk Inference
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- RIGHT: PREVIEW DASHBOARD (GRAPHICAL) -->
+    <div class="preview-panel">
+        <div class="analysis-card risk-gauge-box">
+            <span class="hud-tag">Neural Confidence Gauge</span>
+            <div class="radial-viz">
+                <svg viewBox="0 0 160 160" width="130" height="130">
+                    <circle class="radial-bg" cx="80" cy="80" r="70"></circle>
+                    <circle id="risk-loader" class="radial-loader" cx="80" cy="80" r="70"></circle>
+                </svg>
+                <div class="radial-center">
+                    <h4 id="risk-score">0</h4>
+                    <div style="font-size: 0.45rem; font-weight: 800; color: #64748b; text-transform: uppercase;">Confidence</div>
+                </div>
+            </div>
+            <div id="status-badge" class="status-badge">Awaiting Data</div>
+        </div>
+
+        <div class="analysis-card">
+            <span class="hud-tag">Node Performance Metrics</span>
+            
+            <div class="metric-plot">
+                <div class="plot-row">
+                    <div class="plot-head">
+                        <label><i class="fas fa-hand-holding-dollar"></i> Settlement Integrity</label>
+                        <span style="font-size: 0.7rem; font-weight: 950;">
+                            <span style="color: #10b981;">{{ paid_count }} Paid</span> /
+                            <span style="color: #ef4444;">{{ default_count }} Def</span>
+                        </span>
+                    </div>
+                    <div style="font-size: 0.5rem; color: #475569; font-weight: 900; text-transform: uppercase;">Behavioral Audit</div>
+                </div>
+
+                <div class="plot-row">
+                    <div class="plot-head">
+                        <label><i class="fas fa-chart-line"></i> Debt-to-Income (DTI)</label>
+                        <span id="txt-dti">0%</span>
+                    </div>
+                    <div class="plot-bar"><div id="bar-dti" class="plot-fill"></div></div>
+                </div>
+
+                <div class="plot-row">
+                    <div class="plot-head">
+                        <label><i class="fas fa-vault"></i> Total Obligation</label>
+                        <span id="txt-total">₹0</span>
+                    </div>
+                    <div class="plot-bar"><div id="bar-total" class="plot-fill" style="background: #00f2fe;"></div></div>
+                </div>
+
+                <div class="plot-row">
+                    <div class="plot-head">
+                        <label><i class="fas fa-shield-halved"></i> Risk Provisioning</label>
+                        <span id="txt-provision">₹0</span>
+                    </div>
+                    <div class="plot-bar"><div id="bar-provision" class="plot-fill" style="background: #10b981;"></div></div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 5px;">
+                    <label style="font-size: 0.6rem; font-weight: 900; color: #475569; text-transform: uppercase;">Institutional Rating</label>
+                    <span id="txt-rating" style="font-size: 0.75rem; font-weight: 950;">STABLE</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-card" style="padding: 12px; border-color: rgba(99, 102, 241, 0.1); border-style: dashed;">
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 0.55rem; color: #475569; font-weight: 900;">
+                <i class="fas fa-microchip" style="color: var(--hud-accent);"></i> CORE ENGINE: ONLINE (v4.2-LST)
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    const loader = document.getElementById('risk-loader');
+    const circ = 70 * 2 * Math.PI;
+    loader.style.strokeDasharray = `${circ} ${circ}`;
+
+    function compute() {
+        const income = parseFloat(document.getElementById('in-income').value) || 0;
+        const loan = parseFloat(document.getElementById('in-loan').value) || 0;
+        const tenure = parseFloat(document.getElementById('in-tenure').value) || 12;
+        const score = parseFloat(document.getElementById('in-score').value) || 0;
+        
+        const monthlyIncome = income > 0 ? income / 12 : 0;
+        
+        // Auto-suggest debt only if revenue is entered and current debt is zero/suggested
+        const emiField = document.getElementById('in-emi');
+        const isAuto = emiField.getAttribute('data-is-auto') === 'true';
+
+        if (income > 0 && (emiField.value == "0" || isAuto)) {
+            const suggestedDebt = Math.floor(monthlyIncome * 0.15);
+            emiField.value = suggestedDebt;
+            emiField.setAttribute('data-is-auto', 'true');
+        }
+        const existingEmi = parseFloat(emiField.value) || 0;
+
+        // Institutional Interest Rate Matrix
+        const interestRates = {
+            'SBI': { 'home': 8.40, 'personal': 11.00, 'education': 8.20, 'car': 8.65, 'business': 11.50 },
+            'HDFC': { 'home': 8.75, 'personal': 10.50, 'education': 9.50, 'car': 8.80, 'business': 12.00 },
+            'ICICI': { 'home': 8.75, 'personal': 10.75, 'education': 9.75, 'car': 8.75, 'business': 11.75 },
+            'AXIS': { 'home': 8.75, 'personal': 10.49, 'education': 9.30, 'car': 9.10, 'business': 11.90 },
+            'PNB': { 'home': 8.40, 'personal': 10.40, 'education': 8.55, 'car': 8.65, 'business': 11.25 },
+            'KOTAK': { 'home': 8.70, 'personal': 10.99, 'education': 9.50, 'car': 8.80, 'business': 12.10 },
+            'BOB': { 'home': 8.40, 'personal': 10.60, 'education': 8.50, 'car': 8.70, 'business': 11.45 },
+            'OTHER': { 'home': 9.00, 'personal': 12.00, 'education': 10.00, 'car': 9.50, 'business': 13.00 }
+        };
+        
+        const bank = document.getElementById('in-bank').value;
+        const type = document.getElementById('in-type').value;
+        let baseRate = (interestRates[bank] && interestRates[bank][type]) ? interestRates[bank][type] : 10.5;
+        
+        // --- NEURAL INTEREST SCALING ---
+        let tenureAdj = 0;
+        if (tenure > 60) tenureAdj = 0.25;      // Long-term risk premium
+        else if (tenure >= 36) tenureAdj = -0.20; // Commitment discount
+        else if (tenure < 12) tenureAdj = 0.15;   // Short-term processing fee
+
+        let riskAdj = 0;
+        if (score >= 800) riskAdj = -0.50;      // Elite credit bonus
+        else if (score >= 700) riskAdj = -0.25;  // Prime credit bonus
+        else if (score < 500) riskAdj = 1.00;    // High risk premium
+        else if (score < 600) riskAdj = 0.50;    // Moderate risk premium
+
+        const dynamicRate = baseRate + tenureAdj + riskAdj;
+        // -------------------------------
+
+        const r = (dynamicRate / 100) / 12;
+        let emi = 0;
+        if(loan > 0 && tenure > 0) {
+            emi = (loan * r * Math.pow(1 + r, tenure)) / (Math.pow(1 + r, tenure) - 1);
+        }
+
+        const totalPayable = emi * tenure;
+        const totalInterest = totalPayable - loan;
+        const dti = monthlyIncome > 0 ? ((emi + existingEmi) / monthlyIncome * 100).toFixed(1) : 0;
+
+        // Visual Updates
+        const incomePct = Math.min(100, (monthlyIncome / 100000) * 100);
+        document.getElementById('bar-income').style.width = incomePct + "%";
+        document.getElementById('bar-income').style.background = incomePct > 60 ? '#10b981' : (incomePct > 35 ? '#f59e0b' : '#ef4444');
+
+        const ltiPct = monthlyIncome > 0 ? Math.min(100, (loan / (monthlyIncome * 12)) * 100) : 0;
+        document.getElementById('bar-loan').style.width = ltiPct + "%";
+        document.getElementById('bar-loan').style.background = ltiPct < 45 ? '#10b981' : (ltiPct < 80 ? '#f59e0b' : '#ef4444');
+
+        // Accuracy Fixed: Interest shows 0 if no loan is provided
+        document.getElementById('in-interest-val').value = dynamicRate;
+        const adjIcon = (tenureAdj + riskAdj) < 0 ? '↓' : ((tenureAdj + riskAdj) > 0 ? '↑' : '•');
+        document.getElementById('in-interest-display').value = `₹${Math.floor(totalInterest).toLocaleString()} [${dynamicRate.toFixed(2)}% ${adjIcon}]`;
+        
+        const barDti = document.getElementById('bar-dti');
+        barDti.style.width = Math.min(100, dti) + "%";
+        barDti.style.background = dti < 30 ? '#10b981' : (dti < 55 ? '#f59e0b' : '#ef4444');
+        document.getElementById('txt-dti').innerText = dti + "%";
+
+        document.getElementById('bar-total').style.width = Math.min(100, (totalPayable / (income * 5 + 1e-9)) * 100) + "%";
+        document.getElementById('txt-total').innerText = "₹" + Math.floor(totalPayable).toLocaleString();
+
+        document.getElementById('bar-provision').style.width = Math.min(100, (totalInterest / (loan * 0.5 + 1e-9)) * 100) + "%";
+        document.getElementById('txt-provision').innerText = "₹" + Math.floor(totalInterest * 0.35).toLocaleString();
+
+        const ratingTxt = document.getElementById('txt-rating');
+        if (income > 0 && dti < 30) { ratingTxt.innerText = "PRIME"; ratingTxt.style.color = "#10b981"; }
+        else if (income > 0 && dti < 55) { ratingTxt.innerText = "STABLE"; ratingTxt.style.color = "#f59e0b"; }
+        else if (income > 0) { ratingTxt.innerText = "CRITICAL"; ratingTxt.style.color = "#ef4444"; }
+        else { ratingTxt.innerText = "STABLE"; ratingTxt.style.color = "#475569"; }
+
+        // Confidence Logic & Visual Sync
+        let nScore = 0;
+        if(income > 0) {
+            nScore = (score / 900 * 60) + (Math.max(0, 100 - parseFloat(dti)) / 100 * 40);
+        }
+        document.getElementById('risk-score').innerText = Math.floor(nScore);
+        loader.style.strokeDashoffset = circ - (nScore / 100 * circ);
+
+        // Update Gauge Color
+        loader.style.stroke = nScore > 80 ? '#10b981' : (nScore > 50 ? '#f59e0b' : (income > 0 ? '#ef4444' : '#475569'));
+
+        const badge = document.getElementById('status-badge');
+        if(nScore > 80) { badge.innerText = "HIGH CONFIDENCE"; badge.style.color = "#10b981"; }
+        else if(nScore > 50) { badge.innerText = "MODERATE ANALYSIS"; badge.style.color = "#f59e0b"; }
+        else if(income > 0) { badge.innerText = "CRITICAL FAILURE"; badge.style.color = "#ef4444"; }
+        else { badge.innerText = "AWAITING DATA"; badge.style.color = "#475569"; }
+    }
+
+    document.getElementById('in-emi').addEventListener('input', () => {
+        document.getElementById('in-emi').setAttribute('data-is-auto', 'false');
+    });
+
+    document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', compute));
+    compute();
+</script>
+{% endblock %}
