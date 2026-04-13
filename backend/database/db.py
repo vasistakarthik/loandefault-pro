@@ -1,5 +1,11 @@
 import sqlite3
 import os
+from dotenv import load_dotenv
+
+# Find the project root (one level up from the 'backend/database' folder)
+base_dir = os.path.dirname(os.path.abspath(__file__))
+env_path = os.path.join(base_dir, '..', '..', '.env')
+load_dotenv(dotenv_path=env_path)
 
 def get_db_connection():
     # Use current_app config if available (within Flask context)
@@ -8,8 +14,10 @@ def get_db_connection():
         db_path = current_app.config['DATABASE_URI']
     except (ImportError, RuntimeError):
         # Fallback for scripts outside Flask context
-        BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-        db_path = os.path.join(BASE_DIR, 'loan.db')
+        db_path = os.environ.get('DATABASE_URL')
+        if not db_path:
+            BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+            db_path = os.path.join(BASE_DIR, 'loan.db')
     
     # Check if it's a sqlite path or a connection string
     if db_path.startswith('sqlite://'):

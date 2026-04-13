@@ -118,7 +118,7 @@ def register():
             conn.commit()
             
             # Prepare Verification/Welcome Email
-            link = url_for('auth.verify_email', token=verification_token, _external=True)
+            link = current_app.config.get('APP_URL', '') + url_for('auth.verify_email', token=verification_token)
             subject = "Account Activated - LoanDefault Pro"
             html_body = f"""
             <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 10px;">
@@ -200,7 +200,7 @@ def forgot_password():
             print(f"[DEBUG] User found in DB: {user['email']}")
             s = get_serializer()
             token = s.dumps(email, salt='password-reset-salt')
-            link = url_for('auth.reset_password', token=token, _external=True)
+            link = current_app.config.get('APP_URL', '') + url_for('auth.reset_password', token=token)
             
             subject = "Password Reset Request - LoanDefault Pro"
             html_body = f"""

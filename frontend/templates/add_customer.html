@@ -177,6 +177,29 @@
         filter: brightness(1.1);
     }
     .launch-btn:active { transform: translateY(-1px) scale(0.98); }
+    
+    /* SOVEREIGN LUX ENHANCEMENTS */
+    .form-panel::before {
+        content: ''; position: absolute; inset: -1px; border-radius: 24px;
+        background: linear-gradient(135deg, rgba(99,102,241,0.5), transparent, rgba(16,185,129,0.3));
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude; pointer-events: none;
+    }
+    
+    .trust-node-topology {
+        display: flex; gap: 8px; justify-content: center; margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.03); padding-top: 15px;
+    }
+    .trust-chip {
+        padding: 5px 10px; border-radius: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05);
+        font-size: 0.5rem; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+    }
+    .trust-chip.active { border-color: var(--hud-accent); color: var(--hud-accent); box-shadow: 0 0 10px rgba(99,102,241,0.2); }
+    
+    .input-group label i { color: #475569; font-size: 0.55rem; }
+    
+    .status-badge {
+        font-size: 0.65rem; font-weight: 1000; text-transform: uppercase; letter-spacing: 2px; margin-top: 20px;
+    }
 
 </style>
 {% endblock %}
@@ -332,8 +355,15 @@
                     <div style="font-size: 0.45rem; font-weight: 800; color: #64748b; text-transform: uppercase;">Confidence</div>
                 </div>
             </div>
-            <div id="status-badge" class="status-badge">Awaiting Data</div>
-        </div>
+                <div id="status-badge" class="status-badge">Awaiting Data</div>
+                
+                <div class="trust-node-topology">
+                    <div class="trust-chip" id="chip-identity">IDENT</div>
+                    <div class="trust-chip" id="chip-credit">CREDIT</div>
+                    <div class="trust-chip" id="chip-income">REVENUE</div>
+                    <div class="trust-chip" id="chip-audit">AUDIT</div>
+                </div>
+            </div>
 
         <div class="analysis-card">
             <span class="hud-tag">Node Performance Metrics</span>
@@ -378,6 +408,13 @@
                     <label style="font-size: 0.6rem; font-weight: 900; color: #475569; text-transform: uppercase;">Institutional Rating</label>
                     <span id="txt-rating" style="font-size: 0.75rem; font-weight: 950;">STABLE</span>
                 </div>
+            </div>
+        </div>
+
+        <div class="analysis-card" style="padding: 15px; background: rgba(0,0,0,0.4); border-color: rgba(99, 102, 241, 0.15); height: 160px; display: flex; flex-direction: column;">
+            <div style="font-size: 0.5rem; color: var(--hud-accent); font-weight: 950; text-transform: uppercase; margin-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px;">Neural Thought Stream</div>
+            <div id="neural-thoughts" style="flex: 1; overflow: hidden; display: flex; flex-direction: column-reverse; gap: 6px;">
+                <!-- JS Populated -->
             </div>
         </div>
 
@@ -457,30 +494,34 @@
         const totalInterest = totalPayable - loan;
         const dti = monthlyIncome > 0 ? ((emi + existingEmi) / monthlyIncome * 100).toFixed(1) : 0;
 
-        // Visual Updates
-        const incomePct = Math.min(100, (monthlyIncome / 100000) * 100);
-        document.getElementById('bar-income').style.width = incomePct + "%";
-        document.getElementById('bar-income').style.background = incomePct > 60 ? '#10b981' : (incomePct > 35 ? '#f59e0b' : '#ef4444');
-
-        const ltiPct = monthlyIncome > 0 ? Math.min(100, (loan / (monthlyIncome * 12)) * 100) : 0;
-        document.getElementById('bar-loan').style.width = ltiPct + "%";
-        document.getElementById('bar-loan').style.background = ltiPct < 45 ? '#10b981' : (ltiPct < 80 ? '#f59e0b' : '#ef4444');
-
-        // Accuracy Fixed: Interest shows 0 if no loan is provided
-        document.getElementById('in-interest-val').value = dynamicRate;
-        const adjIcon = (tenureAdj + riskAdj) < 0 ? '↓' : ((tenureAdj + riskAdj) > 0 ? '↑' : '•');
-        document.getElementById('in-interest-display').value = `₹${Math.floor(totalInterest).toLocaleString()} [${dynamicRate.toFixed(2)}% ${adjIcon}]`;
-        
+        // Visual Checks for Plot Bars
         const barDti = document.getElementById('bar-dti');
-        barDti.style.width = Math.min(100, dti) + "%";
-        barDti.style.background = dti < 30 ? '#10b981' : (dti < 55 ? '#f59e0b' : '#ef4444');
-        document.getElementById('txt-dti').innerText = dti + "%";
+        if(barDti) {
+            barDti.style.width = Math.min(100, dti) + "%";
+            barDti.style.background = dti < 30 ? '#10b981' : (dti < 55 ? '#f59e0b' : '#ef4444');
+        }
 
-        document.getElementById('bar-total').style.width = Math.min(100, (totalPayable / (income * 5 + 1e-9)) * 100) + "%";
-        document.getElementById('txt-total').innerText = "₹" + Math.floor(totalPayable).toLocaleString();
+        const displayField = document.getElementById('in-interest-display');
+        if(displayField) {
+            const adjIcon = (tenureAdj + riskAdj) < 0 ? '↓' : ((tenureAdj + riskAdj) > 0 ? '↑' : '•');
+            displayField.value = `₹${Math.floor(totalInterest).toLocaleString()} [${dynamicRate.toFixed(2)}% ${adjIcon}]`;
+            document.getElementById('in-interest-val').value = dynamicRate;
+        }
+        
+        const txtDti = document.getElementById('txt-dti');
+        if(txtDti) txtDti.innerText = dti + "%";
 
-        document.getElementById('bar-provision').style.width = Math.min(100, (totalInterest / (loan * 0.5 + 1e-9)) * 100) + "%";
-        document.getElementById('txt-provision').innerText = "₹" + Math.floor(totalInterest * 0.35).toLocaleString();
+        const barTotal = document.getElementById('bar-total');
+        if(barTotal) barTotal.style.width = Math.min(100, (totalPayable / (income * 5 + 1e-9)) * 100) + "%";
+        
+        const txtTotal = document.getElementById('txt-total');
+        if(txtTotal) txtTotal.innerText = "₹" + Math.floor(totalPayable).toLocaleString();
+
+        const barProvision = document.getElementById('bar-provision');
+        if(barProvision) barProvision.style.width = Math.min(100, (totalInterest / (loan * 0.5 + 1e-9)) * 100) + "%";
+        
+        const txtProvision = document.getElementById('txt-provision');
+        if(txtProvision) txtProvision.innerText = "₹" + Math.floor(totalInterest * 0.35).toLocaleString();
 
         const ratingTxt = document.getElementById('txt-rating');
         if (income > 0 && dti < 30) { ratingTxt.innerText = "PRIME"; ratingTxt.style.color = "#10b981"; }
@@ -504,13 +545,46 @@
         else if(nScore > 50) { badge.innerText = "MODERATE ANALYSIS"; badge.style.color = "#f59e0b"; }
         else if(income > 0) { badge.innerText = "CRITICAL FAILURE"; badge.style.color = "#ef4444"; }
         else { badge.innerText = "AWAITING DATA"; badge.style.color = "#475569"; }
+
+        // Trust Node Sync
+        document.getElementById('chip-identity').classList.toggle('active', document.getElementById('in-name').value.length > 3);
+        document.getElementById('chip-credit').classList.toggle('active', score > 650);
+        document.getElementById('chip-income').classList.toggle('active', income > 500000);
+        document.getElementById('chip-audit').classList.toggle('active', ltiPct < 40);
     }
+    
+    // --- NEURAL THOUGHTS ---
+    const thoughts = [
+        "Analyzing borrower delta...",
+        "Cross-referencing credit nodes...",
+        "Simulating repayment trajectories...",
+        "Establishing neural handshake...",
+        "Verifying institutional provenance...",
+        "Calculating DTI coefficients...",
+        "Projecting EAR risk-variance...",
+        "Auditing historical settlement data..."
+    ];
+
+    function addThought() {
+        const container = document.getElementById('neural-thoughts');
+        if(!container) return;
+        const msg = thoughts[Math.floor(Math.random() * thoughts.length)];
+        const el = document.createElement('div');
+        el.style.cssText = "font-size: 0.55rem; color: #64748b; font-weight: 800; animation: logIn 0.4s ease-out;";
+        el.innerHTML = `<span style="color: var(--hud-accent);">[SYS]</span> ${msg}`;
+        container.prepend(el);
+        if(container.children.length > 6) container.removeChild(container.lastChild);
+    }
+    setInterval(addThought, 3500);
 
     document.getElementById('in-emi').addEventListener('input', () => {
         document.getElementById('in-emi').setAttribute('data-is-auto', 'false');
     });
 
-    document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', compute));
+    document.querySelectorAll('input, select').forEach(el => {
+        el.addEventListener('input', compute);
+        el.addEventListener('change', compute);
+    });
     compute();
 </script>
 {% endblock %}

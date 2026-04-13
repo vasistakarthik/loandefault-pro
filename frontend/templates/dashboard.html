@@ -1,6 +1,6 @@
 {% extends "base_dashboard.html" %}
 
-{% block title %}Neural Command Center | LoanRisk Pro{% endblock %}
+{% block title %}Neural Command Center | SHAP XAI Intelligence Hub{% endblock %}
 {% block header_title %}Neural Intelligence Command Center{% endblock %}
 
 {% block extra_css %}
@@ -12,51 +12,114 @@
         --hazard-red: #ef4444;
         --deep-slate: #020617;
         --glass-border: rgba(255, 255, 255, 0.08);
-        --glass-bg: rgba(2, 6, 23, 0.4);
+        --glass-bg: rgba(2, 6, 23, 0.45);
+        --cyber-cyan: #00f2fe;
     }
 
-    .dashboard-container { display: flex; flex-direction: column; gap: 32px; animation: dashboardEntrance 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .dashboard-container { 
+        display: flex; flex-direction: column; gap: 32px; 
+        animation: dashboardEntrance 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        position: relative;
+    }
+    
+    /* CRT Scanline Overlay */
+    .dashboard-container::after {
+        content: " "; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+        z-index: 9999; background-size: 100% 3px, 3px 100%; pointer-events: none; opacity: 0.3;
+    }
+
     @keyframes dashboardEntrance { from { opacity: 0; transform: translateY(40px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
     .scanner-hud {
-        background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border);
+        background: var(--glass-bg); backdrop-filter: blur(25px); border: 1px solid var(--glass-border);
         border-radius: 20px; padding: 16px 30px; display: flex; justify-content: space-between; align-items: center;
-        position: relative; overflow: hidden;
+        position: relative; overflow: hidden; box-shadow: inset 0 0 20px rgba(99, 102, 241, 0.1);
     }
 
     .status-orb { width: 10px; height: 10px; background: var(--active-emerald); border-radius: 50%; box-shadow: 0 0 15px var(--active-emerald); position: relative; }
     .status-orb::after { content: ''; position: absolute; inset: -4px; border: 1px solid var(--active-emerald); border-radius: 50%; animation: orb-pulse 2s infinite; }
-    @keyframes orb-pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(2.5); opacity: 0; } }
+    @keyframes orb-pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(3); opacity: 0; } }
 
     .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-    .kpi-card { background: var(--glass-bg); backdrop-filter: blur(25px); padding: 20px 18px; border-radius: 20px; border: 1px solid var(--glass-border); transition: 0.5s; overflow: hidden; }
-    .kpi-card:hover { transform: translateY(-5px); border-color: var(--intel-indigo); background: rgba(99, 102, 241, 0.03); }
-    .kpi-card label { font-size: 0.55rem; font-weight: 950; color: #64748b; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 12px; }
-    .kpi-card .val { font-size: 1.8rem; font-weight: 950; color: white; letter-spacing: -1.2px; line-height: 1; }
+    .kpi-card { 
+        background: var(--glass-bg); backdrop-filter: blur(30px); padding: 22px 20px; border-radius: 20px; 
+        border: 1px solid var(--glass-border); transition: 0.5s; overflow: hidden; position: relative;
+    }
+    .kpi-card::before {
+        content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+        background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+        opacity: 0; transition: 0.5s;
+    }
+    .kpi-card:hover::before { opacity: 1; }
+    .kpi-card:hover { transform: translateY(-8px); border-color: var(--intel-indigo); box-shadow: 0 10px 40px rgba(99, 102, 241, 0.15); }
+    .kpi-card label { font-size: 0.58rem; font-weight: 950; color: #94a3b8; text-transform: uppercase; letter-spacing: 2.5px; display: block; margin-bottom: 15px; }
+    .kpi-card .val { font-size: 2rem; font-weight: 1000; color: white; letter-spacing: -1.5px; line-height: 1; text-shadow: 0 0 10px rgba(255,255,255,0.2); }
 
-    .core-grid { display: grid; grid-template-columns: 1.2fr 2fr; gap: 25px; }
-    .bento-box { background: var(--glass-bg); backdrop-filter: blur(30px); border-radius: 24px; border: 1px solid var(--glass-border); padding: 24px; position: relative; overflow: hidden; }
+    .core-grid { display: grid; grid-template-columns: 0.9fr 2.3fr; gap: 25px; }
+    .bento-box { 
+        background: var(--glass-bg); backdrop-filter: blur(40px); border-radius: 28px; 
+        border: 1px solid var(--glass-border); padding: 24px; position: relative; overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+    .bento-box::after {
+        content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, transparent 100%);
+        pointer-events: none;
+    }
 
-    .box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; border-left: 3px solid var(--intel-indigo); padding-left: 14px; }
-    .box-header h3 { font-size: 0.75rem; font-weight: 950; color: white; text-transform: uppercase; letter-spacing: 1.5px; }
+    .box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; border-left: 4px solid var(--intel-indigo); padding-left: 18px; }
+    .box-header h3 { font-size: 0.8rem; font-weight: 1000; color: white; text-transform: uppercase; letter-spacing: 2px; }
 
-    #risk-globe-container { height: 420px; width: 100%; position: relative; border-radius: 20px; overflow: hidden; background: #000; cursor: grab; }
+    #risk-globe-container { 
+        height: 380px; width: 100%; position: relative; border-radius: 24px; overflow: hidden; 
+        background: radial-gradient(circle at center, #0a0f1e 0%, #000 100%); cursor: grab;
+    }
     #risk-globe-container:active { cursor: grabbing; }
     #risk-globe-canvas { width: 100% !important; height: 100% !important; }
 
-    .activity-row { display: flex; justify-content: space-between; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.75rem; color: #cbd5e1; }
-    .status-pill { padding: 4px 10px; border-radius: 20px; font-size: 0.6rem; font-weight: 950; text-transform: uppercase; }
+    .activity-row { 
+        display: flex; justify-content: space-between; padding: 14px; border-bottom: 1px solid rgba(255,255,255,0.04); 
+        font-size: 0.75rem; color: #cbd5e1; animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: 0.3s; cursor: default;
+    }
+    .activity-row:hover { background: rgba(255,255,255,0.03); transform: scale(1.02); }
+    
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+    
+    .status-pill { padding: 5px 12px; border-radius: 20px; font-size: 0.6rem; font-weight: 1000; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
 
-    .pill-secure { background: rgba(16, 185, 129, 0.1); color: var(--active-emerald); border: 1px solid var(--active-emerald); }
-    .pill-critical { background: rgba(239, 68, 68, 0.1); color: var(--hazard-red); border: 1px solid var(--hazard-red); }
+    .pill-secure { background: rgba(16, 185, 129, 0.15); color: var(--active-emerald); border: 1px solid var(--active-emerald); }
+    .pill-critical { background: rgba(239, 68, 68, 0.15); color: var(--hazard-red); border: 1px solid var(--hazard-red); }
+    .pill-scanning { background: rgba(99, 102, 241, 0.15); color: var(--intel-indigo); border: 1px solid var(--intel-indigo); animation: pillPulse 2s infinite; }
+    @keyframes pillPulse { 0% { opacity: 0.7; } 50% { opacity: 1; } 100% { opacity: 0.7; } }
 
-    .action-card { background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: 18px; padding: 18px; text-align: center; text-decoration: none; transition: 0.3s; }
-    .action-card:hover { border-color: var(--sovereign-gold); background: rgba(251, 191, 36, 0.05); }
-    .action-card i { font-size: 1.4rem; color: var(--sovereign-gold); margin-bottom: 8px; display: block; }
-    .action-card span { font-size: 0.65rem; font-weight: 950; color: white; text-transform: uppercase; }
+    .action-card { 
+        background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: 22px; 
+        padding: 24px; text-align: center; text-decoration: none; transition: 0.4s;
+        display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative;
+    }
+    .action-card:hover { border-color: var(--sovereign-gold); background: rgba(251, 191, 36, 0.08); transform: scale(1.05); }
+    .action-card i { font-size: 1.8rem; color: var(--sovereign-gold); margin-bottom: 12px; display: block; filter: drop-shadow(0 0 10px var(--sovereign-gold)); }
+    .action-card span { font-size: 0.75rem; font-weight: 1000; color: white; text-transform: uppercase; letter-spacing: 1px; }
 
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-thumb { background: var(--intel-indigo); border-radius: 10px; }
+    /* Scanning Effect (Enhanced) */
+    .scanning-line {
+        position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+        background: linear-gradient(90deg, transparent, var(--cyber-cyan), transparent);
+        opacity: 0.5; animation: scan 4s linear infinite; pointer-events: none;
+        box-shadow: 0 0 15px var(--cyber-cyan);
+    }
+    @keyframes scan { from { top: -10%; } to { top: 110%; } }
+
+    /* Neural Thought Glow */
+    #neural-stream div { position: relative; transition: 0.3s; }
+    #neural-stream div:hover { color: white; padding-left: 10px; }
+    #neural-stream div::before { content: '>'; position: absolute; left: -10px; opacity: 0; transition: 0.3s; color: var(--intel-indigo); }
+    #neural-stream div:hover::before { opacity: 1; left: 0; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-thumb { background: var(--intel-indigo); border-radius: 10px; box-shadow: inset 0 0 6px rgba(0,0,0,0.5); }
 </style>
 {% endblock %}
 
@@ -107,28 +170,72 @@
             </div>
         </div>
 
-        <div class="bento-box">
-            <div class="box-header"><h3>Cognitive Trend Dynamics</h3><div class="tag-premium" style="font-size: 0.6rem; color: var(--sovereign-gold); font-weight: 950;">H4 Interval Sync</div></div>
-            
-            <div style="display: flex; gap: 20px; margin-bottom: 20px;">
-                <div style="flex: 1; border-left: 1px solid var(--glass-border); padding-left: 10px;">
-                    <label style="font-size: 0.45rem; color: #64748b; font-weight: 950; text-transform: uppercase;">Neural Flux</label>
-                    <div style="font-size: 0.9rem; font-weight: 950; color: white;">84.2<span style="font-size: 0.5rem; color: var(--active-emerald); margin-left: 2px;">+1.4%</span></div>
-                </div>
-                <div style="flex: 1; border-left: 1px solid var(--glass-border); padding-left: 10px;">
-                    <label style="font-size: 0.45rem; color: #64748b; font-weight: 950; text-transform: uppercase;">Delta Index</label>
-                    <div style="font-size: 0.9rem; font-weight: 950; color: white;">0.12ms</div>
-                </div>
-                <div style="flex: 1; border-left: 1px solid var(--glass-border); padding-left: 10px;">
-                    <label style="font-size: 0.45rem; color: #64748b; font-weight: 950; text-transform: uppercase;">System Load</label>
-                    <div style="font-size: 0.9rem; font-weight: 950; color: white;">N-Low</div>
+        <!-- NEURAL PROGNOSIS TERMINAL (Custom Redesign) -->
+        <div class="bento-box" style="padding: 0; display: flex; flex-direction: column;">
+            <!-- Header Overlay -->
+            <div style="padding: 24px; border-bottom: 1px solid var(--glass-border); background: linear-gradient(90deg, rgba(99, 102, 241, 0.05) 0%, transparent 100%);">
+                <div class="box-header" style="margin-bottom: 0;">
+                    <div>
+                        <h3 style="letter-spacing: 3px; font-size: 0.9rem;">Neural Prognosis Terminal</h3>
+                        <p style="font-size: 0.45rem; color: var(--intel-indigo); font-weight: 950; text-transform: uppercase; margin-top: 4px;">Predictive Intelligence Engine v4.2</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <span class="tag-premium" style="font-size: 0.55rem; color: var(--sovereign-gold); font-weight: 950; display: block;">H4 INTERVAL SYNC</span>
+                        <div style="font-size: 0.4rem; color: #64748b; font-weight: 800; margin-top: 2px;">LATENCY: <span id="real-latency">12ms</span></div>
+                    </div>
                 </div>
             </div>
 
-            <div style="height: 180px;"><canvas id="mainChart"></canvas></div>
-            
-            <div style="margin-top: 25px; border-top: 1px solid var(--glass-border); padding-top: 15px; background: rgba(0,0,0,0.2); border-radius: 12px; height: 120px; overflow: hidden;">
-                <div id="neural-stream" style="padding: 10px;"></div>
+            <!-- Content Grid -->
+            <div style="display: grid; grid-template-columns: 280px 1fr; flex: 1;">
+                <!-- Left Sidebar: Pulse Stats -->
+                <div style="border-right: 1px solid var(--glass-border); padding: 24px; background: rgba(0,0,0,0.1); display: flex; flex-direction: column; gap: 20px;">
+                    <div class="stat-hub-item" style="border-left: 2px solid var(--cyber-cyan); padding-left: 15px;">
+                        <label style="font-size: 0.45rem; color: #64748b; font-weight: 950; text-transform: uppercase; letter-spacing: 1.5px;">Neural Flux</label>
+                        <div style="font-size: 1.2rem; font-weight: 1000; color: white;">84.2<span style="font-size: 0.6rem; color: var(--active-emerald); margin-left: 5px;">+1.4%</span></div>
+                        <div style="width: 100%; height: 2px; background: rgba(255,255,255,0.05); margin-top: 8px; position: relative; overflow: hidden;">
+                            <div style="position: absolute; width: 84%; height: 100%; background: var(--cyber-cyan); box-shadow: 0 0 10px var(--cyber-cyan);"></div>
+                        </div>
+                    </div>
+
+                    <div class="stat-hub-item" style="border-left: 2px solid var(--sovereign-gold); padding-left: 15px;">
+                        <label style="font-size: 0.45rem; color: #64748b; font-weight: 950; text-transform: uppercase; letter-spacing: 1.5px;">Cognitive Delta</label>
+                        <div style="font-size: 1.2rem; font-weight: 1000; color: white;" id="cog-delta">0.12ms</div>
+                        <canvas id="mini-pulse-canvas" style="width: 100%; height: 20px; margin-top: 8px; opacity: 0.5;"></canvas>
+                    </div>
+
+                    <div class="stat-hub-item" style="border-left: 2px solid var(--hazard-red); padding-left: 15px;">
+                        <label style="font-size: 0.45rem; color: #64748b; font-weight: 950; text-transform: uppercase; letter-spacing: 1.5px;">System Entropy</label>
+                        <div style="font-size: 1.2rem; font-weight: 1000; color: white;">N-Low</div>
+                        <div style="font-size: 0.5rem; color: #64748b; margin-top: 2px; font-weight: 800;">Risk Threshold Nominal</div>
+                    </div>
+
+                    <div style="margin-top: auto; background: rgba(99, 102, 241, 0.05); padding: 15px; border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.1);">
+                        <div style="font-size: 0.45rem; color: var(--intel-indigo); font-weight: 950; text-transform: uppercase; margin-bottom: 8px;">Intelligence Status</div>
+                        <div style="display: flex; gap: 5px;">
+                            <div style="flex: 1; height: 4px; background: var(--active-emerald); border-radius: 2px;"></div>
+                            <div style="flex: 1; height: 4px; background: var(--active-emerald); border-radius: 2px;"></div>
+                            <div style="flex: 1; height: 4px; background: var(--active-emerald); border-radius: 2px;"></div>
+                            <div style="flex: 1; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px;"></div>
+                        </div>
+                        <div style="font-size: 0.5rem; color: white; font-weight: 800; margin-top: 8px;">Nodes Synchronized: 184/190</div>
+                    </div>
+                </div>
+
+                <!-- Right Pane: Main Visualization -->
+                <div style="display: flex; flex-direction: column; background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.05) 0%, transparent 60%);">
+                    <div style="flex: 1; padding: 24px; min-height: 250px; position: relative;">
+                        <!-- Grid Overlay -->
+                        <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px); background-size: 20px 20px; pointer-events: none;"></div>
+                        <canvas id="mainChart"></canvas>
+                    </div>
+                    
+                    <!-- Bottom Console Feed -->
+                    <div style="height: 140px; border-top: 1px solid var(--glass-border); background: rgba(0,0,0,0.2); padding: 15px; overflow: hidden; position: relative;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.1) 0px, transparent 1px, transparent 2px); pointer-events: none; opacity: 0.5;"></div>
+                        <div id="neural-stream" style="padding: 0; font-family: 'JetBrains Mono', monospace;"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -136,8 +243,15 @@
     <!-- ASSET HUB -->
     <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 25px;">
         <div class="bento-box" style="height: 480px; display: flex; flex-direction: column;">
-            <div class="box-header" style="border-color: var(--active-emerald);"><h3>Institutional Asset Stream</h3><div class="tag-premium" style="font-size: 0.6rem; color: var(--active-emerald); font-weight: 950;">Live Feed [SECURE]</div></div>
-            <div id="activity-body" style="flex: 1; overflow-y: auto; padding-right: 8px;">
+            <div class="box-header" style="border-color: var(--active-emerald);">
+                <h3>Institutional Asset Stream</h3>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div class="status-orb" style="width: 6px; height: 6px; box-shadow: 0 0 10px var(--active-emerald);"></div>
+                    <div class="tag-premium" style="font-size: 0.6rem; color: var(--active-emerald); font-weight: 950;">Live Feed [SECURE]</div>
+                </div>
+            </div>
+            <div id="activity-body" style="flex: 1; overflow-y: auto; padding-right: 8px; position: relative;">
+                <div class="scanning-line"></div>
                 <!-- Populate via JS -->
             </div>
             <div style="margin-top: 15px; text-align: center; border-top: 1px solid var(--glass-border); padding-top: 15px;">
@@ -185,23 +299,58 @@
         type: 'line',
         data: { labels: [], datasets: [{ 
             data: [], 
-            borderColor: '#6366f1', 
-            borderWidth: 2, 
+            borderColor: '#00f2fe', 
+            borderWidth: 3, 
             fill: true, 
             backgroundColor: chartGradient, 
-            tension: 0.4,
-            pointRadius: 0
+            tension: 0.5,
+            pointRadius: 4,
+            pointBackgroundColor: '#fff',
+            pointBorderColor: '#00f2fe',
+            pointHoverRadius: 8,
+            pointHoverBackgroundColor: '#fff'
         }] },
         options: { 
             responsive: true, 
             maintainAspectRatio: false, 
-            plugins: { legend: { display: false } }, 
+            animation: {
+                duration: 2000,
+                easing: 'easeOutQuart'
+            },
+            plugins: { 
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: 'rgba(2, 6, 23, 0.9)',
+                    titleFont: { weight: 'bold', size: 12 },
+                    bodyFont: { size: 11 },
+                    padding: 12,
+                    borderColor: 'rgba(255, 255, 255, 0.1)',
+                    borderWidth: 1,
+                    displayColors: false
+                }
+            }, 
             scales: { 
-                x: { display: false }, 
-                y: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: '#64748b', font: { size: 9, weight: '800' } } } 
+                x: { 
+                    grid: { display: false }, 
+                    ticks: { color: '#64748b', font: { size: 9, weight: '800' } } 
+                }, 
+                y: { 
+                    grid: { color: 'rgba(255,255,255,0.03)' }, 
+                    ticks: { color: '#64748b', font: { size: 9, weight: '800' } } 
+                } 
             } 
         }
     });
+
+    // Real-time chart jitter for "Live" effect
+    setInterval(() => {
+        if(mainChart.data.datasets[0].data.length > 0) {
+            const lastIdx = mainChart.data.datasets[0].data.length - 1;
+            const currentVal = mainChart.data.datasets[0].data[lastIdx];
+            mainChart.data.datasets[0].data[lastIdx] = currentVal + (Math.random() - 0.5) * 2;
+            mainChart.update('none');
+        }
+    }, 2000);
 
     const LOG_POOL = [
         "Analyzing regional risk variance...",
@@ -219,25 +368,112 @@
         if(!s) return;
         const msg = m || LOG_POOL[Math.floor(Math.random() * LOG_POOL.length)];
         const e = document.createElement('div');
-        e.style.cssText = "font-size: 0.65rem; color: #94a3b8; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.03); animation: logIn 0.5s ease-out;";
-        e.innerHTML = `<span style="color: var(--intel-indigo); font-weight: 950;">[SYN]</span> ${msg}`;
-        s.prepend(e); if(s.children.length > 5) s.removeChild(s.lastChild);
+        e.className = "terminal-log-row";
+        e.style.cssText = "font-size: 0.6rem; color: #94a3b8; padding: 4px 10px; border-bottom: 1px solid rgba(255,255,255,0.02); animation: logIn 0.3s ease-out; display: flex; justify-content: space-between;";
+        const ts = new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        e.innerHTML = `<span><span style="color: var(--intel-indigo); opacity: 0.7;">[${ts}]</span> <span style="color: var(--cyber-cyan); font-weight: 800;">SYS_INTEL:</span> ${msg}</span><span style="opacity: 0.5;">0x${Math.floor(Math.random()*16777215).toString(16).toUpperCase()}</span>`;
+        s.prepend(e); if(s.children.length > 8) s.removeChild(s.lastChild);
     }
+
+    // Mini Pulse Animation
+    const mpc = document.getElementById('mini-pulse-canvas');
+    if(mpc) {
+        const mctx = mpc.getContext('2d');
+        let offset = 0;
+        function drawMiniPulse() {
+            mctx.clearRect(0,0,mpc.width, mpc.height);
+            mctx.strokeStyle = '#fbbf24';
+            mctx.lineWidth = 1;
+            mctx.beginPath();
+            for(let x=0; x<mpc.width; x++) {
+                const y = (mpc.height/2) + Math.sin(x*0.1 + offset)*5 + (Math.random()*2);
+                if(x===0) mctx.moveTo(x,y); else mctx.lineTo(x,y);
+            }
+            mctx.stroke();
+            offset += 0.1;
+            requestAnimationFrame(drawMiniPulse);
+        }
+        drawMiniPulse();
+    }
+
+    // Latency Jitter
+    setInterval(() => {
+        const lat = document.getElementById('real-latency');
+        const cdel = document.getElementById('cog-delta');
+        if(lat) lat.innerText = (10 + Math.floor(Math.random()*5)) + 'ms';
+        if(cdel) cdel.innerText = (0.10 + Math.random()*0.05).toFixed(2) + 'ms';
+    }, 3000);
     async function refreshDashboard() {
         try {
             const resp = await fetch('/api/dashboard_data');
             const data = await resp.json();
-            document.getElementById('total-exposure').innerText = `₹${data.total_exposure.toLocaleString()}`;
-            document.getElementById('total-ear').innerText = `₹${data.total_ear.toLocaleString()}`;
-            document.getElementById('avg-score').innerText = data.avg_score.toFixed(0);
-            document.getElementById('integrity-index').innerText = data.integrity_index.toFixed(1) + '%';
-            mainChart.data.labels = data.chart.labels;
-            mainChart.data.datasets[0].data = data.chart.values;
-            mainChart.update();
-            document.getElementById('activity-body').innerHTML = data.recent_activity.map(a => `
-                <div class="activity-row"><span>${a.customer}</span><b>₹${a.amount.toLocaleString()}</b><span class="status-pill pill-${a.status === 'Approved' ? 'secure' : 'critical'}">${a.status}</span></div>
-            `).join('');
-        } catch (e) { console.error(e); }
+            const counterAnim = (id, target) => {
+                const el = document.getElementById(id);
+                const start = parseInt(el.innerText.replace(/[^0-9]/g, '')) || 0;
+                const duration = 1500;
+                let startTime = null;
+                const step = (now) => {
+                    if(!startTime) startTime = now;
+                    const progress = Math.min((now - startTime) / duration, 1);
+                    const val = Math.floor(progress * (target - start) + start);
+                    el.innerText = (id.includes('exposure') || id.includes('ear') ? '₹' : '') + val.toLocaleString() + (id === 'integrity-index' ? '%' : '');
+                    if(progress < 1) window.requestAnimationFrame(step);
+                };
+                window.requestAnimationFrame(step);
+            };
+
+            counterAnim('total-exposure', data.total_exposure);
+            counterAnim('total-ear', data.total_ear);
+            counterAnim('avg-score', data.avg_score);
+            counterAnim('integrity-index', Math.round(data.integrity_index));
+            
+            // Sync Chart (with animation)
+            if(data.chart && data.chart.labels) {
+                mainChart.data.labels = data.chart.labels;
+                mainChart.data.datasets[0].data = data.chart.values;
+                mainChart.update();
+            }
+
+            // Sync Asset Stream
+            const streamBody = document.getElementById('activity-body');
+            if(data.recent_activity && data.recent_activity.length > 0) {
+                streamBody.innerHTML = '<div class="scanning-line"></div>' + data.recent_activity.map(a => `
+                    <div class="activity-row">
+                        <span><i class="fas fa-network-wired" style="margin-right:8px; color:var(--intel-indigo);"></i>${a.customer}</span>
+                        <b>₹${(a.amount || 0).toLocaleString()}</b>
+                        <span class="status-pill pill-${a.status === 'Approved' ? 'secure' : (a.status === 'Declined' ? 'critical' : 'scanning')}">${a.status}</span>
+                    </div>
+                `).join('');
+            } else {
+                // Synthetic Live Feed if data is empty
+                const MOCK_DATA = [
+                    { label: "NODE_SATELLITE_SYNC", val: "SYN_ACK", status: "Scanning" },
+                    { label: "LIQUIDITY_MAP_DELTA", val: "0.04%_VOL", status: "Scanning" },
+                    { label: "IP_MESH_INGRESS", val: "LOCAL_HUB_7", status: "Scanning" },
+                    { label: "ENCRYPTION_ROTATION", val: "AES_256_SEC", status: "Scanning" },
+                    { label: "NEURAL_NODE_HANDSHAKE", val: "ESTABLISHED", status: "Scanning" }
+                ];
+                streamBody.innerHTML = '<div class="scanning-line"></div>' + MOCK_DATA.map(m => `
+                    <div class="activity-row" style="opacity: 0.6;">
+                        <span><i class="fas fa-microchip" style="margin-right:8px; color:#64748b;"></i>${m.label}</span>
+                        <b style="font-family: monospace; color: var(--sovereign-gold);">${m.val}</b>
+                        <span class="status-pill pill-scanning">${m.status}</span>
+                    </div>
+                `).join('');
+            }
+            
+            // Dynamic Global Ingress (Update 3D markers for realism)
+            if(data.recent_activity && data.recent_activity.length > 0) {
+                const colors = ['#6366f1', '#10b981', '#fbbf24', '#ef4444'];
+                data.recent_activity.forEach((a, i) => {
+                    if(i < 3) { // Only top 3 for visual clarity
+                        const lat = (Math.random() * 120) - 60;
+                        const lon = (Math.random() * 240) - 120;
+                        addNode(lat, lon, colors[i % 4], `NODE_${a.customer.toUpperCase().replace(/ /g, '_')}`);
+                    }
+                });
+            }
+        } catch (e) { console.error("HUD Sync Error:", e); }
     }
 
     document.addEventListener('DOMContentLoaded', () => {

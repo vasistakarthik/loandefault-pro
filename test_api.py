@@ -1,6 +1,13 @@
 import requests
+import os
+from dotenv import load_dotenv
 
-BASE_URL = 'http://127.0.0.1:5000'
+# Find the project root (current folder)
+base_dir = os.path.dirname(os.path.abspath(__file__))
+env_path = os.path.join(base_dir, '.env')
+load_dotenv(dotenv_path=env_path)
+
+BASE_URL = os.environ.get("APP_URL", 'http://localhost:5000')
 
 def test_endpoint(name, path):
     try:
