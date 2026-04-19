@@ -51,13 +51,20 @@ def send_mail(recipient, subject, html_content):
         message.attach(part2)
 
         # Connect and Handshake
-        server = smtplib.SMTP(mail_server, mail_port, timeout=15)
+        if not mail_server:
+            return False, "SMTP Server address missing (MAIL_SERVER)"
+            
+        server = smtplib.SMTP()
+        print(f"[*] Attempting connection to {mail_server}:{mail_port}...")
+        server.connect(mail_server, mail_port)
         server.ehlo()  # Say hello to the server
         
         if os.getenv("MAIL_USE_TLS", "True") == "True":
+            print("[*] Initiating STARTTLS...")
             server.starttls()  # Upgrade to secure connection
             server.ehlo()      # Say hello again over the secure link
             
+        print(f"[*] Authenticating as {mail_username}...")
         server.login(mail_username, mail_password)
         server.send_message(message)
         server.quit()
