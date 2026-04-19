@@ -50,11 +50,17 @@ def send_mail(recipient, subject, html_content):
         message.attach(part1)
         message.attach(part2)
 
-        with smtplib.SMTP(mail_server, mail_port) as server:
-            if os.getenv("MAIL_USE_TLS", "True") == "True":
-                server.starttls()
-            server.login(mail_username, mail_password)
-            server.send_message(message)
+        # Connect and Handshake
+        server = smtplib.SMTP(mail_server, mail_port, timeout=15)
+        server.ehlo()  # Say hello to the server
+        
+        if os.getenv("MAIL_USE_TLS", "True") == "True":
+            server.starttls()  # Upgrade to secure connection
+            server.ehlo()      # Say hello again over the secure link
+            
+        server.login(mail_username, mail_password)
+        server.send_message(message)
+        server.quit()
         return True
     except Exception as e:
         error_msg = str(e)
