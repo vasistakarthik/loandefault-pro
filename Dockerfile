@@ -40,11 +40,22 @@ RUN chown -R appuser:appuser /app
 USER appuser
 
 # Expose port
-EXPOSE 8000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s \
     CMD curl -f http://localhost:8000/ || exit 1
 
-# Start production server (Reduced to 1 worker to fit in 512MB RAM)
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "1", "--timeout", "120", "--access-logfile", "-", "backend.app:app"]
+# Set home directory for appuser explicitly
+ENV HOME=/home/appuser
+
+# Create directories and fix permissions
+RUN mkdir -p /app /home/appuser/.gunicorn && \
+    chown -R appuser:appuser /app /home/appuser
+
+WORKDIR /app
+USER appuser
+
+EXPOSE 8000
+
+# Use /dev/shm for worker temp to avoid permission issues and improve performance
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "1", "--timeout", "120", "--worker-tmp-dir", "/dev/shm", "backend.app:app"]
