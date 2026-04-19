@@ -83,7 +83,8 @@ def logout():
         log_action(user_id, 'Logout', request.remote_addr)
     logout_user()
     session.clear()
-    return redirect(url_for('auth.login'))
+    flash('Successfully exited secure vault.', 'info')
+    return redirect(url_for('home'))
 
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
@@ -136,18 +137,13 @@ def register():
             </div>
             """
             
-            email_sent = send_mail(email, subject, html_body)
+            email_sent = send_mail(email, subject, html_content=html_body)
             
             if email_sent:
-                print(f"[SUCCESS] Welcome email sent to {email}")
-                flash('Registration successful! Account activated. You can now login.', 'success')
+                flash('Strategic clearance granted. Verification email transmitted successfully.', 'success')
             else:
-                # FALLBACK FOR DEMO
-                print(f"\n{'='*50}")
-                print(f"[FALLBACK] Verification Link for {email}:")
-                print(f"{link}")
-                print(f"{'='*50}\n")
-                flash('Registration successful! Account activated. (Email delivery skipped)', 'success')
+                flash('Registration successful! Account activated. (Node link bypass enabled - Email delivery delayed)', 'info')
+                current_app.logger.warning(f"Email delivery failed for {email}")
             
             # Initialize default settings for new user
             user_id = conn.execute('SELECT last_insert_rowid()').fetchone()[0]

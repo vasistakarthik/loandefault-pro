@@ -39,6 +39,11 @@ def get_db_connection():
                 # Convert '?' to '%s' for Postgres
                 if params and isinstance(sql, str):
                     sql = sql.replace('?', '%s')
+                
+                # Handle SQLite-specific last_insert_rowid() calls
+                if isinstance(sql, str) and 'last_insert_rowid()' in sql.lower():
+                    sql = sql.lower().replace('last_insert_rowid()', 'lastval()')
+                    
                 cur = self.conn.cursor(cursor_factory=DictCursor)
                 cur.execute(sql, params)
                 return cur
