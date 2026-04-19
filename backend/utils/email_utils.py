@@ -52,11 +52,10 @@ def send_mail(recipient, subject, html_content):
 
         # Connect and Handshake
         if not mail_server:
-            return False, "SMTP Server address missing (MAIL_SERVER)"
+            mail_server = "smtp.gmail.com"
             
-        server = smtplib.SMTP()
+        server = smtplib.SMTP(mail_server, mail_port, timeout=15)
         print(f"[*] Attempting connection to {mail_server}:{mail_port}...")
-        server.connect(mail_server, mail_port)
         server.ehlo()  # Say hello to the server
         
         if os.getenv("MAIL_USE_TLS", "True") == "True":
