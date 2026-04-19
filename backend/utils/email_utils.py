@@ -12,7 +12,7 @@ def send_mail(recipient, subject, html_content):
     from email.mime.multipart import MIMEMultipart
     from email.utils import formataddr
 
-    mail_server = os.getenv("MAIL_SERVER")
+    mail_server = os.getenv("MAIL_SERVER", "smtp.gmail.com")
     mail_port = int(os.getenv("MAIL_PORT", 587))
     mail_username = os.getenv("MAIL_USERNAME")
     mail_password = os.getenv("MAIL_PASSWORD")
