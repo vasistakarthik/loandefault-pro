@@ -96,6 +96,13 @@ CREATE TABLE IF NOT EXISTS borrowers (
     credit_score INTEGER,
     annual_income REAL,
     employment_type TEXT,
+    bank TEXT DEFAULT 'SBI',
+    physical_address TEXT,
+    contact_phone TEXT,
+    paid_amount REAL DEFAULT 0,
+    balance_amount REAL DEFAULT 0,
+    creation_source TEXT DEFAULT 'Manual',
+    status TEXT DEFAULT 'Pending',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
