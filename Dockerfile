@@ -6,10 +6,11 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV FLASK_APP=backend.app:app
 ENV ENV=production
+ENV HOME=/home/appuser
 
 WORKDIR /app
 
-# Install system dependencies (Adding cairo and pkg-config for PDF support)
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     libsqlite3-dev \
@@ -26,9 +27,9 @@ RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir gunicorn python-dotenv
 
-# Create necessary directories and set permissions
+# Create necessary directories and set permissions (Using -m to create home dir)
+RUN groupadd -r appuser && useradd -m -r -g appuser appuser
 RUN mkdir -p backend/database backend/model/models logs
-RUN groupadd -r appuser && useradd -r -g appuser appuser
 RUN chown -R appuser:appuser /app
 
 # Copy project files
@@ -38,12 +39,12 @@ RUN chown -R appuser:appuser /app
 # Switch to non-privileged user
 USER appuser
 
-# Expose port (Render automatically maps this to its public port)
+# Expose port
 EXPOSE 8000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s \
     CMD curl -f http://localhost:8000/ || exit 1
 
-# Start production server
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "4", "--access-logfile", "-", "backend.app:app"]
+# Start production server (Reduced to 1 worker to fit in 512MB RAM)
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "1", "--timeout", "120", "--access-logfile", "-", "backend.app:app"]
