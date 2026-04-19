@@ -1,5 +1,5 @@
 # LoanRisk AI Protocol - Enterprise Containerization
-FROM python:3.9-slim
+FROM python:3.10-slim
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -9,15 +9,20 @@ ENV ENV=production
 
 WORKDIR /app
 
-# Install system dependencies
+# Install system dependencies (Adding cairo and pkg-config for PDF support)
 RUN apt-get update && apt-get install -y \
     build-essential \
     libsqlite3-dev \
+    libcairo2-dev \
+    pkg-config \
+    python3-dev \
+    libgirepository1.0-dev \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies separately for better caching
 COPY requirements.txt .
+RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir gunicorn python-dotenv
 
@@ -33,7 +38,7 @@ RUN chown -R appuser:appuser /app
 # Switch to non-privileged user
 USER appuser
 
-# Expose port
+# Expose port (Render automatically maps this to its public port)
 EXPOSE 8000
 
 # Health check
@@ -42,4 +47,3 @@ HEALTHCHECK --interval=30s --timeout=3s \
 
 # Start production server
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "4", "--access-logfile", "-", "backend.app:app"]
-
