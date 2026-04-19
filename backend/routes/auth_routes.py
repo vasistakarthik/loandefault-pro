@@ -137,13 +137,19 @@ def register():
             </div>
             """
             
-            email_sent = send_mail(email, subject, html_content=html_body)
+            email_result = send_mail(email, subject, html_content=html_body)
             
+            # Handle the new tuple return (success, message) or just result if it's bool
+            if isinstance(email_result, tuple):
+                email_sent, email_error = email_result
+            else:
+                email_sent, email_error = email_result, "Unknown Error"
+
             if email_sent:
                 flash('Strategic clearance granted. Verification email transmitted successfully.', 'success')
             else:
-                flash('Registration successful! Account activated. (Node link bypass enabled - Email delivery delayed)', 'info')
-                current_app.logger.warning(f"Email delivery failed for {email}")
+                flash(f'Registration successful! Email transmission failed. Node status: {email_error}', 'info')
+                current_app.logger.warning(f"Email delivery failed for {email}: {email_error}")
             
             # Initialize default settings for new user
             user_id = conn.execute('SELECT last_insert_rowid()').fetchone()[0]
@@ -214,18 +220,18 @@ def forgot_password():
             </div>
             """
 
-            email_sent = send_mail(email, subject, html_body)
+            email_result = send_mail(email, subject, html_body)
+            
+            if isinstance(email_result, tuple):
+                email_sent, email_error = email_result
+            else:
+                email_sent, email_error = email_result, "Unknown Error"
 
             if email_sent:
-                print(f"[SUCCESS] Password reset email sent to {email}")
-                flash('Password reset link has been sent to your email.', 'info')
+                flash('Strategic clearance granted. Password reset protocol transmitted.', 'info')
             else:
-                # FALLBACK FOR DEMO
-                print(f"\n{'='*50}")
-                print(f"[FALLBACK] Reset Link for {email}:")
-                print(f"{link}")
-                print(f"{'='*50}\n")
-                flash('Email sending failed. Please check server logs or contact admin.', 'warning')
+                flash(f'Security Protocol Failure: {email_error}', 'warning')
+                current_app.logger.warning(f"Reset email failed for {email}: {email_error}")
 
             return redirect(url_for('auth.login'))
         else:

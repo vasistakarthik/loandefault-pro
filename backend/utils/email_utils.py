@@ -57,5 +57,6 @@ def send_mail(recipient, subject, html_content):
             server.send_message(message)
         return True
     except Exception as e:
-        print(f"[ERROR] SMTP Delivery Failed: {str(e)}")
-        return False
+        error_msg = str(e)
+        print(f"[ERROR] SMTP Delivery Failed: {error_msg}")
+        return False, error_msg
