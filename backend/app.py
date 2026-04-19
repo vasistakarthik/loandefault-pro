@@ -103,6 +103,32 @@ def public_stats():
         'institutions': (stats['institutions'] or 0) + 12
     }
 
+@app.route('/protocol/maintenance/reset-all')
+def maintenance_reset():
+    # Only allow this for local development or if specifically requested by the operator
+    # In a real production app, this would be highly restricted or removed
+    from .database.db import get_db_connection
+    conn = get_db_connection()
+    is_postgres = Config.DATABASE_URI.startswith('postgresql')
+    tables_to_wipe = ['borrowers', 'loan_applications', 'loan_history', 'audit_logs', 'customers', 'user_settings', 'users', 'model_registry']
+    
+    try:
+        if is_postgres:
+            cursor = conn.cursor()
+            for table in tables_to_wipe:
+                cursor.execute(f'TRUNCATE TABLE {table} CASCADE;')
+            conn.commit()
+            cursor.close()
+        else:
+            for table in tables_to_wipe:
+                conn.execute(f'DELETE FROM {table};')
+            conn.commit()
+        return "DATABASE SYSTEM PURGED. CORE NODES RESET.", 200
+    except Exception as e:
+        return f"PURGE FAILED: {str(e)}", 500
+    finally:
+        conn.close()
+
 @app.route('/')
 def home():
     if session.get('user_id'):
