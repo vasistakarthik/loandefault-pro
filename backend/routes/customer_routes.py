@@ -30,11 +30,6 @@ def error_response(message, status=400):
    return jsonify({'error': message}), status
 
 
-@customer_bp.before_request
-def require_login():
-    if 'user_id' not in session:
-        return redirect(url_for('auth.login'))
-
 # --- VIEW ROUTES ---
 
 @customer_bp.route('/dashboard')
