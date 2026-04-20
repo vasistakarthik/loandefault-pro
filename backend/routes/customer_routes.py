@@ -20,7 +20,8 @@ customer_bp = Blueprint('customer', __name__)
 # --- HELPER FUNCTIONS ---
 def get_db():
     conn = get_db_connection()
-    conn.row_factory = sqlite3.Row
+    # row_factory is already handled in get_db_connection for SQLite
+    # and PostgresWrapper provides DictCursor which behaves similarly.
     return conn
 
 def json_response(data, status=200):
