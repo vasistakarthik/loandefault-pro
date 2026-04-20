@@ -790,11 +790,11 @@ def settings():
     active_model = ModelRegistry.get_active_model()
     
     # Check DB Status for indicator
-    db_status = "Online"
+    db_status = 'Online'
     try:
         conn.execute("SELECT 1")
     except:
-        db_status = "Error"
+        db_status = 'Error'
         
     # Fetch user specific settings
     user_settings = conn.execute('SELECT * FROM user_settings WHERE user_id = ?', (session.get('user_id'),)).fetchone()
