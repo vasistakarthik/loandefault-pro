@@ -76,7 +76,16 @@ def get_db_connection():
                         sql = sql.lower().replace('last_insert_rowid()', 'lastval()')
                     return original_execute(sql, params)
                 
+                # Monkeypatch lastrowid to use lastval()
+                @property
+                def patched_lastrowid(self):
+                    self.execute("SELECT lastval()")
+                    return self.fetchone()[0]
+                
+                import types
                 cur.execute = patched_execute
+                # We need to use setattr for property on an instance
+                setattr(type(cur), 'lastrowid', patched_lastrowid)
                 return cur
 
             def __enter__(self):
