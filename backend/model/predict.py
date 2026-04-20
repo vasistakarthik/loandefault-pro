@@ -131,7 +131,7 @@ def predict(age, income, loan_amount, credit_score, loan_type=None, name=None,
             WHERE b.full_name = ? AND la.status = 'Defaulted'
         ''', (name,)).fetchone()[0]
         # Check Assessment History records
-        assessment_defaults = conn.execute('SELECT count(*) FROM customers WHERE name = ? AND status = 'Defaulted'', (name,)).fetchone()[0]
+        assessment_defaults = conn.execute("SELECT count(*) FROM customers WHERE name = ? AND status = 'Defaulted'", (name,)).fetchone()[0]
         
         total_defaults = (sum(1 for h in history if h['status'] and str(h['status']).lower() == 'defaulted')) + active_defaults + assessment_defaults
 
