@@ -992,8 +992,8 @@ def history_list():
     stats_query = f'''
         SELECT 
             COUNT(*) as total, 
-            COALESCE(SUM(CASE WHEN status="Paid" THEN 1 ELSE 0 END), 0) as paid, 
-            COALESCE(SUM(CASE WHEN status="Defaulted" THEN 1 ELSE 0 END), 0) as defaulted 
+            COALESCE(SUM(CASE WHEN status='Paid' THEN 1 ELSE 0 END), 0) as paid, 
+            COALESCE(SUM(CASE WHEN status='Defaulted' THEN 1 ELSE 0 END), 0) as defaulted 
         FROM loan_history {where_clause}
     '''
     
