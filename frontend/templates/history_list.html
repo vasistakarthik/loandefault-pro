@@ -101,7 +101,7 @@
         margin-top: 6px;
         overflow: hidden;
     }
-    .progress-fill { height: 100%; background: var(--p-700); width: 0%; transition: width 1.2s cubic-bezier(0.23, 1, 0.32, 1); }
+    .progress-fill { height: 100%; background: var(--hud-accent); width: 0%; transition: width 1.2s cubic-bezier(0.23, 1, 0.32, 1); }
 
     /* PIPELINE STYLING */
     .pipeline-node {
@@ -144,7 +144,7 @@
         font-weight: 950;
         transition: 0.3s;
     }
-    .page-orb.active { background: var(--hud-accent); color: #0f172a; border-color: var(--hud-accent); box-shadow: 0 0 20px rgba(0, 242, 254, 0.4); }
+    .page-orb.active { background: var(--hud-accent); color: #0f172a; border-color: var(--hud-accent); box-shadow: 0 0 20px color-mix(in srgb, var(--hud-accent), transparent 60%); }
 
 </style>
 {% endblock %}
@@ -181,7 +181,7 @@
                     <i class="fas fa-skull-crossbones" style="margin-right: 10px;"></i> Purge Archive Segment
                 </button>
             </form>
-            <a href="{{ url_for('customer.ingest') }}" class="btn-provision" style="height: 50px; display: flex; align-items: center; padding: 0 24px; font-size: 0.75rem; text-decoration: none; border-radius: 14px; background: rgba(0, 242, 254, 0.1); color: var(--hud-accent); border: 1px solid var(--hud-accent); font-weight: 950; text-transform: uppercase; letter-spacing: 1px;">
+            <a href="{{ url_for('customer.ingest') }}" class="btn-provision" style="height: 50px; display: flex; align-items: center; padding: 0 24px; font-size: 0.75rem; text-decoration: none; border-radius: 14px; background: color-mix(in srgb, var(--hud-accent), transparent 90%); color: var(--hud-accent); border: 1px solid var(--hud-accent); font-weight: 950; text-transform: uppercase; letter-spacing: 1px;">
                 <i class="fas fa-cloud-arrow-up" style="margin-right: 10px;"></i> Batch Ingest
             </a>
         </div>

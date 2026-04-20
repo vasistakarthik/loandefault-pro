@@ -8,7 +8,7 @@
 <style>
     /* --- HUD TOKENS --- */
     :root {
-        --cyber-cyan: #00f2fe;
+        --cyber-cyan: var(--primary, #00f2fe);
         --sovereign-gold: #fbbf24;
         --hazard-red: #ef4444;
         --active-emerald: #10b981;
@@ -246,10 +246,10 @@
             // Light Environment
             const amLi = new THREE.AmbientLight(0xffffff, 0.15);
             scene.add(amLi);
-            const spot1 = new THREE.PointLight(0x00f2fe, 3, 50);
+            const spot1 = new THREE.PointLight(getComputedStyle(document.body).getPropertyValue('--primary').trim() || 0x00f2fe, 3, 50);
             spot1.position.set(10, 10, 10);
             scene.add(spot1);
-            const spot2 = new THREE.PointLight(0x6366f1, 2, 50);
+            const spot2 = new THREE.PointLight(getComputedStyle(document.body).getPropertyValue('--hud-accent').trim() || 0x6366f1, 2, 50);
             spot2.position.set(-10, -10, -10);
             scene.add(spot2);
 
@@ -273,13 +273,13 @@
 
             // 2. ANALYTICAL WIRE SHELL
             const wireGeom = new THREE.IcosahedronGeometry(4.08, 1);
-            const wireMat = new THREE.MeshBasicMaterial({ color: 0x22d3ee, wireframe: true, transparent: true, opacity: 0.3 });
+            const wireMat = new THREE.MeshBasicMaterial({ color: getComputedStyle(document.body).getPropertyValue('--primary').trim() || 0x22d3ee, wireframe: true, transparent: true, opacity: 0.3 });
             const wireShell = new THREE.Mesh(wireGeom, wireMat);
             coreGroup.add(wireShell);
 
             // 3. SCAN-LINE PULSE
             const scanGeom = new THREE.CylinderGeometry(4.2, 4.2, 0.05, 64, 1, true);
-            const scanMat = new THREE.MeshBasicMaterial({ color: 0x00f2fe, transparent: true, opacity: 0.4, side: THREE.DoubleSide });
+            const scanMat = new THREE.MeshBasicMaterial({ color: getComputedStyle(document.body).getPropertyValue('--primary').trim() || 0x00f2fe, transparent: true, opacity: 0.4, side: THREE.DoubleSide });
             const scanLine = new THREE.Mesh(scanGeom, scanMat);
             coreGroup.add(scanLine);
 
@@ -299,8 +299,8 @@
                 return { ring, speed, axis };
             }
             const rings = [
-                createRing(5.3, 0x00f2fe, 0.012, 'y'),
-                createRing(5.9, 0x6366f1, -0.008, 'x'),
+                createRing(5.3, getComputedStyle(document.body).getPropertyValue('--primary').trim() || 0x00f2fe, 0.012, 'y'),
+                createRing(5.9, getComputedStyle(document.body).getPropertyValue('--hud-accent').trim() || 0x6366f1, -0.008, 'x'),
                 createRing(6.6, 0xef4444, 0.006, 'z')
             ];
             rings.forEach(r => coreGroup.add(r.ring));
@@ -311,7 +311,7 @@
             const pPos = new Float32Array(pCount * 3);
             for(let i=0; i<pCount*3; i++) { pPos[i] = (Math.random() - 0.5) * 30; }
             pGeom.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-            const pMat = new THREE.PointsMaterial({ size: 0.03, color: 0x00f2fe, transparent: true, opacity: 0.4 });
+            const pMat = new THREE.PointsMaterial({ size: 0.03, color: getComputedStyle(document.body).getPropertyValue('--primary').trim() || 0x00f2fe, transparent: true, opacity: 0.4 });
             const particles = new THREE.Points(pGeom, pMat);
             scene.add(particles);
 

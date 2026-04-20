@@ -79,6 +79,24 @@ app.register_blueprint(customer_bp)
 app.register_blueprint(report_bp)
 app.register_blueprint(admin_bp)
 
+@app.context_processor
+def inject_settings():
+    from .database.db import get_db_connection
+    # Initialize with None
+    user_settings = None
+    
+    # Try to get user_id from session
+    user_id = session.get('user_id')
+    if user_id:
+        try:
+            conn = get_db_connection()
+            user_settings = conn.execute('SELECT * FROM user_settings WHERE user_id = ?', (user_id,)).fetchone()
+            conn.close()
+        except Exception as e:
+            app.logger.error(f"Error in context processor: {e}")
+            
+    return dict(settings=user_settings)
+
 @app.after_request
 def add_header(response):
     response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0'

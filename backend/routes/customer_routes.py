@@ -35,9 +35,13 @@ def error_response(message, status=400):
 @customer_bp.route('/dashboard')
 @login_required
 def dashboard():
+    conn = get_db_connection()
+    user_settings = conn.execute('SELECT * FROM user_settings WHERE user_id = ?', (session.get('user_id'),)).fetchone()
+    conn.close()
     return render_template('dashboard.html', 
                            username=session.get('username'),
-                           role=session.get('role', 'analyst'))
+                           role=session.get('role', 'analyst'),
+                           settings=user_settings)
 
 @customer_bp.route('/profile/<int:borrower_id>')
 @login_required
@@ -820,7 +824,7 @@ def save_settings():
                 data.get('algorithm', 'XGBoost'),
                 1 if data.get('ai_enabled') else 0,
                 1 if data.get('auto_retrain') else 0,
-                data.get('theme', 'midnight'),
+                data.get('theme', 'cyan'),
                 user_id
             ))
         else:
@@ -830,7 +834,7 @@ def save_settings():
             ''', (
                 user_id, data.get('low_threshold', 40), data.get('med_threshold', 70),
                 data.get('algorithm', 'XGBoost'), 1 if data.get('ai_enabled') else 0,
-                1 if data.get('auto_retrain') else 0, data.get('theme', 'midnight')
+                1 if data.get('auto_retrain') else 0, data.get('theme', 'cyan')
             ))
         conn.commit()
         return jsonify({'success': True})

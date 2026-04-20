@@ -12,7 +12,7 @@
 {% block extra_css %}
 <style>
     :root {
-        --hud-accent: #0ea5e9; 
+        --hud-accent: var(--primary, #0ea5e9); 
     }
 
     .ecosystem-container {
@@ -146,7 +146,7 @@
         white-space: nowrap;
     }
 
-    .badge-approved { background: rgba(0, 242, 254, 0.1); color: var(--hud-accent); border: 1px solid rgba(0, 242, 254, 0.2); }
+    .badge-approved { background: color-mix(in srgb, var(--hud-accent), transparent 90%); color: var(--hud-accent); border: 1px solid color-mix(in srgb, var(--hud-accent), transparent 80%); }
     .badge-rejected { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); }
 
     /* ACTION PIPELINE */
@@ -190,10 +190,10 @@
         transition: 0.3s;
     }
     .page-orb.active {
-        background: #fbbf24;
+        background: var(--hud-accent);
         color: #0f172a;
-        border-color: #fbbf24;
-        box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+        border-color: var(--hud-accent);
+        box-shadow: 0 0 20px color-mix(in srgb, var(--hud-accent), transparent 60%);
     }
     .page-orb:hover:not(.active) { color: white; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
 
@@ -201,7 +201,7 @@
     .toggle-group { display: flex; background: rgba(2, 6, 23, 0.4); padding: 6px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); gap: 8px; }
     .toggle-btn { padding: 12px 24px; border-radius: 12px; font-size: 0.75rem; font-weight: 950; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); color: #475569; border: 1px solid transparent; }
     .toggle-btn:hover { color: white; background: rgba(255,255,255,0.05); }
-    .toggle-btn.active-latest { background: var(--hud-accent); color: #020617; box-shadow: 0 0 20px rgba(14, 165, 233, 0.4); border-color: var(--hud-accent); }
+    .toggle-btn.active-latest { background: var(--hud-accent); color: #020617; box-shadow: 0 0 20px color-mix(in srgb, var(--hud-accent), transparent 60%); border-color: var(--hud-accent); }
     .toggle-btn.active-history { background: #fbbf24; color: #020617; box-shadow: 0 0 20px rgba(251, 191, 36, 0.4); border-color: #fbbf24; }
 
     /* LIVE SYNC PULSE */

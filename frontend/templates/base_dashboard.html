@@ -771,6 +771,26 @@
         }, 15000 + Math.random() * 15000);
     </script>
     {% block extra_js %}{% endblock %}
+    
+    <script>
+        // --- GLOBAL THEME SYNC ---
+        (function() {
+            const themeMap = {
+                'cyan': '#00f2fe',
+                'crimson': '#ef4444',
+                'emerald': '#10b981',
+                'quartz': '#a855f7',
+                'amber': '#f59e0b',
+                'stealth': '#64748b'
+            };
+            
+            const savedTheme = "{{ settings.theme_accent if settings else 'cyan' }}";
+            const accentColor = themeMap[savedTheme] || themeMap['cyan'];
+            
+            document.documentElement.style.setProperty('--primary', accentColor);
+            document.documentElement.style.setProperty('--hud-accent', accentColor);
+        })();
+    </script>
 </body>
 
 </html>

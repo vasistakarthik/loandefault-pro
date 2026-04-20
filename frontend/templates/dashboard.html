@@ -7,13 +7,13 @@
 <style>
     :root {
         --active-emerald: #10b981;
-        --intel-indigo: #6366f1;
+        --intel-indigo: var(--primary, #6366f1);
         --sovereign-gold: #fbbf24;
         --hazard-red: #ef4444;
         --deep-slate: #020617;
         --glass-border: rgba(255, 255, 255, 0.08);
         --glass-bg: rgba(2, 6, 23, 0.45);
-        --cyber-cyan: #00f2fe;
+        --cyber-cyan: var(--hud-accent, #00f2fe);
     }
 
     .dashboard-container { 
@@ -299,14 +299,14 @@
         type: 'line',
         data: { labels: [], datasets: [{ 
             data: [], 
-            borderColor: '#00f2fe', 
+            borderColor: 'var(--cyber-cyan)', 
             borderWidth: 3, 
             fill: true, 
             backgroundColor: chartGradient, 
             tension: 0.5,
             pointRadius: 4,
             pointBackgroundColor: '#fff',
-            pointBorderColor: '#00f2fe',
+            pointBorderColor: 'var(--cyber-cyan)', 
             pointHoverRadius: 8,
             pointHoverBackgroundColor: '#fff'
         }] },

@@ -88,8 +88,8 @@
 
     .input-group input:focus, .input-group select:focus {
         border-color: var(--hud-accent);
-        background: rgba(99, 102, 241, 0.08);
-        box-shadow: 0 0 25px rgba(99, 102, 241, 0.15);
+        background: color-mix(in srgb, var(--hud-accent), transparent 95%);
+        box-shadow: 0 0 25px color-mix(in srgb, var(--hud-accent), transparent 85%);
         transform: translateY(-2px);
     }
     .input-group input:focus + .field-viz .field-viz-fill { width: 100% !important; }
@@ -154,8 +154,8 @@
         margin-top: 10px;
         padding: 18px;
         border-radius: 14px;
-        border: 1px solid rgba(0, 255, 230, 0.2);
-        background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+        border: 1px solid color-mix(in srgb, var(--hud-accent), transparent 80%);
+        background: linear-gradient(135deg, var(--hud-accent) 0%, #4facfe 100%);
         color: #0f172a; 
         font-size: 0.95rem;
         font-weight: 950;
@@ -163,17 +163,17 @@
         letter-spacing: 2px;
         cursor: pointer;
         transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
+        box-shadow: 0 4px 15px color-mix(in srgb, var(--hud-accent), transparent 80%);
         animation: pulseGlow 3s infinite;
     }
     @keyframes pulseGlow {
-        0% { box-shadow: 0 0 10px rgba(0, 242, 254, 0.2); }
-        50% { box-shadow: 0 0 25px rgba(0, 242, 254, 0.4); }
-        100% { box-shadow: 0 0 10px rgba(0, 242, 254, 0.2); }
+        0% { box-shadow: 0 0 10px color-mix(in srgb, var(--hud-accent), transparent 80%); }
+        50% { box-shadow: 0 0 25px color-mix(in srgb, var(--hud-accent), transparent 60%); }
+        100% { box-shadow: 0 0 10px color-mix(in srgb, var(--hud-accent), transparent 80%); }
     }
     .launch-btn:hover { 
         transform: translateY(-4px) scale(1.02); 
-        box-shadow: 0 15px 35px rgba(0, 242, 254, 0.5), 0 0 20px #00f2fe;
+        box-shadow: 0 15px 35px color-mix(in srgb, var(--hud-accent), transparent 50%), 0 0 20px var(--hud-accent);
         filter: brightness(1.1);
     }
     .launch-btn:active { transform: translateY(-1px) scale(0.98); }
@@ -278,7 +278,7 @@
                     <label>Dynamic Interest <span>[ADJUSTED]</span></label>
                     <i class="fas fa-percent field-icon"></i>
                     <input name="interest_rate" id="in-interest-val" type="hidden" value="10.5">
-                    <input id="in-interest-display" type="text" value="₹0 [0.0%]" readonly style="color: #00f2fe; background: rgba(0, 242, 254, 0.05); border-color: rgba(0, 242, 254, 0.15);">
+                    <input id="in-interest-display" type="text" value="₹0 [0.0%]" readonly style="color: var(--hud-accent); background: color-mix(in srgb, var(--hud-accent), transparent 95%); border-color: color-mix(in srgb, var(--hud-accent), transparent 85%);">
                     <div class="field-viz"></div>
                 </div>
 
@@ -331,7 +331,7 @@
                     <label>{{ current_user.bank or 'SBI' }} <span>[LOCKED]</span></label>
                     <i class="fas fa-vault field-icon"></i>
                     <input type="hidden" name="bank" id="in-bank" value="{{ current_user.bank or 'SBI' }}">
-                    <input type="text" value="Institutional Node" readonly style="color: #00f2fe; background: rgba(0, 242, 254, 0.05); border-color: rgba(0, 242, 254, 0.15); font-weight: 800;">
+                    <input type="text" value="Institutional Node" readonly style="color: var(--hud-accent); background: color-mix(in srgb, var(--hud-accent), transparent 95%); border-color: color-mix(in srgb, var(--hud-accent), transparent 85%); font-weight: 800;">
                 </div>
 
                 <button type="submit" class="launch-btn">
@@ -393,7 +393,7 @@
                         <label><i class="fas fa-vault"></i> Total Obligation</label>
                         <span id="txt-total">₹0</span>
                     </div>
-                    <div class="plot-bar"><div id="bar-total" class="plot-fill" style="background: #00f2fe;"></div></div>
+                    <div class="plot-bar"><div id="bar-total" class="plot-fill" style="background: var(--hud-accent);"></div></div>
                 </div>
 
                 <div class="plot-row">

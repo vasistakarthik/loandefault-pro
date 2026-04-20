@@ -138,8 +138,20 @@
     .spectrum-node:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.08); border-color: var(--hud-accent); }
     .spectrum-node.active { 
         border-color: var(--hud-accent); 
-        background: rgba(0, 242, 254, 0.1); 
-        box-shadow: inset 0 0 20px rgba(0, 242, 254, 0.15), 0 15px 30px -10px rgba(0, 0, 0, 0.5); 
+        background: color-mix(in srgb, var(--hud-accent), transparent 90%); 
+        box-shadow: inset 0 0 20px color-mix(in srgb, var(--hud-accent), transparent 85%), 0 15px 30px -10px rgba(0, 0, 0, 0.5); 
+    }
+    
+    .spectrum-node.active::after {
+        content: '\f058';
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 0.7rem;
+        color: var(--hud-accent);
+        filter: drop-shadow(0 0 5px var(--hud-accent));
     }
     
     .hue-orb { width: 10px; height: 10px; border-radius: 50%; margin: 0 auto 12px; box-shadow: 0 0 15px currentColor; }
@@ -504,14 +516,27 @@
 
     // Neural Spectrum Selector
     const spectrumNodes = document.querySelectorAll('.spectrum-node');
+    
+    function applyThemeToCore(color) {
+        document.documentElement.style.setProperty('--hud-accent', color);
+        document.documentElement.style.setProperty('--primary', color);
+        document.documentElement.style.setProperty('--neon-glow', `color-mix(in srgb, ${color}, transparent 60%)`);
+    }
+
+    // Initialize theme on load if any node is already active
+    const initialActive = document.querySelector('.spectrum-node.active');
+    if (initialActive) {
+        applyThemeToCore(initialActive.dataset.color);
+    }
+
     spectrumNodes.forEach(node => {
-        node.addEventListener('click', () => {
+        node.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent bubbling issues
             spectrumNodes.forEach(n => n.classList.remove('active'));
             node.classList.add('active');
             
             const color = node.dataset.color;
-            document.documentElement.style.setProperty('--hud-accent', color);
-            document.documentElement.style.setProperty('--primary', color);
+            applyThemeToCore(color);
         });
     });
 

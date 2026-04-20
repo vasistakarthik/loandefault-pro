@@ -60,7 +60,7 @@
     }
 
     .btn-provision {
-        background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+        background: linear-gradient(135deg, var(--hud-accent) 0%, #4facfe 100%);
         color: #0f172a;
         padding: 14px 28px;
         border-radius: 16px;
@@ -72,12 +72,12 @@
         align-items: center;
         gap: 12px;
         text-decoration: none;
-        box-shadow: 0 10px 30px rgba(0, 242, 254, 0.3);
+        box-shadow: 0 10px 30px color-mix(in srgb, var(--hud-accent), transparent 70%);
         transition: 0.4s;
     }
     .btn-provision:hover {
         transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 20px 40px rgba(0, 242, 254, 0.5);
+        box-shadow: 0 20px 40px color-mix(in srgb, var(--hud-accent), transparent 50%);
     }
 
     /* DATA VIEWPORT */
@@ -116,8 +116,8 @@
     .avatar-node {
         width: 44px;
         height: 44px;
-        background: rgba(0, 242, 254, 0.05);
-        border: 1px solid rgba(0, 242, 254, 0.1);
+        background: color-mix(in srgb, var(--hud-accent), transparent 95%);
+        border: 1px solid color-mix(in srgb, var(--hud-accent), transparent 90%);
         border-radius: 14px;
         display: flex;
         align-items: center;
@@ -125,7 +125,7 @@
         font-weight: 950;
         color: var(--hud-accent);
         font-size: 1.1rem;
-        text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+        text-shadow: 0 0 10px color-mix(in srgb, var(--hud-accent), transparent 50%);
     }
 
     .id-tag { font-family: monospace; font-weight: 950; font-size: 0.75rem; color: #475569; letter-spacing: 1px; }
@@ -144,7 +144,7 @@
         white-space: nowrap;
     }
 
-    .badge-approved { background: rgba(0, 242, 254, 0.1); color: var(--hud-accent); border: 1px solid rgba(0, 242, 254, 0.2); }
+    .badge-approved { background: color-mix(in srgb, var(--hud-accent), transparent 90%); color: var(--hud-accent); border: 1px solid color-mix(in srgb, var(--hud-accent), transparent 80%); }
     .badge-rejected { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); }
     .badge-neutral { background: rgba(255, 255, 255, 0.02); color: #64748b; border: 1px solid rgba(255, 255, 255, 0.05); }
 
@@ -198,7 +198,7 @@
         background: var(--hud-accent);
         color: #0f172a;
         border-color: var(--hud-accent);
-        box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+        box-shadow: 0 0 20px color-mix(in srgb, var(--hud-accent), transparent 60%);
     }
     .page-orb:hover:not(.active) { color: white; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
 
@@ -206,7 +206,7 @@
     .toggle-group { display: flex; background: rgba(255, 255, 255, 0.03); padding: 5px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.08); gap: 5px; }
     .toggle-btn { padding: 10px 20px; border-radius: 12px; font-size: 0.75rem; font-weight: 950; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; transition: 0.3s; color: #475569; border: 1px solid transparent; }
     .toggle-btn:hover { color: white; background: rgba(255,255,255,0.05); }
-    .toggle-btn.active-latest { background: var(--hud-accent); color: #0f172a; box-shadow: 0 0 15px rgba(0, 242, 254, 0.3); border-color: var(--hud-accent); }
+    .toggle-btn.active-latest { background: var(--hud-accent); color: #0f172a; box-shadow: 0 0 15px color-mix(in srgb, var(--hud-accent), transparent 70%); border-color: var(--hud-accent); }
     .toggle-btn.active-history { background: #fbbf24; color: #0f172a; box-shadow: 0 0 15px rgba(251, 191, 36, 0.3); border-color: #fbbf24; }
 
 </style>
