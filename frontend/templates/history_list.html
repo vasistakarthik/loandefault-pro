@@ -209,8 +209,8 @@
                         <div class="node-id">REF_NODE_{{ "%04d"|format(item.id) }}</div>
                     </td>
                     <td>
-                        <div style="font-size: 0.95rem; font-weight: 950; color: white;">₹{{ "{:,.0f}".format(item.loan_amount) }}</div>
-                        <div class="node-id">RES: ₹{{ "{:,.0f}".format(item.loan_amount * 0.77)|replace(',','') }}</div>
+                        <div style="font-size: 0.95rem; font-weight: 950; color: white;">₹{{ "{:,.0f}".format(item.loan_amount or 0) }}</div>
+                        <div class="node-id">RES: ₹{{ "{:,.0f}".format((item.loan_amount or 0) * 0.77)|replace(',','') }}</div>
                     </td>
                     <td>
                          <div style="display: flex; gap: 8px; font-size: 0.75rem; font-weight: 950;">
@@ -227,10 +227,11 @@
                         <span class="nexus-badge {{ 'badge-active' if item.status == 'Ongoing' else 'badge-neutral' }}">{{ item.status }}</span>
                     </td>
                     <td>
-                        {% if item.ai_score %}
-                            {% set risk_cls = 'signal-low' if item.ai_score > 80 else ('signal-med' if item.ai_score > 50 else 'signal-high') %}
+                        {% if item.ai_score is not none %}
+                            {% set score_val = item.ai_score | float %}
+                            {% set risk_cls = 'signal-low' if score_val > 80 else ('signal-med' if score_val > 50 else 'signal-high') %}
                             <div class="signal-{{ risk_cls }}" style="font-size: 0.75rem; font-weight: 950;">
-                                {{ item.ai_risk_level | upper }} ({{ item.ai_score|round(1) }}%)
+                                {{ (item.ai_risk_level or 'Analyze') | upper }} ({{ score_val | round(1) }}%)
                             </div>
                         {% else %}
                              <div style="font-size: 0.7rem; font-weight: 950; color: var(--hud-accent);">SCORE: {{ item.b_credit or 'N/A' }}</div>
