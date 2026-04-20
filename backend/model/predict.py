@@ -324,27 +324,27 @@ def predict(age, income, loan_amount, credit_score, loan_type=None, name=None,
     full_reason = " ||| ".join(reasons) if reasons else "Profile shows balanced metrics."
 
     breakdown = {
-        "pd": round(PD * 100, 2),
+        "pd": float(round(PD * 100, 2)),
         "pd_raw": float(PD),
         "lgd": 40.0,
-        "el": round(EL, 2),
-        "rwa": round(RWA, 2),
-        "suggested_rate": round(suggested_rate * 100, 2),
-        "raroc": round(raroc * 100, 2),
-        "regulatory_capital": round(regulatory_capital, 2),
-        "dti": round(dti, 2),
-        "lti": round(lti, 2),
-        "risk_score": round(PD * 100, 0),
+        "el": float(round(EL, 2)),
+        "rwa": float(round(RWA, 2)),
+        "suggested_rate": float(round(suggested_rate * 100, 2)),
+        "raroc": float(round(raroc * 100, 2)),
+        "regulatory_capital": float(round(regulatory_capital, 2)),
+        "dti": float(round(dti, 2)),
+        "lti": float(round(lti, 2)),
+        "risk_score": int(round(PD * 100, 0)),
         "risk_level": risk_level.upper(),
         "model_version": model_version,
-        "historical_impact": round(historical_score * 100, 2),
-        "ai_confidence": round(ml_pb_default * 100, 2),
-        "psychometric_intent": round(intent_risk * 100, 2), 
-        "gnn_fraud_factor": round(gnn_fraud_factor * 100, 2),
+        "historical_impact": float(round(historical_score * 100, 2)),
+        "ai_confidence": float(round(ml_pb_default * 100, 2)),
+        "psychometric_intent": float(round(intent_risk * 100, 2)), 
+        "gnn_fraud_factor": float(round(gnn_fraud_factor * 100, 2)),
         "cluster_nodes": cluster_nodes,
-        "max_recommended_loan": round(income * 0.40 * tenure, 2)
+        "max_recommended_loan": float(round(income * 0.40 * tenure, 2))
     }
 
-    return risk_level, full_reason, PD, shap_explanation, breakdown
+    return risk_level, full_reason, float(PD), shap_explanation, breakdown
 
 
