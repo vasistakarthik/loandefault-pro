@@ -1,18 +1,14 @@
 import sqlite3
 import os
 
-db_path = 'loan_default.db'
-if os.path.exists(db_path):
-    conn = sqlite3.connect(db_path)
-    cur = conn.cursor()
-    cur.execute("SELECT name FROM sqlite_master WHERE type='table';")
-    tables = cur.fetchall()
-    print(f"Tables: {tables}")
-    for table_name in [t[0] for t in tables]:
-        print(f"\nColumns for {table_name}:")
-        cur.execute(f"PRAGMA table_info({table_name});")
-        for col in cur.fetchall():
-            print(col)
-    conn.close()
+db_path = r'c:\Users\Lenovo\OneDrive\Desktop\CLDRRP\loan_default_system\backend\database\database.db'
+if not os.path.exists(db_path):
+    print(f"DB not found at {db_path}")
 else:
-    print("Database not found at " + os.path.abspath(db_path))
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    cursor.execute("PRAGMA table_info(loan_history);")
+    cols = cursor.fetchall()
+    for col in cols:
+        print(col)
+    conn.close()

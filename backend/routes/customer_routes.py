@@ -88,7 +88,9 @@ def borrower_profile(borrower_id):
         'age': borrower_dict.get('age'),
         'credit_score': borrower_dict.get('credit_score'),
         'annual_income': borrower_dict.get('annual_income'),
-        'employment_type': borrower_dict.get('employment_type')
+        'employment_type': borrower_dict.get('employment_type'),
+        'physical_address': borrower_dict.get('physical_address'),
+        'contact_phone': borrower_dict.get('contact_phone')
     }
     
     # Fetch risk predictions for timeline
@@ -100,12 +102,26 @@ def borrower_profile(borrower_id):
     all_history = conn.execute("SELECT * FROM loan_history WHERE email = ? ORDER BY created_at DESC", (email,)).fetchall()
     all_apps = conn.execute("SELECT * FROM loan_applications WHERE borrower_id = ? ORDER BY created_at DESC", (borrower_id,)).fetchall()
 
+    # --- GNN NODAL CLUSTER ANALYSIS (Real-time Extraction) ---
+    linked_nodes = []
+    if record.get('physical_address') or record.get('contact_phone'):
+        cluster_query = '''
+            SELECT id, full_name, status, creation_source 
+            FROM borrowers 
+            WHERE (physical_address = ? AND physical_address <> '' AND physical_address IS NOT NULL)
+               OR (contact_phone = ? AND contact_phone <> '' AND contact_phone IS NOT NULL)
+            AND id <> ?
+        '''
+        linked_db = conn.execute(cluster_query, (record['physical_address'], record['contact_phone'], record['id'])).fetchall()
+        linked_nodes = [dict(n) for n in linked_db]
+
     conn.close()
     return render_template('borrower_profile.html', 
                           borrower=record, 
                           predictions=predictions_list,
                           history_list=[dict(h) for h in all_history],
-                          apps_list=[dict(a) for a in all_apps])
+                          apps_list=[dict(a) for a in all_apps],
+                          linked_nodes=linked_nodes)
 
 import csv
 from io import TextIOWrapper
@@ -176,12 +192,12 @@ def ingest():
                     email = row.get('email')
                     name = row.get('name')
                     
-                    # Diversification: Generate realistic random telemetry if missing
-                    age = int(row.get('age')) if row.get('age') and str(row.get('age')).strip() else random.randint(22, 62)
-                    income = float(row.get('annual_income')) if row.get('annual_income') and str(row.get('annual_income')).strip() else random.uniform(350000, 2500000)
-                    credit = int(row.get('credit_score')) if row.get('credit_score') and str(row.get('credit_score')).strip() else random.randint(450, 850)
+                    # Diversification: Normalize numeric telemetry to prevent decimal bleeding
+                    age = int(float(row.get('age'))) if row.get('age') and str(row.get('age')).strip() else random.randint(22, 62)
+                    income = int(float(row.get('annual_income'))) if row.get('annual_income') and str(row.get('annual_income')).strip() else random.randint(350000, 2500000)
+                    credit = int(float(row.get('credit_score'))) if row.get('credit_score') and str(row.get('credit_score')).strip() else random.randint(450, 850)
                     emp_type = row.get('employment_type', 'Salaried')
-                    loan_amt = float(row.get('loan_amount', 0))
+                    loan_amt = int(float(row.get('loan_amount', 0)))
                     
                     # Sync with borrowers master table
                     existing = conn.execute('SELECT id FROM borrowers WHERE email = ?', (email,)).fetchone()
@@ -198,8 +214,8 @@ def ingest():
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     ''', (
                         name, email, 
-                        loan_amt, float(row.get('paid_amount', 0)),
-                        float(row.get('balance_amount', 0)), row.get('status', 'Ongoing'),
+                        loan_amt, int(float(row.get('paid_amount', 0))),
+                        int(float(row.get('balance_amount', 0))), row.get('status', 'Ongoing'),
                         int(row.get('tenure', 12)), int(row.get('months_completed', 0)),
                         age, credit, income, emp_type, batch_id
                     ))
@@ -583,26 +599,30 @@ def add_customer(borrower_id=None):
             if b:
                 b_dict = dict(b)
                 # Prioritize master data but preserve latest loan context from history
+                val_income = b_dict.get('annual_income') or h_dict.get('annual_income') or 50000
                 prefill_data = {
                     'name': b_dict.get('full_name', name),
-                    'age': b_dict.get('age') or h_dict.get('age') or 35,
-                    'annual_income': b_dict.get('annual_income') or h_dict.get('annual_income') or 50000.0,
-                    'credit_score': b_dict.get('credit_score') or h_dict.get('credit_score') or 600,
+                    'age': int(b_dict.get('age') or h_dict.get('age') or 35),
+                    'annual_income': int(val_income),
+                    'income': int(val_income), # Backwards compatibility with some template sections
+                    'credit_score': int(b_dict.get('credit_score') or h_dict.get('credit_score') or 600),
                     'employment_type': b_dict.get('employment_type') or h_dict.get('employment_type') or 'Salaried',
-                    'loan_amount': h_dict.get('loan_amount', 0.0), # Contextual for the 'Apply Again' flow
-                    'tenure': h_dict.get('tenure', 12),
+                    'loan_amount': int(h_dict.get('loan_amount', 0)), # Contextual for the 'Apply Again' flow
+                    'tenure': int(h_dict.get('tenure', 12)),
                     'loan_type': h_dict.get('loan_type', 'Personal Loan'),
                     'email': email
                 }
             else:
+                val_income = h_dict.get('annual_income') or 50000
                 prefill_data = {
                     'name': name,
-                    'age': h_dict.get('age') or 35,
-                    'annual_income': h_dict.get('annual_income') or 50000.0,
-                    'credit_score': h_dict.get('credit_score') or 600,
+                    'age': int(h_dict.get('age') or 35),
+                    'annual_income': int(val_income),
+                    'income': int(val_income),
+                    'credit_score': int(h_dict.get('credit_score') or 600),
                     'employment_type': h_dict.get('employment_type') or 'Salaried',
-                    'loan_amount': h_dict.get('loan_amount', 0.0),
-                    'tenure': h_dict.get('tenure', 12),
+                    'loan_amount': int(h_dict.get('loan_amount', 0)),
+                    'tenure': int(h_dict.get('tenure', 12)),
                     'loan_type': h_dict.get('loan_type', 'Personal Loan'),
                     'email': email
                 }
