@@ -65,7 +65,18 @@ def get_db_connection():
                 
             def cursor(self):
                 cur = self.conn.cursor(cursor_factory=DictCursor)
-                # Monkeypatch to support fetchall/fetchone directly on cursor
+                
+                # Monkeypatch execute to handle '?' to '%s' translation
+                original_execute = cur.execute
+                def patched_execute(sql, params=None):
+                    if params and isinstance(sql, str):
+                        sql = sql.replace('?', '%s')
+                    # Handle SQLite-specific last_insert_rowid()
+                    if isinstance(sql, str) and 'last_insert_rowid()' in sql.lower():
+                        sql = sql.lower().replace('last_insert_rowid()', 'lastval()')
+                    return original_execute(sql, params)
+                
+                cur.execute = patched_execute
                 return cur
 
             def __enter__(self):

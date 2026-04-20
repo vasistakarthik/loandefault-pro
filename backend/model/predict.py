@@ -84,9 +84,16 @@ def explain_prediction(model, data_df):
             cat_feature_names = ohe.get_feature_names_out(['employment_type', 'loan_type']).tolist()
             feature_names = numeric_features + cat_feature_names
             
+            # Handle single vs multi-sample SHAP values
+            def get_scalar(v):
+                if hasattr(v, '__iter__') and not isinstance(v, (str, bytes)):
+                    # Recursively get the first element if it's a list/array
+                    return get_scalar(v[0])
+                return v
+
             explanation = []
             for name, val in zip(feature_names, vals):
-                explanation.append({'feature': name, 'impact': float(round(val, 4))})
+                explanation.append({'feature': name, 'impact': float(round(get_scalar(val), 4))})
                 
             explanation.sort(key=lambda x: abs(x['impact']), reverse=True)
             return explanation
